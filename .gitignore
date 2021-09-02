@@ -1,0 +1,16 @@
+*.iml
+.idea/
+target/
+Logs/
+bin/
+*.class
+
+# Eclipse project files
+/target/
+metircs-client-all.log*
+.classpath
+.project
+.DS_Store
+.settings
+/.metadata
+.concrete
