@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/ic_bg"
+    tools:ignore="MissingDefaultResource">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <!-- 顶部 -->
+        <com.sn.blackdianqi.view.SquareLinearLayout
+            android:id="@+id/layout_head"
+            android:layout_width="@dimen/dingbu_yuan_size"
+            android:layout_height="@dimen/dingbu_yuan_size"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="9dp"
+            android:background="@mipmap/ic_yuan"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_anjian_top_icon"
+                android:layout_width="@dimen/dingbu_yuan_ren_size"
+                android:layout_height="@dimen/dingbu_yuan_ren_size"
+                android:layout_marginTop="40dp"
+                android:background="@mipmap/animation_beibutiaozheng_1" />
+
+            <TextView
+                android:id="@+id/text_anjian_top_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/beibutiaozheng"
+                android:textColor="@color/text_yuan"
+                android:textSize="@dimen/dingbu_yuan_title_size"></TextView>
+
+        </com.sn.blackdianqi.view.SquareLinearLayout>
+
+        <!-- 分体 -->
+        <LinearLayout
+            android:id="@+id/layout_fenti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+
+            <com.sn.blackdianqi.view.JiyiView
+                android:id="@+id/view_fenti"
+                android:layout_width="162dp"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                app:title="@string/fenti"
+                app:bgnormal="@drawable/bg_tuoyuan_normal"
+                app:bgselected="@drawable/bg_tuoyuan_selected"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/weitiao_marin"
+                android:layout_marginTop="@dimen/weitiao_marin"
+                android:layout_marginRight="@dimen/weitiao_marin">
+
+
+                <com.sn.blackdianqi.view.AnjianDuanWeitiaoView
+                    android:id="@+id/view_fenti_beibutiaozheng_left"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/anjian_weitiao_height"
+                    app:bgnormal="@drawable/bg_tuoyuan_normal"
+                    app:icon="@mipmap/xr_zhihan_xiao"
+                    app:title="@string/beibutiaozheng"
+                    android:layout_weight="1"/>
+
+                <View
+                    android:layout_width="@dimen/weitiao_marin"
+                    android:layout_height="match_parent"/>
+
+                <com.sn.blackdianqi.view.AnjianDuanWeitiaoView
+                    android:id="@+id/view_fenti_beibutiaozheng_right"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/anjian_weitiao_height"
+                    app:bgnormal="@drawable/bg_tuoyuan_normal"
+                    app:icon="@mipmap/xr_zhihan_xiao"
+                    app:title="@string/beibutiaozheng"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/weitiao_marin"
+                android:layout_marginTop="@dimen/weitiao_marin"
+                android:layout_marginRight="@dimen/weitiao_marin">
+
+
+                <com.sn.blackdianqi.view.AnjianDuanWeitiaoView
+                    android:id="@+id/view_fenti_tuibutiaozheng_left"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/anjian_weitiao_height"
+                    app:bgnormal="@drawable/bg_tuoyuan_normal"
+                    app:icon="@mipmap/xr_tuibuxunhuan_xiao"
+                    app:title="LEG    "
+                    android:layout_weight="1"/>
+
+                <View
+                    android:layout_width="@dimen/weitiao_marin"
+                    android:layout_height="match_parent"/>
+
+                <com.sn.blackdianqi.view.AnjianDuanWeitiaoView
+                    android:id="@+id/view_fenti_tuibutiaozheng_right"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/anjian_weitiao_height"
+                    app:bgnormal="@drawable/bg_tuoyuan_normal"
+                    app:icon="@mipmap/xr_tuibuxunhuan_xiao"
+                    app:title="LEG    "
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- 同步 -->
+        <LinearLayout
+            android:id="@+id/layout_tongbu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:visibility="gone">
+
+            <com.sn.blackdianqi.view.JiyiView
+                android:id="@+id/view_tongbu"
+                android:layout_width="162dp"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                app:title="@string/tongbu"
+                app:bgnormal="@drawable/bg_tuoyuan_normal"
+                app:bgselected="@drawable/bg_tuoyuan_selected"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <com.sn.blackdianqi.view.AnjianWeitiaoView
+                android:id="@+id/view_tongbu_beibutiaozheng"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/anjian_weitiao_height"
+                android:layout_marginLeft="@dimen/weitiao_marin"
+                android:layout_marginTop="@dimen/weitiao_marin"
+                android:layout_marginRight="@dimen/weitiao_marin"
+                app:bgnormal="@drawable/bg_tuoyuan_normal"
+                app:icon="@mipmap/xr_zhihan_xiao"
+                app:title="@string/beibutiaozheng" />
+
+
+            <com.sn.blackdianqi.view.AnjianWeitiaoView
+                android:id="@+id/view_tongbu_tuibutiaozheng"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/anjian_weitiao_height"
+                android:layout_marginLeft="@dimen/weitiao_marin"
+                android:layout_marginTop="@dimen/weitiao_marin"
+                android:layout_marginRight="@dimen/weitiao_marin"
+                app:bgnormal="@drawable/bg_tuoyuan_normal"
+                app:icon="@mipmap/xr_tuibuxunhuan_xiao"
+                app:title="@string/tuibutiaozheng" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

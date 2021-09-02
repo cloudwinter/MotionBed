@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay_transroot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!--android:background="@color/colorPrimary"-->
+    <!--声明了一个高度为0.0dp的 statusbar，
+    背景为透明，然后获取状态栏高度并赋值到它上，
+    来实现兼容。事实证明，这样做的兼容效果最好。-->
+    <View
+        android:id="@+id/v_statusbar"
+        android:layout_width="match_parent"
+        android:layout_height="1.0dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/lay_actionbar_left"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_actionbar_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@mipmap/ic_back" />
+
+            <TextView
+                android:id="@+id/tv_actionbar_left"
+                style="@style/text_white"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/iv_actionbar_left"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text=""
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_actionbar_title"
+            style="@style/text_white"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text=""
+            android:textSize="18dp" />
+
+        <RelativeLayout
+            android:id="@+id/lay_actionbar_right"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_actionbar_right"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="12dp" />
+
+            <TextView
+                android:id="@+id/tv_actionbar_right"
+                style="@style/text_white"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="12dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text=""
+                android:textSize="13dp"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

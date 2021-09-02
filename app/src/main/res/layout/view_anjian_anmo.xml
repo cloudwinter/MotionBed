@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+
+        <LinearLayout
+            android:id="@+id/layout_sanjiao_top"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+    
+            <ImageView
+                android:id="@+id/img_sanjiao_top"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:background="@drawable/bg_minus_selector"
+                />
+    
+        </LinearLayout>
+    
+    
+    
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            >
+
+            <ImageView
+                android:id="@+id/img_xr"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/xr_kandianshi_xiao"
+                android:layout_toLeftOf="@+id/view_center"
+                />
+    
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/kandianshi"
+                android:textColor="@color/text_white"
+                android:layout_marginLeft="10dp"
+                android:textSize="13dp"
+                android:layout_toEndOf="@+id/view_center"
+                android:layout_toRightOf="@+id/view_center"/>
+    
+    
+        </LinearLayout>
+    
+    
+        <LinearLayout
+            android:id="@+id/layout_sanjiao_bottom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+    
+            <ImageView
+                android:id="@+id/img_sanjiao_bottom"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:background="@drawable/bg_plus_selector"
+                />
+    
+        </LinearLayout>
+
+    </LinearLayout>
+    
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_alignParentBottom="true">
+
+        <View
+            android:id="@+id/view_line1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_05BF74"
+            android:layout_weight="1"
+            android:visibility="invisible"/>
+        <View
+            android:id="@+id/view_line2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_05BF74"
+            android:layout_weight="1"
+            android:layout_marginLeft="1dp"
+            android:visibility="invisible"/>
+
+        <View
+            android:id="@+id/view_line3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_05BF74"
+            android:layout_weight="1"
+            android:layout_marginLeft="1dp"
+            android:visibility="invisible"/>
+
+        <View
+            android:id="@+id/view_line4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_05BF74"
+            android:layout_weight="1"
+            android:layout_marginLeft="1dp"
+            android:visibility="invisible"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

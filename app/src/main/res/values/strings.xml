@@ -1,0 +1,104 @@
+<resources>
+    <string name="app_name">Motion Bed</string>
+
+    <!-- common -->
+    <string name="exit">Press the back key again to exit the app</string>
+
+
+
+    <string name="text_enter">Enter</string>
+    <string name="blue_equipment">Bluetooth device</string>
+    <string name="search_blue_equipment">Scan Nearby Bluetooth devices</string>
+    <string name="searching">searching...</string>
+
+    <string name="connecting">connecting...</string>
+    <string name="please_wait">Please later...</string>
+    
+    <!-- dialog -->
+    <string name="connected_failed">The connection failed. Please try to reconnect</string>
+    <string name="dialog_title_disconnect">Disconnected or not</string>
+    <string name="dialog_negetive">cancel</string>
+    <string name="dialog_positive">sure</string>
+
+    <!-- 蓝牙设备/设置界面 -->
+    <string name="connecting_device">Connect Device</string>
+    <string name="not_connected">Not Connected</string>
+    <string name="connected">Connected</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="click_to_connect">Click to connect</string>
+    <string name="lighting_time">Lighting time</string>
+    <string name="switch_language">Switch Language</string>
+    <string name="french">French</string>
+    <string name="english">English</string>
+    <string name="version">Version</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="setting">Setting</string>
+
+
+    <!-- tab -->
+    <string name="kuaijie">SHORTCUT</string>
+    <string name="weitiao">MICRO ADJ</string>
+    <string name="anmo">MASSAGE</string>
+    <string name="dengguang">LIGHT</string>
+
+    <!-- 快捷 -->
+    <string name="jiyi">Memory</string>
+    <string name="jiyi1">Memory 1</string>
+    <string name="jiyi2">Memory 2</string>
+    <string name="kandianshi">Watch TV</string>
+    <string name="lingyali">Zero Gravity</string>
+    <string name="zhihan">Anti Snore</string>
+    <string name="fuyuan">Flat Bed</string>
+    <string name="tingyinyue">Music</string>
+    <string name="tuibufangsong">Leg Relax</string>
+    <string name="dingyao">Lumbar</string>
+    <string name="fenti">Split</string>
+    <string name="tongbu">Sync</string>
+    <string name="yujia">YOGA</string>
+    <string name="yijianshengqi">Rise</string>
+    <string name="yijianjiangxia">Decline</string>
+
+
+
+    <!-- 微调 -->
+    <string name="beibutiaozheng">BACK</string>
+    <string name="tunbutiaozheng">HIP</string>
+    <string name="toubutiaozheng">HEAD</string>
+    <string name="tuibutiaozheng">LEG</string>
+    <string name="yaobutiaozheng">LUMBAR</string>
+    <string name="beituitiaozheng">BACK LEG</string>
+    <string name="zhengtishengjiang">LIFT</string>
+
+    <string name="quanshenxunhuan">FULL CYCLE</string>
+    <string name="tunbuxunhuan">HIP CYCLE</string>
+    <string name="toubuxunhuan">HEAD CYCLE</string>
+    <string name="tuibuxunhuan">LEG CYCLE</string>
+    <string name="yaobuxunhuan">LUMBAR CYCLE</string>
+    <string name="beibuxunhuan">BACK CYCLE</string>
+    <string name="beituixunhuan">BACK/LEG CYCLE</string>
+
+
+    <!-- 灯光 -->
+    <string name="dengguangshijian">Lighting time</string>
+    <string name="tenfenzhong">10Mins</string>
+    <string name="eightxiaoshi">8Hours</string>
+    <string name="tentxiaoshi">10Hours</string>
+
+
+    <!-- 按摩 -->
+    <string name="anmopingdonghuaqu">MASSAGE</string>
+    <string name="anmopinglv">Mass Wave</string>
+    <string name="toubuanmo">Back Mass</string>
+    <string name="zubuanmo">Leg Mass</string>
+    <string name="tenmin">10min</string>
+    <string name="twentymin">20min</string>
+    <string name="thirtymin">30min</string>
+
+
+    <string name="device_no_connected">Device Not Connected</string>
+    <string name="device_disconnect">Device disConnected please reconnected</string>
+    <string name="debug_switch">debug switch</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+
+</resources>

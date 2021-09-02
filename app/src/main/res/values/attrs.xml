@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="title" format="reference|string" />
+    <attr name="bgnormal" format="reference" />
+    <attr name="bgselected" format="reference" />
+    <attr name="icon" format="reference" />
+
+
+    <declare-styleable name="JiyiView">
+        <attr name="title" />
+        <attr name="bgnormal" />
+        <attr name="bgselected" />
+    </declare-styleable>
+
+    <declare-styleable name="AnjianYuanView">
+        <attr name="title" />
+        <attr name="icon" />
+        <attr name="bgnormal" />
+        <attr name="bgselected" />
+        <attr name="pratio" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="AnjianTuoYuanView">
+        <attr name="title" />
+        <attr name="icon" />
+        <attr name="bgnormal" />
+        <attr name="bgselected" />
+    </declare-styleable>
+
+    <declare-styleable name="AnjianAnmoYuanView">
+        <attr name="title" />
+        <attr name="icon" />
+        <attr name="bgnormal" />
+        <attr name="bgselected" />
+        <attr name="imgnormal" format="reference"/>
+        <attr name="imgselected" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="AnjianAnmoView">
+        <attr name="title" />
+        <attr name="icon" />
+        <attr name="bgnormal" />
+        <attr name="bgselected" />
+        <attr name="linecount" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="FixedRatioRelativeLayout">
+        <attr name="ratio" format="float"></attr>
+    </declare-styleable>
+</resources>

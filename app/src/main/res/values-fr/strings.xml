@@ -1,0 +1,103 @@
+<resources>
+    <string name="app_name">Motion Bed</string>
+
+    <!-- common -->
+    <string name="exit">Press the back key again to exit the app</string>
+
+
+
+    <string name="text_enter">Entrer</string>
+    <string name="blue_equipment">Appareil Bluetooth</string>
+    <string name="search_blue_equipment">Scanner Les Appareils Bluetooth à Proximité</string>
+    <string name="searching">searching...</string>
+
+    <string name="connecting">connecting...</string>
+    <string name="please_wait">Please later...</string>
+    
+    <!-- dialog -->
+    <string name="connected_failed">The connection failed. Please try to reconnect</string>
+    <string name="dialog_title_disconnect">Disconnected or not</string>
+    <string name="dialog_negetive">cancel</string>
+    <string name="dialog_positive">sure</string>
+
+    <!-- 蓝牙设备/设置界面 -->
+    <string name="connecting_device">Connecter l&#180;appareil</string>
+    <string name="not_connected">Pas Connecté</string>
+    <string name="connected">Connecté</string>
+    <string name="disconnect">Déconnecter</string>
+    <string name="click_to_connect">Cliquer pour connecter</string>
+    <string name="lighting_time">Temps d&#180;éclairage</string>
+    <string name="switch_language">Changer de langue</string>
+    <string name="french">French</string>
+    <string name="english">Anglais</string>
+    <string name="version">Version</string>
+    <string name="privacy_policy">Politique de confidentialité</string>
+    <string name="setting">Réglage</string>
+
+
+    <!-- tab -->
+    <string name="kuaijie">RACCOURCI</string>
+    <string name="weitiao">MICRO REGLAGE</string>
+    <string name="anmo">MASSAGE</string>
+    <string name="dengguang">LUMIERE</string>
+
+    <!-- 快捷 -->
+    <string name="jiyi">Memory</string>
+    <string name="jiyi1">Mémoire 1</string>
+    <string name="jiyi2">Mémoire 2</string>
+    <string name="kandianshi">Regarder la TV</string>
+    <string name="lingyali">Zéro gravité</string>
+    <string name="zhihan">Anti ronflement</string>
+    <string name="fuyuan">A plat</string>
+    <string name="tingyinyue">Musique</string>
+    <string name="tuibufangsong">Relaxer les jambes</string>
+    <string name="dingyao">Lombaire</string>
+    <string name="fenti">Scinder</string>
+    <string name="tongbu">Synchrone</string>
+    <string name="yujia">YOGA</string>
+    <string name="yijianshengqi">s&#180;élever</string>
+    <string name="yijianjiangxia">descendre</string>
+
+
+    <!-- 微调 -->
+    <string name="beibutiaozheng">Dos</string>
+    <string name="tunbutiaozheng">Fesses</string>
+    <string name="toubutiaozheng">Tête</string>
+    <string name="tuibutiaozheng">Jambe</string>
+    <string name="yaobutiaozheng">Lombaire</string>
+    <string name="beituitiaozheng">Dos Jambe</string>
+    <string name="zhengtishengjiang">Lever</string>
+
+    <string name="quanshenxunhuan">Cycle complet</string>
+    <string name="tunbuxunhuan">Cycle fessier</string>
+    <string name="toubuxunhuan">HEAD CYCLE</string>
+    <string name="tuibuxunhuan">Cycle des jambes</string>
+    <string name="yaobuxunhuan">Cycle Lombaire</string>
+    <string name="beibuxunhuan">Cycle dos</string>
+    <string name="beituixunhuan">Cycle du dos</string>
+
+
+    <!-- 灯光 -->
+    <string name="dengguangshijian">Temps d&#180;éclairage</string>
+    <string name="tenfenzhong">10minutes</string>
+    <string name="eightxiaoshi">8heures</string>
+    <string name="tentxiaoshi">10heures</string>
+
+
+    <!-- 按摩 -->
+    <string name="anmopingdonghuaqu">MASSAGE</string>
+    <string name="anmopinglv">Massage Vague</string>
+    <string name="toubuanmo">Massage du dos</string>
+    <string name="zubuanmo">Massage des jambes</string>
+    <string name="tenmin">10 minutes</string>
+    <string name="twentymin">20 minutes</string>
+    <string name="thirtymin">30 minutes</string>
+
+
+    <string name="device_no_connected">Device Not Connected</string>
+    <string name="device_disconnect">Device disConnected please reconnected</string>
+    <string name="debug_switch">debug switch</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+
+</resources>

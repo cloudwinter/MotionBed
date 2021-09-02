@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/ic_bg"
+    android:orientation="vertical">
+
+    <com.sn.blackdianqi.view.TranslucentActionBar
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <RelativeLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.sn.blackdianqi.view.NoScrollViewPager
+            android:id="@+id/vp_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_tabs" />
+
+        <LinearLayout
+            android:id="@+id/bottom_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/tab1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/tab1_img"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:src="@drawable/tab_kuaijie" />
+
+                <TextView
+                    android:id="@+id/tab1_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/kuaijie"
+                    android:textColor="@color/tab_color_selector"
+                    android:textSize="10dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/tab2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/tab2_img"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:src="@drawable/tab_weitiao" />
+
+                <TextView
+                    android:id="@+id/tab2_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/weitiao"
+                    android:textColor="@color/tab_color_selector"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tab3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/tab3_img"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:src="@drawable/tab_anmo" />
+
+                <TextView
+                    android:id="@+id/tab3_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/anmo"
+                    android:textColor="@color/tab_color_selector"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/tab4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/tab4_img"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:src="@drawable/tab_dengguang" />
+
+                <TextView
+                    android:id="@+id/tab4_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/dengguang"
+                    android:textColor="@color/tab_color_selector"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
