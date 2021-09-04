@@ -24,7 +24,7 @@ android:orientation="vertical" >
                 android:layout_height="wrap_content"
                 android:text="@string/english"
                 android:textSize="20dp"
-                android:textColor="#0C0B0E"
+                android:textColor="@color/white"
                 android:layout_centerInParent="true"
                 />
 
@@ -45,7 +45,7 @@ android:orientation="vertical" >
             android:layout_height="0.5dp"
             android:layout_marginLeft="1dp"
             android:layout_marginRight="1dp"
-            android:background="#A7A6A7" />
+            android:background="@color/black" />
 
 
         <RelativeLayout
@@ -58,7 +58,7 @@ android:orientation="vertical" >
                 android:layout_height="wrap_content"
                 android:text="@string/french"
                 android:textSize="20dp"
-                android:textColor="#0C0B0E"
+                android:textColor="@color/white"
                 android:layout_centerInParent="true"
                 />
 
@@ -87,7 +87,7 @@ android:orientation="vertical" >
         android:layout_marginLeft="16dp"
         android:layout_marginBottom="30dp"
         android:layout_marginRight="16dp"
-        android:textColor="#979DA7"
+        android:textColor="@color/white"
         android:textSize="20dp"
         android:text="@string/dialog_negetive"
         android:gravity="center"

@@ -8,6 +8,9 @@
 
     <!-- 背景色 -->
     <color name="bg_main">#EAEAEA</color>
+    <color name="dialog_bg">#2B2D36</color>
+    <!-- 背景色 -->
+    <color name="black">#000000</color>
     <!-- 按钮文字颜色 -->
     <color name="btn_text">#FFFFFF</color>
     <!-- 黑色文字 -->

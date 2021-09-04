@@ -56,7 +56,11 @@ public class DengguangFragment extends BaseFragment implements View.OnClickListe
     // 特征值
     protected BluetoothGattCharacteristic characteristic;
 
-
+    @Override
+    public void onDestroy() {
+        getActivity().unregisterReceiver(mDengguangReceiver);
+        super.onDestroy();
+    }
 
     @Nullable
     @Override
