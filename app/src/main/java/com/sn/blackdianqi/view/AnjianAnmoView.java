@@ -13,6 +13,9 @@ import android.widget.TextView;
 import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.util.LogUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.core.content.ContextCompat;
 
 /**
@@ -21,6 +24,8 @@ import androidx.core.content.ContextCompat;
 public class AnjianAnmoView extends RelativeLayout implements View.OnClickListener {
 
     public static final String TAG = "AnjianChangTuoYuanView";
+
+    private final int MAX_LINE_COUNT = 10;
 
     Context mContext;
 
@@ -32,13 +37,13 @@ public class AnjianAnmoView extends RelativeLayout implements View.OnClickListen
     ImageView sanjiaoTopImageView;
     LinearLayout sanjiaoBottomLayout;
     ImageView sanjiaoBottomImageView;
-    View line1View;
-    View line2View;
-    View line3View;
-    View line4View;
+
+    List<View> lineViewList = null;
 
     int bgNormalRes = -1;
     int lineCount = 3;
+
+    private int level;
 
     public AnjianAnmoView(Context context) {
         super(context, null);
@@ -68,16 +73,28 @@ public class AnjianAnmoView extends RelativeLayout implements View.OnClickListen
         sanjiaoBottomLayout = contentView.findViewById(R.id.layout_sanjiao_bottom);
         sanjiaoTopImageView = contentView.findViewById(R.id.img_sanjiao_top);
         sanjiaoBottomImageView = contentView.findViewById(R.id.img_sanjiao_bottom);
-        line1View = contentView.findViewById(R.id.view_line1);
-        line2View = contentView.findViewById(R.id.view_line2);
-        line3View = contentView.findViewById(R.id.view_line3);
-        line4View = contentView.findViewById(R.id.view_line4);
-        if (lineCount == 4) {
-            line4View.setVisibility(INVISIBLE);
-        } else {
-            line4View.setVisibility(GONE);
-        }
+        lineViewList = new ArrayList<>();
 
+        lineViewList.add(contentView.findViewById(R.id.view_line1));
+        lineViewList.add(contentView.findViewById(R.id.view_line2));
+        lineViewList.add(contentView.findViewById(R.id.view_line3));
+        lineViewList.add(contentView.findViewById(R.id.view_line4));
+        lineViewList.add(contentView.findViewById(R.id.view_line5));
+        lineViewList.add(contentView.findViewById(R.id.view_line6));
+        lineViewList.add(contentView.findViewById(R.id.view_line7));
+        lineViewList.add(contentView.findViewById(R.id.view_line8));
+        lineViewList.add(contentView.findViewById(R.id.view_line9));
+        lineViewList.add(contentView.findViewById(R.id.view_line10));
+        if (lineCount >= MAX_LINE_COUNT) {
+            lineCount = MAX_LINE_COUNT;
+            for (int i = 0; i < MAX_LINE_COUNT; i++) {
+                if (i >= lineCount) {
+                    lineViewList.get(i).setVisibility(View.GONE);
+                } else {
+                    lineViewList.get(i).setVisibility(View.INVISIBLE);
+                }
+            }
+        }
         titleTextView.setText(title);
         if (iconRes != -1) {
             iconImageView.setBackground(ContextCompat.getDrawable(mContext, iconRes));
@@ -91,6 +108,7 @@ public class AnjianAnmoView extends RelativeLayout implements View.OnClickListen
 
     /**
      * 设置点击事件
+     *
      * @param childClickListener
      */
     public void setChildClickListener(ChildClickListener childClickListener) {
@@ -99,57 +117,31 @@ public class AnjianAnmoView extends RelativeLayout implements View.OnClickListen
 
     /**
      * 设置级别
+     *
      * @param level
      */
     public void setLevel(int level) {
-        switch (level) {
-            case 0:
-                line1View.setVisibility(INVISIBLE);
-                line2View.setVisibility(INVISIBLE);
-                line3View.setVisibility(INVISIBLE);
-                if (lineCount == 4) {
-                    line4View.setVisibility(INVISIBLE);
-                } else {
-                    line4View.setVisibility(GONE);
-                }
-                break;
-            case 1:
-                line1View.setVisibility(VISIBLE);
-                line2View.setVisibility(INVISIBLE);
-                line3View.setVisibility(INVISIBLE);
-                if (lineCount == 4) {
-                    line4View.setVisibility(INVISIBLE);
-                } else {
-                    line4View.setVisibility(GONE);
-                }
-                break;
-            case 2:
-                line1View.setVisibility(VISIBLE);
-                line2View.setVisibility(VISIBLE);
-                line3View.setVisibility(INVISIBLE);
-                if (lineCount == 4) {
-                    line4View.setVisibility(INVISIBLE);
-                } else {
-                    line4View.setVisibility(GONE);
-                }
-                break;
-            case 3:
-                line1View.setVisibility(VISIBLE);
-                line2View.setVisibility(VISIBLE);
-                line3View.setVisibility(VISIBLE);
-                if (lineCount == 4) {
-                    line4View.setVisibility(INVISIBLE);
-                } else {
-                    line4View.setVisibility(GONE);
-                }
-                break;
-            case 4:
-                line1View.setVisibility(VISIBLE);
-                line2View.setVisibility(VISIBLE);
-                line3View.setVisibility(VISIBLE);
-                line4View.setVisibility(VISIBLE);
-                break;
+        if (level < 0) {
+            level = 0;
         }
+        level = level;
+        for (int i = 0; i < MAX_LINE_COUNT; i++) {
+            if (i < lineCount) {
+                if(i >= level) {
+                    lineViewList.get(i).setVisibility(View.INVISIBLE);
+                } else {
+                    lineViewList.get(i).setVisibility(View.VISIBLE);
+                }
+            }
+        }
+    }
+
+    /**
+     * 获取级别
+     * @return
+     */
+    public int getLevel() {
+        return level;
     }
 
 

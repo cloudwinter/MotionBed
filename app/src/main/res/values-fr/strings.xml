@@ -82,6 +82,11 @@
     <string name="tenfenzhong">10minutes</string>
     <string name="eightxiaoshi">8heures</string>
     <string name="tentxiaoshi">10heures</string>
+    <string name="dengguangliangdu">La luminosité</string>
+    <string name="dengguangliangdu_min_tips">La luminosité actuelle a été ajustée au minimum</string>
+    <string name="dengguangliangdu_max_tips">La luminosité actuelle a été ajustée au maximum</string>
+
+
 
 
     <!-- 按摩 -->

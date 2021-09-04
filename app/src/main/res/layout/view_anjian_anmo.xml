@@ -40,7 +40,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_centerVertical="true"
-                android:background="@mipmap/xr_kandianshi_xiao"
+                android:background="@null"
                 android:layout_toLeftOf="@+id/view_center"
                 />
     
@@ -113,6 +113,69 @@
 
         <View
             android:id="@+id/view_line4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_05BF74"
+            android:layout_weight="1"
+            android:layout_marginLeft="1dp"
+            android:visibility="invisible"/>
+        <View
+            android:id="@+id/view_line5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_05BF74"
+            android:layout_weight="1"
+            android:layout_marginLeft="1dp"
+            android:visibility="invisible"/>
+
+        <View
+            android:id="@+id/view_line6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_05BF74"
+            android:layout_weight="1"
+            android:layout_marginLeft="1dp"
+            android:visibility="invisible"/>
+
+        <View
+            android:id="@+id/view_line6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_05BF74"
+            android:layout_weight="1"
+            android:layout_marginLeft="1dp"
+            android:visibility="invisible"/>
+
+        <View
+            android:id="@+id/view_line7"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_05BF74"
+            android:layout_weight="1"
+            android:layout_marginLeft="1dp"
+            android:visibility="invisible"/>
+
+        <View
+            android:id="@+id/view_line8"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_05BF74"
+            android:layout_weight="1"
+            android:layout_marginLeft="1dp"
+            android:visibility="invisible"/>
+
+        <View
+            android:id="@+id/view_line9"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_05BF74"
+            android:layout_weight="1"
+            android:layout_marginLeft="1dp"
+            android:visibility="invisible"/>
+
+
+        <View
+            android:id="@+id/view_line10"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@color/color_05BF74"
