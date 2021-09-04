@@ -4,6 +4,7 @@ target/
 Logs/
 bin/
 *.class
+./gradle
 
 # Eclipse project files
 /target/
