@@ -65,6 +65,11 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
     @BindView(R.id.ll_debug)
     LinearLayout llDebug;
 
+    @BindView(R.id.ll_alarm)
+    LinearLayout llAlarm;
+    @BindView(R.id.tv_alarm)
+    TextView tvAlarm;
+
     // 特征值
     protected BluetoothGattCharacteristic characteristic;
 
@@ -110,6 +115,7 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         llLanguage.setOnClickListener(this);
         llPrivacy.setOnClickListener(this);
         llFaultDebug.setOnClickListener(this);
+        llAlarm.setOnClickListener(this);
         llDebug.setOnClickListener(this);
         if (Debuggable) {
             llDebug.setVisibility(View.VISIBLE);
@@ -161,6 +167,9 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
                 } else {
                     ToastUtils.showToast(RunningContext.sAppContext,R.string.device_no_connected);
                 }
+                break;
+            case R.id.ll_alarm:
+                // TODO
                 break;
             case R.id.ll_debug:
                 LoggerView.me.loggerSwitch();

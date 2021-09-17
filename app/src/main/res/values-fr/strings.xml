@@ -36,6 +36,7 @@
     <string name="fault_debugging">Fault debugging</string>
     <string name="fault_part">Fault Part</string>
     <string name="fault_type">Fault Type</string>
+    <string name="alarm">réveils</string>
 
 
     <!-- tab -->
