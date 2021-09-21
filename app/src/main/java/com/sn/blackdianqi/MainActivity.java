@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.sn.blackdianqi.activity.AlarmActivity;
 import com.sn.blackdianqi.activity.ConnectActivity;
 import com.sn.blackdianqi.activity.HomeActivity;
 import com.sn.blackdianqi.base.BaseActivity;
@@ -86,7 +87,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     startActivity(intent);
                 } else {
                     // 跳转到蓝牙搜索和连接界面
-                    Intent intent = new Intent(MainActivity.this, ConnectActivity.class);
+                    Intent intent = new Intent(MainActivity.this, AlarmActivity.class);
                     intent.putExtra("from","main");
                     startActivity(intent);
                 }

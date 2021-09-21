@@ -11,11 +11,24 @@ import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.github.gzuliyujiang.wheelpicker.DatePicker;
+import com.github.gzuliyujiang.wheelpicker.OptionPicker;
+import com.github.gzuliyujiang.wheelpicker.TimePicker;
+import com.github.gzuliyujiang.wheelpicker.annotation.DateMode;
+import com.github.gzuliyujiang.wheelpicker.annotation.TimeMode;
+import com.github.gzuliyujiang.wheelpicker.contract.OnDatePickedListener;
+import com.github.gzuliyujiang.wheelpicker.contract.OnTimePickedListener;
+import com.github.gzuliyujiang.wheelpicker.entity.TimeEntity;
+import com.github.gzuliyujiang.wheelpicker.impl.SimpleTimeFormatter;
+import com.github.gzuliyujiang.wheelpicker.impl.UnitDateFormatter;
+import com.github.gzuliyujiang.wheelpicker.impl.UnitTimeFormatter;
 import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.base.BaseActivity;
 import com.sn.blackdianqi.blue.BluetoothLeService;
 import com.sn.blackdianqi.util.LogUtils;
+import com.sn.blackdianqi.util.ToastUtils;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
 import androidx.annotation.Nullable;
@@ -80,7 +93,7 @@ public class AlarmActivity extends BaseActivity implements TranslucentActionBar.
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         registerReceiver(mAlarmReceiver, makeGattUpdateIntentFilter());
-        setContentView(R.layout.activity_set);
+        setContentView(R.layout.activity_alarm);
         ButterKnife.bind(this);
         // 设置title
         actionBar.setData(getString(R.string.alarm), R.mipmap.ic_back, null, 0, null, this);
@@ -105,12 +118,26 @@ public class AlarmActivity extends BaseActivity implements TranslucentActionBar.
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_time:
-                // TODO
+                TimePicker picker = new TimePicker(this);
+                picker.getWheelLayout().setTimeMode(TimeMode.HOUR_24_NO_SECOND);
+                picker.getWheelLayout().setTimeFormatter(new SimpleTimeFormatter());
+                picker.getWheelLayout().setRange(TimeEntity.target(0,0,0),TimeEntity.target(23, 59, 59));
+                picker.getWheelLayout().setDefaultValue(TimeEntity.now());
+                picker.setOnTimePickedListener(new OnTimePickedListener() {
+                    @Override
+                    public void onTimePicked(int hour, int minute, int second) {
+                        ToastUtils.showToast(AlarmActivity.this, hour + ":" + minute + ":" + second);
+                    }
+                });
+                picker.show();
                 break;
             case R.id.ll_week:
+
                 // TODO
                 break;
             case R.id.ll_mode:
+                OptionPicker weekPicker = new OptionPicker(this);
+                weekPicker.setData("星期一", "样式1-屏幕底部弹窗", "样式2-屏幕底部弹窗", "样式3-屏幕中间弹窗");
                 // TODO
                 break;
             case R.id.ll_save:
