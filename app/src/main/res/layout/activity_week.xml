@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/ic_bg"
@@ -10,222 +11,86 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- 闹钟开关 -->
-    <LinearLayout
-        android:id="@+id/ll_switch"
+
+    <!-- 星期一 -->
+    <com.sn.blackdianqi.view.WeekItemView
+        android:id="@+id/wiv_monday"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/bg_alarm_item"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:layout_marginTop="30dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/alarm_switch"
-            android:textColor="@color/text_white"
-            android:textSize="14dp" />
-
-
-        <CheckBox
-            android:id="@+id/cb_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/checkbox_style"
-            android:background="@drawable/bg_checkbox"
-            />
-    </LinearLayout>
-
-    <!-- 时间 -->
-    <LinearLayout
-        android:id="@+id/ll_time"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/bg_alarm_item"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
         android:layout_marginTop="15dp"
         android:paddingLeft="15dp"
-        android:paddingRight="15dp">
+        android:paddingRight="15dp"
+        app:title="@string/week_monday" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/alarm_time"
-            android:textColor="@color/text_white"
-            android:textSize="14dp" />
-
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            android:textColor="@color/text_green"
-            android:textSize="14dp"
-            android:text="11:15"/>
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@mipmap/ic_row"
-            />
-    </LinearLayout>
-
-    <!-- 星期 -->
-    <LinearLayout
-        android:id="@+id/ll_week"
+    <!-- 星期二 -->
+    <com.sn.blackdianqi.view.WeekItemView
+        android:id="@+id/wiv_tuesday"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/bg_alarm_item"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
         android:layout_marginTop="1px"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/alarm_week"
-            android:textColor="@color/text_white"
-            android:textSize="14dp" />
-
-        <TextView
-            android:id="@+id/tv_week"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            android:textColor="@color/text_green"
-            android:textSize="14dp"
-            android:text="@string/alarm_week_no_repeat"/>
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@mipmap/ic_row"
-            />
-    </LinearLayout>
-
-    <!-- 模式 -->
-    <LinearLayout
-        android:id="@+id/ll_mode"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/bg_alarm_item"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:layout_marginTop="1px"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/alarm_mode"
-            android:textColor="@color/text_white"
-            android:textSize="14dp" />
-
-        <TextView
-            android:id="@+id/tv_mode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            android:textColor="@color/text_green"
-            android:textSize="14dp"
-            android:text="@string/alarm_mode_budongzuo"/>
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@mipmap/ic_row"
-            />
-    </LinearLayout>
-
-    <!-- 按摩 -->
-    <LinearLayout
-        android:id="@+id/ll_anmo"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/bg_alarm_item"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:layout_marginTop="1px"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/alarm_anmo"
-            android:textColor="@color/text_white"
-            android:textSize="14dp" />
-
-        <CheckBox
-            android:id="@+id/cb_anmo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/checkbox_style"
-            android:background="@drawable/bg_checkbox"
-            />
-    </LinearLayout>
-
-    <!-- 响铃 -->
-    <LinearLayout
-        android:id="@+id/ll_xiangling"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/bg_alarm_item"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:layout_marginTop="1px"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/alarm_xiangling"
-            android:textColor="@color/text_white"
-            android:textSize="14dp" />
-
-        <CheckBox
-            android:id="@+id/cb_xinagling"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/checkbox_style"
-            android:background="@drawable/bg_checkbox"
-            />
-    </LinearLayout>
-
-    <!-- 保存 -->
-    <LinearLayout
-        android:id="@+id/ll_save"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/bg_alarm_item"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:gravity="center">
+        app:title="@string/week_tuesday" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/alarm_save"
-            android:textColor="@color/text_green"
-            android:textSize="14dp"
-            />
+    <!-- 星期三 -->
+    <com.sn.blackdianqi.view.WeekItemView
+        android:id="@+id/wiv_wednesday"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_alarm_item"
+        android:layout_marginTop="1px"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:title="@string/week_wednesday" />
 
-    </LinearLayout>
+    <!-- 星期四 -->
+    <com.sn.blackdianqi.view.WeekItemView
+        android:id="@+id/wiv_thursday"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_alarm_item"
+        android:layout_marginTop="1px"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:title="@string/week_thursday" />
+
+    <!-- 星期五 -->
+    <com.sn.blackdianqi.view.WeekItemView
+        android:id="@+id/wiv_friday"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_alarm_item"
+        android:layout_marginTop="1px"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:title="@string/week_friday" />
+
+
+
+    <!-- 星期六 -->
+    <com.sn.blackdianqi.view.WeekItemView
+        android:id="@+id/wiv_saturday"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_alarm_item"
+        android:layout_marginTop="1px"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:title="@string/week_saturday" />
+
+    <!-- 星期日 -->
+    <com.sn.blackdianqi.view.WeekItemView
+        android:id="@+id/wiv_sunday"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_alarm_item"
+        android:layout_marginTop="1px"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:title="@string/week_sunday" />
+
+
 
 </LinearLayout>

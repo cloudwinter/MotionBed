@@ -124,4 +124,14 @@
     <string name="alarm_xiangling">Alarme</string>
     <string name="alarm_save">Sauvegarde</string>
 
+    <!-- 星期 -->
+    <string name="week">week</string>
+    <string name="week_monday">Lundi</string>
+    <string name="week_tuesday">Mardi</string>
+    <string name="week_wednesday">Mercredi</string>
+    <string name="week_thursday">Jeudi</string>
+    <string name="week_friday">Vendredi</string>
+    <string name="week_saturday">Damedi</string>
+    <string name="week_sunday">Dimanche</string>
+
 </resources>

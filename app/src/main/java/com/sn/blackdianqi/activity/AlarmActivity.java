@@ -9,27 +9,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.github.gzuliyujiang.wheelpicker.DatePicker;
 import com.github.gzuliyujiang.wheelpicker.OptionPicker;
 import com.github.gzuliyujiang.wheelpicker.TimePicker;
-import com.github.gzuliyujiang.wheelpicker.annotation.DateMode;
 import com.github.gzuliyujiang.wheelpicker.annotation.TimeMode;
-import com.github.gzuliyujiang.wheelpicker.contract.OnDatePickedListener;
+import com.github.gzuliyujiang.wheelpicker.contract.OnOptionPickedListener;
 import com.github.gzuliyujiang.wheelpicker.contract.OnTimePickedListener;
 import com.github.gzuliyujiang.wheelpicker.entity.TimeEntity;
 import com.github.gzuliyujiang.wheelpicker.impl.SimpleTimeFormatter;
-import com.github.gzuliyujiang.wheelpicker.impl.UnitDateFormatter;
-import com.github.gzuliyujiang.wheelpicker.impl.UnitTimeFormatter;
 import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.base.BaseActivity;
 import com.sn.blackdianqi.blue.BluetoothLeService;
 import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.util.ToastUtils;
 import com.sn.blackdianqi.view.TranslucentActionBar;
+
+import java.util.HashMap;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
@@ -43,11 +41,18 @@ public class AlarmActivity extends BaseActivity implements TranslucentActionBar.
 
     public static final String TAG = "AlarmActivity";
 
+    public static int WEEK_REQUEST_CODE = 107;
+
+    private HashMap<Integer,Boolean> weekCheckBeanMap = new HashMap<>();
+
     @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
     @BindView(R.id.cb_switch)
     CheckBox switchCB;
+
+    @BindView(R.id.ll_content)
+    LinearLayout contentLL;
 
     @BindView(R.id.ll_time)
     LinearLayout timeLL;
@@ -106,6 +111,18 @@ public class AlarmActivity extends BaseActivity implements TranslucentActionBar.
 
 
     private void initView() {
+        switchCB.setChecked(true);
+        switchCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    contentLL.setVisibility(View.VISIBLE);
+                } else {
+                    contentLL.setVisibility(View.GONE);
+                }
+            }
+        });
+
         timeLL.setOnClickListener(this);
         weekLL.setOnClickListener(this);
         modeLL.setOnClickListener(this);
@@ -119,6 +136,7 @@ public class AlarmActivity extends BaseActivity implements TranslucentActionBar.
         switch (v.getId()) {
             case R.id.ll_time:
                 TimePicker picker = new TimePicker(this);
+                picker.getOkView().setTextColor(getResources().getColor(R.color.text_green));
                 picker.getWheelLayout().setTimeMode(TimeMode.HOUR_24_NO_SECOND);
                 picker.getWheelLayout().setTimeFormatter(new SimpleTimeFormatter());
                 picker.getWheelLayout().setRange(TimeEntity.target(0,0,0),TimeEntity.target(23, 59, 59));
@@ -132,13 +150,20 @@ public class AlarmActivity extends BaseActivity implements TranslucentActionBar.
                 picker.show();
                 break;
             case R.id.ll_week:
-
-                // TODO
+                Intent intentWeek = new Intent(AlarmActivity.this, WeekActivity.class);
+                startActivityForResult(intentWeek,WEEK_REQUEST_CODE);
                 break;
             case R.id.ll_mode:
-                OptionPicker weekPicker = new OptionPicker(this);
-                weekPicker.setData("星期一", "样式1-屏幕底部弹窗", "样式2-屏幕底部弹窗", "样式3-屏幕中间弹窗");
-                // TODO
+                OptionPicker modePicker = new OptionPicker(this);
+                modePicker.getOkView().setTextColor(getResources().getColor(R.color.text_green));
+                modePicker.setData("零压力", "记忆一", "关闭");
+                modePicker.setOnOptionPickedListener(new OnOptionPickedListener() {
+                    @Override
+                    public void onOptionPicked(int position, Object item) {
+                        ToastUtils.showToast(AlarmActivity.this, item.toString());
+                    }
+                });
+                modePicker.show();
                 break;
             case R.id.ll_save:
                 // TODO
@@ -177,5 +202,13 @@ public class AlarmActivity extends BaseActivity implements TranslucentActionBar.
         final IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
         return intentFilter;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (WEEK_REQUEST_CODE == requestCode) {
+            weekCheckBeanMap = (HashMap<Integer, Boolean>) data.getSerializableExtra(WeekActivity.EXTRA_KEY);
+        }
     }
 }
