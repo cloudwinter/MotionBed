@@ -12,6 +12,8 @@ import com.sn.blackdianqi.view.TranslucentActionBar;
 import com.sn.blackdianqi.view.WeekItemView;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
@@ -24,7 +26,7 @@ import butterknife.ButterKnife;
 public class WeekActivity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
 
 
-    private HashMap<Integer,Boolean> weekCheckBeanMap = new HashMap<>();
+    private HashMap<Integer, Boolean> weekCheckBeanMap = new HashMap<>();
 
     public static int RESULT_CODE = 108;
     public static String EXTRA_KEY = "WEEK_EXTRA_KEY";
@@ -51,8 +53,8 @@ public class WeekActivity extends BaseActivity implements TranslucentActionBar.A
     @Override
     public void onLeftClick() {
         Intent intent = getIntent();
-        intent.putExtra(EXTRA_KEY,weekCheckBeanMap);
-        setResult(RESULT_CODE,intent);
+        intent.putExtra(EXTRA_KEY, weekCheckBeanMap);
+        setResult(RESULT_CODE, intent);
         finish();
     }
 
@@ -73,6 +75,26 @@ public class WeekActivity extends BaseActivity implements TranslucentActionBar.A
             actionBar.setStatusBarHeight(getStatusBarHeight());
         }
         initView();
+        weekCheckBeanMap = (HashMap<Integer, Boolean>) getIntent().getSerializableExtra(EXTRA_KEY);
+        Iterator<Map.Entry<Integer, Boolean>> it = weekCheckBeanMap.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<Integer, Boolean> entry = it.next();
+            if (entry.getKey() == 1) {
+                weekMonday.setSelected(true);
+            } else if (entry.getKey() == 2) {
+                weekTuesday.setSelected(true);
+            } else if (entry.getKey() == 3) {
+                weekWednesday.setSelected(true);
+            } else if (entry.getKey() == 4) {
+                weekThursday.setSelected(true);
+            } else if (entry.getKey() == 5) {
+                weekFriday.setSelected(true);
+            } else if (entry.getKey() == 6) {
+                weekSaturday.setSelected(true);
+            } else if (entry.getKey() == 7) {
+                weekSunday.setSelected(true);
+            }
+        }
     }
 
     private void initView() {
@@ -87,22 +109,56 @@ public class WeekActivity extends BaseActivity implements TranslucentActionBar.A
 
     @Override
     public void onClick(View v) {
+        v.setSelected(!v.isSelected());
+        boolean selected = v.isSelected();
         switch (v.getId()) {
             case R.id.wiv_monday:
-                weekCheckBeanMap.put(1, true);
+                if (selected) {
+                    weekCheckBeanMap.put(1, true);
+                } else {
+                    weekCheckBeanMap.remove(1);
+                }
+                break;
             case R.id.wiv_tuesday:
-                weekCheckBeanMap.put(2, true);
+                if (selected) {
+                    weekCheckBeanMap.put(2, true);
+                } else {
+                    weekCheckBeanMap.remove(2);
+                }
+                break;
             case R.id.wiv_wednesday:
-                weekCheckBeanMap.put(3, true);
+                if (selected) {
+                    weekCheckBeanMap.put(3, true);
+                } else {
+                    weekCheckBeanMap.remove(3);
+                }
+                break;
             case R.id.wiv_thursday:
-                weekCheckBeanMap.put(4, true);
+                if (selected) {
+                    weekCheckBeanMap.put(4, true);
+                } else {
+                    weekCheckBeanMap.remove(4);
+                }
+                break;
             case R.id.wiv_friday:
-                weekCheckBeanMap.put(5, true);
+                if (selected) {
+                    weekCheckBeanMap.put(5, true);
+                } else {
+                    weekCheckBeanMap.remove(5);
+                }
+                break;
             case R.id.wiv_saturday:
-                weekCheckBeanMap.put(6, true);
+                if (selected) {
+                    weekCheckBeanMap.put(6, true);
+                } else {
+                    weekCheckBeanMap.remove(6);
+                }
             case R.id.wiv_sunday:
-                weekCheckBeanMap.put(7, true);
-                v.setSelected(!v.isSelected());
+                if (selected) {
+                    weekCheckBeanMap.put(7, true);
+                } else {
+                    weekCheckBeanMap.remove(7);
+                }
                 break;
         }
     }

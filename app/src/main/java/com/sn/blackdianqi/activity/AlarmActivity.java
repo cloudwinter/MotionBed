@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
@@ -21,13 +22,23 @@ import com.github.gzuliyujiang.wheelpicker.contract.OnTimePickedListener;
 import com.github.gzuliyujiang.wheelpicker.entity.TimeEntity;
 import com.github.gzuliyujiang.wheelpicker.impl.SimpleTimeFormatter;
 import com.sn.blackdianqi.R;
-import com.sn.blackdianqi.base.BaseActivity;
+import com.sn.blackdianqi.base.BaseBlueActivity;
+import com.sn.blackdianqi.bean.AlarmBean;
 import com.sn.blackdianqi.blue.BluetoothLeService;
+import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LogUtils;
+import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.util.ToastUtils;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
@@ -37,13 +48,13 @@ import butterknife.ButterKnife;
  * 闹钟界面
  * Created by xiayundong on 2021/9/20.
  */
-public class AlarmActivity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
+public class AlarmActivity extends BaseBlueActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
 
     public static final String TAG = "AlarmActivity";
 
     public static int WEEK_REQUEST_CODE = 107;
 
-    private HashMap<Integer,Boolean> weekCheckBeanMap = new HashMap<>();
+    private HashMap<Integer, Boolean> weekCheckBeanMap = new HashMap<>();
 
     @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
@@ -78,6 +89,11 @@ public class AlarmActivity extends BaseActivity implements TranslucentActionBar.
     @BindView(R.id.ll_save)
     LinearLayout saveLL;
 
+    // 时间
+    private String hourStr, minuteStr;
+    // 01：零压力，02：记忆1，03：无动作
+    private String modeCode = "03";
+
 
     @Override
     public void onLeftClick() {
@@ -85,7 +101,8 @@ public class AlarmActivity extends BaseActivity implements TranslucentActionBar.
     }
 
     @Override
-    public void onRightClick() {}
+    public void onRightClick() {
+    }
 
 
     @Override
@@ -107,6 +124,7 @@ public class AlarmActivity extends BaseActivity implements TranslucentActionBar.
             actionBar.setStatusBarHeight(getStatusBarHeight());
         }
         initView();
+        initData();
     }
 
 
@@ -130,6 +148,58 @@ public class AlarmActivity extends BaseActivity implements TranslucentActionBar.
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
+    }
+
+    private void initData() {
+        String deviceAddress = Prefer.getInstance().getLatelyConnectedDevice();
+        if (TextUtils.isEmpty(deviceAddress)) {
+            return;
+        }
+        AlarmBean alarmBean = Prefer.getInstance().getAlarm(deviceAddress);
+        if (alarmBean == null) {
+            return;
+        }
+        hourStr = alarmBean.getHourStr();
+        minuteStr = alarmBean.getMinuteStr();
+        modeCode = alarmBean.getModeCode();
+        weekCheckBeanMap = alarmBean.getWeekCheckBeanMap();
+
+        switchCB.setChecked(alarmBean.isAlarmSwitch());
+        timeTV.setText(hourStr + ":" + minuteStr);
+        modeTV.setText(getModeStrByCode(modeCode));
+        anmoCB.setChecked(alarmBean.isAnmo());
+        xinaglingCB.setChecked(alarmBean.isXiangling());
+        setWeek();
+    }
+
+
+    private void setWeek() {
+        if (weekCheckBeanMap == null || weekCheckBeanMap.size() == 0) {
+            weekTV.setText(R.string.alarm_week_no_repeat);
+            return;
+        }
+        TreeMap<Integer, Boolean> treeMap = sortMapByKey(weekCheckBeanMap);
+        Iterator<Map.Entry<Integer, Boolean>> it = treeMap.entrySet().iterator();
+        StringBuilder weekStr = new StringBuilder();
+        int count = 0;
+        while (it.hasNext()) {
+            Map.Entry<Integer, Boolean> entry = it.next();
+            if (entry.getValue()) {
+                if (count > 0) {
+                    weekStr.append(",");
+                }
+                weekStr.append(entry.getKey());
+                count++;
+            }
+        }
+        weekTV.setText(weekStr.toString());
+    }
+
+
 
     @Override
     public void onClick(View v) {
@@ -139,38 +209,138 @@ public class AlarmActivity extends BaseActivity implements TranslucentActionBar.
                 picker.getOkView().setTextColor(getResources().getColor(R.color.text_green));
                 picker.getWheelLayout().setTimeMode(TimeMode.HOUR_24_NO_SECOND);
                 picker.getWheelLayout().setTimeFormatter(new SimpleTimeFormatter());
-                picker.getWheelLayout().setRange(TimeEntity.target(0,0,0),TimeEntity.target(23, 59, 59));
-                picker.getWheelLayout().setDefaultValue(TimeEntity.now());
+                picker.getWheelLayout().setRange(TimeEntity.target(0, 0, 0), TimeEntity.target(23, 59, 59));
+                TimeEntity timeEntity = TimeEntity.now();
+                if (!TextUtils.isEmpty(hourStr)) {
+                    timeEntity.setHour(Integer.parseInt(hourStr));
+                }
+                if (!TextUtils.isEmpty(minuteStr)) {
+                    timeEntity.setMinute(Integer.parseInt(minuteStr));
+                }
+                picker.getWheelLayout().setDefaultValue(timeEntity);
                 picker.setOnTimePickedListener(new OnTimePickedListener() {
                     @Override
                     public void onTimePicked(int hour, int minute, int second) {
-                        ToastUtils.showToast(AlarmActivity.this, hour + ":" + minute + ":" + second);
+                        if (hour < 10) {
+                            hourStr = "0" + hour;
+                        } else {
+                            hourStr = hour + "";
+                        }
+                        if (minute < 10) {
+                            minuteStr = "0" + minute;
+                        } else {
+                            minuteStr = minute + "";
+                        }
+                        timeTV.setText(hourStr+":"+minuteStr);
                     }
                 });
                 picker.show();
                 break;
             case R.id.ll_week:
                 Intent intentWeek = new Intent(AlarmActivity.this, WeekActivity.class);
-                startActivityForResult(intentWeek,WEEK_REQUEST_CODE);
+                intentWeek.putExtra(WeekActivity.EXTRA_KEY, weekCheckBeanMap);
+                startActivityForResult(intentWeek, WEEK_REQUEST_CODE);
                 break;
             case R.id.ll_mode:
                 OptionPicker modePicker = new OptionPicker(this);
+                modePicker.setDefaultValue(getModeStrByCode(modeCode));
                 modePicker.getOkView().setTextColor(getResources().getColor(R.color.text_green));
-                modePicker.setData("零压力", "记忆一", "关闭");
+                modePicker.setData(getString(R.string.alarm_mode_lingyali), getString(R.string.alarm_mode_jiyi1), getString(R.string.alarm_mode_budongzuo));
                 modePicker.setOnOptionPickedListener(new OnOptionPickedListener() {
                     @Override
                     public void onOptionPicked(int position, Object item) {
-                        ToastUtils.showToast(AlarmActivity.this, item.toString());
+                        if (position == 0) {
+                            modeCode = "01";
+                        } else if (position == 1) {
+                            modeCode = "02";
+                        } else{
+                            modeCode = "03";
+                        }
+                        modeTV.setText(getModeStrByCode(modeCode));
                     }
                 });
                 modePicker.show();
                 break;
             case R.id.ll_save:
-                // TODO
+                checkAndSend();
                 break;
             default:
                 break;
         }
+    }
+
+
+    /**
+     * 发送蓝牙命令
+     */
+    private void checkAndSend() {
+        if (!checkConnected()) {
+            return;
+        }
+        if (switchCB.isChecked()) {
+            if (TextUtils.isEmpty(hourStr)) {
+                ToastUtils.showToast(AlarmActivity.this, "请选择时间");
+                return;
+            }
+        }
+        AlarmBean alarmBean = new AlarmBean();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("FFFFFFFF01000213");
+        // 状态
+        alarmBean.setAlarmSwitch(switchCB.isChecked());
+        if (switchCB.isChecked()) {
+            sb.append("01");
+        } else {
+            sb.append("A1");
+        }
+
+        // 时间
+        alarmBean.setHourStr(hourStr);
+        alarmBean.setMinuteStr(minuteStr);
+        sb.append(defaultIfEmpty(hourStr, "00"));
+        sb.append(defaultIfEmpty(minuteStr, "00"));
+        sb.append("00");
+
+
+        // 星期
+        alarmBean.setWeekCheckBeanMap(weekCheckBeanMap);
+        StringBuilder weekStr2 = new StringBuilder();
+        for (int i = 7; i >= 1; i--) {
+            if (weekCheckBeanMap.containsKey(i) && weekCheckBeanMap.get(i)) {
+                weekStr2.append("1");
+            } else {
+                weekStr2.append("0");
+            }
+        }
+        weekStr2.append("0");
+        sb.append(BlueUtils.str2To16(weekStr2.toString()));
+
+        // 重复
+        if (weekCheckBeanMap.size() == 0) {
+            sb.append("00");
+        } else {
+            sb.append("01");
+        }
+
+        // 模式
+        alarmBean.setModeCode(modeCode);
+        sb.append(modeCode);
+
+        // 按摩
+        alarmBean.setAnmo(anmoCB.isChecked());
+        sb.append(anmoCB.isChecked() ? "01" : "00");
+        // 响铃
+        alarmBean.setXiangling(xinaglingCB.isChecked());
+        sb.append(xinaglingCB.isChecked() ? "01" : "00");
+
+        // 校验和
+        sb.append(BlueUtils.makeChecksum(sb.toString()));
+
+        // 发送蓝牙命令
+        sendCmd(sb.toString());
+        Prefer.getInstance().setAlarm(Prefer.getInstance().getLatelyConnectedDevice(),alarmBean);
+        finish();
     }
 
 
@@ -209,6 +379,41 @@ public class AlarmActivity extends BaseActivity implements TranslucentActionBar.
         super.onActivityResult(requestCode, resultCode, data);
         if (WEEK_REQUEST_CODE == requestCode) {
             weekCheckBeanMap = (HashMap<Integer, Boolean>) data.getSerializableExtra(WeekActivity.EXTRA_KEY);
+            setWeek();
+        }
+    }
+
+    public String defaultIfEmpty(String value, String defaultStr) {
+        if (TextUtils.isEmpty(value)) {
+            return defaultStr;
+        }
+        return value;
+    }
+
+    public String getModeStrByCode(String mode) {
+        if (mode.equals("01")) {
+            return getString(R.string.alarm_mode_lingyali);
+        }
+        if (mode.equals("02")) {
+            return getString(R.string.alarm_mode_jiyi1);
+        }
+        return getString(R.string.alarm_mode_budongzuo);
+    }
+
+
+    public static TreeMap<Integer, Boolean> sortMapByKey(HashMap<Integer, Boolean> map) {
+        if (map == null || map.isEmpty()) {
+            return null;
+        }
+        TreeMap<Integer, Boolean> sortMap = new TreeMap<>(new MapKeyComparator());
+        sortMap.putAll(map);
+        return sortMap;
+    }
+
+    private static class MapKeyComparator implements Comparator<Integer> {
+        @Override
+        public int compare(Integer o1, Integer o2) {
+            return o1 - o2;
         }
     }
 }

@@ -73,7 +73,7 @@
                 android:layout_marginRight="8dp"
                 android:textColor="@color/text_green"
                 android:textSize="14dp"
-                android:text="11:15"/>
+                android:text=""/>
 
             <ImageView
                 android:layout_width="25dp"
