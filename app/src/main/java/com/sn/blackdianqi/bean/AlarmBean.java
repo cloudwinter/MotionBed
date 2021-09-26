@@ -9,6 +9,11 @@ import java.util.HashMap;
 public class AlarmBean implements Serializable {
 
     /**
+     * 有无闹钟
+     */
+    private boolean hasAlarm;
+
+    /**
      * 闹钟开关
      */
     private boolean alarmSwitch;
@@ -24,7 +29,7 @@ public class AlarmBean implements Serializable {
     /**
      * 模式
      */
-    private String modeCode;
+    private String modeCode = "03";
 
     /**
      * 选中的星期
@@ -95,5 +100,13 @@ public class AlarmBean implements Serializable {
 
     public void setXiangling(boolean xiangling) {
         this.xiangling = xiangling;
+    }
+
+    public boolean isHasAlarm() {
+        return hasAlarm;
+    }
+
+    public void setHasAlarm(boolean hasAlarm) {
+        this.hasAlarm = hasAlarm;
     }
 }

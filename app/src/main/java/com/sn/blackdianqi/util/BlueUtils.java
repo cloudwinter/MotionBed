@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import com.sn.blackdianqi.MyApplication;
 import com.sn.blackdianqi.blue.BluetoothLeService;
 
-import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,7 +65,7 @@ public class BlueUtils {
         int len = str2.length();
         System.out.println("原数据长度：" + (len / 8) + "字节");
 
-        for (int i = 0; i < len / 4; i++){
+        for (int i = 0; i < len / 4; i++) {
             //每4个二进制位转换为1个十六进制位
             String temp = str2.substring(i * 4, (i + 1) * 4);
             int tempInt = Integer.parseInt(temp, 2);
@@ -223,14 +222,15 @@ public class BlueUtils {
     /**
      * int 10进制转16进制
      * 并高位在后，低位在前
+     *
      * @param dec
      * @return
      */
     private static String decToHex(int dec) {
         String hex = "";
-        while(dec != 0) {
+        while (dec != 0) {
             String h = Integer.toString(dec & 0xff, 16);
-            if((h.length() & 0x01) == 1)
+            if ((h.length() & 0x01) == 1)
                 h = '0' + h;
             hex = hex + h;
             dec = dec >> 8;
@@ -238,8 +238,48 @@ public class BlueUtils {
         return hex;
     }
 
+
+    /**
+     * 二进制字符串转16进制字符串
+     *
+     * @param bString
+     * @return
+     */
+    public static String hexString2To16hexString(String bString) {
+        if (bString == null || bString.equals("") || bString.length() % 8 != 0)
+            return null;
+        StringBuffer tmp = new StringBuffer();
+        int iTmp = 0;
+        for (int i = 0; i < bString.length(); i += 4) {
+            iTmp = 0;
+            for (int j = 0; j < 4; j++) {
+                iTmp += Integer.parseInt(bString.substring(i + j, i + j + 1)) << (4 - j - 1);
+            }
+            tmp.append(Integer.toHexString(iTmp));
+        }
+        return tmp.toString();
+    }
+
+    /**
+     * 16进制字符转二进制字符串
+     *
+     * @param hexString
+     * @return
+     */
+    public static String hexString16To2hexString(String hexString) {
+        if (hexString == null || hexString.length() % 2 != 0)
+            return null;
+        String bString = "", tmp;
+        for (int i = 0; i < hexString.length(); i++) {
+            tmp = "0000" + Integer.toBinaryString(Integer.parseInt(hexString.substring(i, i + 1), 16));
+            bString += tmp.substring(tmp.length() - 4);
+        }
+        return bString;
+    }
+
     public static void main(String[] args) {
-        System.out.println(str2To16("00000110"));
+        System.out.println(hexString2To16hexString("00000110"));
+        System.out.println(hexString16To2hexString("06"));
 
 
         System.out.println(makeChecksum("FF FF FF FF 01 00 02 19 01 08 30 50 00 01 00 00 01 00 00 01 03 01 01"));
@@ -247,4 +287,6 @@ public class BlueUtils {
 //        String cmd = "FF FF FF FF 01 00 02 19 A1 08 30 50 00 01 00 00 01 00 00 01 03 01 01".replace(" ", "");
 //        System.out.println(calculateChecksum(cmd.getBytes()));
     }
+
+
 }
