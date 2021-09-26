@@ -192,7 +192,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         tab2.setOnClickListener(this);
         tab3.setOnClickListener(this);
         tab4.setOnClickListener(this);
-
         tabTextViews = new ArrayList<>();
         tabTextViews.add(tab1TextView);
         tabTextViews.add(tab2TextView);
@@ -211,6 +210,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         viewPager.setAdapter(tabPagerAdapter);
         viewPager.setScroll(true);
         viewPager.setOffscreenPageLimit(3);
+
+        if (TextUtils.isEmpty(blueName) && blueName.contains("QMS2")) {
+            tab3.setVisibility(View.GONE);
+        }
     }
 
 

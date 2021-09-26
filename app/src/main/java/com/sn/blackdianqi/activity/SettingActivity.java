@@ -18,11 +18,13 @@ import com.sn.blackdianqi.MyApplication;
 import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.RunningContext;
 import com.sn.blackdianqi.base.BaseActivity;
+import com.sn.blackdianqi.bean.AlarmBean;
 import com.sn.blackdianqi.blue.BluetoothLeService;
 import com.sn.blackdianqi.dialog.FaultDebugDialog;
 import com.sn.blackdianqi.dialog.LanguageDialog;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LogUtils;
+import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.util.ToastUtils;
 import com.sn.blackdianqi.view.LoggerView;
 import com.sn.blackdianqi.view.TranslucentActionBar;
@@ -108,6 +110,8 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         }
 
         initView();
+
+        initData();
     }
 
     private void initView() {
@@ -120,6 +124,7 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         if (Debuggable) {
             llDebug.setVisibility(View.VISIBLE);
         }
+        llAlarm.setVisibility(View.GONE);
         // 获取当前系统的语言
         Locale curLocale = getResources().getConfiguration().locale;
         //通过Locale的equals方法，判断出当前语言环境
@@ -132,6 +137,16 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         }
         faultDebugDialog = new FaultDebugDialog(this);
 
+    }
+
+    private void initData() {
+        if (BlueUtils.isConnected()) {
+            AlarmBean alarmBean = Prefer.getInstance().getAlarm(Prefer.getInstance().getLatelyConnectedDevice());
+            if (alarmBean != null) {
+                llAlarm.setVisibility(View.VISIBLE);
+                tvAlarm.setText(alarmBean.isAlarmSwitch() ? R.string.open : R.string.close);
+            }
+        }
     }
 
     @Override

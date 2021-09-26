@@ -236,7 +236,8 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
             android:textColor="@color/text_green"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:text="@string/close"/>
 
 
         <ImageView
