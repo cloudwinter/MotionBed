@@ -156,7 +156,7 @@ public class DengguangFragment extends BaseFragment implements View.OnClickListe
      */
     private void askStatus() {
         // 发送灯光指令
-        sendBlueCmd("FF FF FF FF 05 00 00 FF 23 D7 29");
+        sendBlueCmd("FF FF FF FF 05 00 05 FF 23 C7 28");
     }
 
 
