@@ -1,8 +1,5 @@
 package com.sn.blackdianqi.activity;
 
-import android.content.ContentResolver;
-import android.content.res.Resources;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -10,7 +7,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
 
 import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.base.BaseActivity;

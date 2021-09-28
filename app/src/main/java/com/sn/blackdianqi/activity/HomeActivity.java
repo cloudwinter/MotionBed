@@ -178,7 +178,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             @Override
             public void run() {
                 try {
-                    Thread.sleep(300L);
+                    Thread.sleep(1500L);
                     askStatus();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -211,7 +211,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         viewPager.setScroll(true);
         viewPager.setOffscreenPageLimit(3);
 
-        if (TextUtils.isEmpty(blueName) && blueName.contains("QMS2")) {
+        if (!TextUtils.isEmpty(blueName) && blueName.toUpperCase().contains("QMS2")) {
             tab3.setVisibility(View.GONE);
         }
     }
@@ -299,6 +299,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         cmdSB.append(dateBean.getDay());
         // 累加校验和
         cmdSB.append(BlueUtils.makeChecksum(cmdSB.toString()));
+        LogUtils.i(TAG, "发送闹钟指令：" + cmdSB.toString());
         sendBlueCmd(cmdSB.toString());
     }
 
@@ -331,12 +332,13 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     private void handleReceiveData(String cmd) {
         cmd = cmd.toUpperCase().replaceAll(" ", "");
         if (cmd.contains("FFFFFFFF0100030B00")) {
+            LogUtils.i(TAG, "收到无闹钟指令：" + cmd);
             // 有闹钟,未设置
             AlarmBean alarmBean = new AlarmBean();
-//            alarmBean.setHasAlarm(false);
             alarmBean.setAlarmSwitch(false);
-            Prefer.getInstance().setAlarm(deviceAddress,alarmBean);
+            Prefer.getInstance().setAlarm(deviceAddress, alarmBean);
         } else if (cmd.contains("FFFFFFFF01000413")) {
+            LogUtils.i(TAG, "收到有闹钟指令：" + cmd);
             // 有闹钟，已设置
             AlarmBean alarmBean = new AlarmBean();
             String cmdStatus = cmd.substring(16, 18);
@@ -381,7 +383,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             } else {
                 alarmBean.setXiangling(false);
             }
-            Prefer.getInstance().setAlarm(deviceAddress,alarmBean);
+            Prefer.getInstance().setAlarm(deviceAddress, alarmBean);
         }
     }
 
@@ -410,6 +412,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         final IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(BluetoothLeService.ACTION_GATT_CONNECTED);
         intentFilter.addAction(BluetoothLeService.ACTION_GATT_DISCONNECTED);
+        intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
         return intentFilter;
     }
 
@@ -433,7 +436,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 if (bundle != null) {
                     String data = bundle.getString(BluetoothLeService.EXTRA_DATA);
                     if (data != null) {
-                        LogUtils.e("==快捷  接收设备返回的数据==", data);
+                        LogUtils.e(TAG, "==首页  接收设备返回的数据==", data);
                         handleReceiveData(data);
                     }
                 }

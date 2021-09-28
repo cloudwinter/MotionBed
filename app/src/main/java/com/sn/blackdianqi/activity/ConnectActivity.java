@@ -111,6 +111,7 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
 
     @Override
     public void onLeftClick() {
+        scanBlue(false);
         finish();
     }
 
@@ -361,10 +362,11 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
                         if (!isContain(deviceName)) {
                             return;
                         }
-                        LogUtils.e(TAG, "过滤到蓝牙设备信息：" + device.getName()+" "+device.getAddress());
+                        LogUtils.e(TAG, "过滤到蓝牙设备信息：" + device.getName() + " " + device.getAddress());
                         String latelyConnectedDevice = Prefer.getInstance().getLatelyConnectedDevice();
                         if (device.getAddress().equals(latelyConnectedDevice)) {
                             if (("main").equals(mFrom) && isFirstScan) {
+                                LogUtils.e(TAG, "扫描到上一次连接成功的蓝牙设备：" + device.getName() + " " + device.getAddress());
                                 // 如果是从首页第一次进入，并且扫描到之前连接过的设备，则自动连接
                                 mSelectedDeviceBean = mBlueDeviceListAdapter.addDevice(device, false);
                                 if (mSelectedDeviceBean != null) {
@@ -430,11 +432,12 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
             {
                 LogUtils.e(TAG, "==更新连接状态 已连接==");
                 //更新连接状态
-                mSelectedDeviceBean.setConnected(true);
-                Prefer.getInstance().setLatelyConnectedDevice(mSelectedDeviceBean.getAddress());
-                Prefer.getInstance().setBleStatus("已连接", mSelectedDeviceBean);
-//                mWaitDialog.dismiss();
-                mConnectHandler.sendEmptyMessage(MSG_CONNECT_STATUS);
+                if (mSelectedDeviceBean != null) {
+                    mSelectedDeviceBean.setConnected(true);
+                    Prefer.getInstance().setLatelyConnectedDevice(mSelectedDeviceBean.getAddress());
+                    Prefer.getInstance().setBleStatus("已连接", mSelectedDeviceBean);
+                    mConnectHandler.sendEmptyMessage(MSG_CONNECT_STATUS);
+                }
             } else if (BluetoothLeService.ACTION_GATT_DISCONNECTED.equals(action)) { //Gatt连接失败
                 boolean closeDialog = true;
                 mBluetoothLeService.close();

@@ -111,7 +111,7 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
 
         initView();
 
-        initData();
+        setData();
     }
 
     private void initView() {
@@ -139,7 +139,7 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
 
     }
 
-    private void initData() {
+    private void setData() {
         if (BlueUtils.isConnected()) {
             AlarmBean alarmBean = Prefer.getInstance().getAlarm(Prefer.getInstance().getLatelyConnectedDevice());
             if (alarmBean != null) {
@@ -154,6 +154,7 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         super.onResume();
         if (BlueUtils.isConnected()) {
             tvConnect.setText(R.string.connected);
+            setData();
         } else {
             tvConnect.setText(R.string.not_connected);
         }
@@ -184,7 +185,9 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
                 }
                 break;
             case R.id.ll_alarm:
-                // TODO
+                Intent intentAlarm = new Intent();
+                intentAlarm.setClass(SettingActivity.this, AlarmActivity.class);
+                startActivity(intentAlarm);
                 break;
             case R.id.ll_debug:
                 LoggerView.me.loggerSwitch();
@@ -243,7 +246,7 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
                 if (bundle != null) {
                     String data = bundle.getString(BluetoothLeService.EXTRA_DATA);
                     if (data != null) {
-                        LogUtils.e("==快捷  接收设备返回的数据==", data);
+                        LogUtils.e("SettingActivity","==设置  接收设备返回的数据==", data);
                         handleReceiveData(data);
                     }
                 }

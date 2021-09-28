@@ -74,7 +74,7 @@ public class DengguangFragment extends BaseFragment implements View.OnClickListe
             @Override
             public void run() {
                 try {
-                    Thread.sleep(300L);
+                    Thread.sleep(1000L);
                     askStatus();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -148,7 +148,9 @@ public class DengguangFragment extends BaseFragment implements View.OnClickListe
                 cmd = "FF FF FF FF 05 00 00 0A 23 90 79";
                 break;
         }
-        sendBlueCmd(cmd);
+        if (!TextUtils.isEmpty(cmd)) {
+            sendBlueCmd(cmd);
+        }
     }
 
     /**
@@ -232,9 +234,10 @@ public class DengguangFragment extends BaseFragment implements View.OnClickListe
         if (TextUtils.isEmpty(receivedCmd)) {
             return;
         }
-        if (receivedCmd.contains("FF FF FF FF 05 00 01")) {
-            dengguangLevel.setVisibility(View.VISIBLE);
+        if (!receivedCmd.contains("FF FF FF FF 05 00 01")) {
+            return;
         }
+        dengguangLevel.setVisibility(View.VISIBLE);
         // 去除空格
         receivedCmd = receivedCmd.replaceAll(" ", "");
         String level = receivedCmd.substring(14,16);
@@ -255,7 +258,7 @@ public class DengguangFragment extends BaseFragment implements View.OnClickListe
                 if (bundle != null) {
                     String data = bundle.getString(BluetoothLeService.EXTRA_DATA);
                     if (data != null) {
-                        LogUtils.e("==快捷  接收设备返回的数据==", data);
+                        LogUtils.e("DengguangFragment","==灯光  接收设备返回的数据==", data);
                         handleReceiveData(data);
                     }
                 }

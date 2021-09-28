@@ -124,7 +124,7 @@ public class AnjianAnmoView extends RelativeLayout implements View.OnClickListen
         if (level < 0) {
             level = 0;
         }
-        level = level;
+        this.level = level;
         for (int i = 0; i < MAX_LINE_COUNT; i++) {
             if (i < lineCount) {
                 if(i >= level) {
