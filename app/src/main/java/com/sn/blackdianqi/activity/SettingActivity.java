@@ -201,6 +201,10 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
      */
     private void handleReceiveData(String cmd) {
         cmd = cmd.toUpperCase().replaceAll(" ", "");
+        if (!cmd.contains("FFFFFFFF0304")) {
+            return;
+        }
+        LogUtils.i(TAG, "故障回复码",cmd);
         String faultPartVal = cmd.substring(12,16);
         String faultTypeVal = cmd.substring(16,20);
         faultDebugDialog.setFaultBody(faultPartVal, faultTypeVal);

@@ -44,6 +44,8 @@ import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.sn.blackdianqi.activity.WeekActivity.RESULT_CODE;
+
 /**
  * 闹钟界面
  * Created by xiayundong on 2021/9/20.
@@ -151,7 +153,7 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
     @Override
     protected void onResume() {
         super.onResume();
-        initData();
+        //initData();
     }
 
     private void initData() {
@@ -169,7 +171,9 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
         weekCheckBeanMap = alarmBean.getWeekCheckBeanMap();
 
         switchCB.setChecked(alarmBean.isAlarmSwitch());
-        timeTV.setText(hourStr + ":" + minuteStr);
+        if (!TextUtils.isEmpty(hourStr) && !   TextUtils.isEmpty(minuteStr)) {
+            timeTV.setText(hourStr + ":" + minuteStr);
+        }
         modeTV.setText(getModeStrByCode(modeCode));
         anmoCB.setChecked(alarmBean.isAnmo());
         xinaglingCB.setChecked(alarmBean.isXiangling());
@@ -377,7 +381,7 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (WEEK_REQUEST_CODE == requestCode) {
+        if (WEEK_REQUEST_CODE == requestCode && resultCode == RESULT_CODE) {
             weekCheckBeanMap = (HashMap<Integer, Boolean>) data.getSerializableExtra(WeekActivity.EXTRA_KEY);
             setWeek();
         }

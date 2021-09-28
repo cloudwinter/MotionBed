@@ -292,7 +292,7 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
                 case MSG_GATT_SERVICE_DISCOVERY:
                     if (activity.mFrom.equals("main")) {
                         // 只有首页过来才跳转
-                        if (activity.mSelectedDeviceBean.isConnected()) {
+                        if (activity.mSelectedDeviceBean != null && activity.mSelectedDeviceBean.isConnected()) {
                             Intent intent = new Intent(activity, HomeActivity.class);
                             activity.startActivity(intent);
                             activity.finish();
@@ -455,6 +455,7 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
                 LogUtils.e(TAG, "==更新连接状态 断开连接==");
                 Prefer.getInstance().setLatelyConnectedDevice("");
                 Prefer.getInstance().setBleStatus("未连接", null);
+                Prefer.getInstance().removeAlarm(address);
                 if (isPreConnectDisconnecting) {
                     // 成功断开后连接
                     isPreConnectDisconnecting = false;

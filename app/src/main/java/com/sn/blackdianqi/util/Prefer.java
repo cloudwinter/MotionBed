@@ -258,6 +258,19 @@ public class Prefer {
         return new Gson().fromJson(value, AlarmBean.class);
     }
 
+    /**
+     * 删除数据
+     * @param deviceAddress
+     */
+    public void removeAlarm(String deviceAddress) {
+        if (TextUtils.isEmpty(deviceAddress)) {
+            return;
+        }
+        SharedPreferences.Editor editor = mPref.edit();
+        editor.remove(KEY_DECICE + deviceAddress);
+        editor.commit();
+    }
+
 
     //退出登录后清除缓存数据
     public void clearData() {

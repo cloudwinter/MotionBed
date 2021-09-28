@@ -92,5 +92,28 @@
         app:title="@string/week_sunday" />
 
 
+    <!-- 保存 -->
+    <LinearLayout
+        android:id="@+id/ll_save"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_alarm_item"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/alarm_save"
+            android:textColor="@color/text_green"
+            android:textSize="14dp"
+            />
+
+    </LinearLayout>
+
+
 
 </LinearLayout>

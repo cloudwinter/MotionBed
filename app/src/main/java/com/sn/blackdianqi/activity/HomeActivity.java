@@ -359,7 +359,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             String cmdWeek = BlueUtils.hexString16To2hexString(cmd.substring(24, 26));
             for (int i = 0; i < 7; i++) {
                 char charAt = cmdWeek.charAt(i);
-                if (charAt == 1) {
+                if (charAt == '1') {
                     alarmBean.getWeekCheckBeanMap().put(7 - i, true);
                 }
             }
@@ -436,6 +436,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 if (bundle != null) {
                     String data = bundle.getString(BluetoothLeService.EXTRA_DATA);
                     if (data != null) {
+                        //data = "FFFFFFFF010004130F08300026010301019897";
                         LogUtils.e(TAG, "==首页  接收设备返回的数据==", data);
                         handleReceiveData(data);
                     }
