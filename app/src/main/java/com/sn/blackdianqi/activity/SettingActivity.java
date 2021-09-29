@@ -138,10 +138,10 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
             tvLanguage.setText(R.string.french);
         }
 
+        llFaultDebug.setOnClickListener(this);
+        faultDebugDialog = new FaultDebugDialog(this);
         if (isNeedShowFaultDebug()) {
             llFaultDebug.setVisibility(View.VISIBLE);
-            llFaultDebug.setOnClickListener(this);
-            faultDebugDialog = new FaultDebugDialog(this);
         }
     }
 

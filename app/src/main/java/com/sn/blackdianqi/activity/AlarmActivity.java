@@ -24,6 +24,7 @@ import com.github.gzuliyujiang.wheelpicker.impl.SimpleTimeFormatter;
 import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.base.BaseBlueActivity;
 import com.sn.blackdianqi.bean.AlarmBean;
+import com.sn.blackdianqi.bean.DeviceBean;
 import com.sn.blackdianqi.blue.BluetoothLeService;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LogUtils;
@@ -82,6 +83,8 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
     @BindView(R.id.tv_mode)
     TextView modeTV;
 
+    @BindView(R.id.ll_anmo)
+    LinearLayout anmoLL;
     @BindView(R.id.cb_anmo)
     CheckBox anmoCB;
 
@@ -131,8 +134,7 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
 
 
     private void initView() {
-        // QMS2 不显示按摩开关 TODO
-
+        // QMS2 不显示按摩开关
         switchCB.setChecked(true);
         switchCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -149,6 +151,13 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
         weekLL.setOnClickListener(this);
         modeLL.setOnClickListener(this);
         saveLL.setOnClickListener(this);
+
+        DeviceBean deviceBean = Prefer.getInstance().getConnectedDevice();
+        if (deviceBean != null && TextUtils.isEmpty(deviceBean.getTitle())) {
+            if (deviceBean.getTitle().toUpperCase().contains("QMS2")) {
+                anmoLL.setVisibility(View.GONE);
+            }
+        }
     }
 
 
