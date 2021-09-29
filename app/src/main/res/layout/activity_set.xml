@@ -169,10 +169,6 @@
              />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="18dp" />
-
 
     <LinearLayout
         android:id="@+id/ll_fault"
@@ -185,6 +181,7 @@
         android:layout_marginRight="@dimen/dp_15"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
+        android:layout_marginTop="18dp"
         android:visibility="visible">
 
         <TextView
@@ -247,10 +244,6 @@
             />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="18dp" />
-
     <LinearLayout
         android:id="@+id/ll_debug"
         android:layout_width="match_parent"
@@ -262,7 +255,8 @@
         android:layout_marginRight="@dimen/dp_15"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
-        android:visibility="visible">
+        android:layout_marginTop="18dp"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"

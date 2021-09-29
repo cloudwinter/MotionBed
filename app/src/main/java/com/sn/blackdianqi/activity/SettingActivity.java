@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -19,6 +20,7 @@ import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.RunningContext;
 import com.sn.blackdianqi.base.BaseActivity;
 import com.sn.blackdianqi.bean.AlarmBean;
+import com.sn.blackdianqi.bean.DeviceBean;
 import com.sn.blackdianqi.blue.BluetoothLeService;
 import com.sn.blackdianqi.dialog.FaultDebugDialog;
 import com.sn.blackdianqi.dialog.LanguageDialog;
@@ -29,6 +31,8 @@ import com.sn.blackdianqi.util.ToastUtils;
 import com.sn.blackdianqi.view.LoggerView;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import androidx.annotation.Nullable;
@@ -110,7 +114,6 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         }
 
         initView();
-
         setData();
     }
 
@@ -118,7 +121,6 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         llConnect.setOnClickListener(this);
         llLanguage.setOnClickListener(this);
         llPrivacy.setOnClickListener(this);
-        llFaultDebug.setOnClickListener(this);
         llAlarm.setOnClickListener(this);
         llDebug.setOnClickListener(this);
         if (Debuggable) {
@@ -135,9 +137,41 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
             //法文
             tvLanguage.setText(R.string.french);
         }
-        faultDebugDialog = new FaultDebugDialog(this);
 
+        if (isNeedShowFaultDebug()) {
+            llFaultDebug.setVisibility(View.VISIBLE);
+            llFaultDebug.setOnClickListener(this);
+            faultDebugDialog = new FaultDebugDialog(this);
+        }
     }
+
+
+    /**
+     * 是否显示故障调试
+     * @param title
+     * @return
+     */
+    private boolean isNeedShowFaultDebug() {
+        DeviceBean deviceBean = Prefer.getInstance().getConnectedDevice();
+        if (deviceBean == null || TextUtils.isEmpty(deviceBean.getTitle())) {
+            return false;
+        }
+        String title = deviceBean.getTitle();
+        List<String> blueNames = new ArrayList<>();
+        blueNames.add("QMS-IQ");
+        blueNames.add("QMS-I06");
+        blueNames.add("QMS-LQ");
+        blueNames.add("QMS-L04");
+        boolean isNeedShow = false;
+        for (String blueName:blueNames) {
+            if (title.toUpperCase().contains(blueName)) {
+                isNeedShow = true;
+                break;
+            }
+        }
+        return isNeedShow;
+    }
+
 
     private void setData() {
         if (BlueUtils.isConnected()) {

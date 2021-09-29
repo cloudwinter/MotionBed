@@ -131,6 +131,8 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
 
 
     private void initView() {
+        // QMS2 不显示按摩开关 TODO
+
         switchCB.setChecked(true);
         switchCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
