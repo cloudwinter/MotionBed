@@ -33,9 +33,9 @@
     <string name="version">Version</string>
     <string name="privacy_policy">Privacy policy</string>
     <string name="setting">Setting</string>
-    <string name="fault_debugging">Fault debugging</string>
-    <string name="fault_part">Fault Part</string>
-    <string name="fault_type">Fault Type</string>
+    <string name="fault_debugging">Troubleshooting</string>
+    <string name="fault_part">Faulty component</string>
+    <string name="fault_type">Fault type</string>
     <string name="alarm">Alarm setting</string>
 
 
@@ -105,8 +105,8 @@
     <string name="device_no_connected">Device Not Connected</string>
     <string name="device_disconnect">Device disConnected please reconnected</string>
     <string name="debug_switch">debug switch</string>
-    <string name="open">open</string>
-    <string name="close">close</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
 
     <!-- 闹钟 -->
@@ -133,5 +133,30 @@
     <string name="week_friday">Friday</string>
     <string name="week_saturday">Saturday</string>
     <string name="week_sunday">Sunday</string>
+
+    <!-- 故障代码 -->
+    <string name="guzhangtiaoshi">Troubleshooting</string>
+    <string name="guzhangbujian">Faulty component</string>
+    <string name="guzhangleixing">Fault type</string>
+    <string name="guanbi">Close</string>
+    <string name="toubu">Head</string>
+    <string name="beibu">Back</string>
+    <string name="zuobiantunbu">Left hip</string>
+    <string name="youbiantunbu">Right hip</string>
+    <string name="zuobiantuibu">Left leg</string>
+    <string name="youbiantuibu">Right leg</string>
+    <string name="tunbu">Hip</string>
+    <string name="tuibu">Leg</string>
+    <string name="dianjisuohuai">Motor broken</string>
+    <string name="dianjiguozai">Motor overload</string>
+    <string name="dianjiduanlu">Motor short circuit</string>
+    <string name="cejusuohuai">Sensor broken</string>
+    <string name="tongzucejusuohuai">Same group sensor broken</string>
+    <string name="julichazhiguoda">Large distance difference</string>
+    <string name="dianjifanxiangdongzuo">Motor reverse action</string>
+    <string name="julibuzaifangwei">Distance out of range</string>
+    <string name="julituobian">Distance mutation</string>
+    <string name="mubiaoweizhipianli">Target position deviation</string>
+    <string name="shebeiyiqiezhengchang">The equipment is all right</string>
 
 </resources>

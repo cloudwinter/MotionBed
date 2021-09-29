@@ -33,9 +33,9 @@
     <string name="version">Version</string>
     <string name="privacy_policy">Politique de confidentialité</string>
     <string name="setting">Réglage</string>
-    <string name="fault_debugging">Fault debugging</string>
-    <string name="fault_part">Fault Part</string>
-    <string name="fault_type">Fault Type</string>
+    <string name="fault_debugging">Dépannage</string>
+    <string name="fault_part">Composant défectueux</string>
+    <string name="fault_type">Type de défaut</string>
     <string name="alarm">Réglage de l&#180;alarme</string>
 
 
@@ -133,5 +133,30 @@
     <string name="week_friday">Vendredi</string>
     <string name="week_saturday">Damedi</string>
     <string name="week_sunday">Dimanche</string>
+
+    <!-- 故障代码 -->
+    <string name="guzhangtiaoshi">Dépannage</string>
+    <string name="guzhangbujian">Composant défectueux</string>
+    <string name="guzhangleixing">Type de défaut</string>
+    <string name="guanbi">Fermer</string>
+    <string name="toubu">Tête</string>
+    <string name="beibu">Dos</string>
+    <string name="zuobiantunbu">Hanche gauche</string>
+    <string name="youbiantunbu">Hanche droite</string>
+    <string name="zuobiantuibu">Jambe gauche</string>
+    <string name="youbiantuibu">Jambe droite</string>
+    <string name="tunbu">Hanche</string>
+    <string name="tuibu">Jambe</string>
+    <string name="dianjisuohuai">Moteur cassé</string>
+    <string name="dianjiguozai">Surcharge du moteur</string>
+    <string name="dianjiduanlu">Court-circuit moteur</string>
+    <string name="cejusuohuai">Capteur cassé</string>
+    <string name="tongzucejusuohuai">Capteur du même groupe cassé</string>
+    <string name="julichazhiguoda">Grande différence de distance</string>
+    <string name="dianjifanxiangdongzuo">Action inverse du moteur</string>
+    <string name="julibuzaifangwei">Distance hors de portée</string>
+    <string name="julituobian">Mutation à distance</string>
+    <string name="mubiaoweizhipianli">Écart de position cible</string>
+    <string name="shebeiyiqiezhengchang">L'équipement est bien</string>
 
 </resources>

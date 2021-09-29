@@ -71,47 +71,47 @@ public class FaultDebugDialog extends Dialog implements View.OnClickListener {
     public void setFaultBody(String partVal, String causeVal) {
         String faultPart = "";
         if ("6008".equals(partVal) || "4002".equals(partVal)) {
-            faultPart = "头部";
+            faultPart = mContext.getString(R.string.toubu);
         } else if ("6009".equals(partVal) || "4004".equals(partVal)) {
-            faultPart = "背部";
+            faultPart = mContext.getString(R.string.beibu);
         } else if ("600C".equals(partVal)) {
-            faultPart = "左边臀部";
+            faultPart = mContext.getString(R.string.zuobiantunbu);
         } else if ("600D".equals(partVal)) {
-            faultPart = "右边臀部";
+            faultPart = mContext.getString(R.string.youbiantunbu);
         } else if ("6007".equals(partVal)) {
-            faultPart = "左边腿部";
+            faultPart = mContext.getString(R.string.zuobiantuibu);
         } else if ("600A".equals(partVal)) {
-            faultPart = "右边腿部";
+            faultPart = mContext.getString(R.string.youbiantuibu);
         } else if ("60CD".equals(partVal) || "400D".equals(partVal)) {
-            faultPart = "臀部";
+            faultPart = mContext.getString(R.string.tunbu);
         } else if ("607A".equals(partVal) || "400A".equals(partVal)) {
-            faultPart = "腿部";
+            faultPart = mContext.getString(R.string.tuibu);
         }
         faultPartTV.setText(faultPart);
 
         String faultCause = "";
         if ("000A".equals(causeVal)) {
-            faultCause = "电机损坏";
+            faultCause = mContext.getString(R.string.dianjisuohuai);
         } else if ("0014".equals(causeVal)) {
-            faultCause = "电机过载";
+            faultCause = mContext.getString(R.string.dianjiguozai);
         } else if ("001E".equals(causeVal)) {
-            faultCause = "电机短路";
+            faultCause = mContext.getString(R.string.dianjiduanlu);
         } else if ("00C8".equals(causeVal)) {
-            faultCause = "测距损坏";
+            faultCause = mContext.getString(R.string.cejusuohuai);
         } else if ("00D2".equals(causeVal)) {
-            faultCause = "同组测距损坏";
+            faultCause = mContext.getString(R.string.tongzucejusuohuai);
         } else if ("00DC".equals(causeVal)) {
-            faultCause = "距离差值过大";
+            faultCause = mContext.getString(R.string.julichazhiguoda);
         } else if ("00E6".equals(causeVal)) {
-            faultCause = "电机反向动作";
+            faultCause = mContext.getString(R.string.dianjifanxiangdongzuo);
         } else if ("0064".equals(causeVal)) {
-            faultCause = "距离不在范围";
+            faultCause = mContext.getString(R.string.julibuzaifangwei);
         } else if ("006E".equals(causeVal)) {
-            faultCause = "距离突变";
+            faultCause = mContext.getString(R.string.julituobian);
         } else if ("0078".equals(causeVal)) {
-            faultCause = "目标位置偏离";
+            faultCause = mContext.getString(R.string.mubiaoweizhipianli);
         } else if ("0000".equals(causeVal)) {
-            faultCause = "设备一切正常";
+            faultCause = mContext.getString(R.string.shebeiyiqiezhengchang);
         }
         faultTypeTV.setText(faultCause);
         
