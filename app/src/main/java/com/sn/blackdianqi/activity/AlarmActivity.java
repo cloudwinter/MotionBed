@@ -153,7 +153,7 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
         saveLL.setOnClickListener(this);
 
         DeviceBean deviceBean = Prefer.getInstance().getConnectedDevice();
-        if (deviceBean != null && TextUtils.isEmpty(deviceBean.getTitle())) {
+        if (deviceBean != null && !TextUtils.isEmpty(deviceBean.getTitle())) {
             if (deviceBean.getTitle().toUpperCase().contains("QMS2")) {
                 anmoLL.setVisibility(View.GONE);
             }
