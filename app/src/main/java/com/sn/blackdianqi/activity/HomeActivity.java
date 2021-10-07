@@ -130,6 +130,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     public void onRightClick() {
         Intent intent = new Intent(HomeActivity.this, SettingActivity.class);
         startActivity(intent);
+        sendAlarmInitCmd();
     }
 
     @Override
@@ -401,6 +402,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 break;
             case R.id.tab4:
                 setCurrentTab(4);
+                // 发送灯光指令
+                sendBlueCmd("FF FF FF FF 05 00 05 FF 23 C7 28");
                 break;
             default:
                 break;
