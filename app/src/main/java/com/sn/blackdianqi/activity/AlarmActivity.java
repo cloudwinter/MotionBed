@@ -56,6 +56,7 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
     public static final String TAG = "AlarmActivity";
 
     public static int WEEK_REQUEST_CODE = 107;
+    public static int MODE_REQUEST_CODE = 106;
 
     private HashMap<Integer, Boolean> weekCheckBeanMap = new HashMap<>();
 
@@ -215,7 +216,6 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
     }
 
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -258,24 +258,28 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
                 startActivityForResult(intentWeek, WEEK_REQUEST_CODE);
                 break;
             case R.id.ll_mode:
-                OptionPicker modePicker = new OptionPicker(this);
-                modePicker.setDefaultValue(getModeStrByCode(modeCode));
-                modePicker.getOkView().setTextColor(getResources().getColor(R.color.text_green));
-                modePicker.setData(getString(R.string.alarm_mode_lingyali), getString(R.string.alarm_mode_jiyi1), getString(R.string.alarm_mode_budongzuo));
-                modePicker.setOnOptionPickedListener(new OnOptionPickedListener() {
-                    @Override
-                    public void onOptionPicked(int position, Object item) {
-                        if (position == 0) {
-                            modeCode = "01";
-                        } else if (position == 1) {
-                            modeCode = "02";
-                        } else{
-                            modeCode = "03";
-                        }
-                        modeTV.setText(getModeStrByCode(modeCode));
-                    }
-                });
-                modePicker.show();
+//                OptionPicker modePicker = new OptionPicker(this);
+//                modePicker.setDefaultValue(getModeStrByCode(modeCode));
+//                modePicker.getOkView().setTextColor(getResources().getColor(R.color.text_green));
+//                modePicker.setData(getString(R.string.alarm_mode_lingyali), getString(R.string.alarm_mode_jiyi1), getString(R.string.alarm_mode_budongzuo));
+//                modePicker.setOnOptionPickedListener(new OnOptionPickedListener() {
+//                    @Override
+//                    public void onOptionPicked(int position, Object item) {
+//                        if (position == 0) {
+//                            modeCode = "01";
+//                        } else if (position == 1) {
+//                            modeCode = "02";
+//                        } else{
+//                            modeCode = "03";
+//                        }
+//                        modeTV.setText(getModeStrByCode(modeCode));
+//                    }
+//                });
+//                modePicker.show();
+
+                Intent intentMode = new Intent(AlarmActivity.this, ModeActivity.class);
+                intentMode.putExtra(ModeActivity.EXTRA_KEY, modeCode);
+                startActivityForResult(intentMode, MODE_REQUEST_CODE);
                 break;
             case R.id.ll_save:
                 checkAndSend();
@@ -396,6 +400,9 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
         if (WEEK_REQUEST_CODE == requestCode && resultCode == RESULT_CODE) {
             weekCheckBeanMap = (HashMap<Integer, Boolean>) data.getSerializableExtra(WeekActivity.EXTRA_KEY);
             setWeek();
+        } else if (MODE_REQUEST_CODE == requestCode && resultCode == ModeActivity.RESULT_CODE) {
+            modeCode = data.getStringExtra(ModeActivity.EXTRA_KEY);
+            modeTV.setText(getModeStrByCode(modeCode));
         }
     }
 
