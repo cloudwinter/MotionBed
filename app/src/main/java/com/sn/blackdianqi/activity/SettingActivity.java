@@ -160,7 +160,7 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         List<String> blueNames = new ArrayList<>();
         blueNames.add("QMS-IQ");
         blueNames.add("QMS-I06");
-        blueNames.add("QMS-LQ");
+        //blueNames.add("QMS-LQ");
         blueNames.add("QMS-L04");
         boolean isNeedShow = false;
         for (String blueName:blueNames) {

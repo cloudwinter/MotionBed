@@ -19,6 +19,7 @@
     <string name="dialog_title_disconnect">Disconnected or not</string>
     <string name="dialog_negetive">cancel</string>
     <string name="dialog_positive">sure</string>
+    <string name="dialog_confirm">Confirm</string>
 
     <!-- 蓝牙设备/设置界面 -->
     <string name="connecting_device">Connect Device</string>

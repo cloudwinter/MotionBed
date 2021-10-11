@@ -222,6 +222,7 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
             case R.id.ll_time:
                 TimePicker picker = new TimePicker(this);
                 picker.getOkView().setTextColor(getResources().getColor(R.color.text_green));
+                picker.getOkView().setText(getText(R.string.dialog_confirm));
                 picker.getWheelLayout().setTimeMode(TimeMode.HOUR_24_NO_SECOND);
                 picker.getWheelLayout().setTimeFormatter(new SimpleTimeFormatter());
                 picker.getWheelLayout().setRange(TimeEntity.target(0, 0, 0), TimeEntity.target(23, 59, 59));
