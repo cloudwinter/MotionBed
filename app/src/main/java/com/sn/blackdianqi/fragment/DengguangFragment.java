@@ -241,7 +241,13 @@ public class DengguangFragment extends BaseFragment implements View.OnClickListe
         // 去除空格
         receivedCmd = receivedCmd.replaceAll(" ", "");
         String level = receivedCmd.substring(14,16);
-        dengguangLevel.setLevel(BlueUtils.covert16TO10(level));
+        int levelNum = BlueUtils.covert16TO10(level);
+        dengguangLevel.setLevel(levelNum);
+        if (levelNum == 0) {
+            tenMinsTextView.setSelected(false);
+            eightHoursTextView.setSelected(false);
+            tenHoursTextView.setSelected(false);
+        }
     }
 
     /**

@@ -147,6 +147,7 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
                 }
             }
         });
+        contentLL.setVisibility(View.GONE);
 
         timeLL.setOnClickListener(this);
         weekLL.setOnClickListener(this);
@@ -175,15 +176,17 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
         }
         AlarmBean alarmBean = Prefer.getInstance().getAlarm(deviceAddress);
         if (alarmBean == null) {
+            contentLL.setVisibility(View.GONE);
             return;
         }
+        contentLL.setVisibility(alarmBean.isAlarmSwitch() ? View.VISIBLE : View.GONE);
         hourStr = alarmBean.getHourStr();
         minuteStr = alarmBean.getMinuteStr();
         modeCode = alarmBean.getModeCode();
         weekCheckBeanMap = alarmBean.getWeekCheckBeanMap();
 
         switchCB.setChecked(alarmBean.isAlarmSwitch());
-        if (!TextUtils.isEmpty(hourStr) && !   TextUtils.isEmpty(minuteStr)) {
+        if (!TextUtils.isEmpty(hourStr) && !TextUtils.isEmpty(minuteStr)) {
             timeTV.setText(hourStr + ":" + minuteStr);
         }
         modeTV.setText(getModeStrByCode(modeCode));
@@ -247,7 +250,7 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
                         } else {
                             minuteStr = minute + "";
                         }
-                        timeTV.setText(hourStr+":"+minuteStr);
+                        timeTV.setText(hourStr + ":" + minuteStr);
                     }
                 });
                 picker.show();
@@ -359,7 +362,7 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
 
         // 发送蓝牙命令
         sendCmd(sb.toString());
-        Prefer.getInstance().setAlarm(Prefer.getInstance().getLatelyConnectedDevice(),alarmBean);
+        Prefer.getInstance().setAlarm(Prefer.getInstance().getLatelyConnectedDevice(), alarmBean);
         finish();
     }
 
