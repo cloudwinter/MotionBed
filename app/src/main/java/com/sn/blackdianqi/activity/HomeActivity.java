@@ -1,5 +1,6 @@
 package com.sn.blackdianqi.activity;
 
+import android.bluetooth.BluetoothGattCharacteristic;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -17,10 +19,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.sn.blackdianqi.MyApplication;
 import com.sn.blackdianqi.R;
+import com.sn.blackdianqi.RunningContext;
 import com.sn.blackdianqi.adapter.TabPagerAdapter;
 import com.sn.blackdianqi.base.BaseActivity;
 import com.sn.blackdianqi.base.BaseFragment;
+import com.sn.blackdianqi.bean.AlarmBean;
+import com.sn.blackdianqi.bean.DateBean;
 import com.sn.blackdianqi.bean.DeviceBean;
 import com.sn.blackdianqi.blue.BluetoothLeService;
 import com.sn.blackdianqi.fragment.AnmoFragment;
@@ -41,6 +47,7 @@ import com.sn.blackdianqi.fragment.WeitiaoW4Fragment;
 import com.sn.blackdianqi.fragment.WeitiaoW6Fragment;
 import com.sn.blackdianqi.fragment.WeitiaoW7Fragment;
 import com.sn.blackdianqi.fragment.WeitiaoW8Fragment;
+import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.util.ToastUtils;
@@ -48,6 +55,7 @@ import com.sn.blackdianqi.view.NoScrollViewPager;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.Nullable;
@@ -106,7 +114,12 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     List<BaseFragment> fragments;
     TabPagerAdapter tabPagerAdapter;
 
-    String blueName;
+    // 特征值
+    protected BluetoothGattCharacteristic characteristic;
+
+    private String blueName;
+
+    private String deviceAddress;
 
     @Override
     public void onLeftClick() {
@@ -117,6 +130,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     public void onRightClick() {
         Intent intent = new Intent(HomeActivity.this, SettingActivity.class);
         startActivity(intent);
+        sendAlarmInitCmd();
     }
 
     @Override
@@ -151,6 +165,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         DeviceBean deviceBean = Prefer.getInstance().getConnectedDevice();
         if (deviceBean != null) {
             blueName = deviceBean.getTitle();
+            deviceAddress = deviceBean.getAddress();
         }
         LogUtils.e(TAG, "当前连接的蓝牙名称为：" + blueName);
         initView();
@@ -160,6 +175,17 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         Intent blueServiceIntent = new Intent(HomeActivity.this, BluetoothLeService.class);
         startService(blueServiceIntent);
         bindService(blueServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
+        RunningContext.threadPool().execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1500L);
+                    askStatus();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void initView() {
@@ -167,7 +193,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         tab2.setOnClickListener(this);
         tab3.setOnClickListener(this);
         tab4.setOnClickListener(this);
-
         tabTextViews = new ArrayList<>();
         tabTextViews.add(tab1TextView);
         tabTextViews.add(tab2TextView);
@@ -186,6 +211,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         viewPager.setAdapter(tabPagerAdapter);
         viewPager.setScroll(true);
         viewPager.setOffscreenPageLimit(3);
+
+        if (!TextUtils.isEmpty(blueName) && blueName.toUpperCase().contains("QMS2")) {
+            tab3.setVisibility(View.GONE);
+        }
     }
 
 
@@ -250,6 +279,115 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         viewPager.setCurrentItem(position, false);
     }
 
+    private void askStatus() {
+        // 发送闹钟指令
+        sendAlarmInitCmd();
+    }
+
+    /**
+     * 发送闹钟初始化命令
+     */
+    private void sendAlarmInitCmd() {
+        StringBuilder cmdSB = new StringBuilder();
+        cmdSB.append("FFFFFFFF01000111");
+        DateBean dateBean = new DateBean(new Date());
+        cmdSB.append(dateBean.getHour());
+        cmdSB.append(dateBean.getMinute());
+        cmdSB.append(dateBean.getSecond());
+        cmdSB.append(dateBean.getWeek());
+        cmdSB.append(dateBean.getEndYear());
+        cmdSB.append(dateBean.getMonth());
+        cmdSB.append(dateBean.getDay());
+        // 累加校验和
+        cmdSB.append(BlueUtils.makeChecksum(cmdSB.toString()));
+        LogUtils.i(TAG, "发送闹钟指令：" + cmdSB.toString());
+        sendBlueCmd(cmdSB.toString());
+    }
+
+
+    /**
+     * 发送蓝牙命令
+     *
+     * @param cmd
+     */
+    protected void sendBlueCmd(String cmd) {
+        cmd = cmd.replace(" ", "");
+        Log.i(TAG, "sendBlueCmd: " + cmd);
+        // 判断蓝牙是否连接
+        if (!BlueUtils.isConnected()) {
+            ToastUtils.showToast(HomeActivity.this, getString(R.string.device_no_connected));
+            LogUtils.i(TAG, "sendBlueCmd -> 蓝牙未连接");
+            return;
+        }
+        if (characteristic == null) {
+            characteristic = MyApplication.getInstance().gattCharacteristic;
+        }
+        if (characteristic == null) {
+            LogUtils.i(TAG, "sendBlueCmd -> 特征值未获取到");
+            return;
+        }
+        characteristic.setValue(BlueUtils.StringToBytes(cmd));
+        MyApplication.getInstance().mBluetoothLeService.writeCharacteristic(characteristic);
+    }
+
+    private void handleReceiveData(String cmd) {
+        cmd = cmd.toUpperCase().replaceAll(" ", "");
+        if (cmd.contains("FFFFFFFF0100030B00")) {
+            LogUtils.i(TAG, "收到无闹钟指令：" + cmd);
+            // 有闹钟,未设置
+            AlarmBean alarmBean = new AlarmBean();
+            alarmBean.setAlarmSwitch(false);
+            Prefer.getInstance().setAlarm(deviceAddress, alarmBean);
+        } else if (cmd.contains("FFFFFFFF01000413")) {
+            LogUtils.i(TAG, "收到有闹钟指令：" + cmd);
+            // 有闹钟，已设置
+            AlarmBean alarmBean = new AlarmBean();
+            String cmdStatus = cmd.substring(16, 18);
+            // 开关
+            if (cmdStatus.equals("0F")) {
+                alarmBean.setAlarmSwitch(true);
+            } else {
+                alarmBean.setAlarmSwitch(false);
+            }
+
+            // 时间
+            String timeHour = cmd.substring(18, 20);
+            alarmBean.setHourStr(timeHour);
+            String timeMin = cmd.substring(20, 22);
+            alarmBean.setMinuteStr(timeMin);
+
+            // 星期
+            String cmdWeek = BlueUtils.hexString16To2hexString(cmd.substring(24, 26));
+            for (int i = 0; i < 7; i++) {
+                char charAt = cmdWeek.charAt(i);
+                if (charAt == '1') {
+                    alarmBean.getWeekCheckBeanMap().put(7 - i, true);
+                }
+            }
+
+            // 模式
+            String cmdMode = cmd.substring(28, 30);
+            alarmBean.setModeCode(cmdMode);
+
+            // 按摩
+            String cmdAnmo = cmd.substring(30, 32);
+            if (cmdAnmo.equals("01")) {
+                alarmBean.setAnmo(true);
+            } else {
+                alarmBean.setAnmo(false);
+            }
+
+            // 响铃
+            String cmdRing = cmd.substring(32, 34);
+            if (cmdRing.equals("01")) {
+                alarmBean.setXiangling(true);
+            } else {
+                alarmBean.setXiangling(false);
+            }
+            Prefer.getInstance().setAlarm(deviceAddress, alarmBean);
+        }
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -264,6 +402,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 break;
             case R.id.tab4:
                 setCurrentTab(4);
+                // 发送灯光指令
+                sendBlueCmd("FF FF FF FF 05 00 05 FF 23 C7 28");
                 break;
             default:
                 break;
@@ -275,6 +415,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         final IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(BluetoothLeService.ACTION_GATT_CONNECTED);
         intentFilter.addAction(BluetoothLeService.ACTION_GATT_DISCONNECTED);
+        intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
         return intentFilter;
     }
 
@@ -292,6 +433,17 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 LogUtils.e(TAG, "监听到蓝牙状态 ：已断开");
                 Prefer.getInstance().setBleStatus("未连接", null);
                 ToastUtils.showToast(HomeActivity.this, R.string.device_disconnect);
+            } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
+                //处理发送过来的数据  (//有效数据)
+                Bundle bundle = intent.getExtras();
+                if (bundle != null) {
+                    String data = bundle.getString(BluetoothLeService.EXTRA_DATA);
+                    if (data != null) {
+                        //data = "FFFFFFFF010004130F08300026010301019897";
+                        LogUtils.e(TAG, "==首页  接收设备返回的数据==", data);
+                        handleReceiveData(data);
+                    }
+                }
             }
         }
     };

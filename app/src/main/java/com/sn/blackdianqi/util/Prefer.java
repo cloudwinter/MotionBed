@@ -6,6 +6,7 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.sn.blackdianqi.MyApplication;
+import com.sn.blackdianqi.bean.AlarmBean;
 import com.sn.blackdianqi.bean.DeviceBean;
 
 
@@ -32,6 +33,7 @@ public class Prefer {
     private final String KEY_NEEDGUIDE = "KEY_NEEDGUIDE";
     private final String KEY_DECICE = "KEY_DECICE";
     private final String KEY_LANGUAGE = "KEY_LANGUAGE";
+    private final String KEY_ALARM = "KEY_ALARM"; // 闹钟
 
     public static Prefer getInstance() {
         if (null == mInstance) {
@@ -47,6 +49,7 @@ public class Prefer {
 
     /**
      * zh/en/fr
+     *
      * @param language
      */
     public void setSelectedLanguage(String language) {
@@ -57,12 +60,12 @@ public class Prefer {
 
     /**
      * 获取当前选中语言
+     *
      * @return
      */
     public String getSelectedLanguage() {
-       return mPref.getString(KEY_LANGUAGE,"en");
+        return mPref.getString(KEY_LANGUAGE, "en");
     }
-
 
 
     /**
@@ -90,6 +93,7 @@ public class Prefer {
     public String isTypeLan() {
         return mPref.getString(KEY_TYPE_LAN, "");
     }
+
     /**
      * M1
      */
@@ -171,17 +175,18 @@ public class Prefer {
         SharedPreferences.Editor editor = mPref.edit();
         editor.putString(KEY_BLESTATUS, bleStatus);
         if (bleStatus.equals("未连接")) {
-            editor.putString(KEY_BLECONNECTDEVICE,"");
+            editor.putString(KEY_BLECONNECTDEVICE, "");
         } else {
             String json = new Gson().toJson(deviceBean);
-            LogUtils.d("Prefer","setBleStatus:"+json);
-            editor.putString(KEY_BLECONNECTDEVICE,json);
+            LogUtils.d("Prefer", "setBleStatus:" + json);
+            editor.putString(KEY_BLECONNECTDEVICE, json);
         }
         editor.commit();
     }
 
     /**
      * 获取当前选中的device
+     *
      * @return
      */
     public DeviceBean getConnectedDevice() {
@@ -205,6 +210,7 @@ public class Prefer {
 
     /**
      * 判断蓝牙是否连接
+     *
      * @return
      */
     public boolean isBleConnected() {
@@ -227,9 +233,47 @@ public class Prefer {
     }
 
 
+    /**
+     * 保存蓝牙信息
+     * @param deviceAddress
+     * @param alarmBean
+     */
+    public void setAlarm(String deviceAddress, AlarmBean alarmBean) {
+        SharedPreferences.Editor editor = mPref.edit();
+        String valueJson = new Gson().toJson(alarmBean);
+        editor.putString(KEY_DECICE + deviceAddress, valueJson);
+        editor.commit();
+    }
+
+    /**
+     * 获取蓝牙配置信息
+     * @param deviceAddress
+     * @return
+     */
+    public AlarmBean getAlarm(String deviceAddress) {
+        String value = mPref.getString(KEY_DECICE + deviceAddress, null);
+        if (TextUtils.isEmpty(value)) {
+            return null;
+        }
+        return new Gson().fromJson(value, AlarmBean.class);
+    }
+
+    /**
+     * 删除数据
+     * @param deviceAddress
+     */
+    public void removeAlarm(String deviceAddress) {
+        if (TextUtils.isEmpty(deviceAddress)) {
+            return;
+        }
+        SharedPreferences.Editor editor = mPref.edit();
+        editor.remove(KEY_DECICE + deviceAddress);
+        editor.commit();
+    }
+
+
     //退出登录后清除缓存数据
     public void clearData() {
-//        String setBleStatus = getBleStatus();
         String currentDevice = getLatelyConnectedDevice();
         String language = getSelectedLanguage();
 

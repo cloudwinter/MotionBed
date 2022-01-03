@@ -19,6 +19,7 @@
     <string name="dialog_title_disconnect">Disconnected or not</string>
     <string name="dialog_negetive">cancel</string>
     <string name="dialog_positive">sure</string>
+    <string name="dialog_confirm">Confirmer</string>
 
     <!-- 蓝牙设备/设置界面 -->
     <string name="connecting_device">Connecter l&#180;appareil</string>
@@ -33,6 +34,10 @@
     <string name="version">Version</string>
     <string name="privacy_policy">Politique de confidentialité</string>
     <string name="setting">Réglage</string>
+    <string name="fault_debugging">Dépannage</string>
+    <string name="fault_part">Composant défectueux</string>
+    <string name="fault_type">Type de défaut</string>
+    <string name="alarm">Réglage de l&#180;alarme</string>
 
 
     <!-- tab -->
@@ -82,6 +87,11 @@
     <string name="tenfenzhong">10minutes</string>
     <string name="eightxiaoshi">8heures</string>
     <string name="tentxiaoshi">10heures</string>
+    <string name="dengguangliangdu">La luminosité</string>
+    <string name="dengguangliangdu_min_tips">La luminosité actuelle a été ajustée au minimum</string>
+    <string name="dengguangliangdu_max_tips">La luminosité actuelle a été ajustée au maximum</string>
+
+
 
 
     <!-- 按摩 -->
@@ -99,5 +109,55 @@
     <string name="debug_switch">debug switch</string>
     <string name="open">open</string>
     <string name="close">close</string>
+
+    <!-- 闹钟 -->
+    <string name="alarm_switch">Commutateur d&#180;alarme</string>
+    <string name="alarm_open">Ouvert</string>
+    <string name="alarm_close">Fermé</string>
+    <string name="alarm_time">Temps</string>
+    <string name="alarm_week">Semaine</string>
+    <string name="alarm_week_no_repeat">Pas de répétition</string>
+    <string name="alarm_mode">Position</string>
+    <string name="alarm_mode_lingyali">Gravité zéro</string>
+    <string name="alarm_mode_jiyi1">Mémoire 1</string>
+    <string name="alarm_mode_budongzuo">Pas d&#180;action</string>
+    <string name="alarm_anmo">MASSAGE</string>
+    <string name="alarm_xiangling">Alarme</string>
+    <string name="alarm_save">Sauvegarde</string>
+
+    <!-- 星期 -->
+    <string name="week">week</string>
+    <string name="week_monday">Lundi</string>
+    <string name="week_tuesday">Mardi</string>
+    <string name="week_wednesday">Mercredi</string>
+    <string name="week_thursday">Jeudi</string>
+    <string name="week_friday">Vendredi</string>
+    <string name="week_saturday">Damedi</string>
+    <string name="week_sunday">Dimanche</string>
+
+    <!-- 故障代码 -->
+    <string name="guzhangtiaoshi">Dépannage</string>
+    <string name="guzhangbujian">Composant défectueux</string>
+    <string name="guzhangleixing">Type de défaut</string>
+    <string name="guanbi">Fermer</string>
+    <string name="toubu">Tête</string>
+    <string name="beibu">Dos</string>
+    <string name="zuobiantunbu">Hanche gauche</string>
+    <string name="youbiantunbu">Hanche droite</string>
+    <string name="zuobiantuibu">Jambe gauche</string>
+    <string name="youbiantuibu">Jambe droite</string>
+    <string name="tunbu">Hanche</string>
+    <string name="tuibu">Jambe</string>
+    <string name="dianjisuohuai">Moteur cassé</string>
+    <string name="dianjiguozai">Surcharge du moteur</string>
+    <string name="dianjiduanlu">Court-circuit moteur</string>
+    <string name="cejusuohuai">Capteur cassé</string>
+    <string name="tongzucejusuohuai">Capteur du même groupe cassé</string>
+    <string name="julichazhiguoda">Grande différence de distance</string>
+    <string name="dianjifanxiangdongzuo">Action inverse du moteur</string>
+    <string name="julibuzaifangwei">Distance hors de portée</string>
+    <string name="julituobian">Mutation à distance</string>
+    <string name="mubiaoweizhipianli">Écart de position cible</string>
+    <string name="shebeiyiqiezhengchang">L&#180;équipement est bien</string>
 
 </resources>

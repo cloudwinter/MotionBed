@@ -24,6 +24,7 @@ allprojects {
     repositories {
         jcenter()
         google()
+        maven { url 'https://www.jitpack.io' }
 //        mavenCentral()
 //        maven {url 'https://maven.aliyun.com/repository/central'}
 //        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}

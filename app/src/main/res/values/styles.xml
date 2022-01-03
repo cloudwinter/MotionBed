@@ -43,5 +43,10 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+    <!-- 自定义checkbox -->
+    <style name="checkbox_style">
+        <item name="android:button">@drawable/bg_checkbox</item>
+    </style>
+
 
 </resources>

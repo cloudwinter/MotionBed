@@ -85,6 +85,19 @@
             android:textColor="@color/anjian_text_color_selector"
             />
 
+
+        <com.sn.blackdianqi.view.AnjianAnmoView
+            android:id="@+id/view_dengguang_level"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="@dimen/weitiao_marin"
+            android:layout_marginTop="@dimen/weitiao_marin"
+            android:layout_marginRight="@dimen/weitiao_marin"
+            android:layout_marginBottom="10dp"
+            app:bgnormal="@drawable/bg_tuoyuan_normal"
+            app:title="@string/dengguangliangdu"
+            app:linecount="10"/>
+
     </LinearLayout>
 
 </ScrollView>

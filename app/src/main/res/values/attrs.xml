@@ -44,6 +44,10 @@
         <attr name="linecount" format="integer"/>
     </declare-styleable>
 
+    <declare-styleable name="WeekItemView">
+        <attr name="title" />
+    </declare-styleable>
+
     <declare-styleable name="FixedRatioRelativeLayout">
         <attr name="ratio" format="float"></attr>
     </declare-styleable>

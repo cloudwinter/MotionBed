@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.sn.blackdianqi.activity.AlarmActivity;
 import com.sn.blackdianqi.activity.ConnectActivity;
 import com.sn.blackdianqi.activity.HomeActivity;
 import com.sn.blackdianqi.base.BaseActivity;

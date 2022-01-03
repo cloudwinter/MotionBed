@@ -157,7 +157,7 @@ public abstract class KuaijieBaseFragment extends BaseFragment {
                 if (bundle != null) {
                     String data = bundle.getString(BluetoothLeService.EXTRA_DATA);
                     if (data != null) {
-                        LogUtils.e("==快捷  接收设备返回的数据==", data);
+                        LogUtils.e("KuaijieBaseFragment","==快捷  接收设备返回的数据==", data);
                         handleReceiveData(data);
                     }
                 }

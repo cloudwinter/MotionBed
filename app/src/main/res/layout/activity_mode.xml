@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/ic_bg"
+    android:orientation="vertical">
+
+    <com.sn.blackdianqi.view.TranslucentActionBar
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <!-- 星期一 -->
+    <com.sn.blackdianqi.view.WeekItemView
+        android:id="@+id/wiv_lingyali"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_alarm_item"
+        android:layout_marginTop="15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:title="@string/alarm_mode_lingyali" />
+
+    <!-- 星期二 -->
+    <com.sn.blackdianqi.view.WeekItemView
+        android:id="@+id/wiv_jiyi1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_alarm_item"
+        android:layout_marginTop="1px"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:title="@string/alarm_mode_jiyi1" />
+
+    <!-- 星期三 -->
+    <com.sn.blackdianqi.view.WeekItemView
+        android:id="@+id/wiv_budongzuo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_alarm_item"
+        android:layout_marginTop="1px"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:title="@string/alarm_mode_budongzuo" />
+
+
+    <!-- 保存 -->
+    <LinearLayout
+        android:id="@+id/ll_save"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_alarm_item"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/alarm_save"
+            android:textColor="@color/text_green"
+            android:textSize="14dp"
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
