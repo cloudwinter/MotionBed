@@ -49,14 +49,17 @@ public class RunningContext {
      */
     public static Context sAppContext = null;
 
-
     public static JobScheduler jobScheduler;
+
+    /**
+     * 睡眠定时标志
+     */
+    public static String sleepTimer = "00";
 
 
     public static void init(Application app) {
         sAppContext = app.getApplicationContext();
     }
-
 
     /**
      * 全局线程池

@@ -38,6 +38,7 @@ import com.sn.blackdianqi.fragment.KuaijieK4Fragment;
 import com.sn.blackdianqi.fragment.KuaijieK5Fragment;
 import com.sn.blackdianqi.fragment.KuaijieK8Fragment;
 import com.sn.blackdianqi.fragment.KuaijieK9Fragment;
+import com.sn.blackdianqi.fragment.SmartSleepFragment;
 import com.sn.blackdianqi.fragment.WeitiaoW10Fragment;
 import com.sn.blackdianqi.fragment.WeitiaoW11Fragment;
 import com.sn.blackdianqi.fragment.WeitiaoW1Fragment;
@@ -67,7 +68,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     public static final String TAG = "HomeActivity";
 
     // 设置tab个数
-    private final static int tabCount = 4;
+    private final static int tabCount = 5;
 
     @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
@@ -107,6 +108,13 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     ImageView tab4Img;
     @BindView(R.id.tab4_text)
     TextView tab4TextView;
+
+    @BindView(R.id.tab5)
+    LinearLayout tab5;
+    @BindView(R.id.tab5_img)
+    ImageView tab5Img;
+    @BindView(R.id.tab5_text)
+    TextView tab5TextView;
 
     List<TextView> tabTextViews;
     List<ImageView> tabImageViews;
@@ -178,14 +186,15 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         RunningContext.threadPool().execute(new Runnable() {
             @Override
             public void run() {
-                try {
-                    Thread.sleep(1500L);
-                    askStatus();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                askStatus();
             }
         });
+        tab5.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tab5.setVisibility(View.VISIBLE);
+            }
+        },2000L);
     }
 
     private void initView() {
@@ -193,17 +202,20 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         tab2.setOnClickListener(this);
         tab3.setOnClickListener(this);
         tab4.setOnClickListener(this);
+        tab5.setOnClickListener(this);
         tabTextViews = new ArrayList<>();
         tabTextViews.add(tab1TextView);
         tabTextViews.add(tab2TextView);
         tabTextViews.add(tab3TextView);
         tabTextViews.add(tab4TextView);
+        tabTextViews.add(tab5TextView);
 
         tabImageViews = new ArrayList<>();
         tabImageViews.add(tab1Img);
         tabImageViews.add(tab2Img);
         tabImageViews.add(tab3Img);
         tabImageViews.add(tab4Img);
+        tabImageViews.add(tab5Img);
 
         fragments = new ArrayList<>();
         setFragments();
@@ -260,12 +272,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 
         fragments.add(new AnmoFragment());
         fragments.add(new DengguangFragment());
+        fragments.add(new SmartSleepFragment());
     }
 
     private void setCurrentTab(int tabIndex) {
-        if (tabCount == 4 && tabIndex == 4) {
-            tabIndex = 4;
-        }
         int position = tabIndex - 1;
         for (int i = 0; i < tabCount; i++) {
             if (position == i) {
@@ -280,8 +290,22 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void askStatus() {
-        // 发送闹钟指令
-        sendAlarmInitCmd();
+        try {
+            Thread.sleep(500L);
+            sendStressInitCmd();
+            Thread.sleep(1000L);
+            // 发送闹钟指令
+            sendAlarmInitCmd();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 发送压力带指令
+     */
+    private void sendStressInitCmd() {
+        sendBlueCmd("FFFFFFFF02000E0B001704");
     }
 
     /**
@@ -340,53 +364,62 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             Prefer.getInstance().setAlarm(deviceAddress, alarmBean);
         } else if (cmd.contains("FFFFFFFF01000413")) {
             LogUtils.i(TAG, "收到有闹钟指令：" + cmd);
-            // 有闹钟，已设置
-            AlarmBean alarmBean = new AlarmBean();
-            String cmdStatus = cmd.substring(16, 18);
-            // 开关
-            if (cmdStatus.equals("0F")) {
-                alarmBean.setAlarmSwitch(true);
-            } else {
-                alarmBean.setAlarmSwitch(false);
-            }
-
-            // 时间
-            String timeHour = cmd.substring(18, 20);
-            alarmBean.setHourStr(timeHour);
-            String timeMin = cmd.substring(20, 22);
-            alarmBean.setMinuteStr(timeMin);
-
-            // 星期
-            String cmdWeek = BlueUtils.hexString16To2hexString(cmd.substring(24, 26));
-            for (int i = 0; i < 7; i++) {
-                char charAt = cmdWeek.charAt(i);
-                if (charAt == '1') {
-                    alarmBean.getWeekCheckBeanMap().put(7 - i, true);
-                }
-            }
-
-            // 模式
-            String cmdMode = cmd.substring(28, 30);
-            alarmBean.setModeCode(cmdMode);
-
-            // 按摩
-            String cmdAnmo = cmd.substring(30, 32);
-            if (cmdAnmo.equals("01")) {
-                alarmBean.setAnmo(true);
-            } else {
-                alarmBean.setAnmo(false);
-            }
-
-            // 响铃
-            String cmdRing = cmd.substring(32, 34);
-            if (cmdRing.equals("01")) {
-                alarmBean.setXiangling(true);
-            } else {
-                alarmBean.setXiangling(false);
-            }
-            Prefer.getInstance().setAlarm(deviceAddress, alarmBean);
+            setHasAlarm(cmd);
+        } else if (cmd.contains("FFFFFFFF02000E0B")) {
+            LogUtils.i(TAG, "收到智能睡眠感应回码指令：" + cmd);
+            tab5.setVisibility(View.VISIBLE);
+            RunningContext.sleepTimer = cmd.substring(16, 18);
         }
     }
+
+    private void setHasAlarm(String cmd) {
+        // 有闹钟，已设置
+        AlarmBean alarmBean = new AlarmBean();
+        String cmdStatus = cmd.substring(16, 18);
+        // 开关
+        if (cmdStatus.equals("0F")) {
+            alarmBean.setAlarmSwitch(true);
+        } else {
+            alarmBean.setAlarmSwitch(false);
+        }
+
+        // 时间
+        String timeHour = cmd.substring(18, 20);
+        alarmBean.setHourStr(timeHour);
+        String timeMin = cmd.substring(20, 22);
+        alarmBean.setMinuteStr(timeMin);
+
+        // 星期
+        String cmdWeek = BlueUtils.hexString16To2hexString(cmd.substring(24, 26));
+        for (int i = 0; i < 7; i++) {
+            char charAt = cmdWeek.charAt(i);
+            if (charAt == '1') {
+                alarmBean.getWeekCheckBeanMap().put(7 - i, true);
+            }
+        }
+
+        // 模式
+        String cmdMode = cmd.substring(28, 30);
+        alarmBean.setModeCode(cmdMode);
+
+        // 按摩
+        String cmdAnmo = cmd.substring(30, 32);
+        if (cmdAnmo.equals("01")) {
+            alarmBean.setAnmo(true);
+        } else {
+            alarmBean.setAnmo(false);
+        }
+
+        // 响铃
+        String cmdRing = cmd.substring(32, 34);
+        if (cmdRing.equals("01")) {
+            alarmBean.setXiangling(true);
+        } else {
+            alarmBean.setXiangling(false);
+        }
+        Prefer.getInstance().setAlarm(deviceAddress, alarmBean);
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -403,7 +436,23 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             case R.id.tab4:
                 setCurrentTab(4);
                 // 发送灯光指令
-                sendBlueCmd("FF FF FF FF 05 00 05 FF 23 C7 28");
+                sendBlueCmd("FFFFFFFF050005FF23C728");
+                break;
+            case R.id.tab5:
+                setCurrentTab(5);
+                RunningContext.threadPool().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            // 发送智能睡眠页面指令
+                            sendBlueCmd("FFFFFFFF02000A0A1204");
+                            Thread.sleep(500);
+                            sendBlueCmd("FFFFFFFF02000E0B001704");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
                 break;
             default:
                 break;

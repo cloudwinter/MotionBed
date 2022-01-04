@@ -39,21 +39,33 @@ public class ToastUtils {
     }
 
 
-    public static void showToast(Context context, String text, boolean lengthLong) {
+    public static void showToast(final Context context, final String text, boolean lengthLong) {
         if (TextUtils.isEmpty(text)) {
             return;
         }
         mhandler.removeCallbacks(r);
         if (null != mToast) {
-            mToast.setText(text);
+            mhandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    mToast.setText(text);
+                    mToast.show();
+                }
+            });
         } else {
-            mToast = SNToast.makeText(context, text, Toast.LENGTH_LONG);
+            mhandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    mToast = SNToast.makeText(context, text, Toast.LENGTH_LONG);
+                    mToast.show();
+                }
+            });
         }
         if (text.length() > 5) {
             lengthLong = true;
         }
         mhandler.postDelayed(r, lengthLong ? 1500 : 1000);
-        mToast.show();
+
     }
 
     /**

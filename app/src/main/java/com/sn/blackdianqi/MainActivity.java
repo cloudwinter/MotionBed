@@ -67,13 +67,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onResume() {
         super.onResume();
         // 获取手机本地的蓝牙适配器
-        BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
-        mBluetoothAdapter = bluetoothManager.getAdapter();
-        if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
-            // 未打开蓝牙
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, 10);
-        }
+//        BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+//        mBluetoothAdapter = bluetoothManager.getAdapter();
+//        if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
+//            // 未打开蓝牙
+//            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+//            startActivityForResult(enableBtIntent, 10);
+//        }
     }
 
     @Override
@@ -87,7 +87,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     startActivity(intent);
                 } else {
                     // 跳转到蓝牙搜索和连接界面
-                    Intent intent = new Intent(MainActivity.this, ConnectActivity.class);
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     intent.putExtra("from","main");
                     startActivity(intent);
                 }

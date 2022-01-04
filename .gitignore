@@ -5,6 +5,7 @@ Logs/
 bin/
 *.class
 ./gradle
+/.gradle/
 
 # Eclipse project files
 /target/
@@ -17,4 +18,4 @@ metircs-client-all.log*
 .concrete
 *.lock
 *.bin
-/.gradle/
+

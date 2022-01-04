@@ -45,6 +45,7 @@
     <string name="weitiao">MICRO REGLAGE</string>
     <string name="anmo">MASSAGE</string>
     <string name="dengguang">LUMIERE</string>
+    <string name="sleep">DORMIR</string>
 
     <!-- 快捷 -->
     <string name="jiyi">Memory</string>
@@ -159,5 +160,10 @@
     <string name="julituobian">Mutation à distance</string>
     <string name="mubiaoweizhipianli">Écart de position cible</string>
     <string name="shebeiyiqiezhengchang">L&#180;équipement est bien</string>
+
+    <!-- 智能睡眠 -->
+
+    <!-- 智能睡眠定时 -->
+    <string name="sleep_timer_title">智能睡眠定时</string>
 
 </resources>

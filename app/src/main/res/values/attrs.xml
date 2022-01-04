@@ -4,6 +4,7 @@
     <attr name="bgnormal" format="reference" />
     <attr name="bgselected" format="reference" />
     <attr name="icon" format="reference" />
+    <attr name="desc" format="reference|string" />
 
 
     <declare-styleable name="JiyiView">
@@ -50,5 +51,14 @@
 
     <declare-styleable name="FixedRatioRelativeLayout">
         <attr name="ratio" format="float"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="ProlateItemView">
+        <attr name="title" />
+        <attr name="desc" />
+    </declare-styleable>
+
+    <declare-styleable name="ProlateSwitchView">
+        <attr name="title" />
     </declare-styleable>
 </resources>

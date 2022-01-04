@@ -45,6 +45,7 @@
     <string name="weitiao">MICRO ADJ</string>
     <string name="anmo">MASSAGE</string>
     <string name="dengguang">LIGHT</string>
+    <string name="sleep">SLEEP</string>
 
     <!-- 快捷 -->
     <string name="jiyi">Memory</string>
@@ -159,5 +160,13 @@
     <string name="julituobian">Distance mutation</string>
     <string name="mubiaoweizhipianli">Target position deviation</string>
     <string name="shebeiyiqiezhengchang">The equipment is all right</string>
+
+
+    <!-- 智能睡眠 -->
+
+    <!-- 智能睡眠定时 -->
+    <string name="sleep_timer_title">智能睡眠定时</string>
+
+
 
 </resources>

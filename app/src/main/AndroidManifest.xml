@@ -59,6 +59,7 @@
         <activity android:name=".activity.AlarmActivity"></activity>
         <activity android:name=".activity.WeekActivity"></activity>
         <activity android:name=".activity.ModeActivity"></activity>
+        <activity android:name=".activity.SleepTimerActivity"></activity>
 
 
         <service
