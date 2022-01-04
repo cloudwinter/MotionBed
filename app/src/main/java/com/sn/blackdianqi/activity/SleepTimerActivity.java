@@ -9,6 +9,8 @@ import android.widget.LinearLayout;
 
 import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.base.BaseActivity;
+import com.sn.blackdianqi.base.BaseBlueActivity;
+import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 import com.sn.blackdianqi.view.WeekItemView;
 
@@ -33,7 +35,7 @@ import butterknife.ButterKnife;
  * 智能睡眠定时选择界面
  * Created by xiayundong on 2021/9/21.
  */
-public class SleepTimerActivity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
+public class SleepTimerActivity extends BaseBlueActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
 
     private String checkedTimer = "00";
     private String tempCheckedTimer = "00";
@@ -177,6 +179,12 @@ public class SleepTimerActivity extends BaseActivity implements TranslucentActio
     }
 
     private void save() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("FFFFFFFF02000D0B");
+        stringBuilder.append(checkedTimer);
+        String checksum = BlueUtils.makeChecksum(stringBuilder.toString());
+        stringBuilder.append(checksum);
+        sendCmd(stringBuilder.toString());
         checkedTimer = tempCheckedTimer;
         Intent intent = getIntent();
         intent.putExtra(EXTRA_KEY, checkedTimer);
