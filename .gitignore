@@ -17,3 +17,4 @@ metircs-client-all.log*
 .concrete
 *.lock
 *.bin
+/.gradle/
