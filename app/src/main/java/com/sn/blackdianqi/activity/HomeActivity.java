@@ -189,12 +189,13 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 askStatus();
             }
         });
-        tab5.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                tab5.setVisibility(View.VISIBLE);
-            }
-        },2000L);
+        // FIXME 测试
+//        tab5.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                tab5.setVisibility(View.VISIBLE);
+//            }
+//        },2000L);
     }
 
     private void initView() {
