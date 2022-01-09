@@ -62,6 +62,7 @@
         <activity android:name=".activity.SleepTimerSelectActivity"></activity>
         <activity android:name=".activity.SleepDataEntryActivity"></activity>
         <activity android:name=".activity.SleepAdjustActivity"></activity>
+        <activity android:name=".activity.SleepReportMainActivity"></activity>
 
 
         <service

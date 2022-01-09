@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.sn.blackdianqi.activity.AlarmActivity;
 import com.sn.blackdianqi.activity.ConnectActivity;
 import com.sn.blackdianqi.activity.HomeActivity;
+import com.sn.blackdianqi.activity.SleepReportMainActivity;
 import com.sn.blackdianqi.base.BaseActivity;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.Prefer;
@@ -83,11 +84,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 // 判断当前蓝牙是否已连接，如果已连接直接调整到HomeActivity
                 if (BlueUtils.isConnected()) {
                     // 跳转到首页页面
-                    Intent intent = new Intent(MainActivity.this, ConnectActivity.class);
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(intent);
                 } else {
                     // 跳转到蓝牙搜索和连接界面
-                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    Intent intent = new Intent(MainActivity.this, SleepReportMainActivity.class);
                     intent.putExtra("from","main");
                     startActivity(intent);
                 }

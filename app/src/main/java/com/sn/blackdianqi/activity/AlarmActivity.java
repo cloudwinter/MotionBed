@@ -21,6 +21,7 @@ import com.github.gzuliyujiang.wheelpicker.contract.OnOptionPickedListener;
 import com.github.gzuliyujiang.wheelpicker.contract.OnTimePickedListener;
 import com.github.gzuliyujiang.wheelpicker.entity.TimeEntity;
 import com.github.gzuliyujiang.wheelpicker.impl.SimpleTimeFormatter;
+import com.github.gzuliyujiang.wheelpicker.widget.TimeWheelLayout;
 import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.base.BaseBlueActivity;
 import com.sn.blackdianqi.bean.AlarmBean;
@@ -227,7 +228,6 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
                 picker.getOkView().setTextColor(getResources().getColor(R.color.text_green));
                 picker.getOkView().setText(getText(R.string.dialog_confirm));
                 picker.getWheelLayout().setTimeMode(TimeMode.HOUR_24_NO_SECOND);
-                picker.getWheelLayout().setTimeFormatter(new SimpleTimeFormatter());
                 picker.getWheelLayout().setRange(TimeEntity.target(0, 0, 0), TimeEntity.target(23, 59, 59));
                 TimeEntity timeEntity = TimeEntity.now();
                 if (!TextUtils.isEmpty(hourStr)) {
