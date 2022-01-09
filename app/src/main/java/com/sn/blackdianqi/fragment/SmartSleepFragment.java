@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import com.sn.blackdianqi.MyApplication;
 import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.RunningContext;
-import com.sn.blackdianqi.activity.SleepTimerActivity;
+import com.sn.blackdianqi.activity.SleepTimerSelectActivity;
 import com.sn.blackdianqi.base.BaseFragment;
 import com.sn.blackdianqi.blue.BluetoothLeService;
 import com.sn.blackdianqi.util.BlueUtils;
@@ -130,8 +130,8 @@ public class SmartSleepFragment extends BaseFragment implements View.OnClickList
                 break;
             case R.id.item_shuimiandingshi:
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), SleepTimerActivity.class);
-                intent.putExtra(SleepTimerActivity.EXTRA_KEY, sleepTimer);
+                intent.setClass(getActivity(), SleepTimerSelectActivity.class);
+                intent.putExtra(SleepTimerSelectActivity.EXTRA_KEY, sleepTimer);
                 startActivityForResult(intent,TIMER_REQUEST_CODE);
                 break;
             case R.id.item_shuimianbaogao:
@@ -238,7 +238,7 @@ public class SmartSleepFragment extends BaseFragment implements View.OnClickList
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == TIMER_REQUEST_CODE && data != null) {
-            String extraVal = data.getStringExtra(SleepTimerActivity.EXTRA_KEY);
+            String extraVal = data.getStringExtra(SleepTimerSelectActivity.EXTRA_KEY);
             if (!TextUtils.isEmpty(extraVal)) {
                 sleepTimer = extraVal;
                 setSleepTimerDesc(sleepTimer);

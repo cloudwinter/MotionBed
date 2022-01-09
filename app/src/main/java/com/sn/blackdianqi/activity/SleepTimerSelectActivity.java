@@ -35,7 +35,7 @@ import butterknife.ButterKnife;
  * 智能睡眠定时选择界面
  * Created by xiayundong on 2021/9/21.
  */
-public class SleepTimerActivity extends BaseBlueActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
+public class SleepTimerSelectActivity extends BaseBlueActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
 
     private String checkedTimer = "00";
     private String tempCheckedTimer = "00";

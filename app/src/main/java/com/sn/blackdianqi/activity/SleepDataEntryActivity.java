@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
  * 睡姿录入页面
  * Created by xiayundong on 2022/1/4.
  */
-public class DataEntryActivity extends BaseBlueActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
+public class SleepDataEntryActivity extends BaseBlueActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
 
     @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
