@@ -26,7 +26,7 @@ public class SleepAdjustActivity extends BaseBlueActivity implements Translucent
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sleepadjust);
+        setContentView(R.layout.activity_sleep_adjust);
         ButterKnife.bind(this);
         // 设置title
         actionBar.setData(getString(R.string.sleep_timer_title), R.mipmap.ic_back, null, 0, null, this);

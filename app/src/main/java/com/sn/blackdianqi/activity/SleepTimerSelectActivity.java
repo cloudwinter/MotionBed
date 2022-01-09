@@ -8,7 +8,6 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import com.sn.blackdianqi.R;
-import com.sn.blackdianqi.base.BaseActivity;
 import com.sn.blackdianqi.base.BaseBlueActivity;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.view.TranslucentActionBar;
@@ -84,7 +83,7 @@ public class SleepTimerSelectActivity extends BaseBlueActivity implements Transl
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sleep_timer);
+        setContentView(R.layout.activity_sleep_timer_select);
         ButterKnife.bind(this);
         // 设置title
         actionBar.setData(getString(R.string.sleep_timer_title), R.mipmap.ic_back, null, 0, null, this);
