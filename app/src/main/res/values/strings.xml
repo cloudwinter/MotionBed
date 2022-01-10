@@ -168,5 +168,26 @@
     <string name="sleep_timer_title">智能睡眠定时</string>
 
 
+    <!-- 月报告 -->
+    <string name="smr_action_bar_title">月睡眠报告</string>
+    <string name="smr_top_title">最近30天睡眠统计</string>
+    <string name="smr_top_zcsj_title">在床数据</string>
+    <string name="smr_top_zcsj_pjzcsj">平均在床时间</string>
+    <string name="smr_top_zcsj_zczcsj">最长在床时间</string>
+    <string name="smr_top_zcsj_zdzcsj">最短在床时间</string>
+    <string name="smr_top_zcsj_unit">小时/天</string>
+
+    <string name="smr_top_fssj_title">翻身数据</string>
+    <string name="smr_top_fssj_pjzcsj">平均翻身次数</string>
+    <string name="smr_top_fssj_zczcsj">最多翻身次数</string>
+    <string name="smr_top_fssj_zdzcsj">最少翻身次数</string>
+    <string name="smr_top_fssj_unit">次/天</string>
+
+    <string name="smr_top_ptsj_title">平躺/侧躺时间</string>
+    <string name="smr_top_ptsj_ptsj">平均平躺时间</string>
+    <string name="smr_top_ptsj_ctsj">平均侧躺时间</string>
+    <string name="smr_top_ptsj_unit">小时/天</string>
+
+
 
 </resources>

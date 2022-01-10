@@ -120,9 +120,10 @@ dependencies {
     implementation 'com.github.gzu-liyujiang.AndroidPicker:Common:4.1.6'
     implementation 'com.github.gzu-liyujiang.AndroidPicker:WheelPicker:4.1.6'
 
-    // 日历
+    // 日历 https://gitee.com/huanghaibin_dev/CalendarView
     implementation 'com.haibin:calendarview:3.7.1'
 
+    // 折线图 https://github.com/AAChartModel/AAChartCore/blob/master/CHINESE-README.md
 
     // test
     testImplementation 'junit:junit:4.12'
