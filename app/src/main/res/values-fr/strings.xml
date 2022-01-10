@@ -63,6 +63,11 @@
     <string name="yujia">YOGA</string>
     <string name="yijianshengqi">s&#180;élever</string>
     <string name="yijianjiangxia">descendre</string>
+    <string name="houqing">Incliner vers l&#180;arrière</string>
+    <string name="qianqing">Incliner vers l&#180;avant</string>
+    <string name="zhengtishangsheng">Rise</string>
+    <string name="zhengtixiajiang">Decline</string>
+    <string name="zhengtifuyuan">A plat A</string>
 
 
     <!-- 微调 -->

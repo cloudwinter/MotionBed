@@ -63,7 +63,11 @@
     <string name="yujia">YOGA</string>
     <string name="yijianshengqi">Rise</string>
     <string name="yijianjiangxia">Decline</string>
-
+    <string name="houqing">Tilt Backward</string>
+    <string name="qianqing">Tilt forward</string>
+    <string name="zhengtishangsheng">Rise</string>
+    <string name="zhengtixiajiang">Decline</string>
+    <string name="zhengtifuyuan">Flat Bed A</string>
 
 
     <!-- 微调 -->
