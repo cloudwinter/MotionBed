@@ -123,7 +123,8 @@ dependencies {
     // 日历 https://gitee.com/huanghaibin_dev/CalendarView
     implementation 'com.haibin:calendarview:3.7.1'
 
-    // 折线图 https://github.com/AAChartModel/AAChartCore/blob/master/CHINESE-README.md
+    // 折线图 https://github.com/lecho/hellocharts-android
+    implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
 
     // test
     testImplementation 'junit:junit:4.12'

@@ -188,6 +188,17 @@
     <string name="smr_top_ptsj_ctsj">平均侧躺时间</string>
     <string name="smr_top_ptsj_unit">小时/天</string>
 
+    <!-- 日报告 -->
+    <string name="sdr_action_bar_title">日报告</string>
+    <string name="sdr_action_bar_real_title">实时在床数据</string>
+    <string name="sdr_zcsj">在床时间</string>
+    <string name="sdr_fscs">翻身次数</string>
+    <string name="sdr_ctsj">侧躺时间</string>
+    <string name="sdr_ptsj">平躺时间</string>
+    <string name="sdr_time_h">小时</string>
+    <string name="sdr_time_m">分钟</string>
+    <string name="sdr_count">次</string>
+
 
 
 </resources>
