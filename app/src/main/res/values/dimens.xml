@@ -456,6 +456,7 @@
     <dimen name="anjian_margin_size">19dp</dimen>
     <dimen name="anjian_middle_width">12dp</dimen>
 
+    <dimen name="weitiao_marin_10">10dp</dimen>
     <dimen name="weitiao_marin">20dp</dimen>
     <dimen name="anjian_weitiao_height">60dp</dimen>
 
