@@ -243,7 +243,6 @@ public class SmartSleepFragment extends BaseFragment implements View.OnClickList
                 sleepTimer = extraVal;
                 setSleepTimerDesc(sleepTimer);
             }
-
         }
     }
 }

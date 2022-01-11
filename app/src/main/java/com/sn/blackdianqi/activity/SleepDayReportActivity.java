@@ -21,6 +21,8 @@ import butterknife.ButterKnife;
  */
 public class SleepDayReportActivity extends BaseBlueActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
 
+    public static String EXTRA_KEY = "TYPE_EXTRA_KEY";
+
     @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
     @BindView(R.id.title)
@@ -43,6 +45,8 @@ public class SleepDayReportActivity extends BaseBlueActivity implements Transluc
     @BindView(R.id.tv_ptsj_time_unit)
     TextView tv_ptsj_time_unit;
 
+    // 0 实时数据 、1 日报告
+    private String type = "0";
 
 
     @Override

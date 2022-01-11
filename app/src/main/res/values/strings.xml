@@ -172,6 +172,12 @@
     <!-- 智能睡眠定时 -->
     <string name="sleep_timer_title">智能睡眠定时</string>
 
+    <!-- 睡眠报告页面 -->
+    <string name="srm_action_bar_title">睡眠报告</string>
+    <string name="srm_month_report">月报告</string>
+    <string name="srm_sleep_time">入睡时间</string>
+    <string name="srm_shsj">实时数据</string>
+
 
     <!-- 月报告 -->
     <string name="smr_action_bar_title">月睡眠报告</string>

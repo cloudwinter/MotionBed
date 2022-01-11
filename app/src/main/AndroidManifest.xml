@@ -65,6 +65,7 @@
         <activity android:name=".activity.SleepReportMainActivity"></activity>
         <activity android:name=".activity.SleepMonthReportActivity"></activity>
         <activity android:name=".activity.SleepDayReportActivity"></activity>
+        <activity android:name=".activity.SleepFallTimerSelectActivity"></activity>
 
 
         <service

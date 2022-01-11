@@ -23,8 +23,17 @@ public class DateUtils {
         return calendar;
     }
 
+
+    public static Calendar calendar(int year, int month, int day) {
+        Calendar calendar = Calendar.getInstance(Locale.CHINA);
+        calendar.set(year, month - 1, day);
+        return calendar;
+    }
+
+
     /**
      * 转小时
+     *
      * @param value 数据值
      * @param ratio 比例
      * @return
@@ -35,7 +44,21 @@ public class DateUtils {
         return result.toString();
     }
 
-    public static void  main(String[] args) {
+
+    /**
+     * 两个日期相差的天数
+     *
+     * @param calendarBefore
+     * @param calendarAfter
+     * @return
+     */
+    public static long betweenDay(Calendar calendarBefore, Calendar calendarAfter) {
+        long diffDays = (calendarAfter.getTimeInMillis() - calendarBefore.getTimeInMillis())
+                / (1000 * 60 * 60 * 24);
+        return diffDays;
+    }
+
+    public static void main(String[] args) {
         System.out.println(new DateBean(new Date()));
     }
 }

@@ -130,7 +130,7 @@ public class SleepMonthReportActivity extends BaseBlueActivity implements Transl
                 if (bundle != null) {
                     String data = bundle.getString(BluetoothLeService.EXTRA_DATA);
                     if (data != null) {
-                        LogUtils.e("==快捷  接收设备返回的数据==", data);
+                        LogUtils.e("==月报告  接收设备返回的数据==", data);
                         data = data.replace(" ", "");
                         handleReceiveData(data);
                     }
