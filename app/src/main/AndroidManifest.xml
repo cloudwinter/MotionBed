@@ -63,6 +63,8 @@
         <activity android:name=".activity.SleepDataEntryActivity"></activity>
         <activity android:name=".activity.SleepAdjustActivity"></activity>
         <activity android:name=".activity.SleepReportMainActivity"></activity>
+        <activity android:name=".activity.SleepMonthReportActivity"></activity>
+        <activity android:name=".activity.SleepDayReportActivity"></activity>
 
 
         <service

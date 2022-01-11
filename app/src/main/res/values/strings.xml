@@ -176,6 +176,7 @@
     <!-- 月报告 -->
     <string name="smr_action_bar_title">月睡眠报告</string>
     <string name="smr_top_title">最近30天睡眠统计</string>
+    <string name="smr_top_title_format">最近%s天睡眠统计</string>
     <string name="smr_top_zcsj_title">在床数据</string>
     <string name="smr_top_zcsj_pjzcsj">平均在床时间</string>
     <string name="smr_top_zcsj_zczcsj">最长在床时间</string>
@@ -192,6 +193,7 @@
     <string name="smr_top_ptsj_ptsj">平均平躺时间</string>
     <string name="smr_top_ptsj_ctsj">平均侧躺时间</string>
     <string name="smr_top_ptsj_unit">小时/天</string>
+
 
     <!-- 日报告 -->
     <string name="sdr_action_bar_title">日报告</string>
