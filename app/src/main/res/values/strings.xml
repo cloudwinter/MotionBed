@@ -78,6 +78,7 @@
     <string name="yaobutiaozheng">LUMBAR</string>
     <string name="beituitiaozheng">BACK LEG</string>
     <string name="zhengtishengjiang">LIFT</string>
+    <string name="zhengtiqingxie">TILT</string>
 
     <string name="quanshenxunhuan">FULL CYCLE</string>
     <string name="tunbuxunhuan">HIP CYCLE</string>

@@ -68,7 +68,7 @@ public class KuaijieK11Fragment extends KuaijieBaseFragment implements View.OnTo
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: ");
-        View view = inflater.inflate(R.layout.fragment_kuaijie_k1, container, false);
+        View view = inflater.inflate(R.layout.fragment_kuaijie_k11, container, false);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
