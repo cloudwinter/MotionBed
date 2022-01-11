@@ -569,6 +569,10 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
         blueNameList.add("S3-3");
         blueNameList.add("S3-4");
 
+        blueNameList.add("S4-Y");
+        blueNameList.add("S5-Y");
+        blueNameList.add("S6-Y");
+
         return blueNameList;
     }
 

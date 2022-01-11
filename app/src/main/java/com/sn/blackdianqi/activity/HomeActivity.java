@@ -31,6 +31,7 @@ import com.sn.blackdianqi.bean.DeviceBean;
 import com.sn.blackdianqi.blue.BluetoothLeService;
 import com.sn.blackdianqi.fragment.AnmoFragment;
 import com.sn.blackdianqi.fragment.DengguangFragment;
+import com.sn.blackdianqi.fragment.KuaijieK11Fragment;
 import com.sn.blackdianqi.fragment.KuaijieK1Fragment;
 import com.sn.blackdianqi.fragment.KuaijieK2Fragment;
 import com.sn.blackdianqi.fragment.KuaijieK3Fragment;
@@ -41,6 +42,9 @@ import com.sn.blackdianqi.fragment.KuaijieK9Fragment;
 import com.sn.blackdianqi.fragment.SmartSleepFragment;
 import com.sn.blackdianqi.fragment.WeitiaoW10Fragment;
 import com.sn.blackdianqi.fragment.WeitiaoW11Fragment;
+import com.sn.blackdianqi.fragment.WeitiaoW12Fragment;
+import com.sn.blackdianqi.fragment.WeitiaoW13Fragment;
+import com.sn.blackdianqi.fragment.WeitiaoW14Fragment;
 import com.sn.blackdianqi.fragment.WeitiaoW1Fragment;
 import com.sn.blackdianqi.fragment.WeitiaoW2Fragment;
 import com.sn.blackdianqi.fragment.WeitiaoW3Fragment;
@@ -266,6 +270,15 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         } else if (blueName.contains("S3-4")) {
             fragments.add(new KuaijieK9Fragment());
             fragments.add(new WeitiaoW11Fragment());
+        } else if (blueName.contains("S4-Y") || blueName.contains("S5-Y") || blueName.contains("S6-Y")) {
+            fragments.add(new KuaijieK11Fragment());
+            if (blueName.contains("S4-Y")) {
+                fragments.add(new WeitiaoW12Fragment());
+            } else if (blueName.contains("S5-Y")) {
+                fragments.add(new WeitiaoW13Fragment());
+            } else if (blueName.contains("S6-Y")) {
+                fragments.add(new WeitiaoW14Fragment());
+            }
         } else {
             fragments.add(new KuaijieK1Fragment());
             fragments.add(new WeitiaoW1Fragment());
