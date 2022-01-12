@@ -169,6 +169,27 @@
 
     <!-- 智能睡眠 -->
 
+    <!-- 睡姿录入 -->
+    <string name="sde_top_title">睡姿特征数据录入</string>
+    <string name="sde_top_tips_title">说明</string>
+    <string name="sde_top_tips_1">1.请先将电动床放平，再进行数据录入操作。</string>
+    <string name="sde_top_tips_2">2.请平躺，完全放松身体后，按平躺键。</string>
+    <string name="sde_top_tips_3">3.请侧躺，完全放松身体后，按侧躺键。</string>
+    <string name="sde_top_tips_4">4.完成上述操作后，请按保存键。</string>
+    <string name="sde_ptcs">平躺参数：</string>
+    <string name="sde_pt">平躺</string>
+    <string name="sde_ctcs">侧躺参数：</string>
+    <string name="sde_ct">侧躺</string>
+    <string name="sde_save">保存</string>
+    <string name="sde_reset">恢复出厂设置</string>
+    <string name="sde_zhinengdai">智能带</string>
+    <string name="sde_dialog_fuwei_content">请先执行一键复位，然后开始学习您的个性设置</string>
+    <string name="sde_dialog_btn_cancel">取消</string>
+    <string name="sde_dialog_btn_yijianfuwei">一键复位</string>
+    <string name="sde_dialog_next_content">请确认电动床已恢复水平，点击下一步</string>
+    <string name="sde_dialog_btn_next">下一步</string>
+    <string name="sde_dialog_fuwei_loading">复位中...</string>
+
     <!-- 智能睡眠定时 -->
     <string name="sleep_timer_title">智能睡眠定时</string>
 

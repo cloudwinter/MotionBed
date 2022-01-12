@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.sn.blackdianqi.activity.AlarmActivity;
 import com.sn.blackdianqi.activity.ConnectActivity;
 import com.sn.blackdianqi.activity.HomeActivity;
+import com.sn.blackdianqi.activity.SleepDataEntryActivity;
 import com.sn.blackdianqi.activity.SleepReportMainActivity;
 import com.sn.blackdianqi.base.BaseActivity;
 import com.sn.blackdianqi.util.BlueUtils;
@@ -88,7 +89,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     startActivity(intent);
                 } else {
                     // 跳转到蓝牙搜索和连接界面
-                    Intent intent = new Intent(MainActivity.this, SleepReportMainActivity.class);
+                    Intent intent = new Intent(MainActivity.this, SleepDataEntryActivity.class);
                     intent.putExtra("from","main");
                     startActivity(intent);
                 }

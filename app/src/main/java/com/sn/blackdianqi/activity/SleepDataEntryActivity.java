@@ -1,12 +1,27 @@
 package com.sn.blackdianqi.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.base.BaseBlueActivity;
+import com.sn.blackdianqi.blue.BluetoothLeService;
+import com.sn.blackdianqi.dialog.FuweiDialog;
+import com.sn.blackdianqi.dialog.FuweiNextDialog;
+import com.sn.blackdianqi.dialog.WaitDialog;
+import com.sn.blackdianqi.util.BlueUtils;
+import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
 import androidx.annotation.Nullable;
@@ -22,19 +37,146 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
     @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
+    @BindView(R.id.tv_title)
+    TextView tv_title;
+    @BindView(R.id.tv_AA)
+    TextView tv_AA;
+    @BindView(R.id.tv_KK)
+    TextView tv_KK;
+
+
+    @BindView(R.id.tv_param_pingtang)
+    EditText tv_param_pingtang;
+    @BindView(R.id.tv_param_cetang)
+    EditText tv_param_cetang;
+
+    @BindView(R.id.tv_btn_pingtang)
+    TextView tv_btn_pingtang;
+    @BindView(R.id.tv_btn_cetang)
+    TextView tv_btn_cetang;
+
+    @BindView(R.id.tv_btn_save)
+    TextView tv_btn_save;
+    @BindView(R.id.tv_btn_reset)
+    TextView tv_btn_reset;
+
+    WaitDialog waitDialog;
+    FuweiDialog fuweiDialog;
+    FuweiNextDialog fuweiNextDialog;
+    // 循环发码次数，最大不超过30次
+    int loopSendCount = 0;
+    boolean startLoopSend = false;
+    private long eventDownTime = 0L;
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(mDataEntryReceiver);
+        super.onDestroy();
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        registerReceiver(mDataEntryReceiver, makeGattUpdateIntentFilter());
         setContentView(R.layout.activity_sleep_dataentry);
         ButterKnife.bind(this);
         // 设置title
-        actionBar.setData(getString(R.string.sleep_timer_title), R.mipmap.ic_back, null, 0, null, this);
+        actionBar.setData(null, R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             actionBar.setStatusBarHeight(getStatusBarHeight());
         }
+        initView();
+        initDialog();
+        sendCmd("FFFFFFFF02000A0A1204");
     }
+
+    private void initView() {
+        tv_title.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                if (MotionEvent.ACTION_DOWN == action) {
+                    timeHandler.sendEmptyMessageDelayed(TITLE_WHAT, 5000);
+                } else if (MotionEvent.ACTION_UP == action) {
+                    timeHandler.removeMessages(TITLE_WHAT);
+                }
+                return true;
+            }
+        });
+
+        tv_btn_pingtang.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                if (MotionEvent.ACTION_DOWN == action) {
+                    eventDownTime = System.currentTimeMillis();
+                    timeHandler.sendEmptyMessageDelayed(PINGTANG_WHAT, 2000);
+                } else if (MotionEvent.ACTION_UP == action) {
+                    timeHandler.removeMessages(PINGTANG_WHAT);
+                    if (isShortClick()) {
+                        sendCmd("FFFFFFFF0200090D0100001504");
+                        tv_btn_pingtang.setSelected(true);
+                    }
+                }
+                return true;
+            }
+        });
+
+        tv_btn_cetang.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                if (MotionEvent.ACTION_DOWN == action) {
+                    eventDownTime = System.currentTimeMillis();
+                    timeHandler.sendEmptyMessageDelayed(CETANG_WHAT, 2000);
+                } else if (MotionEvent.ACTION_UP == action) {
+                    timeHandler.removeMessages(CETANG_WHAT);
+                    if (isShortClick()) {
+                        sendCmd("FFFFFFFF0200090D0200001604");
+                        tv_btn_cetang.setSelected(true);
+                    }
+                }
+                return true;
+            }
+        });
+
+        tv_btn_save.setOnClickListener(this);
+        tv_btn_reset.setOnClickListener(this);
+
+    }
+
+    private void initDialog() {
+        waitDialog = new WaitDialog(this, getString(R.string.sde_dialog_fuwei_loading));
+        fuweiDialog = new FuweiDialog(this);
+        fuweiNextDialog = new FuweiNextDialog(this);
+        fuweiDialog.setOnFuweiClick(new FuweiDialog.OnFuweiClick() {
+            @Override
+            public void onCancel(View view) {
+                // no things
+            }
+
+            @Override
+            public void onFuwei(View view) {
+                sendCmd("FF FF FF FF 05 00 00 02 08 D7 A6");
+                waitDialog.show();
+                actionBar.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        waitDialog.dismiss();
+                    }
+                }, 3000);
+            }
+        });
+        fuweiNextDialog.setOnFuweiClick(new FuweiNextDialog.OnNextClick() {
+            @Override
+            public void onNext(View view) {
+                sendCmd("FF FF FF FF 02 00 0A 0A 12 04");
+            }
+        });
+        fuweiDialog.show();
+    }
+
 
     @Override
     public void onLeftClick() {
@@ -42,10 +184,198 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
     }
 
     @Override
-    public void onRightClick() { }
+    public void onRightClick() {
+    }
 
     @Override
-    public void onClick(View v) { }
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_btn_save:
+                saveClick();
+                break;
+            case R.id.tv_btn_reset:
+                resetClick();
+                break;
+        }
+    }
 
+    private void saveClick() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("FFFFFFFF0200120C");
+        String pingtangCmd = BlueUtils.covert10TO16(Integer.parseInt(tv_param_pingtang.getText().toString()));
+        builder.append(pingtangCmd);
+        String cetangCmd = BlueUtils.covert10TO16(Integer.parseInt(tv_param_pingtang.getText().toString()) / 2);
+        builder.append(cetangCmd);
+        builder.append(BlueUtils.makeChecksum(builder.toString()));
+        sendCmd(builder.toString());
+        finish();
+    }
+
+    private void resetClick() {
+        sendCmd("FFFFFFFF0200120C0A466C04");
+        finish();
+    }
+
+
+    /**
+     * title长按事件
+     */
+    private void titleLongClick() {
+        if (!startLoopSend) {
+            startLoopSend = true;
+            timeHandler.sendEmptyMessage(LOOP_SEND_WHAT);
+        } else {
+            startLoopSend = false;
+            loopSendCount = 0;
+        }
+
+    }
+
+    /**
+     * 循环发码
+     */
+    private void loopSendCmd() {
+        if (startLoopSend && loopSendCount < 30) {
+            sendCmd("FFFFFFFF0200090F03000000001904");
+            loopSendCount++;
+            timeHandler.sendEmptyMessage(LOOP_SEND_WHAT);
+        } else {
+            startLoopSend = false;
+            loopSendCount = 0;
+        }
+    }
+
+    /**
+     * 平躺长按
+     */
+    private void longPingtangClick() {
+        tv_param_pingtang.setEnabled(!tv_param_pingtang.isEnabled());
+    }
+
+    /**
+     * 侧躺长按
+     */
+    private void longCetangClick() {
+        tv_param_cetang.setEnabled(!tv_param_cetang.isEnabled());
+    }
+
+
+    private static final int TITLE_WHAT = 1;
+    private static final int LOOP_SEND_WHAT = 2;
+    private static final int PINGTANG_WHAT = 3;
+    private static final int CETANG_WHAT = 4;
+    /**
+     * 长按title
+     */
+    private Handler timeHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case TITLE_WHAT:
+                    titleLongClick();
+                    break;
+                case LOOP_SEND_WHAT:
+                    loopSendCmd();
+                    break;
+                case PINGTANG_WHAT:
+                    longPingtangClick();
+                    break;
+                case CETANG_WHAT:
+                    longCetangClick();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+
+    private void handleReceiveData(String cmd) {
+        if (cmd.contains("FFFFFFFF0500008208B666")) {
+            // 复位返回结果
+            waitDialog.dismiss();
+            fuweiNextDialog.show();
+            return;
+        }
+        if (cmd.contains("FFFFFFFF02000A14")) {
+            // 复位下一步回码
+            String pingtangParam = cmd.substring(20, 22);
+            tv_param_pingtang.setText(BlueUtils.covert16TO10(pingtangParam) + "");
+            String cetangParam = cmd.substring(22, 24);
+            tv_param_cetang.setText(BlueUtils.covert16TO10(cetangParam) * 2 + "");
+        }
+        if (cmd.contains("FFFFFFFF0200090D01")) {
+            // 按下平躺按键回码
+            String ptCmd = cmd.substring(20, 22) + cmd.substring(18, 20);
+            tv_param_pingtang.setText(BlueUtils.covert16TO10(ptCmd) + "");
+            return;
+        }
+        if (cmd.contains("FFFFFFFF0200090D02")) {
+            // 按下侧躺按键回码
+            String ctCmd = cmd.substring(20, 22) + cmd.substring(18, 20);
+            tv_param_cetang.setText(BlueUtils.covert16TO10(ctCmd) + "");
+            return;
+        }
+        if (cmd.contains("FFFFFFFF0200090F03")) {
+            String AAAA = cmd.substring(20, 22) + cmd.substring(18, 20);
+            String KKKK = cmd.substring(24, 26) + cmd.substring(22, 24);
+            tv_AA.setText(AAAA);
+            tv_KK.setText(KKKK);
+            return;
+        }
+
+    }
+
+    /**
+     * 广播接收器，负责接收BluetoothLeService类发送的数据
+     */
+    private final BroadcastReceiver mDataEntryReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+            if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) { //发现GATT服务器
+            } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
+                //处理发送过来的数据  (//有效数据)
+                Bundle bundle = intent.getExtras();
+                if (bundle != null) {
+                    String data = bundle.getString(BluetoothLeService.EXTRA_DATA);
+                    if (data != null) {
+                        LogUtils.e("==睡姿特征数据录入  接收设备返回的数据==", data);
+                        data = data.replace(" ", "");
+                        handleReceiveData(data);
+                    }
+                }
+            }
+        }
+    };
+
+
+    /* 意图过滤器 */
+    private static IntentFilter makeGattUpdateIntentFilter() {
+        final IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
+        return intentFilter;
+    }
+
+    public boolean isShortClick() {
+        long endTime = System.currentTimeMillis();
+        if (getInterval(eventDownTime, endTime) < 2000) {
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * 单位是毫秒
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    private long getInterval(long startTime,long endTime) {
+        long interval = endTime - startTime;
+        return interval;
+    }
 
 }

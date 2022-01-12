@@ -52,7 +52,7 @@ public class SleepDayReportActivity extends BaseBlueActivity implements Transluc
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sleep_month_report);
+        setContentView(R.layout.activity_sleep_day_report);
         ButterKnife.bind(this);
         // 设置title
         actionBar.setData(getString(R.string.smr_action_bar_title), R.mipmap.ic_back, null, 0, null, this);

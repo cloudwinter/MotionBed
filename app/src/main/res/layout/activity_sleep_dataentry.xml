@@ -12,16 +12,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/tv_title"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="睡姿特征数据录入"
-        android:textColor="#ff59b84d"
-        android:textSize="14sp"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
-        />
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <TextView
+            android:id="@+id/tv_AA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#ff59b84d"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/sde_top_title"
+            android:textColor="#ff59b84d"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_KK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#ff59b84d"
+            android:textSize="14sp" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,7 +64,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="说明:"
+            android:text="@string/sde_top_tips_title"
             android:textColor="#ff59b84d"
             android:textSize="14sp" />
 
@@ -46,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="1.请先将电动床放平，再进行数据录入操作。"
+            android:text="@string/sde_top_tips_1"
             android:textColor="#ff59b84d"
             android:textSize="14sp" />
 
@@ -54,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="2.请平躺，完全放松身体后，按平躺键。"
+            android:text="@string/sde_top_tips_2"
             android:textColor="#ff59b84d"
             android:textSize="14sp" />
 
@@ -62,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="3.请侧躺，完全放松身体后，按侧躺键。"
+            android:text="@string/sde_top_tips_3"
             android:textColor="#ff59b84d"
             android:textSize="14sp" />
 
@@ -70,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="4.完成上述操作后，请按保存键。"
+            android:text="@string/sde_top_tips_4"
             android:textColor="#ff59b84d"
             android:textSize="14sp" />
 
@@ -94,7 +120,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="平躺参数："
+                android:text="@string/sde_ptcs"
                 android:textColor="#ff59b84d"
                 android:textSize="14sp"
                 />
@@ -106,6 +132,8 @@
                 android:text="20"
                 android:textColor="#ff59b84d"
                 android:textSize="14sp"
+                android:inputType="number"
+                android:maxLength="3"
                 />
 
         </LinearLayout>
@@ -119,7 +147,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="侧躺参数："
+                android:text="@string/sde_ctcs"
                 android:textColor="#ff59b84d"
                 android:textSize="14sp"
                 />
@@ -131,6 +159,8 @@
                 android:text="140"
                 android:textColor="#ff59b84d"
                 android:textSize="14sp"
+                android:inputType="number"
+                android:maxLength="3"
                 />
 
         </LinearLayout>
@@ -157,7 +187,7 @@
                 android:layout_height="70dp"
                 android:background="@drawable/bg_circle_btn"
                 android:gravity="center"
-                android:text="平躺"
+                android:text="@string/sde_pt"
                 android:textColor="#ff59b84d"
                 android:textSize="14sp" />
 
@@ -175,9 +205,10 @@
                 android:layout_height="70dp"
                 android:background="@drawable/bg_circle_btn"
                 android:gravity="center"
-                android:text="侧躺"
+                android:text="@string/sde_ct"
                 android:textColor="#ff59b84d"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                />
 
         </LinearLayout>
 
@@ -199,7 +230,7 @@
             android:layout_height="70dp"
             android:background="@drawable/bg_circle_btn"
             android:gravity="center"
-            android:text="保存"
+            android:text="@string/sde_save"
             android:textColor="#ff59b84d"
             android:textSize="14sp" />
 
@@ -222,7 +253,7 @@
             android:layout_height="50dp"
             android:background="@drawable/bg_tuoyuan_normal"
             android:gravity="center"
-            android:text="恢复出厂设置"
+            android:text="@string/sde_reset"
             android:textColor="#ff59b84d"
             android:textSize="14sp" />
 
@@ -248,11 +279,11 @@
         <TextView
             android:layout_width="24dp"
             android:layout_height="match_parent"
-            android:text="智能带"
+            android:text="@string/sde_zhinengdai"
             android:textColor="#ffffffff"
             android:textSize="18sp"
             android:gravity="center"
-            android:layout_marginLeft="140dp"
+            android:layout_marginLeft="100dp"
             android:background="@color/text_green"
             />
 
@@ -265,7 +296,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="70厘米"
+                android:text="70cm"
                 android:textColor="#ff59b84d"
                 android:textSize="14sp"
                 />

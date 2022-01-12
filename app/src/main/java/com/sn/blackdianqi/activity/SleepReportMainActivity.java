@@ -82,6 +82,8 @@ public class SleepReportMainActivity extends BaseBlueActivity implements Translu
         shsjView.setOnClickListener(this);
 
         sendInitCmd();
+
+        // TODO 添加隐藏和显示实时数据功能
     }
 
     /**
@@ -122,7 +124,7 @@ public class SleepReportMainActivity extends BaseBlueActivity implements Translu
                     ToastUtils.showToast(SleepReportMainActivity.this,"您选择的日期暂无数据");
                     return;
                 }
-                // TODO
+                // TODO 调整到日报告界面
 
             }
         });
