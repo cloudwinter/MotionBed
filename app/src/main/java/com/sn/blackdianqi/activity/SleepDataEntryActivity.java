@@ -71,6 +71,7 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
     @Override
     protected void onDestroy() {
         unregisterReceiver(mDataEntryReceiver);
+        sendCmd("FFFFFFFF02000A0A1204");
         super.onDestroy();
     }
 

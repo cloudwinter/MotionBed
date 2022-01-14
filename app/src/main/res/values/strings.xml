@@ -190,6 +190,20 @@
     <string name="sde_dialog_btn_next">下一步</string>
     <string name="sde_dialog_fuwei_loading">复位中...</string>
 
+    <!-- 睡姿角度调整 -->
+    <string name="sad_top_title">睡姿角度调整</string>
+    <string name="sad_top_tips_title">说明</string>
+    <string name="sad_top_tips_02_1">1.请在平躺状态，调整背部，腿部角度，完成后按平躺键。</string>
+    <string name="sad_top_tips_02_2">2.请在侧躺状态，调整背部，腿部角度，完成后按侧躺键。</string>
+    <string name="sad_top_tips_03_1">1.请在平躺状态，调整背部，腰部，腿部角度，完成后按平躺键。</string>
+    <string name="sad_top_tips_03_2">2.请在侧躺状态，调整背部，腰部，腿部角度，完成后按侧躺键。</string>
+    <string name="sad_top_tips_04_1">1.请在平躺状态，调整头部，背部，腰部，腿部角度，完成后按平躺键。</string>
+    <string name="sad_top_tips_04_2">2.请在侧躺状态，调整头部，背部，腰部，腿部角度，完成后按侧躺键。</string>
+    <string name="sad_top_tips_3">3.完成上述操作后，请按保存键。</string>
+    <string name="sad_weizhi_guogao">位置过高</string>
+    <string name="sad_weizhi_guodi">位置过低</string>
+    <string name="sad_weizhi_guogao_tips">您设置的位置过高，建议您将床板降低到20以下再设置</string>
+
     <!-- 智能睡眠定时 -->
     <string name="sleep_timer_title">智能睡眠定时</string>
 

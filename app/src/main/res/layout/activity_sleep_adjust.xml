@@ -16,7 +16,7 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="睡姿角度调整"
+        android:text="@string/sad_top_title"
         android:textColor="#ff59b84d"
         android:textSize="14sp"
         android:gravity="center"
@@ -45,10 +45,20 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/tv_tips1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="1.请在平躺状态，调整背部角度，完成后按平躺键。"
+            android:text="@string/sad_top_tips_04_1"
+            android:textColor="#ff59b84d"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_tips2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/sad_top_tips_04_2"
             android:textColor="#ff59b84d"
             android:textSize="14sp" />
 
@@ -56,15 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="2.请在侧躺状态，调整背部角度，完成后按侧躺键。"
-            android:textColor="#ff59b84d"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="3.完成上述操作后，请按保存键。"
+            android:text="@string/sde_top_tips_3"
             android:textColor="#ff59b84d"
             android:textSize="14sp" />
 
@@ -81,346 +83,242 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/layout_toubu"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_param_AZ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10"
                 android:textColor="#ff59b84d"
                 android:textSize="14sp" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10"
-                android:textColor="#ff59b84d"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10"
-                android:textColor="#ff59b84d"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10"
-                android:textColor="#ff59b84d"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <!-- 三角top 按钮 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal">
-
             <LinearLayout
+                android:id="@+id/tv_btn_toubu_top"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:background="@drawable/bg_circle_btn"
                 android:gravity="center"
                 android:text="平躺"
                 android:textColor="#ff59b84d"
-                android:textSize="14sp" >
+                android:textSize="14sp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_sanjiao_top_selected"/>
+                    android:src="@mipmap/ic_sanjiao_top_selected" />
 
             </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal">
-
-            <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@drawable/bg_circle_btn"
-                android:gravity="center"
-                android:text="平躺"
-                android:textColor="#ff59b84d"
-                android:textSize="14sp" >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_sanjiao_top_selected"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal">
-
-            <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@drawable/bg_circle_btn"
-                android:gravity="center"
-                android:text="平躺"
-                android:textColor="#ff59b84d"
-                android:textSize="14sp" >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_sanjiao_top_selected"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal">
-
-            <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@drawable/bg_circle_btn"
-                android:gravity="center"
-                android:text="平躺"
-                android:textColor="#ff59b84d"
-                android:textSize="14sp" >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_sanjiao_top_selected"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <!-- 小人图案 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal">
 
             <ImageView
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:src="@mipmap/animation_toubutiaozheng_1"/>
 
+            <LinearLayout
+                android:id="@+id/tv_btn_toubu_bottom"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/bg_circle_btn"
+                android:gravity="center"
+                android:text="平躺"
+                android:textColor="#ff59b84d"
+                android:textSize="14sp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_sanjiao_bottom_selected" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layout_beibu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tv_param_CZ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textColor="#ff59b84d"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:id="@+id/tv_btn_beibu_top"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/bg_circle_btn"
+                android:gravity="center"
+                android:text="平躺"
+                android:textColor="#ff59b84d"
+                android:textSize="14sp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_sanjiao_top_selected" />
+
+            </LinearLayout>
 
             <ImageView
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:src="@mipmap/animation_beibutiaozheng_1"/>
 
+            <LinearLayout
+                android:id="@+id/tv_btn_beibu_bottom"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/bg_circle_btn"
+                android:gravity="center"
+                android:text="平躺"
+                android:textColor="#ff59b84d"
+                android:textSize="14sp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_sanjiao_bottom_selected" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
+
         <LinearLayout
+            android:id="@+id/layout_yaobu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tv_param_DZ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textColor="#ff59b84d"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:id="@+id/tv_btn_yaobu_top"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/bg_circle_btn"
+                android:gravity="center"
+                android:text="平躺"
+                android:textColor="#ff59b84d"
+                android:textSize="14sp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_sanjiao_top_selected" />
+
+            </LinearLayout>
 
             <ImageView
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:src="@mipmap/animation_tunbutiaozheng_1"/>
 
+
+            <LinearLayout
+                android:id="@+id/tv_btn_yaobu_bottom"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/bg_circle_btn"
+                android:gravity="center"
+                android:text="平躺"
+                android:textColor="#ff59b84d"
+                android:textSize="14sp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_sanjiao_bottom_selected" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layout_tuibu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tv_param_BZ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textColor="#ff59b84d"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:id="@+id/tv_btn_tuibu_top"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/bg_circle_btn"
+                android:gravity="center"
+                android:text="平躺"
+                android:textColor="#ff59b84d"
+                android:textSize="14sp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_sanjiao_top_selected" />
+
+            </LinearLayout>
 
             <ImageView
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:src="@mipmap/animation_tuibutiaozheng_1"/>
 
+            <LinearLayout
+                android:id="@+id/tv_btn_tuibu_bottom"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/bg_circle_btn"
+                android:gravity="center"
+                android:text="平躺"
+                android:textColor="#ff59b84d"
+                android:textSize="14sp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_sanjiao_bottom_selected" />
+
+            </LinearLayout>
+
         </LinearLayout>
+
+
 
     </LinearLayout>
 
-    <!-- 三角bottom 按钮 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal">
-
-            <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@drawable/bg_circle_btn"
-                android:gravity="center"
-                android:text="平躺"
-                android:textColor="#ff59b84d"
-                android:textSize="14sp" >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_sanjiao_bottom_selected"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal">
-
-            <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@drawable/bg_circle_btn"
-                android:gravity="center"
-                android:text="平躺"
-                android:textColor="#ff59b84d"
-                android:textSize="14sp" >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_sanjiao_bottom_selected"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal">
-
-            <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@drawable/bg_circle_btn"
-                android:gravity="center"
-                android:text="平躺"
-                android:textColor="#ff59b84d"
-                android:textSize="14sp" >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_sanjiao_bottom_selected"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal">
-
-            <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@drawable/bg_circle_btn"
-                android:gravity="center"
-                android:text="平躺"
-                android:textColor="#ff59b84d"
-                android:textSize="14sp" >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_sanjiao_bottom_selected"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
 
     <!-- 平躺，侧躺 -->
     <LinearLayout
@@ -443,7 +341,7 @@
                 android:layout_height="70dp"
                 android:background="@drawable/bg_circle_btn"
                 android:gravity="center"
-                android:text="平躺"
+                android:text="@string/sde_pt"
                 android:textColor="#ff59b84d"
                 android:textSize="14sp" />
 
@@ -461,7 +359,7 @@
                 android:layout_height="70dp"
                 android:background="@drawable/bg_circle_btn"
                 android:gravity="center"
-                android:text="侧躺"
+                android:text="@string/sde_ct"
                 android:textColor="#ff59b84d"
                 android:textSize="14sp" />
 
@@ -486,7 +384,7 @@
             android:layout_height="70dp"
             android:background="@drawable/bg_circle_btn"
             android:gravity="center"
-            android:text="保存"
+            android:text="@string/sde_save"
             android:textColor="#ff59b84d"
             android:textSize="14sp" />
 
