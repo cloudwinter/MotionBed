@@ -40,8 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:calendar_height="50dp"
-            app:current_month_lunar_text_color="#CFCFCF"
-            app:current_month_text_color="#333333"
+            app:current_month_text_color="#FFFFFF"
             app:min_year="2004"
             app:month_view="com.sn.blackdianqi.view.SimpleMonthView"
             app:month_view_show_mode="mode_all"
@@ -49,12 +48,13 @@
             app:scheme_text="假"
             app:scheme_text_color="#333"
             app:scheme_theme_color="#333"
-            app:selected_text_color="#fff"
+            app:selected_text_color="@color/text_green"
             app:selected_theme_color="#333"
             app:week_view="com.sn.blackdianqi.view.SimpleWeekView"
             app:week_background="@color/text_green"
             app:week_start_with="mon"
-            app:week_text_color="#FFF" />
+            app:week_text_color="#FFF"
+            app:select_mode="single_mode"/>
     </LinearLayout>
 
     <com.sn.blackdianqi.view.ProlateItemView

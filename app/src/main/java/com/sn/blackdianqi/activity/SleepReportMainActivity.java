@@ -7,7 +7,6 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -102,6 +101,7 @@ public class SleepReportMainActivity extends BaseBlueActivity implements Translu
         int preMonthMonth = preMonthCal.get(Calendar.MONTH) + 1;
         int preMonthDay = preMonthCal.get(Calendar.DATE);
 
+        calendarView.scrollToCurrent();
         calendarView.setRange(preMonthYear, preMonthMonth, preMonthDay - 1, currentYear, currentMonth, currentDay);
         calendarView.setOnMonthChangeListener(new CalendarView.OnMonthChangeListener() {
             @Override
@@ -121,11 +121,10 @@ public class SleepReportMainActivity extends BaseBlueActivity implements Translu
                 long differDays = DateUtils.betweenDay(DateUtils.calendar(calendar.getYear(), calendar.getMonth(), calendar.getDay()), DateUtils.calendar(new Date()));
                 LoggerView.d(calendar.getYear() + "-" + calendar.getMonth() + "-" + calendar.getDay() + " 相差 " + differDays);
                 if (differDays > 30 || differDays < 1) {
-                    ToastUtils.showToast(SleepReportMainActivity.this,"您选择的日期暂无数据");
+                    ToastUtils.showToast(SleepReportMainActivity.this, getString(R.string.srm_no_data));
                     return;
                 }
-                // TODO 调整到日报告界面
-
+                
             }
         });
     }

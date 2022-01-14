@@ -212,6 +212,7 @@
     <string name="srm_month_report">月报告</string>
     <string name="srm_sleep_time">入睡时间</string>
     <string name="srm_shsj">实时数据</string>
+    <string name="srm_no_data">您选择的日期暂无数据</string>
 
 
     <!-- 月报告 -->
