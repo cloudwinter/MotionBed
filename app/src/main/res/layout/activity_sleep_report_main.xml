@@ -13,6 +13,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/srm_action_bar_title"
+        android:textColor="#ff59b84d"
+        android:textSize="14sp" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -85,7 +94,8 @@
         android:layout_marginLeft="@dimen/dp_15"
         android:layout_marginRight="@dimen/dp_15"
         android:layout_marginTop="15dp"
-        app:title="@string/srm_shsj" />
+        app:title="@string/srm_shsj"
+        android:visibility="gone"/>
 
 
 </LinearLayout>

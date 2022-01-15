@@ -21,7 +21,7 @@
         android:layout_marginTop="15dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        app:title="无定时" />
+        app:title="@string/ss_item_no_time" />
 
 
     <!-- 20:00 -->

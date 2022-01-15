@@ -15,6 +15,9 @@ import android.view.ViewGroup;
 import com.sn.blackdianqi.MyApplication;
 import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.RunningContext;
+import com.sn.blackdianqi.activity.SleepAdjustActivity;
+import com.sn.blackdianqi.activity.SleepDataEntryActivity;
+import com.sn.blackdianqi.activity.SleepReportMainActivity;
 import com.sn.blackdianqi.activity.SleepTimerSelectActivity;
 import com.sn.blackdianqi.base.BaseFragment;
 import com.sn.blackdianqi.blue.BluetoothLeService;
@@ -125,8 +128,14 @@ public class SmartSleepFragment extends BaseFragment implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.item_shujuluru:
+                Intent sleepDataEntryIntent = new Intent();
+                sleepDataEntryIntent.setClass(getActivity(), SleepDataEntryActivity.class);
+                startActivity(sleepDataEntryIntent);
                 break;
             case R.id.item_jiaodutiaozheng:
+                Intent sleepAdjustIntent = new Intent();
+                sleepAdjustIntent.setClass(getActivity(), SleepAdjustActivity.class);
+                startActivity(sleepAdjustIntent);
                 break;
             case R.id.item_shuimiandingshi:
                 Intent intent = new Intent();
@@ -135,12 +144,17 @@ public class SmartSleepFragment extends BaseFragment implements View.OnClickList
                 startActivityForResult(intent,TIMER_REQUEST_CODE);
                 break;
             case R.id.item_shuimianbaogao:
+                Intent sleepMainIntent = new Intent();
+                sleepMainIntent.setClass(getActivity(), SleepReportMainActivity.class);
+                startActivity(sleepMainIntent);
                 break;
             case R.id.switch_shuimian:
                 if (zhinengShuimianOpen) {
                     sendBlueCmd("FFFFFFFF050000F03FD310");
+                    mShuimianSwitchView.setTitle(getString(R.string.ss_item_zhinengshuimian_close));
                 } else {
                     sendBlueCmd("FFFFFFFF050000003F9710");
+                    mShuimianSwitchView.setTitle(getString(R.string.ss_item_zhinengshuimian_open));
                 }
                 zhinengShuimianOpen = !zhinengShuimianOpen;
                 mShuimianSwitchView.setSelected(zhinengShuimianOpen);
@@ -148,8 +162,10 @@ public class SmartSleepFragment extends BaseFragment implements View.OnClickList
             case R.id.switch_yedeng:
                 if (zhinengYedengOpen) {
                     sendBlueCmd("FFFFFFFF0200110B001A04");
+                    mYedengSwitchView.setTitle(getString(R.string.ss_item_zhinengyedeng_close));
                 } else {
                     sendBlueCmd("FFFFFFFF0200110B011B04");
+                    mYedengSwitchView.setTitle(getString(R.string.ss_item_zhinengyedeng_open));
                 }
                 zhinengYedengOpen = !zhinengYedengOpen;
                 mYedengSwitchView.setSelected(zhinengYedengOpen);
@@ -170,8 +186,18 @@ public class SmartSleepFragment extends BaseFragment implements View.OnClickList
             // 智能页面开关回码
             zhinengShuimianOpen = receivedCmd.substring(32, 34).equals("01") ? true : false;
             mShuimianSwitchView.setSelected(zhinengShuimianOpen);
+            if (zhinengShuimianOpen) {
+                mShuimianSwitchView.setTitle(getString(R.string.ss_item_zhinengshuimian_open));
+            } else {
+                mShuimianSwitchView.setTitle(getString(R.string.ss_item_zhinengshuimian_close));
+            }
             zhinengYedengOpen = receivedCmd.substring(34, 36).equals("01") ? true : false;
             mYedengSwitchView.setSelected(zhinengYedengOpen);
+            if (zhinengYedengOpen) {
+                mYedengSwitchView.setTitle(getString(R.string.ss_item_zhinengyedeng_open));
+            } else {
+                mYedengSwitchView.setTitle(getString(R.string.ss_item_zhinengyedeng_close));
+            }
         } else if (receivedCmd.contains("FFFFFFFF02000E0B") && receivedCmd.length() > 18) {
             // 睡眠定时回码
             String sleepTimer = receivedCmd.substring(16, 18);
@@ -183,7 +209,7 @@ public class SmartSleepFragment extends BaseFragment implements View.OnClickList
 
     private void setSleepTimerDesc(String sleepTimer) {
         if (sleepTimer.equals("00")) {
-            mShuimiandingshiItemView.setDesc("无定时");
+            mShuimiandingshiItemView.setDesc(getString(R.string.ss_item_no_time));
         } else if (sleepTimer.equals("20:00")) {
             mShuimiandingshiItemView.setDesc("01");
         } else if (sleepTimer.equals("02")) {

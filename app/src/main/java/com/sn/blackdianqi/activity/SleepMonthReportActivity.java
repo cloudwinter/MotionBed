@@ -85,7 +85,7 @@ public class SleepMonthReportActivity extends BaseBlueActivity implements Transl
 
 
     private void handleReceiveData(String cmd) {
-        if (!cmd.contains("FFFFFFFF0200")) {
+        if (!cmd.contains("FFFFFFFF0200") || cmd.length() < 30) {
             return;
         }
         String days = cmd.substring(16, 18);

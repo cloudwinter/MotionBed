@@ -86,7 +86,7 @@
                     android:id="@+id/tv_pjzc_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="171"
+                    android:text="0"
                     android:textColor="#ffffffff"
                     android:textSize="26sp"
                     />
@@ -97,7 +97,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/smr_top_zcsj_unit"
                     android:textColor="#ff6d707b"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_marginLeft="5dp"/>
             </LinearLayout>
             
         </LinearLayout>
@@ -129,7 +130,7 @@
                     android:id="@+id/tv_zczc_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="171"
+                    android:text="0"
                     android:textColor="#ffffffff"
                     android:textSize="26sp"
                     />
@@ -140,7 +141,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/smr_top_zcsj_unit"
                     android:textColor="#ff6d707b"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_marginLeft="5dp"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -172,7 +174,7 @@
                     android:id="@+id/tv_zdzc_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="171"
+                    android:text="0"
                     android:textColor="#ffffffff"
                     android:textSize="26sp"
                     />
@@ -183,7 +185,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/smr_top_zcsj_unit"
                     android:textColor="#ff6d707b"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_marginLeft="5dp"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -252,7 +255,7 @@
                     android:id="@+id/tv_pjfs_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="171"
+                    android:text="0"
                     android:textColor="#ffffffff"
                     android:textSize="26sp"
                     />
@@ -263,7 +266,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/smr_top_fssj_unit"
                     android:textColor="#ff6d707b"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_marginLeft="5dp"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -295,7 +299,7 @@
                     android:id="@+id/tv_zdfs_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="171"
+                    android:text="0"
                     android:textColor="#ffffffff"
                     android:textSize="26sp"
                     />
@@ -306,7 +310,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/smr_top_fssj_unit"
                     android:textColor="#ff6d707b"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_marginLeft="5dp"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -338,7 +343,7 @@
                     android:id="@+id/tv_zsfs_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="171"
+                    android:text="0"
                     android:textColor="#ffffffff"
                     android:textSize="26sp"
                     />
@@ -349,7 +354,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/smr_top_fssj_unit"
                     android:textColor="#ff6d707b"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_marginLeft="5dp"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -418,7 +424,7 @@
                     android:id="@+id/tv_pjpt_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="171"
+                    android:text="0"
                     android:textColor="#ffffffff"
                     android:textSize="26sp"
                     />
@@ -429,7 +435,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/smr_top_ptsj_unit"
                     android:textColor="#ff6d707b"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_marginLeft="5dp"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -461,7 +468,7 @@
                     android:id="@+id/tv_pjct_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="171"
+                    android:text="0"
                     android:textColor="#ffffffff"
                     android:textSize="26sp"
                     />
@@ -472,7 +479,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/smr_top_ptsj_unit"
                     android:textColor="#ff6d707b"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_marginLeft="5dp"/>
             </LinearLayout>
 
         </LinearLayout>

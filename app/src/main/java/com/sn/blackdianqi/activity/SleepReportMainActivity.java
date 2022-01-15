@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -18,6 +21,7 @@ import com.sn.blackdianqi.blue.BluetoothLeService;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.DateUtils;
 import com.sn.blackdianqi.util.LogUtils;
+import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.util.ToastUtils;
 import com.sn.blackdianqi.view.LoggerView;
 import com.sn.blackdianqi.view.ProlateItemView;
@@ -38,6 +42,9 @@ import butterknife.ButterKnife;
 public class SleepReportMainActivity extends BaseBlueActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
 
     public static final int TIMER_REQUEST_CODE = 109;
+
+    @BindView(R.id.tv_title)
+    TextView tv_title;
 
     @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
@@ -76,14 +83,58 @@ public class SleepReportMainActivity extends BaseBlueActivity implements Translu
             this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             actionBar.setStatusBarHeight(getStatusBarHeight());
         }
+        initView();
         initCalendarView();
+        sendInitCmd();
+
+
+    }
+
+    private void initView() {
+        if (Prefer.getInstance().getShowShishiData()) {
+            shsjView.setVisibility(View.VISIBLE);
+        }
         monthView.setOnClickListener(this);
         timeView.setOnClickListener(this);
         shsjView.setOnClickListener(this);
+        tv_title.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                if (MotionEvent.ACTION_DOWN == action) {
+                    timeHandler.sendEmptyMessageDelayed(TITLE_WHAT, 5000);
+                } else if (MotionEvent.ACTION_UP == action) {
+                    timeHandler.removeMessages(TITLE_WHAT);
+                }
+                return true;
+            }
+        });
+    }
 
-        sendInitCmd();
+    private static final int TITLE_WHAT = 1;
+    /**
+     * 长按title
+     */
+    private Handler timeHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case TITLE_WHAT:
+                    titleLongClick();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
-        // TODO 添加隐藏和显示实时数据功能
+    /**
+     * title长按事件
+     */
+    private void titleLongClick() {
+        Prefer.getInstance().setShowShishiData(true);
+        shsjView.setVisibility(View.VISIBLE);
     }
 
     /**

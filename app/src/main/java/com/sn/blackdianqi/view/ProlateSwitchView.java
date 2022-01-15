@@ -48,11 +48,13 @@ public class ProlateSwitchView extends LinearLayout {
 
     public void setSelected(boolean selected) {
         if (selected) {
-            mTitleView.setText("智能睡眠开");
             mSwitchImageView.setImageResource(R.mipmap.dian_normal);
         } else {
-            mTitleView.setText("智能睡眠关");
             mSwitchImageView.setImageResource(R.mipmap.dian_selected);
         }
+    }
+
+    public void setTitle(String text) {
+        mTitleView.setText(text);
     }
 }

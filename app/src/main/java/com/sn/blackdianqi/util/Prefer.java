@@ -34,6 +34,7 @@ public class Prefer {
     private final String KEY_DECICE = "KEY_DECICE";
     private final String KEY_LANGUAGE = "KEY_LANGUAGE";
     private final String KEY_ALARM = "KEY_ALARM"; // 闹钟
+    private final String KEY_SHISHI = "KEY_SHISHI"; // 实时数据
 
     public static Prefer getInstance() {
         if (null == mInstance) {
@@ -269,6 +270,17 @@ public class Prefer {
         SharedPreferences.Editor editor = mPref.edit();
         editor.remove(KEY_DECICE + deviceAddress);
         editor.commit();
+    }
+
+
+    public void setShowShishiData(boolean show) {
+        SharedPreferences.Editor editor = mPref.edit();
+        editor.putBoolean(KEY_SHISHI, show);
+        editor.commit();
+    }
+
+    public boolean getShowShishiData() {
+        return mPref.getBoolean(KEY_SHISHI, false);
     }
 
 

@@ -20,7 +20,7 @@
             android:layout_marginLeft="@dimen/dp_40"
             android:layout_marginRight="@dimen/dp_40"
             android:layout_marginTop="55dp"
-            app:title="睡姿特征数据录入" />
+            app:title="@string/ss_item_shujuluru" />
 
         <com.sn.blackdianqi.view.ProlateItemView
             android:id="@+id/item_jiaodutiaozheng"
@@ -29,7 +29,7 @@
             android:layout_marginLeft="@dimen/dp_40"
             android:layout_marginRight="@dimen/dp_40"
             android:layout_marginTop="20dp"
-            app:title="睡姿角度调整" />
+            app:title="@string/ss_item_shuizitiaozheng" />
 
         <com.sn.blackdianqi.view.ProlateItemView
             android:id="@+id/item_shuimiandingshi"
@@ -38,8 +38,8 @@
             android:layout_marginLeft="@dimen/dp_40"
             android:layout_marginRight="@dimen/dp_40"
             android:layout_marginTop="20dp"
-            app:desc="无定时"
-            app:title="智能睡眠定时" />
+            app:desc="@string/ss_item_no_time"
+            app:title="@string/ss_item_shuimiandingshi" />
 
         <com.sn.blackdianqi.view.ProlateItemView
             android:id="@+id/item_shuimianbaogao"
@@ -48,7 +48,7 @@
             android:layout_marginLeft="@dimen/dp_40"
             android:layout_marginRight="@dimen/dp_40"
             android:layout_marginTop="20dp"
-            app:title="睡眠报告" />
+            app:title="@string/ss_item_shuimianbaogao" />
 
         <com.sn.blackdianqi.view.ProlateSwitchView
             android:id="@+id/switch_shuimian"
@@ -57,7 +57,7 @@
             android:layout_marginLeft="@dimen/dp_40"
             android:layout_marginRight="@dimen/dp_40"
             android:layout_marginTop="20dp"
-            app:title="智能睡眠关"
+            app:title="@string/ss_item_zhinengshuimian_close"
             />
 
         <com.sn.blackdianqi.view.ProlateSwitchView
@@ -67,7 +67,7 @@
             android:layout_marginLeft="@dimen/dp_40"
             android:layout_marginRight="@dimen/dp_40"
             android:layout_marginTop="20dp"
-            app:title="智能夜灯关"
+            app:title="@string/ss_item_zhinengyedeng_close"
             />
 
     </LinearLayout>

@@ -229,7 +229,6 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
             startLoopSend = false;
             loopSendCount = 0;
         }
-
     }
 
     /**

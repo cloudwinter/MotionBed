@@ -45,7 +45,7 @@
     <string name="weitiao">MICRO REGLAGE</string>
     <string name="anmo">MASSAGE</string>
     <string name="dengguang">LUMIERE</string>
-    <string name="sleep">DORMIR</string>
+    <string name="sleep">SOMMEIL INTELLI</string>
 
     <!-- 快捷 -->
     <string name="jiyi">Memory</string>
@@ -54,7 +54,7 @@
     <string name="kandianshi">Regarder la TV</string>
     <string name="lingyali">Zéro gravité</string>
     <string name="zhihan">Anti ronflement</string>
-    <string name="fuyuan">A plat</string>
+    <string name="fuyuan">A plat B</string>
     <string name="tingyinyue">Musique</string>
     <string name="tuibufangsong">Relaxer les jambes</string>
     <string name="dingyao">Lombaire</string>
@@ -65,8 +65,8 @@
     <string name="yijianjiangxia">descendre</string>
     <string name="houqing">Incliner vers l&#180;arrière</string>
     <string name="qianqing">Incliner vers l&#180;avant</string>
-    <string name="zhengtishangsheng">Rise</string>
-    <string name="zhengtixiajiang">Decline</string>
+    <string name="zhengtishangsheng">Se lever</string>
+    <string name="zhengtixiajiang">Descendre</string>
     <string name="zhengtifuyuan">A plat A</string>
 
 
@@ -168,8 +168,99 @@
     <string name="shebeiyiqiezhengchang">L&#180;équipement est bien</string>
 
     <!-- 智能睡眠 -->
+    <string name="ss_title">Smart sleep</string>
+    <string name="ss_item_shujuluru">Saisir les données de posture</string>
+    <string name="ss_item_shuizitiaozheng">Installer l&#180;angle de position</string>
+    <string name="ss_item_shuimiandingshi">Installer l&#180;heure de sommeil </string>
+    <string name="ss_item_shuimianbaogao">Rapport de sommeil</string>
+    <string name="ss_item_zhinengshuimian_open">Sommeil intelli/Ouvert</string>
+    <string name="ss_item_zhinengshuimian_close">Sommeil intelli/Fermé</string>
+    <string name="ss_item_zhinengyedeng_open">Lumière/ouvert</string>
+    <string name="ss_item_zhinengyedeng_close">Lumière/Fermé</string>
+    <string name="ss_item_no_time"> Non chronométrage</string>
+
+    <!-- 睡姿录入 -->
+    <string name="sde_top_title">Input posture data</string>
+    <string name="sde_top_tips_title">Instruction:</string>
+    <string name="sde_top_tips_1">1. Veuillez d&#180;abord poser le lit électrique, puis effectuer l&#180;opération de saisie de données.</string>
+    <string name="sde_top_tips_2">2. Veuillez vous allonger, et après avoir complètement relaxé votre corps, appuyez sur le bouton couché à plat.</string>
+    <string name="sde_top_tips_3">3. Veuillez vous allonger sur le côté et après avoir complètement détendu votre corps, appuyez sur le bouton du côté allongé</string>
+    <string name="sde_top_tips_4">4. Après avoir terminé les opérations ci-dessus, veuillez appuyer sur le bouton Enregistrer</string>
+    <string name="sde_ptcs">A plat：</string>
+    <string name="sde_pt">Poser à plat</string>
+    <string name="sde_ctcs">Sur le côté：</string>
+    <string name="sde_ct">allongé de côté</string>
+    <string name="sde_save">Enregistrer</string>
+    <string name="sde_reset">Réinitialiser</string>
+    <string name="sde_zhinengdai">Ceinture</string>
+    <string name="sde_dialog_fuwei_content">Veuillez d’abord effectuer une réinitialisation à une clé, puis commencer à apprendre vos paramètres de personnalité</string>
+    <string name="sde_dialog_btn_cancel">Cancel</string>
+    <string name="sde_dialog_btn_yijianfuwei">A master reset</string>
+    <string name="sde_dialog_next_content">Please confirm that the electric bed has been restored to level and click Next</string>
+    <string name="sde_dialog_btn_next">Next</string>
+    <string name="sde_dialog_fuwei_loading">The reset...</string>
+
+    <!-- 睡姿角度调整 -->
+    <string name="sad_top_title">Installer l&#180;angle de position</string>
+    <string name="sad_top_tips_title">Instruction:</string>
+    <string name="sad_top_tips_02_1">1. Veuillez ajuster l&#180;angle de votre dos, de vos jambes en position couchée à plat, et appuyez sur le bouton couché à plat après avoir terminé.</string>
+    <string name="sad_top_tips_02_2">2. Veuillez ajuster l&#180;angle de votre dos, de vos jambes lorsque vous êtes allongé sur le côté, et appuyez sur le bouton du côté allongé après avoir terminé.</string>
+    <string name="sad_top_tips_03_1">1. Veuillez ajuster l&#180;angle de votre dos, de votre taille et de vos jambes en position couchée à plat, et appuyez sur le bouton couché après avoir terminé.</string>
+    <string name="sad_top_tips_03_2">2. Veuillez ajuster l&#180;angle de votre dos, de votre taille et de vos jambes lorsque vous êtes allongé sur le côté, et appuyez sur le bouton du côté allongé après avoir terminé.</string>
+    <string name="sad_top_tips_04_1">1. Veuillez ajuster l&#180;angle de votre tête, de votre dos, de votre taille et de vos jambes en position couchée à plat et appuyez sur le bouton couché à plat après avoir terminé.</string>
+    <string name="sad_top_tips_04_2">2. Veuillez ajuster l&#180;angle de votre tête, de votre dos, de votre taille et de vos jambes  lorsque vous êtes allongé sur le côté, et appuyez sur le bouton du côté allongé après avoir terminé.</string>
+    <string name="sad_top_tips_3">3. Après avoir terminé les opérations ci-dessus, appuyez sur le buton Enregistrer.</string>
+    <string name="sad_weizhi_guogao">Position trop élevée</string>
+    <string name="sad_weizhi_guodi">Position trop basse</string>
+    <string name="sad_weizhi_guogao_tips">Vous avez réglé la position trop haute, nous vous recommandons de réduire la table de lit à moins de 20 et de la régler à nouveau</string>
 
     <!-- 智能睡眠定时 -->
-    <string name="sleep_timer_title">智能睡眠定时</string>
+    <string name="sleep_timer_title">Installer l&#180;heure de sommeil</string>
+
+    <!-- 睡眠报告页面 -->
+    <string name="srm_action_bar_title">Rapport de sommeil</string>
+    <string name="srm_month_report">Rapport mensuel</string>
+    <string name="srm_sleep_time">L&#180;heure de s&#180;endormir</string>
+    <string name="srm_shsj">Données temps réel</string>
+    <string name="srm_no_data">Aucune donnée disponible pour la date sélectionnée</string>
+
+
+    <!-- 月报告 -->
+    <string name="smr_action_bar_title">Rapport mensuel</string>
+    <string name="smr_top_title">Data pour les X derniers jours</string>
+    <string name="smr_top_title_format">Data pour les %s derniers jours</string>
+    <string name="smr_top_zcsj_title">Data au lit</string>
+    <string name="smr_top_zcsj_pjzcsj">Temps moyen</string>
+    <string name="smr_top_zcsj_zczcsj">le plus long temps </string>
+    <string name="smr_top_zcsj_zdzcsj">le plus court temps </string>
+    <string name="smr_top_zcsj_unit">h/day</string>
+
+    <string name="smr_top_fssj_title">Data de tour</string>
+    <string name="smr_top_fssj_pjzcsj">Nombre moyen</string>
+    <string name="smr_top_fssj_zczcsj">Nombre maximum</string>
+    <string name="smr_top_fssj_zdzcsj">Nombre minimum</string>
+    <string name="smr_top_fssj_unit">c/day</string>
+
+    <string name="smr_top_ptsj_title">Statistiques de temps moyen</string>
+    <string name="smr_top_ptsj_ptsj">Couchée à plat</string>
+    <string name="smr_top_ptsj_ctsj">Allongé sur le côté</string>
+    <string name="smr_top_ptsj_unit">h/day</string>
+
+
+    <!-- 日报告 -->
+    <string name="sdr_action_bar_title">Rapport de sommeil quotidien</string>
+    <string name="sdr_action_bar_real_title">Données en temps réel au lit</string>
+    <string name="sdr_zcsj">Temps au lit</string>
+    <string name="sdr_fscs">Nombre de tours</string>
+    <string name="sdr_ctsj">temps d&#180;allongé de côté</string>
+    <string name="sdr_ptsj">temps de à plat</string>
+    <string name="sdr_time_h">h</string>
+    <string name="sdr_time_m">m</string>
+    <string name="sdr_count">c</string>
+    <string name="sdr_line_title">%sNombre de tours</string>
+    <string name="sdr_line_sub">Nombre de tours</string>
+    <string name="sdr_line_tip">tip:Dormez déjà moins de 3 heures ne peut pas générer de courbe</string>
+    <string name="sdr_line_btn_pre">pre</string>
+    <string name="sdr_line_btn_next">next</string>
 
 </resources>
