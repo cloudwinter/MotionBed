@@ -247,6 +247,11 @@
     <string name="sdr_time_h">小时</string>
     <string name="sdr_time_m">分钟</string>
     <string name="sdr_count">次</string>
+    <string name="sdr_line_title">%s翻身情况</string>
+    <string name="sdr_line_sub">翻身（次数)</string>
+    <string name="sdr_line_tip">tip:睡眠已经小于3小时无法生成曲线</string>
+    <string name="sdr_line_btn_pre">pre</string>
+    <string name="sdr_line_btn_next">next</string>
 
 
 

@@ -32,6 +32,7 @@ import butterknife.ButterKnife;
 
 /**
  * 睡姿报告入口页面
+ * TODO 添加顶部按钮点击隐藏和显示实时数据功能
  * Created by xiayundong on 2022/1/4.
  */
 public class SleepReportMainActivity extends BaseBlueActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
@@ -118,13 +119,21 @@ public class SleepReportMainActivity extends BaseBlueActivity implements Translu
 
             @Override
             public void onCalendarSelect(com.haibin.calendarview.Calendar calendar, boolean isClick) {
+                String currentDay = calendar.getYear() + "-" + calendar.getMonth() + "-" + calendar.getDay();
                 long differDays = DateUtils.betweenDay(DateUtils.calendar(calendar.getYear(), calendar.getMonth(), calendar.getDay()), DateUtils.calendar(new Date()));
-                LoggerView.d(calendar.getYear() + "-" + calendar.getMonth() + "-" + calendar.getDay() + " 相差 " + differDays);
                 if (differDays > 30 || differDays < 1) {
                     ToastUtils.showToast(SleepReportMainActivity.this, getString(R.string.srm_no_data));
                     return;
                 }
-                
+
+                Intent dayIntent = new Intent();
+                dayIntent.setClass(SleepReportMainActivity.this, SleepDayReportActivity.class);
+                dayIntent.putExtra(SleepDayReportActivity.TYPE_EXTRA_KEY, "1");
+                dayIntent.putExtra(SleepDayReportActivity.DATE_EXTRA_KEY, currentDay);
+                dayIntent.putExtra(SleepDayReportActivity.UV_EXTRA_KEY, differDays < 10 ? "0" + differDays : differDays + "");
+                dayIntent.putExtra(SleepDayReportActivity.OZ_EXTRA_KEY, sleepTimer);
+
+                startActivity(dayIntent);
             }
         });
     }
@@ -173,7 +182,7 @@ public class SleepReportMainActivity extends BaseBlueActivity implements Translu
             case R.id.view_shsj:
                 Intent shsjIntent = new Intent();
                 shsjIntent.setClass(this, SleepDayReportActivity.class);
-                shsjIntent.putExtra(SleepDayReportActivity.EXTRA_KEY, "0");
+                shsjIntent.putExtra(SleepDayReportActivity.TYPE_EXTRA_KEY, "0");
                 startActivity(shsjIntent);
                 break;
         }

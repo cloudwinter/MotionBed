@@ -221,7 +221,7 @@ public class BluetoothLeService extends Service {
                 //LogUtils.e("==具体的数据==", "" + byteChar);
             }
             LogUtils.e("==从特征值获取返回的数据==", "" + stringBuilder);
-            intent.putExtra(EXTRA_DATA, "" + stringBuilder);
+            intent.putExtra(EXTRA_DATA, stringBuilder.toString().toUpperCase());
         }
         sendBroadcast(intent);
     }

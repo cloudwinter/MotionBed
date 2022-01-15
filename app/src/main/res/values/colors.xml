@@ -27,4 +27,7 @@
     <color name="anjian_normal">#1E1F24</color>
     <color name="FA3008">#FA3008</color>
     <color name="color_05BF74">#05BF74</color>
+    <color name="line_chart_x_color">#3E3F46</color>
+    <color name="line_chart_text_color">#6D707B</color>
+
 </resources>

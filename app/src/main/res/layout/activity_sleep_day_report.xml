@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
         android:text="@string/sdr_action_bar_title"
         android:textColor="#ffffffff"
         android:textSize="20dp" />
@@ -286,11 +286,86 @@
     </LinearLayout>
 
 
-    <lecho.lib.hellocharts.view.LineChartView
-        android:id="@+id/chart"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"/>
+        android:layout_marginTop="30dp"
+        android:background="#ff1e1f24"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/tv_line_title"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/sdr_line_title"
+                android:textColor="#ffffffff"
+                android:textSize="20dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_line_sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sdr_line_sub"
+                android:textColor="#ff6d707b"
+                android:textSize="12sp"
+                />
+            
+        </LinearLayout>
+        
+
+        <lecho.lib.hellocharts.view.LineChartView
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/tv_btn_pre"
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:textSize="12sp"
+                android:textColor="@color/line_btn_color_selector"
+                android:text="@string/sdr_line_btn_pre"
+                android:background="@drawable/bg_line_btn"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sdr_line_tip"
+                android:textColor="#ff6d707b"
+                android:textSize="12sp"
+                android:gravity="center_horizontal"
+                />
+
+            <TextView
+                android:id="@+id/tv_btn_next"
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:textSize="12sp"
+                android:textColor="@color/line_btn_color_selector"
+                android:text="@string/sdr_line_btn_next"
+                android:background="@drawable/bg_line_btn"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

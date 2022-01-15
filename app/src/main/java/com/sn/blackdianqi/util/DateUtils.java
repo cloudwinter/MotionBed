@@ -4,6 +4,7 @@ import com.sn.blackdianqi.bean.DateBean;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -15,6 +16,13 @@ public class DateUtils {
 
     public static Calendar calendar(long timeInMillis) {
         return calendar(new Date(timeInMillis));
+    }
+
+
+    public static String getCurrentDay() {
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(System.currentTimeMillis());
+        return formatter.format(date);
     }
 
     public static Calendar calendar(Date date) {
