@@ -137,7 +137,15 @@ public class SleepAdjustActivity extends BaseBlueActivity implements Translucent
         DeviceBean deviceBean = Prefer.getInstance().getConnectedDevice();
         if (deviceBean != null && !TextUtils.isEmpty(deviceBean.getTitle())) {
             String deviceName = deviceBean.getTitle();
-            if (deviceName.contains("QMS-I06") || deviceName.contains("QMS-L04") || deviceName.contains("QMS4") || deviceName.contains("QMS3")) {
+            if (deviceName.contains("QMS-I06")
+                    || deviceName.contains("QMS-I16") || deviceName.contains("QMS-I26") || deviceName.contains("QMS-I36")
+                    || deviceName.contains("QMS-I46") || deviceName.contains("QMS-I56") || deviceName.contains("QMS-I66")
+                    || deviceName.contains("QMS-I76") || deviceName.contains("QMS-I86") || deviceName.contains("QMS-I96")
+                    || deviceName.contains("QMS-I04") || deviceName.contains("QMS-I14") || deviceName.contains("QMS-I24")
+                    || deviceName.contains("QMS-I34") || deviceName.contains("QMS-I44") || deviceName.contains("QMS-I54")
+                    || deviceName.contains("QMS-I64") || deviceName.contains("QMS-I74") || deviceName.contains("QMS-I84")
+                    || deviceName.contains("QMS-I94")
+                    || deviceName.contains("QMS4") || deviceName.contains("QMS3")) {
                 pageType = "03";
             } else if (deviceName.contains("S4-N")) {
                 pageType = "04";
@@ -149,9 +157,12 @@ public class SleepAdjustActivity extends BaseBlueActivity implements Translucent
         } else if (pageType.equals("03")) {
             tv_tips1.setText(getString(R.string.sad_top_tips_03_1));
             tv_tips2.setText(getString(R.string.sad_top_tips_03_2));
+            layout_yaobu.setVisibility(View.VISIBLE);
         } else if (pageType.equals("04")) {
             tv_tips1.setText(getString(R.string.sad_top_tips_04_1));
             tv_tips2.setText(getString(R.string.sad_top_tips_04_2));
+            layout_toubu.setVisibility(View.VISIBLE);
+            layout_yaobu.setVisibility(View.VISIBLE);
         }
     }
 

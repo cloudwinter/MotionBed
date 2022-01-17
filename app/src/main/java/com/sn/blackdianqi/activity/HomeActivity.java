@@ -240,10 +240,17 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             fragments.add(new KuaijieK1Fragment());
             fragments.add(new WeitiaoW1Fragment());
         } else if (blueName.contains("QMS-IQ") || blueName.contains("QMS-I06")
-                || blueName.contains("QMS-LQ") || blueName.contains("QMS-L04")) {
+                || blueName.contains("QMS-I16") || blueName.contains("QMS-I26") || blueName.contains("QMS-I36")
+                || blueName.contains("QMS-I46") || blueName.contains("QMS-I56") || blueName.contains("QMS-I66")
+                || blueName.contains("QMS-I76") || blueName.contains("QMS-I86") || blueName.contains("QMS-I96")
+                || blueName.contains("QMS-I04") || blueName.contains("QMS-I14") || blueName.contains("QMS-I24")
+                || blueName.contains("QMS-I34") || blueName.contains("QMS-I44") || blueName.contains("QMS-I54")
+                || blueName.contains("QMS-I64") || blueName.contains("QMS-I74") || blueName.contains("QMS-I84")
+                || blueName.contains("QMS-I94")
+                || blueName.contains("QMS-LQ")) {
             fragments.add(new KuaijieK1Fragment());
             fragments.add(new WeitiaoW1Fragment());
-        } else if (blueName.contains("QMS-JQ-D") || blueName.contains("QMS4")) {
+        } else if (blueName.contains("QMS-JQ-D") || blueName.contains("QMS4") || blueName.contains("S4-N")) {
             fragments.add(new KuaijieK2Fragment());
             fragments.add(new WeitiaoW2Fragment());
         } else if (blueName.contains("QMS-NQ") || blueName.contains("QMS3")) {
