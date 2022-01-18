@@ -310,9 +310,9 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/sdr_line_title"
+                android:text="2022-01-18"
                 android:textColor="#ffffffff"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 />
 
             <TextView

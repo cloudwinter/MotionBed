@@ -78,7 +78,7 @@ public class SleepReportMainActivity extends BaseBlueActivity implements Translu
         setContentView(R.layout.activity_sleep_report_main);
         ButterKnife.bind(this);
         // 设置title
-        actionBar.setData(getString(R.string.srm_action_bar_title), R.mipmap.ic_back, null, 0, null, this);
+        actionBar.setData(null, R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             actionBar.setStatusBarHeight(getStatusBarHeight());

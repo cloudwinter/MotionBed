@@ -174,7 +174,7 @@ public class SleepDayReportActivity extends BaseBlueActivity implements Transluc
             tv_ctsj_time_unit.setText(R.string.sdr_time_m);
             tv_ptsj_time_unit.setText(R.string.sdr_time_m);
             String currentDay = DateUtils.getCurrentDay();
-            tv_line_title.setText(String.format(getString(R.string.sdr_line_title), currentDay));
+            tv_line_title.setText(currentDay);
         }
     }
 
