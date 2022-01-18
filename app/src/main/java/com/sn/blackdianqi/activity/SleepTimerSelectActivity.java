@@ -178,13 +178,13 @@ public class SleepTimerSelectActivity extends BaseBlueActivity implements Transl
     }
 
     private void save() {
+        checkedTimer = tempCheckedTimer;
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("FFFFFFFF02000D0B");
         stringBuilder.append(checkedTimer);
         String checksum = BlueUtils.makeChecksum(stringBuilder.toString());
         stringBuilder.append(checksum);
         sendCmd(stringBuilder.toString());
-        checkedTimer = tempCheckedTimer;
         Intent intent = getIntent();
         intent.putExtra(EXTRA_KEY, checkedTimer);
         setResult(RESULT_CODE, intent);
