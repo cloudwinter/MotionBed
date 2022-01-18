@@ -148,7 +148,7 @@ public class SleepReportMainActivity extends BaseBlueActivity implements Translu
         setMonthTitle(currentYear, currentMonth);
 
         Calendar preMonthCal = Calendar.getInstance();
-        preMonthCal.add(Calendar.MONTH, -1);
+        preMonthCal.add(Calendar.DATE, -28);
         int preMonthYear = preMonthCal.get(Calendar.YEAR);
         int preMonthMonth = preMonthCal.get(Calendar.MONTH) + 1;
         int preMonthDay = preMonthCal.get(Calendar.DATE);
@@ -162,18 +162,17 @@ public class SleepReportMainActivity extends BaseBlueActivity implements Translu
                 setMonthTitle(year, month);
             }
         });
-        calendarView.setOnCalendarSelectListener(new CalendarView.OnCalendarSelectListener() {
+        calendarView.setOnCalendarInterceptListener(new CalendarView.OnCalendarInterceptListener() {
             @Override
-            public void onCalendarOutOfRange(com.haibin.calendarview.Calendar calendar) {
-
+            public boolean onCalendarIntercept(com.haibin.calendarview.Calendar calendar) {
+                return true;
             }
 
             @Override
-            public void onCalendarSelect(com.haibin.calendarview.Calendar calendar, boolean isClick) {
+            public void onCalendarInterceptClick(com.haibin.calendarview.Calendar calendar, boolean isClick) {
                 String currentDay = calendar.getYear() + "-" + calendar.getMonth() + "-" + calendar.getDay();
                 long differDays = DateUtils.betweenDay(DateUtils.calendar(calendar.getYear(), calendar.getMonth(), calendar.getDay()), DateUtils.calendar(new Date()));
                 if (differDays > 30 || differDays < 1) {
-                    ToastUtils.showToast(SleepReportMainActivity.this, getString(R.string.srm_no_data));
                     return;
                 }
 

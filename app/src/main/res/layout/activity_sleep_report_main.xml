@@ -57,7 +57,7 @@
             app:scheme_text="假"
             app:scheme_text_color="#333"
             app:scheme_theme_color="#333"
-            app:selected_text_color="@color/text_green"
+            app:selected_text_color="#FFFFFF"
             app:selected_theme_color="#333"
             app:week_view="com.sn.blackdianqi.view.SimpleWeekView"
             app:week_background="@color/text_green"

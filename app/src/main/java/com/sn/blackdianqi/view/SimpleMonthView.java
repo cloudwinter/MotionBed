@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import com.haibin.calendarview.Calendar;
+import com.haibin.calendarview.CalendarUtil;
 import com.haibin.calendarview.MonthView;
 
 /**
@@ -64,9 +65,16 @@ public class SimpleMonthView extends MonthView {
                             calendar.isCurrentMonth() ? mSchemeTextPaint : mOtherMonthTextPaint);
 
         } else {
+
+
+//            canvas.drawText(String.valueOf(calendar.getDay()), cx, baselineY,
+//                    calendar.isCurrentDay() ? mCurDayTextPaint :
+//                            calendar.isCurrentMonth() ? mCurMonthTextPaint : mOtherMonthTextPaint);
+
             canvas.drawText(String.valueOf(calendar.getDay()), cx, baselineY,
                     calendar.isCurrentDay() ? mCurDayTextPaint :
-                            calendar.isCurrentMonth() ? mCurMonthTextPaint : mOtherMonthTextPaint);
+                            isInRange(calendar) ? mCurMonthTextPaint : mOtherMonthTextPaint);
         }
     }
+
 }
