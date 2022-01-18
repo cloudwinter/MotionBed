@@ -171,7 +171,7 @@
     <string name="ss_title">Smart sleep</string>
     <string name="ss_item_shujuluru">Saisir les données de posture</string>
     <string name="ss_item_shuizitiaozheng">Installer l&#180;angle de position</string>
-    <string name="ss_item_shuimiandingshi">Installer l&#180;heure de sommeil </string>
+    <string name="ss_item_shuimiandingshi">Temps de sommeil</string>
     <string name="ss_item_shuimianbaogao">Rapport de sommeil</string>
     <string name="ss_item_zhinengshuimian_open">Sommeil intelli/Ouvert</string>
     <string name="ss_item_zhinengshuimian_close">Sommeil intelli/Fermé</string>

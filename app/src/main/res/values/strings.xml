@@ -171,10 +171,10 @@
     <string name="ss_title">Smart sleep</string>
     <string name="ss_item_shujuluru">Input posture data</string>
     <string name="ss_item_shuizitiaozheng">Set position angle</string>
-    <string name="ss_item_shuimiandingshi">Set sleep time</string>
+    <string name="ss_item_shuimiandingshi">Smart sleep timing</string>
     <string name="ss_item_shuimianbaogao">Sleep report</string>
-    <string name="ss_item_zhinengshuimian_open">Auto adj / on</string>
-    <string name="ss_item_zhinengshuimian_close">Auto adj  / off</string>
+    <string name="ss_item_zhinengshuimian_open">Smart sleep / on</string>
+    <string name="ss_item_zhinengshuimian_close">Smart sleep / off</string>
     <string name="ss_item_zhinengyedeng_open">Smart light / on</string>
     <string name="ss_item_zhinengyedeng_close">Smart light  / off</string>
     <string name="ss_item_no_time">No timed</string>
