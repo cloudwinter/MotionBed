@@ -443,14 +443,14 @@ public class SleepAdjustActivity extends BaseBlueActivity implements Translucent
             return;
         }
         if (cmd.contains("FFFFFFFF02001012") && cmd.length() > 30) {
-            String AX = BlueUtils.covert16TO10(cmd.substring(16, 18)) + "";
-            String BX = BlueUtils.covert16TO10(cmd.substring(18, 20)) + "";
-            String CX = BlueUtils.covert16TO10(cmd.substring(20, 22)) + "";
-            String DX = BlueUtils.covert16TO10(cmd.substring(22, 24)) + "";
-            String AY = BlueUtils.covert16TO10(cmd.substring(24, 26)) + "";
-            String BY = BlueUtils.covert16TO10(cmd.substring(26, 28)) + "";
-            String CY = BlueUtils.covert16TO10(cmd.substring(28, 30)) + "";
-            String DY = BlueUtils.covert16TO10(cmd.substring(30, 32)) + "";
+            AX = BlueUtils.covert16TO10(cmd.substring(16, 18));
+            BX = BlueUtils.covert16TO10(cmd.substring(18, 20));
+            CX = BlueUtils.covert16TO10(cmd.substring(20, 22));
+            DX = BlueUtils.covert16TO10(cmd.substring(22, 24));
+            AY = BlueUtils.covert16TO10(cmd.substring(24, 26));
+            BY = BlueUtils.covert16TO10(cmd.substring(26, 28));
+            CY = BlueUtils.covert16TO10(cmd.substring(28, 30));
+            DY = BlueUtils.covert16TO10(cmd.substring(30, 32));
             actionBar.postDelayed(new Runnable() {
                 @Override
                 public void run() {

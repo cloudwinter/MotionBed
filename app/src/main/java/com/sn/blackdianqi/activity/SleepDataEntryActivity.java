@@ -44,6 +44,11 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
     @BindView(R.id.tv_KK)
     TextView tv_KK;
 
+    @BindView(R.id.tv_param_desc_pingtang)
+    TextView tv_param_desc_pingtang;
+    @BindView(R.id.tv_param_desc_cetang)
+    TextView tv_param_desc_cetang;
+
 
     @BindView(R.id.tv_param_pingtang)
     EditText tv_param_pingtang;
@@ -106,42 +111,35 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
             }
         });
 
-        tv_btn_pingtang.setOnTouchListener(new View.OnTouchListener() {
+        tv_param_desc_pingtang.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int action = event.getAction();
                 if (MotionEvent.ACTION_DOWN == action) {
                     eventDownTime = System.currentTimeMillis();
-                    timeHandler.sendEmptyMessageDelayed(PINGTANG_WHAT, 2000);
+                    timeHandler.sendEmptyMessageDelayed(PINGTANG_WHAT, 5000);
                 } else if (MotionEvent.ACTION_UP == action) {
                     timeHandler.removeMessages(PINGTANG_WHAT);
-                    if (isShortClick()) {
-                        sendCmd("FFFFFFFF0200090D0100001504");
-                        tv_btn_pingtang.setSelected(true);
-                    }
                 }
                 return true;
             }
         });
 
-        tv_btn_cetang.setOnTouchListener(new View.OnTouchListener() {
+        tv_param_desc_cetang.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int action = event.getAction();
                 if (MotionEvent.ACTION_DOWN == action) {
                     eventDownTime = System.currentTimeMillis();
-                    timeHandler.sendEmptyMessageDelayed(CETANG_WHAT, 2000);
+                    timeHandler.sendEmptyMessageDelayed(CETANG_WHAT, 5000);
                 } else if (MotionEvent.ACTION_UP == action) {
                     timeHandler.removeMessages(CETANG_WHAT);
-                    if (isShortClick()) {
-                        sendCmd("FFFFFFFF0200090D0200001604");
-                        tv_btn_cetang.setSelected(true);
-                    }
                 }
                 return true;
             }
         });
-
+        tv_btn_pingtang.setOnClickListener(this);
+        tv_btn_cetang.setOnClickListener(this);
         tv_btn_save.setOnClickListener(this);
         tv_btn_reset.setOnClickListener(this);
 
@@ -191,6 +189,12 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_btn_pingtang:
+                pingTangClick();
+                break;
+            case R.id.tv_btn_cetang:
+                ceTangClick();
+                break;
             case R.id.tv_btn_save:
                 saveClick();
                 break;
@@ -198,6 +202,17 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
                 resetClick();
                 break;
         }
+    }
+
+
+    private void pingTangClick() {
+        sendCmd("FFFFFFFF0200090D0100001504");
+        tv_btn_pingtang.setSelected(true);
+    }
+
+    private void ceTangClick() {
+        sendCmd("FFFFFFFF0200090D0200001604");
+        tv_btn_cetang.setSelected(true);
     }
 
     private void saveClick() {
@@ -308,7 +323,7 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
         if (cmd.contains("FFFFFFFF0200090D01")) {
             // 按下平躺按键回码
             String ptCmd = cmd.substring(20, 22) + cmd.substring(18, 20);
-            tv_param_pingtang.setText(BlueUtils.covert16TO10(ptCmd) + "");
+            tv_param_pingtang.setText(BlueUtils.covert16TO10(ptCmd) * 2 + "");
             return;
         }
         if (cmd.contains("FFFFFFFF0200090D02")) {

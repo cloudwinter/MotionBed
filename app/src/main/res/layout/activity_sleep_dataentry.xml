@@ -118,6 +118,7 @@
             android:gravity="center_horizontal">
 
             <TextView
+                android:id="@+id/tv_param_desc_pingtang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/sde_ptcs"
@@ -134,6 +135,7 @@
                 android:textSize="14sp"
                 android:inputType="number"
                 android:maxLength="3"
+                android:enabled="false"
                 />
 
         </LinearLayout>
@@ -145,6 +147,7 @@
             android:gravity="center_horizontal">
 
             <TextView
+                android:id="@+id/tv_param_desc_cetang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/sde_ctcs"
@@ -161,6 +164,7 @@
                 android:textSize="14sp"
                 android:inputType="number"
                 android:maxLength="3"
+                android:enabled="false"
                 />
 
         </LinearLayout>
@@ -281,7 +285,7 @@
             android:layout_height="match_parent"
             android:text="@string/sde_zhinengdai"
             android:textColor="#ffffffff"
-            android:textSize="18sp"
+            android:textSize="12dp"
             android:gravity="center"
             android:layout_marginLeft="100dp"
             android:background="@color/text_green"
