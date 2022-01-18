@@ -17,6 +17,7 @@ import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.DateUtils;
 import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.util.MotionBedUtil;
+import com.sn.blackdianqi.view.LoggerView;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
 import java.math.BigDecimal;
@@ -138,8 +139,10 @@ public class SleepDayReportActivity extends BaseBlueActivity implements Transluc
         date = getIntent().getStringExtra(DATE_EXTRA_KEY);
         UV = getIntent().getStringExtra(UV_EXTRA_KEY);
         OZ = getIntent().getStringExtra(OZ_EXTRA_KEY);
+        LoggerView.e("type: " + type + " date:" + date + " UV:" + UV + " OZ:" + OZ);
         initView();
         generateInitialLineData();
+        splitDataByTime();
         initData();
         sendInitCmd();
 
@@ -396,14 +399,19 @@ public class SleepDayReportActivity extends BaseBlueActivity implements Transluc
             // 日报告
             if (OZ.equals("00")) {
                 midDateVal = MotionBedUtil.splitArray(dataVal, 8, 19);
+                midCategories = new String[]{"20:00", "21:00", "22:00", "23:00", "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00"};
             } else if (OZ.equals("01")) {
                 midDateVal = MotionBedUtil.splitArray(dataVal, 9, 20);
+                midCategories = new String[]{"21:00", "22:00", "23:00", "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00"};
             } else if (OZ.equals("02")) {
                 midDateVal = MotionBedUtil.splitArray(dataVal, 10, 21);
+                midCategories = new String[]{"22:00", "23:00", "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00"};
             } else if (OZ.equals("03")) {
                 midDateVal = MotionBedUtil.splitArray(dataVal, 11, 22);
+                midCategories = new String[]{"23:00", "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"};
             } else if (OZ.equals("04")) {
                 midDateVal = MotionBedUtil.splitArray(dataVal, 12, 23);
+                midCategories = new String[]{"00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00"};
             }
             resetLineChartDate(midDateVal, midCategories);
         } else {
