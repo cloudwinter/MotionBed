@@ -173,7 +173,7 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
                 sendCmd("FF FF FF FF 02 00 0A 0A 12 04");
             }
         });
-        fuweiDialog.show();
+        //fuweiDialog.show();
     }
 
 
