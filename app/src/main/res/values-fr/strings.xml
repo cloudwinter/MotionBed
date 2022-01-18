@@ -229,22 +229,22 @@
     <string name="smr_action_bar_title">Rapport mensuel</string>
     <string name="smr_top_title">Data pour les X derniers jours</string>
     <string name="smr_top_title_format">Data pour les %s derniers jours</string>
-    <string name="smr_top_zcsj_title">Data au lit</string>
+    <string name="smr_top_zcsj_title">Données au lit par jour</string>
     <string name="smr_top_zcsj_pjzcsj">Temps moyen</string>
     <string name="smr_top_zcsj_zczcsj">le plus long temps </string>
     <string name="smr_top_zcsj_zdzcsj">le plus court temps </string>
-    <string name="smr_top_zcsj_unit">h/day</string>
+    <string name="smr_top_zcsj_unit">h</string>
 
-    <string name="smr_top_fssj_title">Data de tour</string>
+    <string name="smr_top_fssj_title">Données de tours par jour</string>
     <string name="smr_top_fssj_pjzcsj">Nombre moyen</string>
     <string name="smr_top_fssj_zczcsj">Nombre maximum</string>
     <string name="smr_top_fssj_zdzcsj">Nombre minimum</string>
-    <string name="smr_top_fssj_unit">c/day</string>
+    <string name="smr_top_fssj_unit">c</string>
 
-    <string name="smr_top_ptsj_title">Statistiques de temps moyen</string>
+    <string name="smr_top_ptsj_title">Statistiques de temps moyen par jour</string>
     <string name="smr_top_ptsj_ptsj">Couchée à plat</string>
     <string name="smr_top_ptsj_ctsj">Allongé sur le côté</string>
-    <string name="smr_top_ptsj_unit">h/day</string>
+    <string name="smr_top_ptsj_unit">h</string>
 
 
     <!-- 日报告 -->

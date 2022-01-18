@@ -231,22 +231,22 @@
     <string name="smr_action_bar_title">Monthly report</string>
     <string name="smr_top_title">Data of 30 days</string>
     <string name="smr_top_title_format">Data of %s days</string>
-    <string name="smr_top_zcsj_title">Data in bed</string>
+    <string name="smr_top_zcsj_title">Data in bed per day</string>
     <string name="smr_top_zcsj_pjzcsj">Average</string>
     <string name="smr_top_zcsj_zczcsj">Longest</string>
     <string name="smr_top_zcsj_zdzcsj">Shortest</string>
-    <string name="smr_top_zcsj_unit">h/day</string>
+    <string name="smr_top_zcsj_unit">h</string>
 
-    <string name="smr_top_fssj_title">Data of turns</string>
+    <string name="smr_top_fssj_title">Data of turns per day</string>
     <string name="smr_top_fssj_pjzcsj">Avaerage</string>
     <string name="smr_top_fssj_zczcsj">Maximum</string>
     <string name="smr_top_fssj_zdzcsj">Minimum</string>
-    <string name="smr_top_fssj_unit">c/day</string>
+    <string name="smr_top_fssj_unit">c</string>
 
-    <string name="smr_top_ptsj_title">Average time statistics</string>
+    <string name="smr_top_ptsj_title">Average time statistics per day</string>
     <string name="smr_top_ptsj_ptsj">lying falt</string>
     <string name="smr_top_ptsj_ctsj">lying on side </string>
-    <string name="smr_top_ptsj_unit">h/day</string>
+    <string name="smr_top_ptsj_unit">h</string>
 
 
     <!-- 日报告 -->
