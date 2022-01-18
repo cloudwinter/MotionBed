@@ -185,7 +185,7 @@ public class SleepAdjustActivity extends BaseBlueActivity implements Translucent
         switch (v.getId()) {
             case R.id.tv_btn_toubu_top:
                 if (action == MotionEvent.ACTION_DOWN) {
-                    topTouchActionDown("FFFFFFFF050000000116C0");
+                    topTouchActionDown("FFFFFFFF050000020117A0");
                 } else if (action == MotionEvent.ACTION_UP) {
                     topTouchActionUp();
                 }
@@ -214,7 +214,7 @@ public class SleepAdjustActivity extends BaseBlueActivity implements Translucent
 
             case R.id.tv_btn_toubu_bottom:
                 if (action == MotionEvent.ACTION_DOWN) {
-                    bottomTouchActionDown("FFFFFFFF050000000256C1");
+                    bottomTouchActionDown("FFFFFFFF050000020257A1");
                 } else if (action == MotionEvent.ACTION_UP) {
                     bottomTouchActionUp();
                 }
@@ -429,7 +429,7 @@ public class SleepAdjustActivity extends BaseBlueActivity implements Translucent
                 tv_param_CZ.setText(getString(R.string.sad_weizhi_guodi));
             }
 
-            String DZ = BlueUtils.covert16TO10(cmd.substring(20, 22)) + "";
+            String DZ = BlueUtils.covert16TO10(cmd.substring(22, 24)) + "";
             if (DZ.equals("175")) {
                 tv_param_DZ.setText(getString(R.string.sad_weizhi_guogao));
             } else if (DZ.equals("191")) {
