@@ -182,7 +182,7 @@
     <!-- 睡姿录入 -->
     <string name="sde_top_title">Input posture data</string>
     <string name="sde_top_tips_title">Instruction:</string>
-    <string name="sde_top_tips_1">1. Veuillez d&#180;abord poser le lit électrique, puis effectuer l&#180;opération de saisie de données.</string>
+    <string name="sde_top_tips_1">1. D&#180;abord faire le lit plat, puis effectuer l&#180;opération de saisie de données.</string>
     <string name="sde_top_tips_2">2. Veuillez vous allonger, et après avoir complètement relaxé votre corps, appuyez sur le bouton couché à plat.</string>
     <string name="sde_top_tips_3">3. Veuillez vous allonger sur le côté et après avoir complètement détendu votre corps, appuyez sur le bouton du côté allongé</string>
     <string name="sde_top_tips_4">4. Après avoir terminé les opérations ci-dessus, veuillez appuyer sur le bouton Enregistrer</string>

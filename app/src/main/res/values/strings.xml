@@ -182,7 +182,7 @@
     <!-- 睡姿录入 -->
     <string name="sde_top_title">Input posture data</string>
     <string name="sde_top_tips_title">Instruction:</string>
-    <string name="sde_top_tips_1">1. Please lay down the bed first, and then perform data entry operation.</string>
+    <string name="sde_top_tips_1">1. Please make the bed flat first, and then perform data entry operation.</string>
     <string name="sde_top_tips_2">2. Please lie flat, after completely relaxing your body, press the lie flat button.</string>
     <string name="sde_top_tips_3">3. Please lie on your side, after completely relaxing your body, press Lie side button.</string>
     <string name="sde_top_tips_4">4. After completing the above operations, please press the save button</string>
