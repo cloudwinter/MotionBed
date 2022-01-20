@@ -48,7 +48,7 @@ public class DateUtils {
      */
     public static String transferToH(String value, int ratio) {
         BigDecimal val = new BigDecimal(value);
-        BigDecimal result = val.divide(new BigDecimal(ratio)).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal result = val.divide(new BigDecimal(ratio)).setScale(1, RoundingMode.HALF_UP);
         return result.toString();
     }
 
