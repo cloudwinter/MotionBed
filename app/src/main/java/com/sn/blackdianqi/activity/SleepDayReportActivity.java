@@ -326,7 +326,7 @@ public class SleepDayReportActivity extends BaseBlueActivity implements Transluc
             int cetangTimeVal = BlueUtils.covert16TO10(cmd.substring(20, 22));
             BigDecimal shuimianTimeVal = new BigDecimal(pingtangTimeVal).add(new BigDecimal(cetangTimeVal));
             fsCountParam = BlueUtils.covert16TO10(cmd.substring(22, 24)) + "";
-            if (type.equals("01")) {
+            if (type.equals("1")) {
                 ptTimeParam = new BigDecimal(pingtangTimeVal).multiply(new BigDecimal(0.1)).toString();
                 ctTimeParam = new BigDecimal(pingtangTimeVal).multiply(new BigDecimal(0.1)).toString();
                 smTimeParam = shuimianTimeVal.toString();
