@@ -181,7 +181,7 @@ public class SleepReportMainActivity extends BaseBlueActivity implements Translu
                 if (differDays > 30 || differDays < 1) {
                     return;
                 }
-
+                differDays = differDays - 1;
                 Intent dayIntent = new Intent();
                 dayIntent.setClass(SleepReportMainActivity.this, SleepDayReportActivity.class);
                 dayIntent.putExtra(SleepDayReportActivity.TYPE_EXTRA_KEY, "1");
