@@ -54,7 +54,7 @@
     <string name="kandianshi">Regarder la TV</string>
     <string name="lingyali">Zéro gravité</string>
     <string name="zhihan">Anti ronflement</string>
-    <string name="fuyuan">A plat B</string>
+    <string name="fuyuan">Plat</string>
     <string name="tingyinyue">Musique</string>
     <string name="tuibufangsong">Relaxer les jambes</string>
     <string name="dingyao">Lombaire</string>
@@ -67,7 +67,7 @@
     <string name="qianqing">Incliner vers l&#180;avant</string>
     <string name="zhengtishangsheng">Se lever</string>
     <string name="zhengtixiajiang">Descendre</string>
-    <string name="zhengtifuyuan">A plat A</string>
+    <string name="zhengtifuyuan">Tous Plat</string>
 
 
     <!-- 微调 -->

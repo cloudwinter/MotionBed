@@ -54,7 +54,7 @@
     <string name="kandianshi">Watch TV</string>
     <string name="lingyali">Zero Gravity</string>
     <string name="zhihan">Anti Snore</string>
-    <string name="fuyuan">Flat Bed B</string>
+    <string name="fuyuan">Flat Bed</string>
     <string name="tingyinyue">Music</string>
     <string name="tuibufangsong">Leg Relax</string>
     <string name="dingyao">Lumbar</string>
@@ -67,7 +67,7 @@
     <string name="qianqing">Tilt forward</string>
     <string name="zhengtishangsheng">Rise</string>
     <string name="zhengtixiajiang">Decline</string>
-    <string name="zhengtifuyuan">Flat Bed A</string>
+    <string name="zhengtifuyuan">All Flat</string>
 
 
     <!-- 微调 -->
