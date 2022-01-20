@@ -220,7 +220,7 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
         builder.append("FFFFFFFF0200120C");
         String pingtangCmd = BlueUtils.covert10TO16(Integer.parseInt(tv_param_pingtang.getText().toString()));
         builder.append(pingtangCmd);
-        String cetangCmd = BlueUtils.covert10TO16(Integer.parseInt(tv_param_pingtang.getText().toString()) / 2);
+        String cetangCmd = BlueUtils.covert10TO16(Integer.parseInt(tv_param_cetang.getText().toString()) / 2);
         builder.append(cetangCmd);
         builder.append(BlueUtils.makeChecksum(builder.toString()));
         sendCmd(builder.toString());

@@ -161,7 +161,11 @@ public class BlueUtils {
         for (int j = i - 1; j >= 0; j--) {
             sb.append(S[j]);
         }
-        return sb.toString();
+        String result = sb.toString();
+        if (result.length() == 1) {
+            result = "0" + result;
+        }
+        return result;
     }
 
     /**
@@ -278,11 +282,12 @@ public class BlueUtils {
     }
 
     public static void main(String[] args) {
-        System.out.println(hexString2To16hexString("00000110"));
-        System.out.println(hexString16To2hexString("06"));
-
-
-        System.out.println(makeChecksum("FF FF FF FF 01 00 02 19 01 08 30 50 00 01 00 00 01 00 00 01 03 01 01"));
+        System.out.println(covert10TO16(20));
+        System.out.println(covert10TO16(70));
+//        System.out.println(hexString16To2hexString("06"));
+//
+//
+//        System.out.println(makeChecksum("FF FF FF FF 01 00 02 19 01 08 30 50 00 01 00 00 01 00 00 01 03 01 01"));
 
 //        String cmd = "FF FF FF FF 01 00 02 19 A1 08 30 50 00 01 00 00 01 00 00 01 03 01 01".replace(" ", "");
 //        System.out.println(calculateChecksum(cmd.getBytes()));
