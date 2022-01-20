@@ -316,14 +316,14 @@ public class KuaijieK9Fragment extends KuaijieBaseFragment implements View.OnTou
             case R.id.view_yijiangshengqi:
                 setTopIconAndTitle(R.mipmap.xr_yijianshengqi_da, R.string.yijianshengqi);
                 if (MotionEvent.ACTION_DOWN == action) {
-                    sendBlueCmd("FF FF FF FF 05 00 00 00 01 16 C0");
+                    sendBlueCmd("FF FF FF FF 05 00 00 00 0D 16 C5");
                 }
                 break;
 
             case R.id.view_yijiangjiangxia:
                 setTopIconAndTitle(R.mipmap.xr_yijianjiangxia_da, R.string.yijianjiangxia);
                 if (MotionEvent.ACTION_DOWN == action) {
-                    sendBlueCmd("FF FF FF FF 05 00 00 00 02 56 C1");
+                    sendBlueCmd("FF FF FF FF 05 00 00 00 0E 56 C4");
                 }
                 break;
         }

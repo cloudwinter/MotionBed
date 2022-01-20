@@ -101,7 +101,7 @@ public class WeitiaoW11Fragment extends WeitiaoBaseFragment  {
             public void onTopTouch(MotionEvent event) {
                 if (MotionEvent.ACTION_DOWN == event.getAction()) {
                     setTitle(R.string.zhengtishengjiang);
-                    sendBlueCmd("FF FF FF FF 05 00 00 00 01 16 C0");
+                    sendBlueCmd("FF FF FF FF 05 00 00 00 0D 16 C5");
                     startAnimation(R.drawable.weitiao_zhengtishengjiang_top_animation);
                 } else if (isUPorCancel(event.getAction())) {
                     setTopIconAndTitle(R.mipmap.animation_zhengtishengjiang_1, R.string.zhengtishengjiang);
@@ -114,7 +114,7 @@ public class WeitiaoW11Fragment extends WeitiaoBaseFragment  {
             public void onBottomTouch(MotionEvent event) {
                 if (MotionEvent.ACTION_DOWN == event.getAction()) {
                     setTitle(R.string.zhengtishengjiang);
-                    sendBlueCmd("FF FF FF FF 05 00 00 00 02 56 C1");
+                    sendBlueCmd("FF FF FF FF 05 00 00 00 0E 56 C4");
                     startAnimation(R.drawable.weitiao_zhengtishengjiang_bottom_animation);
                 } else if (isUPorCancel(event.getAction())) {
                     setTopIconAndTitle(R.mipmap.animation_zhengtishengjiang_1, R.string.zhengtishengjiang);
