@@ -133,8 +133,14 @@ public class SleepReportMainActivity extends BaseBlueActivity implements Translu
      * title长按事件
      */
     private void titleLongClick() {
-        Prefer.getInstance().setShowShishiData(true);
-        shsjView.setVisibility(View.VISIBLE);
+        boolean showShishi = Prefer.getInstance().getShowShishiData();
+        if (showShishi) {
+            Prefer.getInstance().setShowShishiData(false);
+            shsjView.setVisibility(View.GONE);
+        } else {
+            Prefer.getInstance().setShowShishiData(true);
+            shsjView.setVisibility(View.VISIBLE);
+        }
     }
 
     /**
