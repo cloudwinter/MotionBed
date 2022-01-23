@@ -142,7 +142,7 @@ public class BlueUtils {
 
     public static String covert10TO16(int number) {
         if (number == 0) {
-            return "0000";
+            return "00";
         }
         int i = 0;
         char[] S = new char[100];

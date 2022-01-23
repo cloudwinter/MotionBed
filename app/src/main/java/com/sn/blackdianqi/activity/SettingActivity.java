@@ -160,8 +160,25 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         List<String> blueNames = new ArrayList<>();
         blueNames.add("QMS-IQ");
         blueNames.add("QMS-I06");
-        //blueNames.add("QMS-LQ");
+        blueNames.add("QMS-I16");
+        blueNames.add("QMS-I26");
+        blueNames.add("QMS-I36");
+        blueNames.add("QMS-I46");
+        blueNames.add("QMS-I56");
+        blueNames.add("QMS-I66");
+        blueNames.add("QMS-I76");
+        blueNames.add("QMS-I86");
+        blueNames.add("QMS-I96");
         blueNames.add("QMS-L04");
+        blueNames.add("QMS-L14");
+        blueNames.add("QMS-L24");
+        blueNames.add("QMS-L34");
+        blueNames.add("QMS-L44");
+        blueNames.add("QMS-L54");
+        blueNames.add("QMS-L64");
+        blueNames.add("QMS-L74");
+        blueNames.add("QMS-L84");
+        blueNames.add("QMS-L94");
         boolean isNeedShow = false;
         for (String blueName:blueNames) {
             if (title.toUpperCase().contains(blueName)) {
