@@ -258,7 +258,7 @@
     <string name="sdr_ptsj">Lie flat time</string>
     <string name="sdr_time_h">h</string>
     <string name="sdr_time_m">m</string>
-    <string name="sdr_count">c</string>
+    <string name="sdr_count">times</string>
     <string name="sdr_line_title">%sNumber of turns</string>
     <string name="sdr_line_sub">Number of turns</string>
     <string name="sdr_line_tip">tip:You can&#180;t generate a curve if you sleep less than 3 hours</string>

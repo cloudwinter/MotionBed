@@ -256,7 +256,7 @@
     <string name="sdr_ptsj">temps de à plat</string>
     <string name="sdr_time_h">h</string>
     <string name="sdr_time_m">m</string>
-    <string name="sdr_count">c</string>
+    <string name="sdr_count">times</string>
     <string name="sdr_line_title">%sNombre de tours</string>
     <string name="sdr_line_sub">Nombre de tours</string>
     <string name="sdr_line_tip">tip:Dormez déjà moins de 3 heures ne peut pas générer de courbe</string>

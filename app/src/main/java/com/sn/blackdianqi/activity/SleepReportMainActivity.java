@@ -186,7 +186,8 @@ public class SleepReportMainActivity extends BaseBlueActivity implements Translu
                 dayIntent.setClass(SleepReportMainActivity.this, SleepDayReportActivity.class);
                 dayIntent.putExtra(SleepDayReportActivity.TYPE_EXTRA_KEY, "1");
                 dayIntent.putExtra(SleepDayReportActivity.DATE_EXTRA_KEY, currentDay);
-                dayIntent.putExtra(SleepDayReportActivity.UV_EXTRA_KEY, differDays < 10 ? "0" + differDays : differDays + "");
+
+                dayIntent.putExtra(SleepDayReportActivity.UV_EXTRA_KEY, BlueUtils.covert10TO16((int) differDays));
                 dayIntent.putExtra(SleepDayReportActivity.OZ_EXTRA_KEY, sleepTimer);
 
                 startActivity(dayIntent);

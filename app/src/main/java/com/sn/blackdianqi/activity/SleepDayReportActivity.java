@@ -149,10 +149,11 @@ public class SleepDayReportActivity extends BaseBlueActivity implements Transluc
 //        actionBar.postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
-//                preDateVal = new int[]{1, 20, 20, 12, 15, 6, 8, 9, 4, 21, 24, 1};
-//                midDateVal = new int[]{4, 20, 20, 14, 15, 6, 8, 8, 4, 21, 24, 5};
-//                nextDateVal = new int[]{8, 20, 20, 8, 15, 6, 8, 9, 4, 21, 24, 17};
-//                resetLineChartDate(midDateVal, midCategories);
+////                preDateVal = new int[]{1, 20, 20, 12, 15, 6, 8, 9, 4, 21, 24, 1};
+////                midDateVal = new int[]{4, 20, 20, 14, 15, 6, 8, 8, 4, 21, 24, 5};
+////                nextDateVal = new int[]{8, 20, 20, 8, 15, 6, 8, 9, 4, 21, 24, 17};
+////                resetLineChartDate(midDateVal, midCategories);
+//                handleReceiveData("FFFFFFFF020005140143A934324345656762A2");
 //            }
 //        }, 3000);
     }
@@ -327,8 +328,9 @@ public class SleepDayReportActivity extends BaseBlueActivity implements Transluc
             BigDecimal shuimianTimeVal = new BigDecimal(pingtangTimeVal).add(new BigDecimal(cetangTimeVal));
             fsCountParam = BlueUtils.covert16TO10(cmd.substring(22, 24)) + "";
             if (type.equals("1")) {
-                ptTimeParam = new BigDecimal(pingtangTimeVal).multiply(new BigDecimal(0.1)).toString();
-                ctTimeParam = new BigDecimal(pingtangTimeVal).multiply(new BigDecimal(0.1)).toString();
+                ptTimeParam = new BigDecimal(pingtangTimeVal).multiply(new BigDecimal("0.1")).toString();
+                ctTimeParam = new BigDecimal(cetangTimeVal).multiply(new BigDecimal("0.1")).toString();
+                shuimianTimeVal = new BigDecimal(ptTimeParam).add(new BigDecimal(ctTimeParam));
                 smTimeParam = shuimianTimeVal.toString();
             } else {
                 if (frameNo.equals("01")) {
@@ -336,8 +338,8 @@ public class SleepDayReportActivity extends BaseBlueActivity implements Transluc
                     ctTimeParam = cetangTimeVal + "";
                     smTimeParam = shuimianTimeVal.toString();
                 } else if (frameNo.equals("06")) {
-                    ptTimeParam = new BigDecimal(pingtangTimeVal).multiply(new BigDecimal(0.1)).toString();
-                    ctTimeParam = new BigDecimal(pingtangTimeVal).multiply(new BigDecimal(0.1)).toString();
+                    ptTimeParam = new BigDecimal(pingtangTimeVal).multiply(new BigDecimal("0.1")).toString();
+                    ctTimeParam = new BigDecimal(cetangTimeVal).multiply(new BigDecimal("0.1")).toString();
                     shuimianTimeVal = new BigDecimal(ptTimeParam).add(new BigDecimal(ctTimeParam));
                     smTimeParam = shuimianTimeVal.toString();
                     tv_zcsj_time_unit.setText(R.string.sdr_time_h);
