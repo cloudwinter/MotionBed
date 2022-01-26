@@ -282,8 +282,8 @@ public class BlueUtils {
     }
 
     public static void main(String[] args) {
-        System.out.println(covert10TO16(20));
-        System.out.println(covert10TO16(70));
+        System.out.println(covert16TO10("0003"));
+        System.out.println(covert16TO10("5003"));
 //        System.out.println(hexString16To2hexString("06"));
 //
 //

@@ -335,7 +335,7 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
         if (cmd.contains("FFFFFFFF0200090F03")) {
             String AAAA = cmd.substring(20, 22) + cmd.substring(18, 20);
             String KKKK = cmd.substring(24, 26) + cmd.substring(22, 24);
-            tv_AA.setText(AAAA);
+            tv_AA.setText(BlueUtils.covert16TO10(AAAA)+"");
             tv_KK.setText(KKKK);
             return;
         }
