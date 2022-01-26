@@ -13,6 +13,7 @@
 
     <string name="connecting">connecting...</string>
     <string name="please_wait">Please later...</string>
+    <string name="please_input">Please enter a number</string>
     
     <!-- dialog -->
     <string name="connected_failed">The connection failed. Please try to reconnect</string>

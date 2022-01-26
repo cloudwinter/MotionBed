@@ -112,6 +112,7 @@
         android:layout_marginRight="15dp">
 
         <LinearLayout
+            android:id="@+id/ll_param_pingtang"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -141,6 +142,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_param_cetang"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

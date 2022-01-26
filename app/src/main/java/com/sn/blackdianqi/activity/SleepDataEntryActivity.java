@@ -12,11 +12,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.base.BaseBlueActivity;
 import com.sn.blackdianqi.blue.BluetoothLeService;
+import com.sn.blackdianqi.dialog.DataEntryInputDialog;
 import com.sn.blackdianqi.dialog.FuweiDialog;
 import com.sn.blackdianqi.dialog.FuweiNextDialog;
 import com.sn.blackdianqi.dialog.WaitDialog;
@@ -44,12 +46,16 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
     @BindView(R.id.tv_KK)
     TextView tv_KK;
 
+    @BindView(R.id.ll_param_pingtang)
+    LinearLayout ll_param_pingtang;
     @BindView(R.id.tv_param_desc_pingtang)
     TextView tv_param_desc_pingtang;
     @BindView(R.id.tv_param_desc_cetang)
     TextView tv_param_desc_cetang;
 
 
+    @BindView(R.id.ll_param_cetang)
+    LinearLayout ll_param_cetang;
     @BindView(R.id.tv_param_pingtang)
     EditText tv_param_pingtang;
     @BindView(R.id.tv_param_cetang)
@@ -68,10 +74,14 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
     WaitDialog waitDialog;
     FuweiDialog fuweiDialog;
     FuweiNextDialog fuweiNextDialog;
+    DataEntryInputDialog dataEntryInputDialog;
     // 循环发码次数，最大不超过30次
     int loopSendCount = 0;
     boolean startLoopSend = false;
     private long eventDownTime = 0L;
+
+    // 0表示平躺，1表示侧躺
+    private int inputType = 0;
 
     @Override
     protected void onDestroy() {
@@ -111,7 +121,7 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
             }
         });
 
-        tv_param_desc_pingtang.setOnTouchListener(new View.OnTouchListener() {
+        ll_param_pingtang.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int action = event.getAction();
@@ -125,7 +135,7 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
             }
         });
 
-        tv_param_desc_cetang.setOnTouchListener(new View.OnTouchListener() {
+        ll_param_cetang.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int action = event.getAction();
@@ -174,6 +184,23 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
             }
         });
         //fuweiDialog.show();
+
+        dataEntryInputDialog = new DataEntryInputDialog(this);
+        dataEntryInputDialog.setOnButtonClick(new DataEntryInputDialog.OnButtonClick() {
+            @Override
+            public void onCancel(View view) {
+
+            }
+
+            @Override
+            public void onSure(View view, int num) {
+                if (inputType == 1) {
+                    tv_param_cetang.setText(num+"");
+                } else {
+                    tv_param_pingtang.setText(num + "");
+                }
+            }
+        });
     }
 
 
@@ -264,14 +291,18 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
      * 平躺长按
      */
     private void longPingtangClick() {
-        tv_param_pingtang.setEnabled(!tv_param_pingtang.isEnabled());
+        //tv_param_pingtang.setEnabled(!tv_param_pingtang.isEnabled());
+        inputType = 0;
+        dataEntryInputDialog.show(tv_param_pingtang.getText().toString());
     }
 
     /**
      * 侧躺长按
      */
     private void longCetangClick() {
-        tv_param_cetang.setEnabled(!tv_param_cetang.isEnabled());
+//        tv_param_cetang.setEnabled(!tv_param_cetang.isEnabled());
+        inputType = 1;
+        dataEntryInputDialog.show(tv_param_cetang.getText().toString());
     }
 
 
@@ -336,7 +367,7 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
             String AAAA = cmd.substring(20, 22) + cmd.substring(18, 20);
             String KKKK = cmd.substring(24, 26) + cmd.substring(22, 24);
             tv_AA.setText(BlueUtils.covert16TO10(AAAA)+"");
-            tv_KK.setText(KKKK);
+            tv_KK.setText(BlueUtils.covert16TO10(KKKK)+"");
             return;
         }
 
