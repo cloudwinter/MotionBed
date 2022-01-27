@@ -154,7 +154,7 @@ public class SleepReportMainActivity extends BaseBlueActivity implements Translu
         setMonthTitle(currentYear, currentMonth);
 
         Calendar preMonthCal = Calendar.getInstance();
-        preMonthCal.add(Calendar.DATE, -28);
+        preMonthCal.add(Calendar.DATE, -29);
         int preMonthYear = preMonthCal.get(Calendar.YEAR);
         int preMonthMonth = preMonthCal.get(Calendar.MONTH) + 1;
         int preMonthDay = preMonthCal.get(Calendar.DATE);

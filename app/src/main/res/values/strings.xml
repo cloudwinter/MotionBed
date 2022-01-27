@@ -95,7 +95,7 @@
     <string name="tenfenzhong">10Mins</string>
     <string name="eightxiaoshi">8Hours</string>
     <string name="tentxiaoshi">10Hours</string>
-    <string name="dengguangliangdu">brightness</string>
+    <string name="dengguangliangdu">Brightness</string>
     <string name="dengguangliangdu_min_tips">The current brightness has been set to the lowest</string>
     <string name="dengguangliangdu_max_tips">The current brightness has been adjusted to the maximum</string>
 
@@ -236,18 +236,18 @@
     <string name="smr_top_zcsj_pjzcsj">Average</string>
     <string name="smr_top_zcsj_zczcsj">Longest</string>
     <string name="smr_top_zcsj_zdzcsj">Shortest</string>
-    <string name="smr_top_zcsj_unit">h</string>
+    <string name="smr_top_zcsj_unit">Hours</string>
 
     <string name="smr_top_fssj_title">Data of turns per day</string>
     <string name="smr_top_fssj_pjzcsj">Avaerage</string>
     <string name="smr_top_fssj_zczcsj">Maximum</string>
     <string name="smr_top_fssj_zdzcsj">Minimum</string>
-    <string name="smr_top_fssj_unit">c</string>
+    <string name="smr_top_fssj_unit">Times</string>
 
     <string name="smr_top_ptsj_title">Average time statistics per day</string>
     <string name="smr_top_ptsj_ptsj">lying falt</string>
     <string name="smr_top_ptsj_ctsj">lying on side </string>
-    <string name="smr_top_ptsj_unit">h</string>
+    <string name="smr_top_ptsj_unit">Hours</string>
 
 
     <!-- 日报告 -->
@@ -257,8 +257,8 @@
     <string name="sdr_fscs">Number of turns</string>
     <string name="sdr_ctsj">Lie side time</string>
     <string name="sdr_ptsj">Lie flat time</string>
-    <string name="sdr_time_h">h</string>
-    <string name="sdr_time_m">m</string>
+    <string name="sdr_time_h">Hours</string>
+    <string name="sdr_time_m">Mins</string>
     <string name="sdr_count">times</string>
     <string name="sdr_line_title">%sNumber of turns</string>
     <string name="sdr_line_sub">Number of turns</string>
