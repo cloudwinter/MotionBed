@@ -85,33 +85,34 @@ public class SleepMonthReportActivity extends BaseBlueActivity implements Transl
 
 
     private void handleReceiveData(String cmd) {
+//        cmd = "FFFFFFFF020007130E176C000000000017C004";
         if (!cmd.contains("FFFFFFFF0200") || cmd.length() < 30) {
             return;
         }
         String days = cmd.substring(16, 18);
-        title.setText(String.format(getString(R.string.smr_top_title_format), days));
+        title.setText(String.format(getString(R.string.smr_top_title_format), BlueUtils.covert16TO10(days)+""));
 
         // 在床时间
         String pjzcTime = cmd.substring(18, 20);
         String zczcTime = cmd.substring(20, 22);
         String zdzcTime = cmd.substring(22, 24);
-        tv_pjzc_time.setText(DateUtils.transferToH(pjzcTime, 6));
-        tv_zczc_time.setText(DateUtils.transferToH(zczcTime, 6));
-        tv_zdzc_time.setText(DateUtils.transferToH(zdzcTime, 6));
+        tv_pjzc_time.setText(DateUtils.transferToH(BlueUtils.covert16TO10(pjzcTime)+"", 6));
+        tv_zczc_time.setText(DateUtils.transferToH(BlueUtils.covert16TO10(zczcTime)+"", 6));
+        tv_zdzc_time.setText(DateUtils.transferToH(BlueUtils.covert16TO10(zdzcTime)+"", 6));
 
         // 翻身次数
         String pjfsNum = cmd.substring(24, 26);
         String maxfsNum = cmd.substring(26, 28);
         String minfsNum = cmd.substring(28, 30);
-        tv_pjfs_count.setText(pjfsNum);
-        tv_zdfs_count.setText(maxfsNum);
-        tv_zsfs_count.setText(minfsNum);
+        tv_pjfs_count.setText(BlueUtils.covert16TO10(pjfsNum)+"");
+        tv_zdfs_count.setText(BlueUtils.covert16TO10(maxfsNum)+"");
+        tv_zsfs_count.setText(BlueUtils.covert16TO10(minfsNum)+"");
 
         // 平躺时间/侧躺时间
         String ptTime = cmd.substring(30, 32);
         String ctTime = cmd.substring(32, 34);
-        tv_pjpt_time.setText(DateUtils.transferToH(ptTime, 6));
-        tv_pjct_time.setText(DateUtils.transferToH(ctTime, 6));
+        tv_pjpt_time.setText(DateUtils.transferToH(BlueUtils.covert16TO10(ptTime)+"", 6));
+        tv_pjct_time.setText(DateUtils.transferToH(BlueUtils.covert16TO10(ctTime)+"", 6));
 
     }
 

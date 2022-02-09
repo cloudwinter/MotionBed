@@ -1,6 +1,7 @@
 package com.sn.blackdianqi.util;
 
 import com.sn.blackdianqi.bean.DateBean;
+import com.sn.blackdianqi.view.LoggerView;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -47,8 +48,9 @@ public class DateUtils {
      * @return
      */
     public static String transferToH(String value, int ratio) {
+        LoggerView.e("transferToH value:" + value + "ratio:" + ratio);
         BigDecimal val = new BigDecimal(value);
-        BigDecimal result = val.divide(new BigDecimal(ratio)).setScale(1, RoundingMode.HALF_UP);
+        BigDecimal result = val.divide(new BigDecimal(ratio),1,RoundingMode.HALF_UP);
         return result.toString();
     }
 
@@ -67,6 +69,6 @@ public class DateUtils {
     }
 
     public static void main(String[] args) {
-        System.out.println(new DateBean(new Date()));
+        System.out.println(DateUtils.transferToH("23",6));
     }
 }

@@ -34,7 +34,9 @@ public class DateBean implements Serializable {
 
         year = calendar.get(Calendar.YEAR) + "";
         endYear = year.substring(2, 4);
-        month = calendar.get(Calendar.MONTH) < 10 ? "0" + calendar.get(Calendar.MONTH) : calendar.get(Calendar.MONTH) + "";
+        // 通过calendar 获取到的月份比实际月份少1
+        int calendarMonth = calendar.get(Calendar.MONTH) + 1;
+        month = calendarMonth < 10 ? "0" + calendarMonth : calendarMonth + "";
         day = calendar.get(Calendar.DATE) < 10 ? "0" + calendar.get(Calendar.DATE) : calendar.get(Calendar.DATE) + "";
 
         hour = calendar.get(Calendar.HOUR_OF_DAY) < 10 ? "0" + calendar.get(Calendar.HOUR_OF_DAY) : calendar.get(Calendar.HOUR_OF_DAY) + "";
@@ -134,5 +136,10 @@ public class DateBean implements Serializable {
                 ", minute='" + minute + '\'' +
                 ", second='" + second + '\'' +
                 '}';
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(new DateBean(new Date()));
     }
 }
