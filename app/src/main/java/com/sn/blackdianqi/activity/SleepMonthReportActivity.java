@@ -18,6 +18,8 @@ import com.sn.blackdianqi.util.DateUtils;
 import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
+import java.math.BigDecimal;
+
 import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -85,7 +87,7 @@ public class SleepMonthReportActivity extends BaseBlueActivity implements Transl
 
 
     private void handleReceiveData(String cmd) {
-//        cmd = "FFFFFFFF020007130E176C000000000017C004";
+//        cmd = "FFFFFFFF0200071317386C00011E000A2D2905";
         if (!cmd.contains("FFFFFFFF0200") || cmd.length() < 30) {
             return;
         }
@@ -96,9 +98,9 @@ public class SleepMonthReportActivity extends BaseBlueActivity implements Transl
         String pjzcTime = cmd.substring(18, 20);
         String zczcTime = cmd.substring(20, 22);
         String zdzcTime = cmd.substring(22, 24);
-        tv_pjzc_time.setText(DateUtils.transferToH(BlueUtils.covert16TO10(pjzcTime)+"", 6));
-        tv_zczc_time.setText(DateUtils.transferToH(BlueUtils.covert16TO10(zczcTime)+"", 6));
-        tv_zdzc_time.setText(DateUtils.transferToH(BlueUtils.covert16TO10(zdzcTime)+"", 6));
+        tv_pjzc_time.setText(new BigDecimal(BlueUtils.covert16TO10(pjzcTime)).multiply(new BigDecimal("0.1")).toString());
+        tv_zczc_time.setText(new BigDecimal(BlueUtils.covert16TO10(zczcTime)).multiply(new BigDecimal("0.1")).toString());
+        tv_zdzc_time.setText(new BigDecimal(BlueUtils.covert16TO10(zdzcTime)).multiply(new BigDecimal("0.1")).toString());
 
         // 翻身次数
         String pjfsNum = cmd.substring(24, 26);
@@ -111,8 +113,8 @@ public class SleepMonthReportActivity extends BaseBlueActivity implements Transl
         // 平躺时间/侧躺时间
         String ptTime = cmd.substring(30, 32);
         String ctTime = cmd.substring(32, 34);
-        tv_pjpt_time.setText(DateUtils.transferToH(BlueUtils.covert16TO10(ptTime)+"", 6));
-        tv_pjct_time.setText(DateUtils.transferToH(BlueUtils.covert16TO10(ctTime)+"", 6));
+        tv_pjpt_time.setText(new BigDecimal(BlueUtils.covert16TO10(ptTime)).multiply(new BigDecimal("0.1")).toString());
+        tv_pjct_time.setText(new BigDecimal(BlueUtils.covert16TO10(ctTime)).multiply(new BigDecimal("0.1")).toString());
 
     }
 
