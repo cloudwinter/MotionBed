@@ -243,10 +243,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 || blueName.contains("QMS-I16") || blueName.contains("QMS-I26") || blueName.contains("QMS-I36")
                 || blueName.contains("QMS-I46") || blueName.contains("QMS-I56") || blueName.contains("QMS-I66")
                 || blueName.contains("QMS-I76") || blueName.contains("QMS-I86") || blueName.contains("QMS-I96")
-                || blueName.contains("QMS-I04") || blueName.contains("QMS-I14") || blueName.contains("QMS-I24")
-                || blueName.contains("QMS-I34") || blueName.contains("QMS-I44") || blueName.contains("QMS-I54")
-                || blueName.contains("QMS-I64") || blueName.contains("QMS-I74") || blueName.contains("QMS-I84")
-                || blueName.contains("QMS-I94")
+                || blueName.contains("QMS-L04") || blueName.contains("QMS-L14") || blueName.contains("QMS-L24")
+                || blueName.contains("QMS-L34") || blueName.contains("QMS-L44") || blueName.contains("QMS-L54")
+                || blueName.contains("QMS-L64") || blueName.contains("QMS-L74") || blueName.contains("QMS-L84")
+                || blueName.contains("QMS-L94")
                 || blueName.contains("QMS-LQ")) {
             fragments.add(new KuaijieK1Fragment());
             fragments.add(new WeitiaoW1Fragment());

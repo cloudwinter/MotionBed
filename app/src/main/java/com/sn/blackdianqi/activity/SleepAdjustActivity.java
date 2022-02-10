@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,6 +24,7 @@ import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.util.ToastUtils;
+import com.sn.blackdianqi.view.LoggerView;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
 import androidx.annotation.Nullable;
@@ -34,6 +36,9 @@ import butterknife.ButterKnife;
  * Created by xiayundong on 2022/1/4.
  */
 public class SleepAdjustActivity extends BaseBlueActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener,View.OnTouchListener {
+
+
+    public static final String TAG = "SleepAdjustActivity";
 
     @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
@@ -136,15 +141,16 @@ public class SleepAdjustActivity extends BaseBlueActivity implements Translucent
 
         DeviceBean deviceBean = Prefer.getInstance().getConnectedDevice();
         if (deviceBean != null && !TextUtils.isEmpty(deviceBean.getTitle())) {
+            LoggerView.e(TAG,deviceBean.getTitle());
             String deviceName = deviceBean.getTitle();
             if (deviceName.contains("QMS-I06")
                     || deviceName.contains("QMS-I16") || deviceName.contains("QMS-I26") || deviceName.contains("QMS-I36")
                     || deviceName.contains("QMS-I46") || deviceName.contains("QMS-I56") || deviceName.contains("QMS-I66")
                     || deviceName.contains("QMS-I76") || deviceName.contains("QMS-I86") || deviceName.contains("QMS-I96")
-                    || deviceName.contains("QMS-I04") || deviceName.contains("QMS-I14") || deviceName.contains("QMS-I24")
-                    || deviceName.contains("QMS-I34") || deviceName.contains("QMS-I44") || deviceName.contains("QMS-I54")
-                    || deviceName.contains("QMS-I64") || deviceName.contains("QMS-I74") || deviceName.contains("QMS-I84")
-                    || deviceName.contains("QMS-I94")
+                    || deviceName.contains("QMS-L04") || deviceName.contains("QMS-L14") || deviceName.contains("QMS-L24")
+                    || deviceName.contains("QMS-L34") || deviceName.contains("QMS-L44") || deviceName.contains("QMS-L54")
+                    || deviceName.contains("QMS-L64") || deviceName.contains("QMS-L74") || deviceName.contains("QMS-L84")
+                    || deviceName.contains("QMS-L94")
                     || deviceName.contains("QMS4") || deviceName.contains("QMS3")) {
                 pageType = "03";
             } else if (deviceName.contains("S4-N")) {
