@@ -13,8 +13,8 @@ android {
         applicationId "com.sn.blackdianqi"
         minSdkVersion 26
         targetSdkVersion 30
-        versionCode 6
-        versionName "1.6"
+        versionCode 10
+        versionName "1.10"
 
 //        ndk {
 //            // 设置支持的SO库架构
