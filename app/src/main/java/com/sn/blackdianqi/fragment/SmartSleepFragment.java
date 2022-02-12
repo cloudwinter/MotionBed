@@ -210,8 +210,8 @@ public class SmartSleepFragment extends BaseFragment implements View.OnClickList
     private void setSleepTimerDesc(String sleepTimer) {
         if (sleepTimer.equals("00")) {
             mShuimiandingshiItemView.setDesc(getString(R.string.ss_item_no_time));
-        } else if (sleepTimer.equals("20:00")) {
-            mShuimiandingshiItemView.setDesc("01");
+        } else if (sleepTimer.equals("01")) {
+            mShuimiandingshiItemView.setDesc("20:00");
         } else if (sleepTimer.equals("02")) {
             mShuimiandingshiItemView.setDesc("20:30");
         } else if (sleepTimer.equals("03")) {

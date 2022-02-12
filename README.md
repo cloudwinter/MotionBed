@@ -1,6 +1,8 @@
 # SNBlackDianqi
 电动床黑色版本app
 
+蓝牙连接地址：https://www.jianshu.com/p/d991f0fdec63
+
 
 --2021-03-02
 0、所有的英文调整

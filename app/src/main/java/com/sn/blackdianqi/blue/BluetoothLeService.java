@@ -117,10 +117,13 @@ public class BluetoothLeService extends Service {
         @Override
         public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
             if (status == BluetoothGatt.GATT_SUCCESS) {
-                // LogUtils.e("==特征值的读写==", "--onCharacteristicRead called--");
                 //从特征值读取数据
-                byte[] sucString = characteristic.getValue();
-                String string = new String(sucString);
+                byte[] data = characteristic.getValue();
+                final StringBuilder stringBuilder = new StringBuilder(data.length);
+                for (byte byteChar : data) {
+                    stringBuilder.append(String.format("%02X ", byteChar));
+                }
+                LogUtils.e("BluetoothLeService onCharacteristicRead ==特征值的读回调==", stringBuilder.toString());
                 //将数据通过广播到Ble_Activity
                 broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic);
             }
@@ -132,7 +135,12 @@ public class BluetoothLeService extends Service {
         @Override
         public void onCharacteristicChanged(BluetoothGatt gatt,
                                             BluetoothGattCharacteristic characteristic) {
-            System.out.println("++++++++++++++++");
+            byte[] data = characteristic.getValue();
+            final StringBuilder stringBuilder = new StringBuilder(data.length);
+            for (byte byteChar : data) {
+                stringBuilder.append(String.format("%02X ", byteChar));
+            }
+            LogUtils.e("BluetoothLeService onCharacteristicChanged ==接收到硬件返回的数据==", stringBuilder.toString());
             broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic);
 
         }
@@ -144,9 +152,15 @@ public class BluetoothLeService extends Service {
         public void onCharacteristicWrite(BluetoothGatt gatt,
                                           BluetoothGattCharacteristic characteristic, int status) {
 
-            // LogUtils.e("==特征值的写==", "--onCharacteristicWrite--: " + status);
+            //从特征值读取数据
+//            byte[] data = characteristic.getValue();
+//            final StringBuilder stringBuilder = new StringBuilder(data.length);
+//            for (byte byteChar : data) {
+//                stringBuilder.append(String.format("%02X ", byteChar));
+//            }
+//            LogUtils.e("BluetoothLeService onCharacteristicRead ==特征值的写回调==", stringBuilder.toString());
             // 以下语句实现 发送完数据或也显示到界面上
-            broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic);
+            //broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic);
         }
 
         /*
