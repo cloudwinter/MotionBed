@@ -117,8 +117,8 @@ dependencies {
     //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
 
     // 时间空间选择
-    implementation 'com.github.gzu-liyujiang.AndroidPicker:Common:4.1.6'
-    implementation 'com.github.gzu-liyujiang.AndroidPicker:WheelPicker:4.1.6'
+    implementation 'com.github.gzu-liyujiang.AndroidPicker:Common:3.0.0'
+    implementation 'com.github.gzu-liyujiang.AndroidPicker:WheelPicker:3.0.0'
 
     // 日历 https://gitee.com/huanghaibin_dev/CalendarView
     implementation 'com.haibin:calendarview:3.7.1'
