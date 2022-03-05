@@ -101,6 +101,8 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
     // 01：零压力，02：记忆1，03：无动作
     private String modeCode = "03";
 
+    String blueTitle = "";
+
 
     @Override
     public void onLeftClick() {
@@ -157,6 +159,7 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
 
         DeviceBean deviceBean = Prefer.getInstance().getConnectedDevice();
         if (deviceBean != null && !TextUtils.isEmpty(deviceBean.getTitle())) {
+            blueTitle = deviceBean.getTitle().toUpperCase();
             if (deviceBean.getTitle().toUpperCase().contains("QMS2")) {
                 anmoLL.setVisibility(View.GONE);
             }
@@ -261,26 +264,12 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
                 startActivityForResult(intentWeek, WEEK_REQUEST_CODE);
                 break;
             case R.id.ll_mode:
-//                OptionPicker modePicker = new OptionPicker(this);
-//                modePicker.setDefaultValue(getModeStrByCode(modeCode));
-//                modePicker.getOkView().setTextColor(getResources().getColor(R.color.text_green));
-//                modePicker.setData(getString(R.string.alarm_mode_lingyali), getString(R.string.alarm_mode_jiyi1), getString(R.string.alarm_mode_budongzuo));
-//                modePicker.setOnOptionPickedListener(new OnOptionPickedListener() {
-//                    @Override
-//                    public void onOptionPicked(int position, Object item) {
-//                        if (position == 0) {
-//                            modeCode = "01";
-//                        } else if (position == 1) {
-//                            modeCode = "02";
-//                        } else{
-//                            modeCode = "03";
-//                        }
-//                        modeTV.setText(getModeStrByCode(modeCode));
-//                    }
-//                });
-//                modePicker.show();
-
-                Intent intentMode = new Intent(AlarmActivity.this, ModeActivity.class);
+                Intent intentMode = null;
+                if (blueTitle.contains("QMS-DFQ") || blueTitle.contains("QMS-430") || blueTitle.contains("QMS-444")) {
+                    intentMode = new Intent(AlarmActivity.this, Mode2Activity.class);
+                } else {
+                    intentMode = new Intent(AlarmActivity.this, ModeActivity.class);
+                }
                 intentMode.putExtra(ModeActivity.EXTRA_KEY, modeCode);
                 startActivityForResult(intentMode, MODE_REQUEST_CODE);
                 break;
@@ -422,6 +411,15 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
         }
         if (mode.equals("02")) {
             return getString(R.string.alarm_mode_jiyi1);
+        }
+        if (mode.equals("04")) {
+            return getString(R.string.alarm_mode_lingyali);
+        }
+        if (mode.equals("05")) {
+            return getString(R.string.alarm_mode_lingyali);
+        }
+        if (mode.equals("06")) {
+            return getString(R.string.alarm_mode_lingyali);
         }
         return getString(R.string.alarm_mode_budongzuo);
     }

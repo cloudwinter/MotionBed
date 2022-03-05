@@ -132,6 +132,8 @@
     <string name="alarm_anmo">MASSAGE</string>
     <string name="alarm_xiangling">Alarme</string>
     <string name="alarm_save">Sauvegarde</string>
+    <string name="alarm_mode_lingyali_left">Gravité zéro Left</string>
+    <string name="alarm_mode_lingyali_right">Gravité zéro Right</string>
 
     <!-- 星期 -->
     <string name="week">week</string>

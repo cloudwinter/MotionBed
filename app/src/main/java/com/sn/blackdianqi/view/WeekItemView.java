@@ -3,6 +3,7 @@ package com.sn.blackdianqi.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +22,8 @@ public class WeekItemView extends LinearLayout {
 
     private TextView mTitleTV;
     private ImageView mSelectedImg;
+
+    private boolean mSelected;
 
     public WeekItemView(Context context) {
         super(context,null);
@@ -50,9 +53,17 @@ public class WeekItemView extends LinearLayout {
     public void setSelected(boolean selected) {
         super.setSelected(selected);
         if (selected) {
+            mSelected = true;
             mSelectedImg.setVisibility(VISIBLE);
         } else {
+            mSelected = false;
             mSelectedImg.setVisibility(GONE);
         }
     }
+
+
+    public boolean getSelected() {
+        return mSelected;
+    }
+
 }
