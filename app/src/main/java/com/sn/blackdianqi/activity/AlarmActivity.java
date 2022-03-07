@@ -413,10 +413,10 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
             return getString(R.string.alarm_mode_jiyi1);
         }
         if (mode.equals("04")) {
-            return getString(R.string.alarm_mode_lingyali);
+            return getString(R.string.alarm_mode_lingyali_left);
         }
         if (mode.equals("05")) {
-            return getString(R.string.alarm_mode_lingyali);
+            return getString(R.string.alarm_mode_lingyali_right);
         }
         if (mode.equals("06")) {
             return getString(R.string.alarm_mode_lingyali);
