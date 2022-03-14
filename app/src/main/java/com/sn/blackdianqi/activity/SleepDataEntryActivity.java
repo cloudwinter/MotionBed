@@ -24,6 +24,7 @@ import com.sn.blackdianqi.dialog.FuweiNextDialog;
 import com.sn.blackdianqi.dialog.WaitDialog;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LogUtils;
+import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
 import androidx.annotation.Nullable;
@@ -105,6 +106,10 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
         initView();
         initDialog();
         sendCmd("FFFFFFFF02000A0A1204");
+        if (Prefer.getInstance().getStartDataEntrySwitch()) {
+            startLoopSend = true;
+            loopSendCmd();
+        }
     }
 
     private void initView() {
@@ -206,6 +211,7 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
 
     @Override
     public void onLeftClick() {
+        startLoopSend = false;
         finish();
     }
 
@@ -265,11 +271,15 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
      */
     private void titleLongClick() {
         if (!startLoopSend) {
+            Prefer.getInstance().setStartDataEntrySwitch(true);
             startLoopSend = true;
             timeHandler.sendEmptyMessage(LOOP_SEND_WHAT);
         } else {
+            Prefer.getInstance().setStartDataEntrySwitch(false);
             startLoopSend = false;
             loopSendCount = 0;
+            tv_AA.setText("");
+            tv_KK.setText("");
         }
     }
 
@@ -277,7 +287,7 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
      * 循环发码
      */
     private void loopSendCmd() {
-        if (startLoopSend && loopSendCount < 30) {
+        if (startLoopSend && loopSendCount < 150) {
             sendCmd("FFFFFFFF0200090F03000000001904");
             loopSendCount++;
             timeHandler.sendEmptyMessage(LOOP_SEND_WHAT);

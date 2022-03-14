@@ -35,6 +35,7 @@ public class Prefer {
     private final String KEY_LANGUAGE = "KEY_LANGUAGE";
     private final String KEY_ALARM = "KEY_ALARM"; // 闹钟
     private final String KEY_SHISHI = "KEY_SHISHI"; // 实时数据
+    private final String KEY_STARTDATAENTRY = "KEY_STARTDATAENTRY"; // 睡眠数据录入实时数据
 
     public static Prefer getInstance() {
         if (null == mInstance) {
@@ -281,6 +282,17 @@ public class Prefer {
 
     public boolean getShowShishiData() {
         return mPref.getBoolean(KEY_SHISHI, false);
+    }
+
+
+    public void setStartDataEntrySwitch(boolean show) {
+        SharedPreferences.Editor editor = mPref.edit();
+        editor.putBoolean(KEY_STARTDATAENTRY, show);
+        editor.commit();
+    }
+
+    public boolean getStartDataEntrySwitch() {
+        return mPref.getBoolean(KEY_STARTDATAENTRY, false);
     }
 
 
