@@ -25,7 +25,10 @@ import com.sn.blackdianqi.dialog.WaitDialog;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.util.Prefer;
+import com.sn.blackdianqi.view.LoggerView;
 import com.sn.blackdianqi.view.TranslucentActionBar;
+
+import java.util.Random;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
@@ -36,6 +39,8 @@ import butterknife.ButterKnife;
  * Created by xiayundong on 2022/1/4.
  */
 public class SleepDataEntryActivity extends BaseBlueActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
+
+    private final static String TAG = "SleepDataEntryActivity";
 
     @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
@@ -270,16 +275,18 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
      * title长按事件
      */
     private void titleLongClick() {
-        if (!startLoopSend) {
-            Prefer.getInstance().setStartDataEntrySwitch(true);
-            startLoopSend = true;
-            timeHandler.sendEmptyMessage(LOOP_SEND_WHAT);
-        } else {
+        if (Prefer.getInstance().getStartDataEntrySwitch()) {
+            LoggerView.e(TAG, "实时数据人工停止循环");
             Prefer.getInstance().setStartDataEntrySwitch(false);
             startLoopSend = false;
             loopSendCount = 0;
             tv_AA.setText("");
             tv_KK.setText("");
+        } else {
+            LoggerView.e(TAG, "实时数据人工开启循环");
+            Prefer.getInstance().setStartDataEntrySwitch(true);
+            startLoopSend = true;
+            timeHandler.sendEmptyMessage(LOOP_SEND_WHAT);
         }
     }
 
@@ -287,11 +294,15 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
      * 循环发码
      */
     private void loopSendCmd() {
-        if (startLoopSend && loopSendCount < 150) {
+        if (startLoopSend && loopSendCount < 10) {
+            LoggerView.e(TAG, "实时数据第" + loopSendCount + "循环");
             sendCmd("FFFFFFFF0200090F03000000001904");
+//            tv_AA.setText(new Random().nextInt(100)+"");
+//            tv_KK.setText(new Random().nextInt(100)+"");
             loopSendCount++;
-            timeHandler.sendEmptyMessage(LOOP_SEND_WHAT);
+            timeHandler.sendEmptyMessageDelayed(LOOP_SEND_WHAT,2000);
         } else {
+            LoggerView.e(TAG, "实时数据超次数停止循环");
             startLoopSend = false;
             loopSendCount = 0;
         }
@@ -376,8 +387,10 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
         if (cmd.contains("FFFFFFFF0200090F03")) {
             String AAAA = cmd.substring(20, 22) + cmd.substring(18, 20);
             String KKKK = cmd.substring(24, 26) + cmd.substring(22, 24);
-            tv_AA.setText(BlueUtils.covert16TO10(AAAA)+"");
-            tv_KK.setText(BlueUtils.covert16TO10(KKKK)+"");
+            if (startLoopSend) {
+                tv_AA.setText(BlueUtils.covert16TO10(AAAA)+"");
+                tv_KK.setText(BlueUtils.covert16TO10(KKKK)+"");
+            }
             return;
         }
 
