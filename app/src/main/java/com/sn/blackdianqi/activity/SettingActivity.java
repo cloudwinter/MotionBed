@@ -11,6 +11,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -76,6 +78,11 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
     @BindView(R.id.tv_alarm)
     TextView tvAlarm;
 
+    @BindView(R.id.ll_sync_control)
+    LinearLayout llSync;
+    @BindView(R.id.cb_sync)
+    CheckBox cbSync;
+
     // 特征值
     protected BluetoothGattCharacteristic characteristic;
 
@@ -115,6 +122,10 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
 
         initView();
         setData();
+        // 发送同步控制指令
+        String cmd = "FFFFFFFF01000A0BOF";
+        cmd += BlueUtils.makeChecksum(cmd);
+        sendBlueCmd(cmd);
     }
 
     private void initView() {
@@ -127,6 +138,7 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
             llDebug.setVisibility(View.VISIBLE);
         }
         llAlarm.setVisibility(View.GONE);
+        llSync.setVisibility(View.GONE);
         // 获取当前系统的语言
         Locale curLocale = getResources().getConfiguration().locale;
         //通过Locale的equals方法，判断出当前语言环境
@@ -143,6 +155,17 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         if (isNeedShowFaultDebug()) {
             llFaultDebug.setVisibility(View.VISIBLE);
         }
+
+        cbSync.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    sendBlueCmd("FF FF FF FF 01 00 09 0B 01 AA BB");
+                } else {
+                    sendBlueCmd("FF FF FF FF 01 00 09 0B 00 AA BB");
+                }
+            }
+        });
     }
 
 
@@ -243,6 +266,16 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
             case R.id.ll_debug:
                 LoggerView.me.loggerSwitch();
                 break;
+            case R.id.ll_sync_control:
+                String cmd = "";
+                if (cbSync.isChecked()) {
+                    cmd = "FFFFFFFF0100090B00";
+                } else {
+                    cmd = "FFFFFFFF0100090B01";
+                }
+                cmd += BlueUtils.makeChecksum(cmd);
+                sendBlueCmd(cmd);
+                break;
         }
     }
 
@@ -252,6 +285,15 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
      */
     private void handleReceiveData(String cmd) {
         cmd = cmd.toUpperCase().replaceAll(" ", "");
+        if (cmd.contains("FFFFFFFF01000A0B")) {
+            llSync.setVisibility(View.VISIBLE);
+            if (cmd.substring(16, 18).equals("01")) {
+                cbSync.setChecked(true);
+            } else {
+                cbSync.setChecked(false);
+            }
+            return;
+        }
         if (!cmd.contains("FFFFFFFF0304")) {
             return;
         }

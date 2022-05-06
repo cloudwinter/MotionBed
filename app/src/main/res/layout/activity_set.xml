@@ -244,6 +244,38 @@
             />
     </LinearLayout>
 
+    <!-- 同步控制 -->
+    <LinearLayout
+        android:id="@+id/ll_sync_control"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_blue_item"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginRight="@dimen/dp_15"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/sync"
+            android:textColor="@color/text_white"
+            android:textSize="14dp" />
+
+        <CheckBox
+            android:id="@+id/cb_sync"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/checkbox_style"
+            android:background="@drawable/bg_checkbox"
+            />
+
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ll_debug"
         android:layout_width="match_parent"

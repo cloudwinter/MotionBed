@@ -39,6 +39,7 @@
     <string name="fault_part">Faulty component</string>
     <string name="fault_type">Fault type</string>
     <string name="alarm">Alarm setting</string>
+    <string name="sync">Sync control</string>
 
 
     <!-- tab -->

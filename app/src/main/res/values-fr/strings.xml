@@ -39,6 +39,7 @@
     <string name="fault_part">Composant défectueux</string>
     <string name="fault_type">Type de défaut</string>
     <string name="alarm">Réglage de l&#180;alarme</string>
+    <string name="sync">Contrôle de sync</string>
 
 
     <!-- tab -->
