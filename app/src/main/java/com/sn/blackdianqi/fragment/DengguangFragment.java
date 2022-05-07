@@ -23,6 +23,7 @@ import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.util.ToastUtils;
 import com.sn.blackdianqi.view.AnjianAnmoView;
+import com.sn.blackdianqi.view.ProlateItemSwitchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +33,9 @@ import butterknife.ButterKnife;
 public class DengguangFragment extends BaseFragment implements View.OnClickListener {
     
     public static final String TAG = "DengguangFragment";
+
+    @BindView(R.id.item_tongbukz)
+    ProlateItemSwitchView tongbukzView;
 
     @BindView(R.id.img_anjian_top_icon)
     ImageView topIconImgView;
@@ -55,6 +59,13 @@ public class DengguangFragment extends BaseFragment implements View.OnClickListe
 
     // 特征值
     protected BluetoothGattCharacteristic characteristic;
+
+    @Override
+    public void onTongbukzEvent(boolean show, boolean open) {
+        tongbukzView.setVisibility(show ? View.VISIBLE : View.GONE);
+        tongbukzView.setSelected(open);
+        tongbukzView.setTitle(open ? getString(R.string.tongbukz_on) : getString(R.string.tongbukz_off));
+    }
 
     @Override
     public void onDestroy() {
@@ -85,6 +96,18 @@ public class DengguangFragment extends BaseFragment implements View.OnClickListe
     }
 
     private void initView() {
+        tongbukzView.setVisibility(View.GONE);
+        tongbukzView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tongbukzView.getSelected()) {
+                    sendBlueCmd("FF FF FF FF 01 00 09 0B 00 11 04");
+                } else {
+                    sendBlueCmd("FF FF FF FF 01 00 09 0B 01 12 04");
+                }
+            }
+        });
+
         tenMinsTextView.setOnClickListener(this);
         eightHoursTextView.setOnClickListener(this);
         tenHoursTextView.setOnClickListener(this);
