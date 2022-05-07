@@ -36,6 +36,8 @@ public class Prefer {
     private final String KEY_ALARM = "KEY_ALARM"; // 闹钟
     private final String KEY_SHISHI = "KEY_SHISHI"; // 实时数据
     private final String KEY_STARTDATAENTRY = "KEY_STARTDATAENTRY"; // 睡眠数据录入实时数据
+    private final String KEY_TONGBUKZ_SHOW = "KEY_TONGBUKZ_SHOW"; // 同步控制是否显示
+    private final String KEY_TONGBUKZ_SWITCH = "KEY_TONGBUKZ_SWITCH"; // 同步控制开关
 
     public static Prefer getInstance() {
         if (null == mInstance) {
@@ -237,6 +239,7 @@ public class Prefer {
 
     /**
      * 保存蓝牙信息
+     *
      * @param deviceAddress
      * @param alarmBean
      */
@@ -249,6 +252,7 @@ public class Prefer {
 
     /**
      * 获取蓝牙配置信息
+     *
      * @param deviceAddress
      * @return
      */
@@ -260,8 +264,34 @@ public class Prefer {
         return new Gson().fromJson(value, AlarmBean.class);
     }
 
+
+    public void setTongbukzShow(String deviceAddress, boolean show) {
+        SharedPreferences.Editor editor = mPref.edit();
+        editor.putBoolean(KEY_TONGBUKZ_SHOW + deviceAddress, show);
+        editor.commit();
+    }
+
+
+    public boolean getTongbukzShow(String deviceAddress) {
+        return mPref.getBoolean(KEY_TONGBUKZ_SHOW + deviceAddress, false);
+    }
+
+
+    public void setTongbukzSwitch(String deviceAddress, boolean switchStatus) {
+        SharedPreferences.Editor editor = mPref.edit();
+        editor.putBoolean(KEY_TONGBUKZ_SWITCH + deviceAddress, switchStatus);
+        editor.commit();
+    }
+
+
+    public boolean getTongbukzSwitch(String deviceAddress) {
+        return mPref.getBoolean(KEY_TONGBUKZ_SWITCH + deviceAddress, false);
+    }
+
+
     /**
      * 删除数据
+     *
      * @param deviceAddress
      */
     public void removeAlarm(String deviceAddress) {

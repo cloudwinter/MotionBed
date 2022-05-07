@@ -28,6 +28,7 @@ import com.sn.blackdianqi.base.BaseFragment;
 import com.sn.blackdianqi.bean.AlarmBean;
 import com.sn.blackdianqi.bean.DateBean;
 import com.sn.blackdianqi.bean.DeviceBean;
+import com.sn.blackdianqi.bean.MessageEvent;
 import com.sn.blackdianqi.blue.BluetoothLeService;
 import com.sn.blackdianqi.fragment.AnmoFragment;
 import com.sn.blackdianqi.fragment.DengguangFragment;
@@ -58,6 +59,8 @@ import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.util.ToastUtils;
 import com.sn.blackdianqi.view.NoScrollViewPager;
 import com.sn.blackdianqi.view.TranslucentActionBar;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -313,10 +316,13 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     private void askStatus() {
         try {
             Thread.sleep(500L);
+            // 发送压力带指令
             sendStressInitCmd();
-            Thread.sleep(1000L);
+            Thread.sleep(500L);
             // 发送闹钟指令
             sendAlarmInitCmd();
+            Thread.sleep(500L);
+            sendBlueCmd("FF FF FF FF 01 00 0A 0B 0F 21 04");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -390,6 +396,15 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             LogUtils.i(TAG, "收到智能睡眠感应回码指令：" + cmd);
             tab5.setVisibility(View.VISIBLE);
             RunningContext.sleepTimer = cmd.substring(16, 18);
+        } else if (cmd.contains("FFFFFFFF01000A0B") || cmd.contains("FFFFFFFF0100090B")) {
+            Prefer.getInstance().setTongbukzShow(deviceAddress, true);
+            String tongbukzSwitchCmd = cmd.substring(16, 18);
+            Prefer.getInstance().setTongbukzSwitch(deviceAddress, "01".equals(tongbukzSwitchCmd) ? true : false);
+
+            MessageEvent messageEvent = new MessageEvent();
+            messageEvent.setTongbukzShow(true);
+            messageEvent.setTongbukzSwitch("01".equals(tongbukzSwitchCmd) ? true : false);
+            EventBus.getDefault().post(messageEvent);
         }
     }
 
