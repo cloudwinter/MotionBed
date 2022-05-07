@@ -3,6 +3,8 @@
 
     <!-- common -->
     <string name="exit">Press the back key again to exit the app</string>
+    <string name="tongbukz_on">SYNCHR ON</string>
+    <string name="tongbukz_off">SYNCHR OFF</string>
 
 
 

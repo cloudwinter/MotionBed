@@ -12,6 +12,15 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <com.sn.blackdianqi.view.ProlateItemSwitchView
+            android:id="@+id/item_tongbukz"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="@dimen/dp_60"
+            android:layout_marginRight="@dimen/dp_60"
+            android:layout_marginTop="10dp"
+            app:title="@string/tongbukz_on" />
+
 
     <!-- 顶部 -->
     <com.sn.blackdianqi.view.SquareLinearLayout

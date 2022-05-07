@@ -3,7 +3,8 @@
 
     <!-- common -->
     <string name="exit">Press the back key again to exit the app</string>
-
+    <string name="tongbukz_on">Synchroniser In</string>
+    <string name="tongbukz_off">Synchroniser Loin</string>
 
 
     <string name="text_enter">Entrer</string>

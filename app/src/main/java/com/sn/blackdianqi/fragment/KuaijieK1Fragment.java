@@ -7,15 +7,21 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import com.sn.blackdianqi.R;
+import com.sn.blackdianqi.bean.MessageEvent;
 import com.sn.blackdianqi.util.LogUtils;
+import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.view.AnjianYuanView;
 import com.sn.blackdianqi.view.JiyiView;
+import com.sn.blackdianqi.view.ProlateItemSwitchView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +34,9 @@ import butterknife.ButterKnife;
  */
 public class KuaijieK1Fragment extends KuaijieBaseFragment implements View.OnTouchListener {
 
+
+    @BindView(R.id.item_tongbukz)
+    ProlateItemSwitchView tongbukzView;
 
     @BindView(R.id.img_anjian_top_icon)
     ImageView topIconImgView;
@@ -83,6 +92,8 @@ public class KuaijieK1Fragment extends KuaijieBaseFragment implements View.OnTou
     }
 
     private void initView() {
+        tongbukzView.setVisibility(View.GONE);
+        tongbukzView.setOnClickListener(mOnclickListener);
         jiyi1View.setOnTouchListener(this);
         jiyi2View.setOnTouchListener(this);
 
@@ -99,25 +110,34 @@ public class KuaijieK1Fragment extends KuaijieBaseFragment implements View.OnTou
 
     }
 
+
+    @Override
+    public void onTongbukzEvent(boolean show, boolean open) {
+        tongbukzView.setVisibility(show ? View.VISIBLE : View.GONE);
+        tongbukzView.setSelected(open);
+        tongbukzView.setTitle(open ? getString(R.string.tongbukz_on) : getString(R.string.tongbukz_off));
+    }
+
     /**
      * 设置顶部icon和title
+     *
      * @param iconResId
      * @param titleResId
      */
-    private void setTopIconAndTitle(int iconResId,int titleResId) {
-        topIconImgView.setBackground(ContextCompat.getDrawable(getContext(),iconResId));
+    private void setTopIconAndTitle(int iconResId, int titleResId) {
+        topIconImgView.setBackground(ContextCompat.getDrawable(getContext(), iconResId));
         topTitleTextView.setText(getString(titleResId));
     }
 
 
     /**
      * 设置顶部的title
+     *
      * @param titleResId
      */
     private void setTitle(int titleResId) {
         topTitleTextView.setText(getString(titleResId));
     }
-
 
 
     private void jiyi2LongClick() {
@@ -138,10 +158,33 @@ public class KuaijieK1Fragment extends KuaijieBaseFragment implements View.OnTou
         }
     }
 
+    private OnClickListener mOnclickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.item_tongbukz:
+                    if (tongbukzView.getSelected()) {
+                        sendBlueCmd("FF FF FF FF 01 00 09 0B 00 11 04");
+                    } else {
+                        sendBlueCmd("FF FF FF FF 01 00 09 0B 01 12 04");
+                    }
+                    break;
+            }
+        }
+    };
 
 
     @Override
     protected void handleReceiveData(String data) {
+        if (data.contains("FF FF FF FF 01 00 09 0B 00")) {
+            tongbukzView.setSelected(false);
+            EventBus.getDefault().post(new MessageEvent(true, false));
+        }
+        if (data.contains("FF FF FF FF 01 00 09 0B 01")) {
+            tongbukzView.setSelected(true);
+            EventBus.getDefault().post(new MessageEvent(true, true));
+        }
+
         if (data.contains("FF FF FF FF 03 12 00 AA")) {
             // 记忆1有记忆返回码
             jiyi1View.setSelected(true);
@@ -229,8 +272,6 @@ public class KuaijieK1Fragment extends KuaijieBaseFragment implements View.OnTou
     }
 
 
-
-
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         int action = event.getAction();
@@ -266,7 +307,7 @@ public class KuaijieK1Fragment extends KuaijieBaseFragment implements View.OnTou
                 }
                 break;
             case R.id.view_kandianshi:
-                setTopIconAndTitle(R.mipmap.xr_kandianshi_da,R.string.kandianshi);
+                setTopIconAndTitle(R.mipmap.xr_kandianshi_da, R.string.kandianshi);
                 if (MotionEvent.ACTION_DOWN == action) {
                     eventDownTime = System.currentTimeMillis();
                     timeHandler.sendEmptyMessageDelayed(KANDIANSHI_WHAT, DEFAULT_INTERVAL);
@@ -283,7 +324,7 @@ public class KuaijieK1Fragment extends KuaijieBaseFragment implements View.OnTou
                 }
                 break;
             case R.id.view_lingyali:
-                setTopIconAndTitle(R.mipmap.xr_lingyali_da,R.string.lingyali);
+                setTopIconAndTitle(R.mipmap.xr_lingyali_da, R.string.lingyali);
                 if (MotionEvent.ACTION_DOWN == action) {
                     eventDownTime = System.currentTimeMillis();
                     timeHandler.sendEmptyMessageDelayed(LINGYALI_WHAT, DEFAULT_INTERVAL);
@@ -291,7 +332,7 @@ public class KuaijieK1Fragment extends KuaijieBaseFragment implements View.OnTou
                     timeHandler.removeMessages(LINGYALI_WHAT);
                     if (isShortClick()) {
                         // 短按
-                        setTopIconAndTitle(R.mipmap.xr_lingyali_da,R.string.lingyali);
+                        setTopIconAndTitle(R.mipmap.xr_lingyali_da, R.string.lingyali);
                         if (lingyaliView.isSelected()) {
                             sendBlueCmd("FF FF FF FF 05 00 00 91 09 7A 96");
                         } else {
@@ -301,7 +342,7 @@ public class KuaijieK1Fragment extends KuaijieBaseFragment implements View.OnTou
                 }
                 break;
             case R.id.view_zhihan:
-                setTopIconAndTitle(R.mipmap.xr_zhihan_da,R.string.zhihan);
+                setTopIconAndTitle(R.mipmap.xr_zhihan_da, R.string.zhihan);
                 if (MotionEvent.ACTION_DOWN == action) {
                     eventDownTime = System.currentTimeMillis();
                     timeHandler.sendEmptyMessageDelayed(ZHIHAN_WHAT, DEFAULT_INTERVAL);
@@ -309,7 +350,7 @@ public class KuaijieK1Fragment extends KuaijieBaseFragment implements View.OnTou
                     timeHandler.removeMessages(ZHIHAN_WHAT);
                     if (isShortClick()) {
                         // 短按
-                        setTopIconAndTitle(R.mipmap.xr_zhihan_da,R.string.zhihan);
+                        setTopIconAndTitle(R.mipmap.xr_zhihan_da, R.string.zhihan);
                         if (zhihanView.isSelected()) {
                             sendBlueCmd("FF FF FF FF 05 00 00 F1 0F D2 94");
                         } else {
@@ -319,37 +360,37 @@ public class KuaijieK1Fragment extends KuaijieBaseFragment implements View.OnTou
                 }
                 break;
             case R.id.view_fuyuan:
-                setTopIconAndTitle(R.mipmap.xr_fuyuan_da,R.string.fuyuan);
+                setTopIconAndTitle(R.mipmap.xr_fuyuan_da, R.string.fuyuan);
                 if (MotionEvent.ACTION_DOWN == action) {
                     sendBlueCmd("FF FF FF FF 05 00 00 00 08 D6 C6");
                 }
                 break;
             case R.id.view_tingyinyue:
-                setTopIconAndTitle(R.mipmap.xr_tingyinyue_da,R.string.tingyinyue);
+                setTopIconAndTitle(R.mipmap.xr_tingyinyue_da, R.string.tingyinyue);
                 if (MotionEvent.ACTION_DOWN == action) {
                     sendBlueCmd("FF FF FF FF 05 00 00 00 28 D7 1E");
                 }
                 break;
             case R.id.view_tuibufangsong:
-                setTopIconAndTitle(R.mipmap.xr_tuibufangsong_da,R.string.tuibufangsong);
+                setTopIconAndTitle(R.mipmap.xr_tuibufangsong_da, R.string.tuibufangsong);
                 if (MotionEvent.ACTION_DOWN == action) {
                     sendBlueCmd("FF FF FF FF 05 00 00 00 29 16 DE");
                 }
                 break;
             case R.id.view_quanshengxunhuan:
-                setTopIconAndTitle(R.mipmap.xr_quanshenxunhuan_da,R.string.quanshenxunhuan);
+                setTopIconAndTitle(R.mipmap.xr_quanshenxunhuan_da, R.string.quanshenxunhuan);
                 if (MotionEvent.ACTION_DOWN == action) {
                     sendBlueCmd("FF FF FF FF 05 00 05 00 E4 C7 4A");
                 }
                 break;
             case R.id.view_yujia:
-                setTopIconAndTitle(R.mipmap.xr_yujia_da,R.string.yujia);
+                setTopIconAndTitle(R.mipmap.xr_yujia_da, R.string.yujia);
                 if (MotionEvent.ACTION_DOWN == action) {
                     sendBlueCmd("FF FF FF FF 05 00 00 00 4E 57 34");
                 }
                 break;
             case R.id.view_tunbuxunhuan:
-                setTopIconAndTitle(R.mipmap.xr_tunbuxunhuan_da,R.string.tunbuxunhuan);
+                setTopIconAndTitle(R.mipmap.xr_tunbuxunhuan_da, R.string.tunbuxunhuan);
                 if (MotionEvent.ACTION_DOWN == action) {
                     sendBlueCmd("FF FF FF FF 05 00 05 00 E6 46 8B");
                 }
@@ -373,7 +414,7 @@ public class KuaijieK1Fragment extends KuaijieBaseFragment implements View.OnTou
      * 零压力 4
      * 止鼾 5
      */
-    private Handler timeHandler = new Handler(){
+    private Handler timeHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -400,7 +441,6 @@ public class KuaijieK1Fragment extends KuaijieBaseFragment implements View.OnTou
     };
 
 
-
     private void lingyaliLongClick() {
         if (lingyaliView.isSelected()) {
             // 有记忆
@@ -409,7 +449,6 @@ public class KuaijieK1Fragment extends KuaijieBaseFragment implements View.OnTou
             sendBlueCmd("FF FF FF FF 05 00 00 90 09 7B 06");
         }
     }
-
 
 
     private void zhihanLongClick() {
@@ -442,11 +481,12 @@ public class KuaijieK1Fragment extends KuaijieBaseFragment implements View.OnTou
 
     /**
      * 单位是毫秒
+     *
      * @param startTime
      * @param endTime
      * @return
      */
-    private long getInterval(long startTime,long endTime) {
+    private long getInterval(long startTime, long endTime) {
         long interval = endTime - startTime;
         return interval;
     }

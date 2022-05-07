@@ -58,6 +58,12 @@
         <attr name="desc" />
     </declare-styleable>
 
+    <declare-styleable name="ProlateItemSwitchView">
+        <attr name="title" />
+        <attr name="desc" />
+    </declare-styleable>
+
+
     <declare-styleable name="ProlateSwitchView">
         <attr name="title" />
     </declare-styleable>

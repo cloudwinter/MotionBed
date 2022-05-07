@@ -14,9 +14,13 @@ import android.widget.TextView;
 
 import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.bean.DeviceBean;
+import com.sn.blackdianqi.bean.MessageEvent;
 import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.view.AnjianYuanView;
 import com.sn.blackdianqi.view.JiyiView;
+import com.sn.blackdianqi.view.ProlateItemSwitchView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +32,9 @@ import butterknife.ButterKnife;
  * 快捷K2
  */
 public class KuaijieK2Fragment extends KuaijieBaseFragment implements View.OnTouchListener {
+
+    @BindView(R.id.item_tongbukz)
+    ProlateItemSwitchView tongbukzView;
 
 
     @BindView(R.id.img_anjian_top_icon)
@@ -73,6 +80,9 @@ public class KuaijieK2Fragment extends KuaijieBaseFragment implements View.OnTou
     }
 
     private void initView() {
+        tongbukzView.setVisibility(View.GONE);
+        tongbukzView.setOnClickListener(mOnclickListener);
+
         jiyi1View.setOnTouchListener(this);
         jiyi2View.setOnTouchListener(this);
 
@@ -81,6 +91,29 @@ public class KuaijieK2Fragment extends KuaijieBaseFragment implements View.OnTou
         zhihanView.setOnTouchListener(this);
         fuyuanView.setOnTouchListener(this);
 
+    }
+
+    private View.OnClickListener mOnclickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.item_tongbukz:
+                    if (tongbukzView.getSelected()) {
+                        sendBlueCmd("FF FF FF FF 01 00 09 0B 00 11 04");
+                    } else {
+                        sendBlueCmd("FF FF FF FF 01 00 09 0B 01 12 04");
+                    }
+                    break;
+            }
+        }
+    };
+
+
+    @Override
+    public void onTongbukzEvent(boolean show, boolean open) {
+        tongbukzView.setVisibility(show ? View.VISIBLE : View.GONE);
+        tongbukzView.setSelected(open);
+        tongbukzView.setTitle(open ? getString(R.string.tongbukz_on) : getString(R.string.tongbukz_off));
     }
 
     /**
@@ -126,6 +159,15 @@ public class KuaijieK2Fragment extends KuaijieBaseFragment implements View.OnTou
 
     @Override
     protected void handleReceiveData(String data) {
+        if (data.contains("FF FF FF FF 01 00 09 0B 00")) {
+            tongbukzView.setSelected(false);
+            EventBus.getDefault().post(new MessageEvent(true,false));
+        }
+        if (data.contains("FF FF FF FF 01 00 09 0B 01")) {
+            tongbukzView.setSelected(true);
+            EventBus.getDefault().post(new MessageEvent(true,true));
+        }
+
         if (isJIYIxunwenma2()) {
             if (data.contains("FF FF FF FF 03 06 00 0A")) {
                 // 记忆1有记忆返回码

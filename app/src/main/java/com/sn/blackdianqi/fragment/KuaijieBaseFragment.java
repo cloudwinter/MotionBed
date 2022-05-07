@@ -60,6 +60,10 @@ public abstract class KuaijieBaseFragment extends BaseFragment {
      */
     abstract void askStatus();
 
+    @Override
+    public void onTongbukzEvent(boolean show, boolean open) {
+        // do something
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
