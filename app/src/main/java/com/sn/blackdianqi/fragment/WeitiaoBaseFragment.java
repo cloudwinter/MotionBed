@@ -56,4 +56,8 @@ public class WeitiaoBaseFragment extends BaseFragment {
         return false;
     }
 
+    @Override
+    public void onTongbukzEvent(boolean show, boolean open) {
+
+    }
 }

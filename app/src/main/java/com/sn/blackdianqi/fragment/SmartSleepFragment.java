@@ -71,6 +71,11 @@ public class SmartSleepFragment extends BaseFragment implements View.OnClickList
     protected BluetoothGattCharacteristic characteristic;
 
     @Override
+    public void onTongbukzEvent(boolean show, boolean open) {
+
+    }
+
+    @Override
     public void onDestroy() {
         getActivity().unregisterReceiver(mSmartSleepReceiver);
         super.onDestroy();

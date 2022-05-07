@@ -18,6 +18,7 @@ import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.view.AnjianChangTuoYuanView;
 import com.sn.blackdianqi.view.AnjianWeitiaoView;
 import com.sn.blackdianqi.view.ChildTouchListener;
+import com.sn.blackdianqi.view.ProlateItemSwitchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +33,8 @@ public class WeitiaoW1Fragment extends WeitiaoBaseFragment implements View.OnTou
 
     public static final String TAG = "WeitiaoFragment";
 
+    @BindView(R.id.item_tongbukz)
+    ProlateItemSwitchView tongbukzView;
 
     @BindView(R.id.img_anjian_top_icon)
     ImageView topIconImgView;
@@ -84,6 +87,17 @@ public class WeitiaoW1Fragment extends WeitiaoBaseFragment implements View.OnTou
     }
 
     private void initView() {
+        tongbukzView.setVisibility(View.GONE);
+        tongbukzView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tongbukzView.getSelected()) {
+                    sendBlueCmd("FF FF FF FF 01 00 09 0B 00 11 04");
+                } else {
+                    sendBlueCmd("FF FF FF FF 01 00 09 0B 01 12 04");
+                }
+            }
+        });
         headLayout.setOnTouchListener(this);
         quanshengxunhuanView.setOnTouchListener(this);
         tunbuxunhuanView.setOnTouchListener(this);
@@ -202,6 +216,14 @@ public class WeitiaoW1Fragment extends WeitiaoBaseFragment implements View.OnTou
             }
         });
 
+    }
+
+
+    @Override
+    public void onTongbukzEvent(boolean show, boolean open) {
+        tongbukzView.setVisibility(show ? View.VISIBLE : View.GONE);
+        tongbukzView.setSelected(open);
+        tongbukzView.setTitle(open ? getString(R.string.tongbukz_on) : getString(R.string.tongbukz_off));
     }
 
     private void startAnimation(int animationId) {
