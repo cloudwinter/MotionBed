@@ -22,6 +22,7 @@ import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.util.ToastUtils;
 import com.sn.blackdianqi.view.AnjianAnmoView;
 import com.sn.blackdianqi.view.AnjianAnmoYuanView;
+import com.sn.blackdianqi.view.ProlateItemSwitchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +32,9 @@ import butterknife.ButterKnife;
 public class AnmoFragment extends BaseFragment implements View.OnClickListener {
     
     public static final String TAG = "DengguangFragment";
+
+    @BindView(R.id.item_tongbukz)
+    ProlateItemSwitchView tongbukzView;
 
     @BindView(R.id.img_anjian_top_icon)
     ImageView topIconImgView;
@@ -69,6 +73,7 @@ public class AnmoFragment extends BaseFragment implements View.OnClickListener {
         return intentFilter;
     }
 
+
     @Override
     public void onDestroy() {
         getActivity().unregisterReceiver(mAnmoReceiver);
@@ -87,6 +92,17 @@ public class AnmoFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void initView() {
+        tongbukzView.setVisibility(View.GONE);
+        tongbukzView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tongbukzView.getSelected()) {
+                    sendBlueCmd("FF FF FF FF 01 00 09 0B 00 11 04");
+                } else {
+                    sendBlueCmd("FF FF FF FF 01 00 09 0B 01 12 04");
+                }
+            }
+        });
         min10View.setOnClickListener(this);
         min20View.setOnClickListener(this);
         min30View.setOnClickListener(this);
@@ -127,7 +143,12 @@ public class AnmoFragment extends BaseFragment implements View.OnClickListener {
         });
     }
 
-
+    @Override
+    public void onTongbukzEvent(boolean show, boolean open) {
+        tongbukzView.setVisibility(show ? View.VISIBLE : View.GONE);
+        tongbukzView.setSelected(open);
+        tongbukzView.setTitle(open ? getString(R.string.tongbukz_on) : getString(R.string.tongbukz_off));
+    }
 
 
     /**
@@ -191,7 +212,6 @@ public class AnmoFragment extends BaseFragment implements View.OnClickListener {
                 min20View.setSelected(false);
                 min30View.setSelected(!min30View.isSelected());
                 break;
-
         }
     }
 
