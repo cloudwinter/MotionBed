@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import com.sn.blackdianqi.bean.MessageEvent;
+import com.sn.blackdianqi.view.LoggerView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -52,6 +53,7 @@ public abstract class BaseFragment extends Fragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
+        LoggerView.e("BaseFragment", "onMessageEvent event=" + event.toString());
         onTongbukzEvent(event.isTongbukzShow(), event.isTongbukzSwitch());
     }
 

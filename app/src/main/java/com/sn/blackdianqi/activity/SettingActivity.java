@@ -123,7 +123,7 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         initView();
         setData();
         // 发送同步控制指令
-        String cmd = "FFFFFFFF01000A0BOF";
+        String cmd = "FFFFFFFF01000A0B0F";
         cmd += BlueUtils.makeChecksum(cmd);
         sendBlueCmd(cmd);
     }

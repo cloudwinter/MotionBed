@@ -159,15 +159,6 @@ public class KuaijieK2Fragment extends KuaijieBaseFragment implements View.OnTou
 
     @Override
     protected void handleReceiveData(String data) {
-        if (data.contains("FF FF FF FF 01 00 09 0B 00")) {
-            tongbukzView.setSelected(false);
-            EventBus.getDefault().post(new MessageEvent(true,false));
-        }
-        if (data.contains("FF FF FF FF 01 00 09 0B 01")) {
-            tongbukzView.setSelected(true);
-            EventBus.getDefault().post(new MessageEvent(true,true));
-        }
-
         if (isJIYIxunwenma2()) {
             if (data.contains("FF FF FF FF 03 06 00 0A")) {
                 // 记忆1有记忆返回码

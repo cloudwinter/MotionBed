@@ -34,4 +34,11 @@ public class MessageEvent {
     }
 
 
+    @Override
+    public String toString() {
+        return "MessageEvent{" +
+                "tongbukzShow=" + tongbukzShow +
+                ", tongbukzSwitch=" + tongbukzSwitch +
+                '}';
+    }
 }

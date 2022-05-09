@@ -524,7 +524,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 if (bundle != null) {
                     String data = bundle.getString(BluetoothLeService.EXTRA_DATA);
                     if (data != null) {
-                        //data = "FFFFFFFF010004130F08300026010301019897";
+//                            data = "FFFFFFFF01000A0B011304";
                         LogUtils.e(TAG, "==首页  接收设备返回的数据==", data);
                         handleReceiveData(data);
                     }
