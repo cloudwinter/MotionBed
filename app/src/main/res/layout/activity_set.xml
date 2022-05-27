@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
-            android:text="1.0.0"
+            android:text="1.3.0"
             android:textColor="@color/text_green"
             android:textSize="14dp" />
 
@@ -256,7 +256,7 @@
         android:layout_marginRight="@dimen/dp_15"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"

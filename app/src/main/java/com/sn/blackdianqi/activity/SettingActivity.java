@@ -122,10 +122,10 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
 
         initView();
         setData();
-        // 发送同步控制指令
-        String cmd = "FFFFFFFF01000A0B0F";
-        cmd += BlueUtils.makeChecksum(cmd);
-        sendBlueCmd(cmd);
+//        // 发送同步控制指令
+//        String cmd = "FFFFFFFF01000A0B0F";
+//        cmd += BlueUtils.makeChecksum(cmd);
+//        sendBlueCmd(cmd);
     }
 
     private void initView() {
@@ -285,15 +285,15 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
      */
     private void handleReceiveData(String cmd) {
         cmd = cmd.toUpperCase().replaceAll(" ", "");
-        if (cmd.contains("FFFFFFFF01000A0B")) {
-            llSync.setVisibility(View.VISIBLE);
-            if (cmd.substring(16, 18).equals("01")) {
-                cbSync.setChecked(true);
-            } else {
-                cbSync.setChecked(false);
-            }
-            return;
-        }
+//        if (cmd.contains("FFFFFFFF01000A0B")) {
+//            llSync.setVisibility(View.VISIBLE);
+//            if (cmd.substring(16, 18).equals("01")) {
+//                cbSync.setChecked(true);
+//            } else {
+//                cbSync.setChecked(false);
+//            }
+//            return;
+//        }
         if (!cmd.contains("FFFFFFFF0304")) {
             return;
         }
