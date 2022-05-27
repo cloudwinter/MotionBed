@@ -326,6 +326,17 @@ public class Prefer {
     }
 
 
+
+    public void disConnected() {
+        setBleStatus("未连接", null);
+        String address  = getLatelyConnectedDevice();
+        if (address != null) {
+            setLatelyConnectedDevice("");
+            removeAlarm(address);
+        }
+    }
+
+
     //退出登录后清除缓存数据
     public void clearData() {
         String currentDevice = getLatelyConnectedDevice();

@@ -453,9 +453,7 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
                 }
                 String address  = Prefer.getInstance().getLatelyConnectedDevice();
                 LogUtils.e(TAG, "==更新连接状态 断开连接==");
-                Prefer.getInstance().setLatelyConnectedDevice("");
-                Prefer.getInstance().setBleStatus("未连接", null);
-                Prefer.getInstance().removeAlarm(address);
+                Prefer.getInstance().disConnected();
                 if (isPreConnectDisconnecting) {
                     // 成功断开后连接
                     isPreConnectDisconnecting = false;
