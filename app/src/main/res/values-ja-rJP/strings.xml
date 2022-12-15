@@ -1,0 +1,271 @@
+<resources>
+    <string name="app_name">Motion Bed</string>
+
+    <!-- common -->
+    <string name="exit">戻るキーを再度押してアプリケーションを終了します</string>
+    <string name="tongbukz_on">同期 開く</string>
+    <string name="tongbukz_off">同期 オフ</string>
+
+
+    <string name="text_enter">エンター</string>
+    <string name="blue_equipment">Bluetoothデバイス</string>
+    <string name="search_blue_equipment">近くのBluetoothを検索する</string>
+    <string name="searching">検索中...</string>
+
+    <string name="connecting">接続中...</string>
+    <string name="please_wait">待機中...</string>
+    <string name="please_input">数字を入力してください</string>
+    
+    <!-- dialog -->
+    <string name="connected_failed">接続に失敗しました。再接続を試みてください</string>
+    <string name="dialog_title_disconnect">切断済みかどうか</string>
+    <string name="dialog_negetive">キャンセル</string>
+    <string name="dialog_positive">もちろん</string>
+    <string name="dialog_confirm">確認</string>
+
+    <!-- 蓝牙设备/设置界面 -->
+    <string name="connecting_device">デバイス接続</string>
+    <string name="not_connected">未接続</string>
+    <string name="connected">接続済み</string>
+    <string name="disconnect">切断</string>
+    <string name="click_to_connect">接続</string>
+
+    <string name="lighting_time">ライトタイム</string>
+    <string name="switch_language">言語切替</string>
+    <string name="french">フランス語</string>
+    <string name="english">英語</string>
+    <string name="version">バージョン番号</string>
+    <string name="privacy_policy">プライバシーポリシー</string>
+    <string name="setting">設定</string>
+    <string name="fault_debugging">デバッグ</string>
+    <string name="fault_part">故障部品</string>
+    <string name="fault_type">故障ジャンル</string>
+    <string name="alarm">目覚まし設定</string>
+    <string name="sync">どうきせいぎょ</string>
+
+
+    <!-- tab -->
+    <string name="kuaijie">ショートカット</string>
+    <string name="weitiao">調整</string>
+    <string name="anmo">ショートカット</string>
+    <string name="dengguang">ライト</string>
+    <string name="sleep">スマートスリープ</string>
+
+    <!-- 快捷 -->
+    <string name="jiyi">メモリ</string>
+    <string name="jiyi1">メモリ1</string>
+    <string name="jiyi2">メモリ2</string>
+    <string name="kandianshi">テレビポジション</string>
+    <string name="lingyali">無重力</string>
+    <string name="zhihan">いびき防止</string>
+    <string name="fuyuan">フラット</string>
+    <string name="tingyinyue">前に傾く</string>
+    <string name="tuibufangsong">後ろに傾く</string>
+    <string name="dingyao">ランバー</string>
+    <string name="fenti">別々</string>
+    <string name="tongbu">同期</string>
+    <string name="yujia">ヨガ</string>
+    <string name="yijianshengqi">一キー上げる</string>
+    <string name="yijianjiangxia">一キー全体下げる</string>
+    <string name="houqing">後ろに傾く</string>
+    <string name="qianqing">前に傾く</string>
+    <string name="zhengtishangsheng">全体上げる</string>
+    <string name="zhengtixiajiang">全体下げる</string>
+    <string name="zhengtifuyuan">フラット</string>
+
+
+    <!-- 微调 -->
+    <string name="beibutiaozheng">背調整</string>
+    <string name="tunbutiaozheng">尻調整</string>
+    <string name="toubutiaozheng">頭調整</string>
+    <string name="tuibutiaozheng">足調整</string>
+    <string name="yaobutiaozheng">腰調整</string>
+    <string name="beituitiaozheng">背及び足循環</string>
+    <string name="zhengtishengjiang">全体昇降</string>
+    <string name="zhengtiqingxie">全体傾ける</string>
+
+    <string name="quanshenxunhuan">全身循環</string>
+    <string name="tunbuxunhuan">尻循環</string>
+    <string name="toubuxunhuan">頭循環</string>
+    <string name="tuibuxunhuan">足循環</string>
+    <string name="yaobuxunhuan">腰循環</string>
+    <string name="beibuxunhuan">背循環</string>
+    <string name="beituixunhuan">背及び足循環</string>
+
+
+    <!-- 灯光 -->
+    <string name="dengguangshijian">ライトタイム</string>
+    <string name="tenfenzhong">10分</string>
+    <string name="eightxiaoshi">8時間</string>
+    <string name="tentxiaoshi">10時間</string>
+    <string name="dengguangliangdu">ライトの輝度</string>
+    <string name="dengguangliangdu_min_tips">現在の輝度が最小値に調整されました</string>
+    <string name="dengguangliangdu_max_tips">現在の輝度が最大値に調整されました</string>
+
+
+
+    <!-- 按摩 -->
+    <string name="anmopingdonghuaqu">マッサージ</string>
+    <string name="anmopinglv">マッサージ頻度</string>
+    <string name="toubuanmo">背のマッサージ</string>
+    <string name="zubuanmo">足のマッサージ</string>
+    <string name="tenmin">10分</string>
+    <string name="twentymin">20分</string>
+    <string name="thirtymin">30分</string>
+
+
+    <string name="device_no_connected">未接続</string>
+    <string name="device_disconnect">デバイスが切断されました。再接続してください</string>
+    <string name="debug_switch">デバッグスイッチ</string>
+    <string name="open">開く</string>
+    <string name="close">オフ</string>
+
+    <!-- 闹钟 -->
+    <string name="alarm_switch">目覚まし設定</string>
+    <string name="alarm_open">オン</string>
+    <string name="alarm_close">オフ</string>
+    <string name="alarm_time">時間</string>
+    <string name="alarm_week">曜日</string>
+    <string name="alarm_week_no_repeat">繰り返さない</string>
+    <string name="alarm_mode">ポジション</string>
+    <string name="alarm_mode_lingyali">無重力</string>
+    <string name="alarm_mode_jiyi1">メモリ1</string>
+    <string name="alarm_mode_budongzuo">動作しない</string>
+    <string name="alarm_anmo">マッサージ</string>
+    <string name="alarm_xiangling">ベル</string>
+    <string name="alarm_save">保存</string>
+    <string name="alarm_mode_lingyali_left">左ゼロ重力</string>
+    <string name="alarm_mode_lingyali_right">ゼロ重力右側</string>
+
+    <!-- 星期 -->
+    <string name="week">曜日</string>
+    <string name="week_monday">月曜日</string>
+    <string name="week_tuesday">火曜日</string>
+    <string name="week_wednesday">水曜日</string>
+    <string name="week_thursday">木曜日</string>
+    <string name="week_friday">金曜日</string>
+    <string name="week_saturday">土曜日</string>
+    <string name="week_sunday">日曜日</string>
+
+    <!-- 故障代码 -->
+    <string name="guzhangtiaoshi">デバッグ</string>
+    <string name="guzhangbujian">故障部品</string>
+    <string name="guzhangleixing">故障ジャンル</string>
+    <string name="guanbi">オフ</string>
+    <string name="toubu">頭</string>
+    <string name="beibu">背</string>
+    <string name="zuobiantunbu">左臀</string>
+    <string name="youbiantunbu">右臀</string>
+    <string name="zuobiantuibu">左足</string>
+    <string name="youbiantuibu">右足</string>
+    <string name="tunbu">尻</string>
+    <string name="tuibu">足</string>
+    <string name="dianjisuohuai">モーター故障</string>
+    <string name="dianjiguozai">モーター過負荷</string>
+    <string name="dianjiduanlu">モーター短絡</string>
+    <string name="cejusuohuai">レンジモジュール故障</string>
+    <string name="tongzucejusuohuai">同じ組レンジモジュール故障</string>
+    <string name="julichazhiguoda">距離差が大きすぎる</string>
+    <string name="dianjifanxiangdongzuo">モーター逆動作</string>
+    <string name="julibuzaifangwei">距離が範囲外となる</string>
+    <string name="julituobian">距離突然変異</string>
+    <string name="mubiaoweizhipianli">目標位置のずれ</string>
+    <string name="shebeiyiqiezhengchang">設備一切正常</string>
+
+    <!-- 智能睡眠 -->
+    <string name="ss_title">Smart sleep</string>
+    <string name="ss_item_shujuluru">Saisir les données de posture</string>
+    <string name="ss_item_shuizitiaozheng">Installer l&#180;angle de position</string>
+    <string name="ss_item_shuimiandingshi">Temps de sommeil</string>
+    <string name="ss_item_shuimianbaogao">Rapport de sommeil</string>
+    <string name="ss_item_zhinengshuimian_open">Sommeil intelli/Ouvert</string>
+    <string name="ss_item_zhinengshuimian_close">Sommeil intelli/Fermé</string>
+    <string name="ss_item_zhinengyedeng_open">Lumière/ouvert</string>
+    <string name="ss_item_zhinengyedeng_close">Lumière/Fermé</string>
+    <string name="ss_item_no_time"> Non chronométrage</string>
+
+    <!-- 睡姿录入 -->
+    <string name="sde_top_title">Input posture data</string>
+    <string name="sde_top_tips_title">Instruction:</string>
+    <string name="sde_top_tips_1">1. D&#180;abord faire le lit plat, puis effectuer l&#180;opération de saisie de données.</string>
+    <string name="sde_top_tips_2">2. Veuillez vous allonger, et après avoir complètement relaxé votre corps, appuyez sur le bouton couché à plat.</string>
+    <string name="sde_top_tips_3">3. Veuillez vous allonger sur le côté et après avoir complètement détendu votre corps, appuyez sur le bouton du côté allongé</string>
+    <string name="sde_top_tips_4">4. Après avoir terminé les opérations ci-dessus, veuillez appuyer sur le bouton Enregistrer</string>
+    <string name="sde_ptcs">A plat：</string>
+    <string name="sde_pt">Poser à plat</string>
+    <string name="sde_ctcs">Sur le côté：</string>
+    <string name="sde_ct">allongé de côté</string>
+    <string name="sde_save">Enregistrer</string>
+    <string name="sde_reset">Réinitialiser</string>
+    <string name="sde_zhinengdai">Ceinture</string>
+    <string name="sde_dialog_fuwei_content">Veuillez d’abord effectuer une réinitialisation à une clé, puis commencer à apprendre vos paramètres de personnalité</string>
+    <string name="sde_dialog_btn_cancel">Cancel</string>
+    <string name="sde_dialog_btn_yijianfuwei">A master reset</string>
+    <string name="sde_dialog_next_content">Please confirm that the electric bed has been restored to level and click Next</string>
+    <string name="sde_dialog_btn_next">Next</string>
+    <string name="sde_dialog_fuwei_loading">The reset...</string>
+
+    <!-- 睡姿角度调整 -->
+    <string name="sad_top_title">Installer l&#180;angle de position</string>
+    <string name="sad_top_tips_title">Instruction:</string>
+    <string name="sad_top_tips_02_1">1. Veuillez ajuster l&#180;angle de votre dos, de vos jambes en position couchée à plat, et appuyez sur le bouton couché à plat après avoir terminé.</string>
+    <string name="sad_top_tips_02_2">2. Veuillez ajuster l&#180;angle de votre dos, de vos jambes lorsque vous êtes allongé sur le côté, et appuyez sur le bouton du côté allongé après avoir terminé.</string>
+    <string name="sad_top_tips_03_1">1. Veuillez ajuster l&#180;angle de votre dos, de votre taille et de vos jambes en position couchée à plat, et appuyez sur le bouton couché après avoir terminé.</string>
+    <string name="sad_top_tips_03_2">2. Veuillez ajuster l&#180;angle de votre dos, de votre taille et de vos jambes lorsque vous êtes allongé sur le côté, et appuyez sur le bouton du côté allongé après avoir terminé.</string>
+    <string name="sad_top_tips_04_1">1. Veuillez ajuster l&#180;angle de votre tête, de votre dos, de votre taille et de vos jambes en position couchée à plat et appuyez sur le bouton couché à plat après avoir terminé.</string>
+    <string name="sad_top_tips_04_2">2. Veuillez ajuster l&#180;angle de votre tête, de votre dos, de votre taille et de vos jambes  lorsque vous êtes allongé sur le côté, et appuyez sur le bouton du côté allongé après avoir terminé.</string>
+    <string name="sad_top_tips_3">3. Après avoir terminé les opérations ci-dessus, appuyez sur le buton Enregistrer.</string>
+    <string name="sad_weizhi_guogao">Position trop élevée</string>
+    <string name="sad_weizhi_guodi">Position trop basse</string>
+    <string name="sad_weizhi_guogao_tips">Vous avez réglé la position trop haute, nous vous recommandons de réduire la table de lit à moins de 20 et de la régler à nouveau</string>
+
+    <!-- 智能睡眠定时 -->
+    <string name="sleep_timer_title">Installer l&#180;heure de sommeil</string>
+
+    <!-- 睡眠报告页面 -->
+    <string name="srm_action_bar_title">Rapport de sommeil</string>
+    <string name="srm_month_report">Rapport mensuel</string>
+    <string name="srm_sleep_time">L&#180;heure de s&#180;endormir</string>
+    <string name="srm_shsj">Données temps réel</string>
+    <string name="srm_no_data">Aucune donnée disponible pour la date sélectionnée</string>
+
+
+    <!-- 月报告 -->
+    <string name="smr_action_bar_title">Rapport mensuel</string>
+    <string name="smr_top_title">Data pour les X derniers jours</string>
+    <string name="smr_top_title_format">Data pour les %s derniers jours</string>
+    <string name="smr_top_zcsj_title">Données au lit par jour</string>
+    <string name="smr_top_zcsj_pjzcsj">Temps moyen</string>
+    <string name="smr_top_zcsj_zczcsj">le plus long temps </string>
+    <string name="smr_top_zcsj_zdzcsj">le plus court temps </string>
+    <string name="smr_top_zcsj_unit">Hours</string>
+
+    <string name="smr_top_fssj_title">Données de tours par jour</string>
+    <string name="smr_top_fssj_pjzcsj">Nombre moyen</string>
+    <string name="smr_top_fssj_zczcsj">Nombre maximum</string>
+    <string name="smr_top_fssj_zdzcsj">Nombre minimum</string>
+    <string name="smr_top_fssj_unit">Times</string>
+
+    <string name="smr_top_ptsj_title">Statistiques de temps moyen par jour</string>
+    <string name="smr_top_ptsj_ptsj">Couchée à plat</string>
+    <string name="smr_top_ptsj_ctsj">Allongé sur le côté</string>
+    <string name="smr_top_ptsj_unit">Hours</string>
+
+
+    <!-- 日报告 -->
+    <string name="sdr_action_bar_title">Rapport de sommeil quotidien</string>
+    <string name="sdr_action_bar_real_title">Données en temps réel au lit</string>
+    <string name="sdr_zcsj">Temps au lit</string>
+    <string name="sdr_fscs">Nombre de tours</string>
+    <string name="sdr_ctsj">temps d&#180;allongé de côté</string>
+    <string name="sdr_ptsj">temps de à plat</string>
+    <string name="sdr_time_h">Hours</string>
+    <string name="sdr_time_m">Mins</string>
+    <string name="sdr_count">Times</string>
+    <string name="sdr_line_title">%sNombre de tours</string>
+    <string name="sdr_line_sub">Nombre de tours</string>
+    <string name="sdr_line_tip">tip:Dormez déjà moins de 3 heures ne peut pas générer de courbe</string>
+    <string name="sdr_line_btn_pre">pre</string>
+    <string name="sdr_line_btn_next">next</string>
+
+</resources>
