@@ -11,19 +11,16 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.sn.blackdianqi.MyApplication;
-import com.sn.blackdianqi.util.LocaleUtils;
 import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.util.PreferenceUtil;
 
-import java.util.List;
 import java.util.Locale;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by Administrator on 2016/12/3 0003.
@@ -35,7 +32,6 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MyApplication.getInstance().addActivity(this);
-
 
 
         //初始化PreferenceUtil
@@ -127,13 +123,16 @@ public class BaseActivity extends AppCompatActivity {
         DisplayMetrics dm = resources.getDisplayMetrics();
         if (language.equals("fr")) {
             config.locale = Locale.FRENCH;
+        }
+        if (language.equals("ja")) {
+            config.locale = Locale.JAPANESE;
         } else {
             config.locale = Locale.ENGLISH;
         }
         if (resources.getConfiguration().fontScale != 1) {
             config.fontScale = 1.0f;
         }
-        Log.d("BaseActivity", "densityDpi="+config.densityDpi);
+        Log.d("BaseActivity", "densityDpi=" + config.densityDpi);
         resources.updateConfiguration(config, dm);
 
     }

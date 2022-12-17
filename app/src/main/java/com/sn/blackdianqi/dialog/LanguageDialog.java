@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 
 import com.sn.blackdianqi.MainActivity;
 import com.sn.blackdianqi.R;
@@ -21,8 +22,6 @@ import com.sn.blackdianqi.util.LocaleUtils;
 import com.sn.blackdianqi.util.Prefer;
 
 import java.util.Locale;
-
-import androidx.annotation.NonNull;
 
 /**
  * 语言对话框
@@ -35,6 +34,8 @@ public class LanguageDialog extends Dialog implements View.OnClickListener {
     private ImageView imgSelectedFrench;
     private RelativeLayout rlEnglish;
     private ImageView imgSelectedEnglish;
+    private RelativeLayout rlJapan;
+    private ImageView imgSelectedJapan;
     private TextView cancel;
 
     public LanguageDialog(@NonNull Context context) {
@@ -55,8 +56,11 @@ public class LanguageDialog extends Dialog implements View.OnClickListener {
         rlFrench.setOnClickListener(this);
         rlEnglish = view.findViewById(R.id.rl_english);
         rlEnglish.setOnClickListener(this);
+        rlJapan = view.findViewById(R.id.rl_japan);
+        rlJapan.setOnClickListener(this);
         imgSelectedFrench = view.findViewById(R.id.img_selected_fr);
         imgSelectedEnglish = view.findViewById(R.id.img_selected_en);
+        imgSelectedJapan = view.findViewById(R.id.img_selected_ja);
         cancel = view.findViewById(R.id.cancel);
         cancel.setOnClickListener(this);
         setContentView(view);
@@ -75,9 +79,15 @@ public class LanguageDialog extends Dialog implements View.OnClickListener {
         if (Prefer.getInstance().getSelectedLanguage().equals("fr")) {
             imgSelectedFrench.setVisibility(View.VISIBLE);
             imgSelectedEnglish.setVisibility(View.GONE);
+            imgSelectedJapan.setVisibility(View.GONE);
+        } else if (Prefer.getInstance().getSelectedLanguage().equals("ja")) {
+            imgSelectedFrench.setVisibility(View.GONE);
+            imgSelectedEnglish.setVisibility(View.GONE);
+            imgSelectedJapan.setVisibility(View.VISIBLE);
         } else {
             imgSelectedFrench.setVisibility(View.GONE);
             imgSelectedEnglish.setVisibility(View.VISIBLE);
+            imgSelectedJapan.setVisibility(View.GONE);
         }
     }
 
@@ -90,6 +100,7 @@ public class LanguageDialog extends Dialog implements View.OnClickListener {
             case R.id.rl_french:
                 imgSelectedFrench.setVisibility(View.VISIBLE);
                 imgSelectedEnglish.setVisibility(View.GONE);
+                imgSelectedJapan.setVisibility(View.GONE);
                 Prefer.getInstance().setSelectedLanguage("fr");
                 if (LocaleUtils.needUpdateLocale(mContext, LocaleUtils.LOCALE_FRENCH)) {
                     LocaleUtils.updateLocale(mContext, LocaleUtils.LOCALE_FRENCH);
@@ -100,6 +111,7 @@ public class LanguageDialog extends Dialog implements View.OnClickListener {
             case R.id.rl_english:
                 imgSelectedFrench.setVisibility(View.GONE);
                 imgSelectedEnglish.setVisibility(View.VISIBLE);
+                imgSelectedJapan.setVisibility(View.GONE);
                 Prefer.getInstance().setSelectedLanguage("en");
                 Resources resources = mContext.getResources();
                 DisplayMetrics dm = resources.getDisplayMetrics();
@@ -110,7 +122,17 @@ public class LanguageDialog extends Dialog implements View.OnClickListener {
                 dismiss();
                 restartAct();
                 break;
-
+            case R.id.rl_japan:
+                imgSelectedFrench.setVisibility(View.GONE);
+                imgSelectedEnglish.setVisibility(View.GONE);
+                imgSelectedJapan.setVisibility(View.VISIBLE);
+                Prefer.getInstance().setSelectedLanguage("ja");
+                if (LocaleUtils.needUpdateLocale(mContext, LocaleUtils.LOCALE_JAPANESE)) {
+                    LocaleUtils.updateLocale(mContext, LocaleUtils.LOCALE_JAPANESE);
+                    restartAct();
+                }
+                dismiss();
+                break;
         }
     }
 

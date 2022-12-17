@@ -393,9 +393,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             LogUtils.i(TAG, "收到有闹钟指令：" + cmd);
             setHasAlarm(cmd);
         } else if (cmd.contains("FFFFFFFF02000E0B")) {
-            LogUtils.i(TAG, "收到智能睡眠感应回码指令：" + cmd);
-            tab5.setVisibility(View.VISIBLE);
-            RunningContext.sleepTimer = cmd.substring(16, 18);
+            if (!Prefer.getInstance().getSelectedLanguage().equals("ja")) {
+                LogUtils.i(TAG, "收到智能睡眠感应回码指令：" + cmd);
+                tab5.setVisibility(View.VISIBLE);
+                RunningContext.sleepTimer = cmd.substring(16, 18);
+            }
         } else if (cmd.contains("FFFFFFFF01000A0B") || cmd.contains("FFFFFFFF0100090B")) {
             Prefer.getInstance().setTongbukzShow(deviceAddress, true);
             String tongbukzSwitchCmd = cmd.substring(16, 18);

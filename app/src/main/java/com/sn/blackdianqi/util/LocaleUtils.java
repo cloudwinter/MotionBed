@@ -34,6 +34,10 @@ public class LocaleUtils {
      */
     public static final Locale LOCALE_FRENCH = Locale.FRENCH;
     /**
+     * 日文
+     */
+    public static final Locale LOCALE_JAPANESE = Locale.JAPANESE;
+    /**
      * 俄文
      */
     public static final Locale LOCALE_RUSSIAN = new Locale("ru");

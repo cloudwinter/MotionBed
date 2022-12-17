@@ -76,6 +76,42 @@ android:orientation="vertical" >
         </RelativeLayout>
 
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:background="@color/black" />
+
+
+        <RelativeLayout
+            android:id="@+id/rl_japan"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/japan"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:layout_centerInParent="true"
+                />
+
+            <ImageView
+                android:id="@+id/img_selected_ja"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_selected"
+                android:layout_marginLeft="40dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="35dp"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+
     </LinearLayout>
 
 

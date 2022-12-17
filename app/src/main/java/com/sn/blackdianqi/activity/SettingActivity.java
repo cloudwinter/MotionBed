@@ -1,5 +1,7 @@
 package com.sn.blackdianqi.activity;
 
+import static com.sn.blackdianqi.BuildConfig.Debuggable;
+
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -16,6 +18,7 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 
 import com.sn.blackdianqi.MyApplication;
 import com.sn.blackdianqi.R;
@@ -35,13 +38,9 @@ import com.sn.blackdianqi.view.TranslucentActionBar;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.sn.blackdianqi.BuildConfig.Debuggable;
 
 
 public class SettingActivity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
@@ -88,7 +87,6 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
 
     // 故障调试对话框
     private FaultDebugDialog faultDebugDialog;
-
 
 
     @Override
@@ -140,14 +138,13 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         llAlarm.setVisibility(View.GONE);
         llSync.setVisibility(View.GONE);
         // 获取当前系统的语言
-        Locale curLocale = getResources().getConfiguration().locale;
-        //通过Locale的equals方法，判断出当前语言环境
-        if (curLocale.getLanguage().equals("en")) {
-            //英文
-            tvLanguage.setText(R.string.english);
-        } else {
-            //法文
+        String language = Prefer.getInstance().getSelectedLanguage();
+        if (language.equals("fr")) {
             tvLanguage.setText(R.string.french);
+        } else if (language.equals("ja")) {
+            tvLanguage.setText(R.string.japan);
+        } else {
+            tvLanguage.setText(R.string.english); // 默认是英文
         }
 
         llFaultDebug.setOnClickListener(this);
@@ -171,7 +168,7 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
 
     /**
      * 是否显示故障调试
-     * @param title
+     *
      * @return
      */
     private boolean isNeedShowFaultDebug() {
@@ -203,7 +200,7 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         blueNames.add("QMS-L84");
         blueNames.add("QMS-L94");
         boolean isNeedShow = false;
-        for (String blueName:blueNames) {
+        for (String blueName : blueNames) {
             if (title.toUpperCase().contains(blueName)) {
                 isNeedShow = true;
                 break;
@@ -239,7 +236,7 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         switch (v.getId()) {
             case R.id.ll_connect:
                 Intent intent = new Intent(SettingActivity.this, ConnectActivity.class);
-                intent.putExtra("from","set");
+                intent.putExtra("from", "set");
                 startActivity(intent);
                 break;
             case R.id.ll_language:
@@ -255,7 +252,7 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
                     sendBlueCmd("FF FF FF FF 03 00 5A 00 02 FE D2");
                     faultDebugDialog.show();
                 } else {
-                    ToastUtils.showToast(RunningContext.sAppContext,R.string.device_no_connected);
+                    ToastUtils.showToast(RunningContext.sAppContext, R.string.device_no_connected);
                 }
                 break;
             case R.id.ll_alarm:
@@ -281,6 +278,7 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
 
     /**
      * 回码
+     *
      * @param cmd
      */
     private void handleReceiveData(String cmd) {
@@ -297,9 +295,9 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         if (!cmd.contains("FFFFFFFF0304")) {
             return;
         }
-        LogUtils.i(TAG, "故障回复码",cmd);
-        String faultPartVal = cmd.substring(12,16);
-        String faultTypeVal = cmd.substring(16,20);
+        LogUtils.i(TAG, "故障回复码", cmd);
+        String faultPartVal = cmd.substring(12, 16);
+        String faultTypeVal = cmd.substring(16, 20);
         faultDebugDialog.setFaultBody(faultPartVal, faultTypeVal);
     }
 
@@ -343,7 +341,7 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
                 if (bundle != null) {
                     String data = bundle.getString(BluetoothLeService.EXTRA_DATA);
                     if (data != null) {
-                        LogUtils.e("SettingActivity","==设置  接收设备返回的数据==", data);
+                        LogUtils.e("SettingActivity", "==设置  接收设备返回的数据==", data);
                         handleReceiveData(data);
                     }
                 }
