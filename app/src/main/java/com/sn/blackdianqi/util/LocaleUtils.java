@@ -166,4 +166,33 @@ public class LocaleUtils {
             return -1;
         }
     }
+
+    public static String getJaWeek(int week) {
+        String jaWeek = "";
+        switch (week) {
+            case 1:
+                jaWeek = "月";
+                break;
+            case 2:
+                jaWeek = "火";
+                break;
+            case 3:
+                jaWeek = "水";
+                break;
+            case 4:
+                jaWeek = "木";
+                break;
+            case 5:
+                jaWeek = "金";
+                break;
+            case 6:
+                jaWeek = "土";
+                break;
+            case 7:
+                jaWeek = "日";
+                break;
+            default:break;
+        }
+        return jaWeek;
+    }
 }

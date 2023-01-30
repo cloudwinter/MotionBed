@@ -28,6 +28,7 @@ import com.sn.blackdianqi.bean.AlarmBean;
 import com.sn.blackdianqi.bean.DeviceBean;
 import com.sn.blackdianqi.blue.BluetoothLeService;
 import com.sn.blackdianqi.util.BlueUtils;
+import com.sn.blackdianqi.util.LocaleUtils;
 import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.util.ToastUtils;
@@ -215,7 +216,11 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
                 if (count > 0) {
                     weekStr.append(",");
                 }
-                weekStr.append(entry.getKey());
+                if (Prefer.getInstance().getSelectedLanguage().equals("ja")) {
+                    weekStr.append(LocaleUtils.getJaWeek(entry.getKey()));
+                } else {
+                    weekStr.append(entry.getKey());
+                }
                 count++;
             }
         }
@@ -228,6 +233,7 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
         switch (v.getId()) {
             case R.id.ll_time:
                 TimePicker picker = new TimePicker(this);
+                picker.getCancelView().setText(R.string.dialog_cancel);
                 picker.getOkView().setTextColor(getResources().getColor(R.color.text_green));
                 picker.getOkView().setText(getText(R.string.dialog_confirm));
                 picker.getWheelLayout().setTimeMode(TimeMode.HOUR_24_NO_SECOND);

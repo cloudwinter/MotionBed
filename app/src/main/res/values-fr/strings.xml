@@ -22,6 +22,7 @@
     <string name="dialog_negetive">cancel</string>
     <string name="dialog_positive">sure</string>
     <string name="dialog_confirm">Confirmer</string>
+    <string name="dialog_cancel">Cancel</string>
 
     <!-- 蓝牙设备/设置界面 -->
     <string name="connecting_device">Connecter l&#180;appareil</string>

@@ -7,9 +7,9 @@
     <string name="tongbukz_off">同期 オフ</string>
 
 
-    <string name="text_enter">エンター</string>
+    <string name="text_enter">開始</string>
     <string name="blue_equipment">Bluetoothデバイス</string>
-    <string name="search_blue_equipment">近くのBluetoothを検索する</string>
+    <string name="search_blue_equipment">再度読み込み</string>
     <string name="searching">検索中...</string>
 
     <string name="connecting">接続中...</string>
@@ -22,13 +22,14 @@
     <string name="dialog_negetive">キャンセル</string>
     <string name="dialog_positive">もちろん</string>
     <string name="dialog_confirm">確認</string>
+    <string name="dialog_cancel">キャンセル</string>
 
     <!-- 蓝牙设备/设置界面 -->
     <string name="connecting_device">デバイス接続</string>
     <string name="not_connected">未接続</string>
     <string name="connected">接続済み</string>
     <string name="disconnect">切断</string>
-    <string name="click_to_connect">接続</string>
+    <string name="click_to_connect">ここをクリック</string>
 
     <string name="lighting_time">ライトタイム</string>
     <string name="switch_language">言語切替</string>
@@ -41,13 +42,13 @@
     <string name="fault_debugging">デバッグ</string>
     <string name="fault_part">故障部品</string>
     <string name="fault_type">故障ジャンル</string>
-    <string name="alarm">目覚まし設定</string>
+    <string name="alarm">目覚ましOn/Off</string>
     <string name="sync">どうきせいぎょ</string>
 
 
     <!-- tab -->
-    <string name="kuaijie">ショートカット</string>
-    <string name="weitiao">調整</string>
+    <string name="kuaijie">TOP</string>
+    <string name="weitiao">背・脚 調整</string>
     <string name="anmo">ショートカット</string>
     <string name="dengguang">ライト</string>
     <string name="sleep">スマートスリープ</string>
@@ -58,7 +59,7 @@
     <string name="jiyi2">メモリ2</string>
     <string name="kandianshi">テレビポジション</string>
     <string name="lingyali">無重力</string>
-    <string name="zhihan">いびき防止</string>
+    <string name="zhihan">いびき軽減</string>
     <string name="fuyuan">フラット</string>
     <string name="tingyinyue">前に傾く</string>
     <string name="tuibufangsong">後ろに傾く</string>
@@ -79,9 +80,9 @@
     <string name="beibutiaozheng">背調整</string>
     <string name="tunbutiaozheng">尻調整</string>
     <string name="toubutiaozheng">頭調整</string>
-    <string name="tuibutiaozheng">足調整</string>
+    <string name="tuibutiaozheng">脚調整</string>
     <string name="yaobutiaozheng">腰調整</string>
-    <string name="beituitiaozheng">背及び足循環</string>
+    <string name="beituitiaozheng">背脚調整</string>
     <string name="zhengtishengjiang">全体昇降</string>
     <string name="zhengtiqingxie">全体傾ける</string>
 
@@ -95,7 +96,7 @@
 
 
     <!-- 灯光 -->
-    <string name="dengguangshijian">ライトタイム</string>
+    <string name="dengguangshijian">点灯時間</string>
     <string name="tenfenzhong">10分</string>
     <string name="eightxiaoshi">8時間</string>
     <string name="tentxiaoshi">10時間</string>

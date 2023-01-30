@@ -175,7 +175,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         }
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
-        actionBar.setData(null, R.mipmap.ic_back, null, R.mipmap.ic_set, null, this);
+        actionBar.setData(null, R.mipmap.ic_back, null, R.mipmap.ic_set, getString(R.string.setting), this);
         actionBar.setStatusBarHeight(getStatusBarHeight());
         DeviceBean deviceBean = Prefer.getInstance().getConnectedDevice();
         if (deviceBean != null) {

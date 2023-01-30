@@ -66,19 +66,18 @@
                 android:id="@+id/iv_actionbar_right"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="12dp" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="12dp"/>
 
             <TextView
                 android:id="@+id/tv_actionbar_right"
                 style="@style/text_white"
-                android:layout_centerInParent="true"
+                android:layout_below="@+id/iv_actionbar_right"
+                android:layout_centerHorizontal="true"
                 android:layout_marginRight="12dp"
                 android:gravity="center_vertical"
                 android:singleLine="true"
-                android:text=""
-                android:textSize="13dp"
-                android:visibility="gone" />
+                android:textSize="13dp" />
         </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>
