@@ -42,7 +42,7 @@
     <string name="fault_debugging">デバッグ</string>
     <string name="fault_part">故障部品</string>
     <string name="fault_type">故障ジャンル</string>
-    <string name="alarm">目覚ましOn/Off</string>
+    <string name="alarm">目覚まし設定</string>
     <string name="sync">どうきせいぎょ</string>
 
 
@@ -58,7 +58,7 @@
     <string name="jiyi1">メモリ1</string>
     <string name="jiyi2">メモリ2</string>
     <string name="kandianshi">テレビポジション</string>
-    <string name="lingyali">無重力</string>
+    <string name="lingyali">リラックス</string>
     <string name="zhihan">いびき軽減</string>
     <string name="fuyuan">フラット</string>
     <string name="tingyinyue">前に傾く</string>
@@ -123,18 +123,18 @@
     <string name="close">オフ</string>
 
     <!-- 闹钟 -->
-    <string name="alarm_switch">目覚まし設定</string>
+    <string name="alarm_switch">目覚まし設定ON/OFF</string>
     <string name="alarm_open">オン</string>
     <string name="alarm_close">オフ</string>
     <string name="alarm_time">時間</string>
     <string name="alarm_week">曜日</string>
     <string name="alarm_week_no_repeat">繰り返さない</string>
     <string name="alarm_mode">ポジション</string>
-    <string name="alarm_mode_lingyali">無重力</string>
+    <string name="alarm_mode_lingyali">リラックス</string>
     <string name="alarm_mode_jiyi1">メモリ1</string>
     <string name="alarm_mode_budongzuo">動作しない</string>
     <string name="alarm_anmo">マッサージ</string>
-    <string name="alarm_xiangling">ベル</string>
+    <string name="alarm_xiangling">アラーム</string>
     <string name="alarm_save">保存</string>
     <string name="alarm_mode_lingyali_left">左ゼロ重力</string>
     <string name="alarm_mode_lingyali_right">ゼロ重力右側</string>
