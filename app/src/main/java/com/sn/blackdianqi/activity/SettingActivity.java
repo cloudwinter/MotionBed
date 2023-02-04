@@ -215,7 +215,11 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
             AlarmBean alarmBean = Prefer.getInstance().getAlarm(Prefer.getInstance().getLatelyConnectedDevice());
             if (alarmBean != null) {
                 llAlarm.setVisibility(View.VISIBLE);
-                tvAlarm.setText(alarmBean.isAlarmSwitch() ? R.string.open : R.string.close);
+                if (alarmBean.isAlarmSwitch()) {
+                    tvAlarm.setText(alarmBean.getHourStr()+":"+alarmBean.getMinuteStr());
+                } else {
+                    tvAlarm.setText("");
+                }
             }
         }
     }
