@@ -6,6 +6,11 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
+import android.bluetooth.le.BluetoothLeScanner;
+import android.bluetooth.le.ScanCallback;
+import android.bluetooth.le.ScanFilter;
+import android.bluetooth.le.ScanResult;
+import android.bluetooth.le.ScanSettings;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -93,6 +98,8 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
     private BluetoothLeService mBluetoothLeService;
     // 蓝牙适配器
     private BluetoothAdapter mBluetoothAdapter;
+    // 蓝牙扫描
+    private BluetoothLeScanner mBluetoothLeScanner;
     // 蓝牙特征值
     private ArrayList<ArrayList<BluetoothGattCharacteristic>> mGattCharacteristics;
 
@@ -176,6 +183,7 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
         // 获取手机本地的蓝牙适配器
         final BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         mBluetoothAdapter = bluetoothManager.getAdapter();
+        mBluetoothLeScanner = mBluetoothAdapter.getBluetoothLeScanner();
 
     }
 
@@ -204,13 +212,19 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
                 }
             }
             if (RunningContext.checkLocationPermission(ConnectActivity.this, true)) {
-                mBluetoothAdapter.startLeScan(mLeScanCallback);
+                List<ScanFilter> filters = new ArrayList<ScanFilter>();
+                //这里使用的SEARCH_SERVICE_UUID可以向蓝牙芯片厂商获取
+//                filters.add(0, new ScanFilter.Builder().setServiceUuid(new ParcelUuid(UUID.fromString(MyApplication.HEART_RATE_MEASUREMENT))).build());
+                ScanSettings settings = new ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).build();
+                mBluetoothLeScanner.startScan(filters, settings, mScanCallback);
             }
         } else {
             if (mScanning) {
                 LogUtils.e(TAG, "==停止扫描蓝牙设备==", "stoping................");
                 mScanning = false;
-                mBluetoothAdapter.stopLeScan(mLeScanCallback);
+                if (RunningContext.checkLocationPermission(ConnectActivity.this, true)) {
+                    mBluetoothLeScanner.stopScan(mScanCallback);
+                }
                 textViewTry.setText(getString(R.string.search_blue_equipment));
             }
         }
@@ -343,44 +357,111 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
     };
 
 
-    /**
-     * 蓝牙扫描回调函数 实现扫描蓝牙设备，回调蓝牙BluetoothDevice，可以获取name MAC等信息
-     */
-    private BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
+
+//    /**
+//     * 蓝牙扫描回调函数 实现扫描蓝牙设备，回调蓝牙BluetoothDevice，可以获取name MAC等信息
+//     */
+//    private BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
+//        @Override
+//        public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
+//            runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    if (device != null) {
+//                        if (RunningContext.checkLocationPermission(ConnectActivity.this, true)) {
+//                            LogUtils.i(TAG, "搜索到蓝牙设备信息：" + device.getName()+" "+device.getAddress());
+//                            // 发送给客户时需要加上
+//                            String deviceName = device.getName();
+//                            if (TextUtils.isEmpty(deviceName)) {
+//                                return;
+//                            }
+//                            if (!isContain(deviceName)) {
+//                                return;
+//                            }
+//                            LogUtils.e(TAG, "过滤到蓝牙设备信息：" + device.getName() + " " + device.getAddress());
+//                            String latelyConnectedDevice = Prefer.getInstance().getLatelyConnectedDevice();
+//                            if (device.getAddress().equals(latelyConnectedDevice)) {
+//                                if (("main").equals(mFrom) && isFirstScan) {
+//                                    LogUtils.e(TAG, "扫描到上一次连接成功的蓝牙设备：" + device.getName() + " " + device.getAddress());
+//                                    // 如果是从首页第一次进入，并且扫描到之前连接过的设备，则自动连接
+//                                    mSelectedDeviceBean = mBlueDeviceListAdapter.addDevice(device, false);
+//                                    if (mSelectedDeviceBean != null) {
+//                                        connect();
+//                                        return;
+//                                    }
+//                                }
+//                            }
+//                            mBlueDeviceListAdapter.addDevice(device, false);
+//                        }
+//                    }
+//                }
+//            });
+//        }
+//    };
+
+
+
+    private ScanCallback mScanCallback = new ScanCallback() {
+
         @Override
-        public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (device != null) {
-                        LogUtils.i(TAG, "搜索到蓝牙设备信息：" + device.getName()+" "+device.getAddress());
-                        // 发送给客户时需要加上
-                        String deviceName = device.getName();
-                        if (TextUtils.isEmpty(deviceName)) {
-                            return;
-                        }
-                        if (!isContain(deviceName)) {
-                            return;
-                        }
-                        LogUtils.e(TAG, "过滤到蓝牙设备信息：" + device.getName() + " " + device.getAddress());
-                        String latelyConnectedDevice = Prefer.getInstance().getLatelyConnectedDevice();
-                        if (device.getAddress().equals(latelyConnectedDevice)) {
-                            if (("main").equals(mFrom) && isFirstScan) {
-                                LogUtils.e(TAG, "扫描到上一次连接成功的蓝牙设备：" + device.getName() + " " + device.getAddress());
-                                // 如果是从首页第一次进入，并且扫描到之前连接过的设备，则自动连接
-                                mSelectedDeviceBean = mBlueDeviceListAdapter.addDevice(device, false);
-                                if (mSelectedDeviceBean != null) {
-                                    connect();
-                                    return;
-                                }
-                            }
-                        }
-                        mBlueDeviceListAdapter.addDevice(device, false);
-                    }
-                }
-            });
+        public void onScanResult(int callbackType, ScanResult result) {
+            LogUtils.i(TAG, "扫描的设备信息：" + result);
+            List<ScanResult> list = new ArrayList();
+            list.add(result);
+            handleScanResult(list);
+        }
+
+        @Override
+        public void onBatchScanResults(List<ScanResult> results) {
+            handleScanResult(results);
+        }
+
+        @Override
+        public void onScanFailed(int errorCode) {
+            LogUtils.e(TAG, "蓝牙扫描设备失败：" + errorCode);
         }
     };
+
+    private void handleScanResult(List<ScanResult> scanResultList) {
+        if (RunningContext.checkLocationPermission(ConnectActivity.this, true)) {
+            for (ScanResult scanResult : scanResultList) {
+                BluetoothDevice device = scanResult.getDevice();
+                String deviceName = device.getName();
+                if (TextUtils.isEmpty(deviceName)) {
+                    return;
+                }
+                if (!isContain(deviceName)) {
+                    return;
+                }
+                LogUtils.e(TAG, "过滤到蓝牙设备信息：" + deviceName);
+                addDevice(device, deviceName);
+            }
+        }
+    }
+
+
+    private void addDevice(final BluetoothDevice device,final String deviceName) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                String latelyConnectedDevice = Prefer.getInstance().getLatelyConnectedDevice();
+                if (device.getAddress().equals(latelyConnectedDevice)) {
+                    if (("main").equals(mFrom) && isFirstScan) {
+                        LogUtils.e(TAG, "扫描到上一次连接成功的蓝牙设备：" + deviceName + " " + device.getAddress());
+                        // 如果是从首页第一次进入，并且扫描到之前连接过的设备，则自动连接
+                        mSelectedDeviceBean = mBlueDeviceListAdapter.addDevice(device, false);
+                        if (mSelectedDeviceBean != null) {
+                            connect();
+                            return;
+                        }
+                    }
+                }
+                mBlueDeviceListAdapter.addDevice(device, false);
+            }
+        });
+    }
+
+
 
 
     private boolean isConnected() {
@@ -599,7 +680,7 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
         if (TextUtils.isEmpty(blueName)) {
             return false;
         }
-        if (blueNameList == null || blueNameList.size() <= 0) {
+        if (blueNameList == null || blueNameList.size() == 0) {
             blueNameList = defindeBlueNameList();
         }
         for (String item : blueNameList) {

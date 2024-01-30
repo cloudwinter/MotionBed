@@ -157,9 +157,26 @@ public class RunningContext {
         }
 
         boolean granted = true;
-        String[] permissions = new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
+
+        List<String> mPermissionList = new ArrayList<>();
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
+            // Android 版本大于等于 Android12 时
+            // 只包括蓝牙这部分的权限，其余的需要什么权限自己添加
+            mPermissionList.add(Manifest.permission.BLUETOOTH_SCAN);
+//            mPermissionList.add(Manifest.permission.BLUETOOTH_ADVERTISE);
+            mPermissionList.add(Manifest.permission.BLUETOOTH_CONNECT);
+            mPermissionList.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+            mPermissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        } else {
+            // Android 版本小于 Android12 及以下版本
+            mPermissionList.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+            mPermissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        }
+
+
         List<String> newApplyPermissions = new ArrayList<>();
-        for (String permission : permissions) {
+        for (String permission : mPermissionList) {
             if (PackageManager.PERMISSION_GRANTED != ContextCompat.checkSelfPermission(sAppContext, permission)) {
                 granted = false;
                 newApplyPermissions.add(permission);
@@ -175,27 +192,6 @@ public class RunningContext {
         } else {
             LogUtils.i("checkLocationPermission 检查定位权限 定时任务结果：" + granted);
         }
-
-
-//        boolean foreground = ActivityCompat.checkSelfPermission(sAppContext,
-//                Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
-//
-//        if (foreground) {
-//            boolean background = ActivityCompat.checkSelfPermission(activity,
-//                    Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED;
-//
-//            if (background) {
-//                granted = true;
-//            } else {
-//                ActivityCompat.requestPermissions(activity,
-//                        new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, PERMISSIONS_REQUEST_CODE);
-//            }
-//        } else {
-//            ActivityCompat.requestPermissions(activity,
-//                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
-//                            Manifest.permission.ACCESS_BACKGROUND_LOCATION}, PERMISSIONS_REQUEST_CODE);
-//
-//        }
         return granted;
     }
 

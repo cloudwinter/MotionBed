@@ -1,6 +1,5 @@
 package com.sn.blackdianqi.activity;
 
-import static com.sn.blackdianqi.BuildConfig.Debuggable;
 
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.content.BroadcastReceiver;
@@ -63,6 +62,8 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
 
     @BindView(R.id.ll_version)
     LinearLayout llVersion;
+    @BindView(R.id.tv_version)
+    TextView tv_version;
     @BindView(R.id.ll_privacy)
     LinearLayout llPrivacy;
 
@@ -132,9 +133,6 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         llPrivacy.setOnClickListener(this);
         llAlarm.setOnClickListener(this);
         llDebug.setOnClickListener(this);
-        if (Debuggable) {
-            llDebug.setVisibility(View.VISIBLE);
-        }
         llAlarm.setVisibility(View.GONE);
         llSync.setVisibility(View.GONE);
         // 获取当前系统的语言
@@ -146,7 +144,7 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         } else {
             tvLanguage.setText(R.string.english); // 默认是英文
         }
-
+        tv_version.setText(RunningContext.getVersionName());
         llFaultDebug.setOnClickListener(this);
         faultDebugDialog = new FaultDebugDialog(this);
         if (isNeedShowFaultDebug()) {

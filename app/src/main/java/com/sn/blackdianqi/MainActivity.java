@@ -74,8 +74,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mBluetoothAdapter = bluetoothManager.getAdapter();
         if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
             // 未打开蓝牙
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, 10);
+            if (RunningContext.checkLocationPermission(this, true)) {
+                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableBtIntent, 10);
+            }
         }
     }
 
@@ -83,6 +85,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.text_enter:
+                if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
+                    ToastUtils.showToast(this,"请开启蓝牙");
+                    return;
+                }
                 // 判断当前蓝牙是否已连接，如果已连接直接调整到HomeActivity
                 if (BlueUtils.isConnected()) {
                     // 跳转到首页页面
