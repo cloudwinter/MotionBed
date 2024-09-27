@@ -288,7 +288,7 @@
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
         android:layout_marginTop="18dp"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
