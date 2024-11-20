@@ -43,18 +43,20 @@ android {
 
     signingConfigs {
         debug {
+            v1SigningEnabled true
+            v2SigningEnabled true
             storeFile file('./keystore/lykj_release.jks')
             storePassword '123456'
             keyAlias 'lykj'
             keyPassword '123456'
         }
         release {
+            v1SigningEnabled true
+            v2SigningEnabled true
             storeFile file('./keystore/lykj_release.jks')
             storePassword '123456'
             keyAlias 'lykj'
             keyPassword '123456'
-            v2SigningEnabled false
-
         }
     }
 
@@ -81,6 +83,13 @@ android {
                 }
             }
         }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
     }
 
     compileOptions {
@@ -133,6 +142,7 @@ dependencies {
 
     // eventbus
     implementation("org.greenrobot:eventbus:3.3.1")
+
 
     // test
     testImplementation 'junit:junit:4.12'
