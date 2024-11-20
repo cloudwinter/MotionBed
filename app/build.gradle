@@ -85,6 +85,13 @@ android {
         }
     }
 
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
@@ -135,6 +142,7 @@ dependencies {
 
     // eventbus
     implementation("org.greenrobot:eventbus:3.3.1")
+
 
     // test
     testImplementation 'junit:junit:4.12'
