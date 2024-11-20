@@ -15,15 +15,14 @@
         android:id="@+id/ll_connect"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginTop="55dp"
+        android:layout_marginRight="@dimen/dp_15"
         android:background="@drawable/bg_blue_item"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:layout_marginTop="55dp"
-        android:layout_marginLeft="@dimen/dp_15"
-        android:layout_marginRight="@dimen/dp_15"
         android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        >
+        android:paddingRight="12dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -44,23 +43,22 @@
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@mipmap/ic_row"
-            />
+            android:src="@mipmap/ic_row" />
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="18dp"/>
+        android:layout_height="18dp" />
 
     <LinearLayout
         android:id="@+id/ll_language"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginRight="@dimen/dp_15"
         android:background="@drawable/bg_blue_item"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:layout_marginLeft="@dimen/dp_15"
-        android:layout_marginRight="@dimen/dp_15"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
         android:visibility="visible">
@@ -85,8 +83,7 @@
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@mipmap/ic_row"
-            />
+            android:src="@mipmap/ic_row" />
     </LinearLayout>
 
     <TextView
@@ -98,11 +95,11 @@
         android:id="@+id/ll_version"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:background="@drawable/bg_blue_item"
         android:layout_marginLeft="@dimen/dp_15"
         android:layout_marginRight="@dimen/dp_15"
+        android:background="@drawable/bg_blue_item"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:paddingLeft="12dp"
         android:paddingRight="12dp">
 
@@ -138,11 +135,11 @@
         android:id="@+id/ll_privacy"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:background="@drawable/bg_blue_item"
         android:layout_marginLeft="@dimen/dp_15"
         android:layout_marginRight="@dimen/dp_15"
+        android:background="@drawable/bg_blue_item"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:paddingLeft="12dp"
         android:paddingRight="12dp">
 
@@ -165,8 +162,7 @@
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@mipmap/ic_row"
-             />
+            android:src="@mipmap/ic_row" />
     </LinearLayout>
 
 
@@ -174,14 +170,14 @@
         android:id="@+id/ll_fault"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="@dimen/dp_15"
+        android:background="@drawable/bg_blue_item"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:background="@drawable/bg_blue_item"
-        android:layout_marginLeft="@dimen/dp_15"
-        android:layout_marginRight="@dimen/dp_15"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
-        android:layout_marginTop="18dp"
         android:visibility="gone">
 
         <TextView
@@ -196,8 +192,7 @@
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@mipmap/ic_row"
-            />
+            android:src="@mipmap/ic_row" />
     </LinearLayout>
 
 
@@ -210,11 +205,11 @@
         android:id="@+id/ll_alarm"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:background="@drawable/bg_blue_item"
         android:layout_marginLeft="@dimen/dp_15"
         android:layout_marginRight="@dimen/dp_15"
+        android:background="@drawable/bg_blue_item"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
         android:visibility="visible">
@@ -232,16 +227,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
+            android:text="@string/close"
             android:textColor="@color/text_green"
-            android:textSize="14dp"
-            android:text="@string/close"/>
+            android:textSize="14dp" />
 
 
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@mipmap/ic_row"
-            />
+            android:src="@mipmap/ic_row" />
     </LinearLayout>
 
     <!-- 同步控制 -->
@@ -249,11 +243,11 @@
         android:id="@+id/ll_sync_control"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:background="@drawable/bg_blue_item"
         android:layout_marginLeft="@dimen/dp_15"
         android:layout_marginRight="@dimen/dp_15"
+        android:background="@drawable/bg_blue_item"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
         android:visibility="gone">
@@ -268,11 +262,10 @@
 
         <CheckBox
             android:id="@+id/cb_sync"
+            style="@style/checkbox_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/checkbox_style"
-            android:background="@drawable/bg_checkbox"
-            />
+            android:background="@drawable/bg_checkbox" />
 
     </LinearLayout>
 
@@ -280,14 +273,14 @@
         android:id="@+id/ll_debug"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="@dimen/dp_15"
+        android:background="@drawable/bg_blue_item"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:background="@drawable/bg_blue_item"
-        android:layout_marginLeft="@dimen/dp_15"
-        android:layout_marginRight="@dimen/dp_15"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
-        android:layout_marginTop="18dp"
         android:visibility="visible">
 
         <TextView
@@ -309,8 +302,7 @@
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@mipmap/ic_row"
-            />
+            android:src="@mipmap/ic_row" />
     </LinearLayout>
 
 
