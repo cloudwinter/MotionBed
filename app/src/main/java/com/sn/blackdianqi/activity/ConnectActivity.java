@@ -650,6 +650,7 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
         blueNameList.add("QMS3");
 
         blueNameList.add("QMS-MQ");
+        blueNameList.add("SealyMF");
         blueNameList.add("QMS2");
 
         blueNameList.add("QMS-KQ-H");

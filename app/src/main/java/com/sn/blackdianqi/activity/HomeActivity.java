@@ -259,7 +259,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         } else if (blueName.contains("QMS-NQ") || blueName.contains("QMS3")) {
             fragments.add(new KuaijieK2Fragment());
             fragments.add(new WeitiaoW3Fragment());
-        } else if (blueName.contains("QMS-MQ") || blueName.contains("QMS2")) {
+        } else if (blueName.contains("QMS-MQ") || blueName.contains("QMS2") ||blueName.contains("SealyMF")) {
             fragments.add(new KuaijieK2Fragment());
             fragments.add(new WeitiaoW4Fragment());
         } else if (blueName.contains("QMS-KQ-H") || blueName.contains("QMS-H02")) {
