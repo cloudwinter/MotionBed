@@ -26,6 +26,7 @@ import com.sn.blackdianqi.adapter.TabPagerAdapter;
 import com.sn.blackdianqi.base.BaseActivity;
 import com.sn.blackdianqi.base.BaseFragment;
 import com.sn.blackdianqi.bean.AlarmBean;
+import com.sn.blackdianqi.bean.AskStatusgeEvent;
 import com.sn.blackdianqi.bean.DateBean;
 import com.sn.blackdianqi.bean.DeviceBean;
 import com.sn.blackdianqi.bean.MessageEvent;
@@ -67,6 +68,7 @@ import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.Nullable;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -259,7 +261,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         } else if (blueName.contains("QMS-NQ") || blueName.contains("QMS3")) {
             fragments.add(new KuaijieK2Fragment());
             fragments.add(new WeitiaoW3Fragment());
-        } else if (blueName.contains("QMS-MQ") || blueName.contains("QMS2") ||blueName.contains("SealyMF")) {
+        } else if (blueName.contains("QMS-MQ") || blueName.contains("QMS2") || blueName.contains("SealyMF")) {
             fragments.add(new KuaijieK2Fragment());
             fragments.add(new WeitiaoW4Fragment());
         } else if (blueName.contains("QMS-KQ-H") || blueName.contains("QMS-H02")) {
@@ -323,6 +325,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             sendAlarmInitCmd();
             Thread.sleep(500L);
             sendBlueCmd("FF FF FF FF 01 00 0A 0B 0F 21 04");
+            Log.e("====KuaijieBaseFragment","home 22222");
+            EventBus.getDefault().post(new AskStatusgeEvent(true));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -407,6 +411,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             messageEvent.setTongbukzShow(true);
             messageEvent.setTongbukzSwitch("01".equals(tongbukzSwitchCmd) ? true : false);
             EventBus.getDefault().post(messageEvent);
+            Log.e("====KuaijieBaseFragment","home4444");
         }
     }
 
