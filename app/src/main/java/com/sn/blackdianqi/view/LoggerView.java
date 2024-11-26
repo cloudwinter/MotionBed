@@ -500,7 +500,7 @@ public class LoggerView extends FrameLayout implements Thread.UncaughtExceptionH
     //日志开关切换
     public void loggerSwitch() {
         if (mLogContainer.getVisibility() == GONE) {
-            mLogContainer.setVisibility(VISIBLE);
+            mLogContainer.setVisibility(GONE);
         } else {
             mLogContainer.setVisibility(GONE);
         }

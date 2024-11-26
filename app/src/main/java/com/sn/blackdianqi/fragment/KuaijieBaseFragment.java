@@ -17,6 +17,7 @@ import com.sn.blackdianqi.MyApplication;
 import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.RunningContext;
 import com.sn.blackdianqi.base.BaseFragment;
+import com.sn.blackdianqi.bean.AskStatusgeEvent;
 import com.sn.blackdianqi.bean.DeviceBean;
 import com.sn.blackdianqi.blue.BluetoothLeService;
 import com.sn.blackdianqi.util.BlueUtils;
@@ -26,6 +27,9 @@ import com.sn.blackdianqi.util.ToastUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public abstract class KuaijieBaseFragment extends BaseFragment {
 
@@ -68,31 +72,62 @@ public abstract class KuaijieBaseFragment extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().registerReceiver(mKuaijieReceiver, makeGattUpdateIntentFilter());
         characteristic = MyApplication.getInstance().gattCharacteristic;
         DeviceBean deviceBean = Prefer.getInstance().getConnectedDevice();
+        Log.e("====KuaijieBaseFragment","fragment onCreate");
         if (deviceBean != null) {
             blueDeviceName = deviceBean.getTitle();
             LogUtils.e(TAG, "blueDeviceName名称：" + blueDeviceName);
         }
-        RunningContext.threadPool().execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(300L);
-                    askStatus();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+
+//        RunningContext.threadPool().execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Log.e("====KuaijieBaseFragment","fragment111111");
+//                    Thread.sleep(2000L);
+//                    askStatus();
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().registerReceiver(mKuaijieReceiver, makeGattUpdateIntentFilter());
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().unregisterReceiver(mKuaijieReceiver);
+    }
 
     @Override
     public void onDestroy() {
-        getActivity().unregisterReceiver(mKuaijieReceiver);
         super.onDestroy();
+    }
+
+    @Subscribe(threadMode = ThreadMode.ASYNC)
+    public void onAskStatusEvent(AskStatusgeEvent event) {
+        Log.e("====KuaijieBaseFragment","onAskStatusEvent 55555");
+        if (event.isAskStatus()) {
+            RunningContext.threadPool().execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Log.e("====KuaijieBaseFragment","fragment111111");
+                        Thread.sleep(300L);
+                        askStatus();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
     }
 
 
@@ -113,6 +148,7 @@ public abstract class KuaijieBaseFragment extends BaseFragment {
      * @param cmd
      */
     protected void sendAskBlueCmd(final String cmd) {
+        Log.e("====KuaijieBaseFragment","sendAskBlueCmd 3333:"+cmd);
         mHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -161,7 +197,7 @@ public abstract class KuaijieBaseFragment extends BaseFragment {
                 if (bundle != null) {
                     String data = bundle.getString(BluetoothLeService.EXTRA_DATA);
                     if (data != null) {
-                        LogUtils.e("KuaijieBaseFragment","==快捷  接收设备返回的数据==", data);
+                        LogUtils.e("====KuaijieBaseFragment", "==快捷  接收设备返回的数据==", data);
                         handleReceiveData(data);
                     }
                 }

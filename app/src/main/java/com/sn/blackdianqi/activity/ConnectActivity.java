@@ -315,7 +315,7 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
                         // 只有首页过来才跳转
                         if (activity.mSelectedDeviceBean.isConnected()) {
                             Intent intent = new Intent(activity, HomeActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             activity.startActivity(intent);
                             activity.finish();
                         }
@@ -650,6 +650,7 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
         blueNameList.add("QMS3");
 
         blueNameList.add("QMS-MQ");
+        blueNameList.add("SealyMF");
         blueNameList.add("QMS2");
 
         blueNameList.add("QMS-KQ-H");
