@@ -1,6 +1,8 @@
 package com.sn.blackdianqi.activity;
 
 
+import static com.sn.blackdianqi.BuildConfig.Debuggable;
+
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -149,6 +151,9 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         faultDebugDialog = new FaultDebugDialog(this);
         if (isNeedShowFaultDebug()) {
             llFaultDebug.setVisibility(View.VISIBLE);
+        }
+        if (Debuggable) {
+            llDebug.setVisibility(View.VISIBLE);
         }
 
         cbSync.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

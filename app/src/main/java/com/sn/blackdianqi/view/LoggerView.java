@@ -107,9 +107,9 @@ public class LoggerView extends FrameLayout implements Thread.UncaughtExceptionH
         mLogContainer = new LinearLayout(context);
         mLogContainer.setOrientation(LinearLayout.VERTICAL);
         mLogContainer.setBackgroundColor(Color.argb(0x33, 0X00, 0x00, 0x00));
-        int widthPixels = context.getResources().getDisplayMetrics().widthPixels  / 2;
+        int widthPixels = context.getResources().getDisplayMetrics().widthPixels / 2;
         int heightPixels = context.getResources().getDisplayMetrics().heightPixels  / 2;
-        LayoutParams layoutParams = new LayoutParams(widthPixels, heightPixels, Gravity.CENTER);
+        LayoutParams layoutParams = new LayoutParams((int) (widthPixels * 1.4), (int) (heightPixels * 1.5), Gravity.CENTER);
         mLogContainer.setLayoutParams(layoutParams);
         mLogContainer.setVisibility(GONE);
         //小窗口标题
@@ -500,7 +500,7 @@ public class LoggerView extends FrameLayout implements Thread.UncaughtExceptionH
     //日志开关切换
     public void loggerSwitch() {
         if (mLogContainer.getVisibility() == GONE) {
-            mLogContainer.setVisibility(GONE);
+            mLogContainer.setVisibility(VISIBLE);
         } else {
             mLogContainer.setVisibility(GONE);
         }
