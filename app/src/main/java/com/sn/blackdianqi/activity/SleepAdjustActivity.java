@@ -111,7 +111,12 @@ public class SleepAdjustActivity extends BaseBlueActivity implements Translucent
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        registerReceiver(mAdjustReceiver, makeGattUpdateIntentFilter());
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            registerReceiver(mAdjustReceiver, makeGattUpdateIntentFilter(),Context.RECEIVER_EXPORTED);
+        }else {
+            registerReceiver(mAdjustReceiver, makeGattUpdateIntentFilter());
+        }
+
         setContentView(R.layout.activity_sleep_adjust);
         ButterKnife.bind(this);
         // 设置title

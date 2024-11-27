@@ -111,7 +111,11 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        registerReceiver(mSetReceiver, makeGattUpdateIntentFilter());
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            registerReceiver(mSetReceiver, makeGattUpdateIntentFilter(),Context.RECEIVER_EXPORTED);
+        }else {
+            registerReceiver(mSetReceiver, makeGattUpdateIntentFilter());
+        }
         setContentView(R.layout.activity_set);
         ButterKnife.bind(this);
         // 设置title

@@ -124,7 +124,12 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        registerReceiver(mAlarmReceiver, makeGattUpdateIntentFilter());
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            registerReceiver(mAlarmReceiver, makeGattUpdateIntentFilter(),Context.RECEIVER_EXPORTED);
+        }else {
+            registerReceiver(mAlarmReceiver, makeGattUpdateIntentFilter());
+        }
+
         setContentView(R.layout.activity_alarm);
         ButterKnife.bind(this);
         // 设置title
