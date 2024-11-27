@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -84,7 +85,12 @@ public class AnmoFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: ");
-        getActivity().registerReceiver(mAnmoReceiver, makeGattUpdateIntentFilter());
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            getActivity().registerReceiver(mAnmoReceiver, makeGattUpdateIntentFilter(),Context.RECEIVER_EXPORTED);
+        }else {
+            getActivity().registerReceiver(mAnmoReceiver, makeGattUpdateIntentFilter());
+        }
+
         View view = inflater.inflate(R.layout.fragment_anmo, container, false);
         ButterKnife.bind(this, view);
         initView();

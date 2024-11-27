@@ -153,7 +153,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter(),Context.RECEIVER_EXPORTED);
+        }else {
+            registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
+        }
     }
 
     @Override

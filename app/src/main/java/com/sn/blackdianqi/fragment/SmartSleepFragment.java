@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -85,7 +86,12 @@ public class SmartSleepFragment extends BaseFragment implements View.OnClickList
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: ");
-        getActivity().registerReceiver(mSmartSleepReceiver, makeGattUpdateIntentFilter());
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            getActivity().registerReceiver(mSmartSleepReceiver, makeGattUpdateIntentFilter(),Context.RECEIVER_EXPORTED);
+        }else {
+            getActivity().registerReceiver(mSmartSleepReceiver, makeGattUpdateIntentFilter());
+        }
+
         View view = inflater.inflate(R.layout.fragment_smartsleep, container, false);
         ButterKnife.bind(this, view);
         initView();

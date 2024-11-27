@@ -63,7 +63,11 @@ public class SleepMonthReportActivity extends BaseBlueActivity implements Transl
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        registerReceiver(mMonthReportReceiver, makeGattUpdateIntentFilter());
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            registerReceiver(mMonthReportReceiver, makeGattUpdateIntentFilter(),Context.RECEIVER_EXPORTED);
+        }else {
+            registerReceiver(mMonthReportReceiver, makeGattUpdateIntentFilter());
+        }
         setContentView(R.layout.activity_sleep_month_report);
         ButterKnife.bind(this);
         // 设置title
