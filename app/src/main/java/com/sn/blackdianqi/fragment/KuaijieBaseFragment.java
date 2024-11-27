@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -97,7 +98,11 @@ public abstract class KuaijieBaseFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        getActivity().registerReceiver(mKuaijieReceiver, makeGattUpdateIntentFilter());
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            getActivity().registerReceiver(mKuaijieReceiver, makeGattUpdateIntentFilter(),Context.RECEIVER_EXPORTED);
+        }else {
+            getActivity().registerReceiver(mKuaijieReceiver, makeGattUpdateIntentFilter());
+        }
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -77,7 +78,12 @@ public class DengguangFragment extends BaseFragment implements View.OnClickListe
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: ");
-        getActivity().registerReceiver(mDengguangReceiver, makeGattUpdateIntentFilter());
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            getActivity().registerReceiver(mDengguangReceiver, makeGattUpdateIntentFilter(),Context.RECEIVER_EXPORTED);
+        }else {
+            getActivity().registerReceiver(mDengguangReceiver, makeGattUpdateIntentFilter());
+        }
+
         View view = inflater.inflate(R.layout.fragment_dengguang, container, false);
         ButterKnife.bind(this, view);
         initView();

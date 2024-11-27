@@ -99,7 +99,12 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        registerReceiver(mDataEntryReceiver, makeGattUpdateIntentFilter());
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            registerReceiver(mDataEntryReceiver, makeGattUpdateIntentFilter(),Context.RECEIVER_EXPORTED);
+        }else {
+            registerReceiver(mDataEntryReceiver, makeGattUpdateIntentFilter());
+        }
+
         setContentView(R.layout.activity_sleep_dataentry);
         ButterKnife.bind(this);
         // 设置title
