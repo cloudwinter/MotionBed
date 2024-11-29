@@ -393,13 +393,13 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     private void handleReceiveData(String cmd) {
         cmd = cmd.toUpperCase().replaceAll(" ", "");
         if (cmd.contains("FFFFFFFF0100030B00")) {
-            LogUtils.i(TAG, "收到无闹钟指令：" + cmd);
+            LogUtils.i(TAG, "收到有闹钟未设置指令：" + cmd);
             // 有闹钟,未设置
             AlarmBean alarmBean = new AlarmBean();
             alarmBean.setAlarmSwitch(false);
             Prefer.getInstance().setAlarm(deviceAddress, alarmBean);
         } else if (cmd.contains("FFFFFFFF01000413")) {
-            LogUtils.i(TAG, "收到有闹钟指令：" + cmd);
+            LogUtils.i(TAG, "收到有闹钟已设置指令：" + cmd);
             setHasAlarm(cmd);
         } else if (cmd.contains("FFFFFFFF02000E0B")) {
             if (!Prefer.getInstance().getSelectedLanguage().equals("ja")) {
