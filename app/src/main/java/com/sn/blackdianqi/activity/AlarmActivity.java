@@ -108,8 +108,12 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
     private String hourStr, minuteStr;
     // 01：零压力，02：记忆1，03：无动作
     private String modeCode = "03";
+    // 展示异常的Toast
+    private Boolean showFailToast = Boolean.TRUE;
 
     String blueTitle = "";
+
+
 
 
     @Override
@@ -374,8 +378,10 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
         sendCmd(sb.toString());
         Prefer.getInstance().setAlarm(Prefer.getInstance().getLatelyConnectedDevice(), alarmBean);
         new Handler().postDelayed(() -> {
-            mWaitDialog.dismiss();
-            ToastUtils.showToast(AlarmActivity.this, getString(R.string.alarm_save_failed));
+            if (showFailToast) {
+                mWaitDialog.dismiss();
+                ToastUtils.showToast(AlarmActivity.this, getString(R.string.alarm_save_failed));
+            }
         }, 1500);
     }
 
@@ -387,11 +393,13 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
         if (cmd.contains("FFFFFFFF0100030B00")) {
             LogUtils.i(TAG, "接收到有闹钟未设置指令：" + cmd);
             mWaitDialog.dismiss();
+            showFailToast = false;
             ToastUtils.showToast(AlarmActivity.this, getString(R.string.alarm_save_suc));
             new Handler().postDelayed(() -> finish(), 100);
         } else if (cmd.contains("FFFFFFFF01000413")) {
             LogUtils.i(TAG, "接收到有闹钟已设置指令：" + cmd);
             mWaitDialog.dismiss();
+            showFailToast = false;
             ToastUtils.showToast(AlarmActivity.this, getString(R.string.alarm_save_suc));
             new Handler().postDelayed(() -> finish(), 100);
         }
