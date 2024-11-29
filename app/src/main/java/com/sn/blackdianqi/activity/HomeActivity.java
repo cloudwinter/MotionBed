@@ -145,6 +145,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void onRightClick() {
+        sendBlueCmd("FF FF FF FF 01 00 0A 0B 0F 21 04");//发送同步控制的初始化指令
         Intent intent = new Intent(HomeActivity.this, SettingActivity.class);
         startActivity(intent);
         sendAlarmInitCmd();
@@ -328,7 +329,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             // 发送闹钟指令
             sendAlarmInitCmd();
             Thread.sleep(500L);
-            sendBlueCmd("FF FF FF FF 01 00 0A 0B 0F 21 04");
+            sendBlueCmd("FF FF FF FF 01 00 0A 0B 0F 21 04");//发送同步控制的初始化指令
             Log.e("====KuaijieBaseFragment","home 22222");
             EventBus.getDefault().post(new AskStatusgeEvent(true));
         } catch (InterruptedException e) {
