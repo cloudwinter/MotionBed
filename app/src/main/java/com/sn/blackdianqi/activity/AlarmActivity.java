@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
@@ -23,10 +24,12 @@ import com.github.gzuliyujiang.wheelpicker.entity.TimeEntity;
 import com.github.gzuliyujiang.wheelpicker.impl.SimpleTimeFormatter;
 import com.github.gzuliyujiang.wheelpicker.widget.TimeWheelLayout;
 import com.sn.blackdianqi.R;
+import com.sn.blackdianqi.RunningContext;
 import com.sn.blackdianqi.base.BaseBlueActivity;
 import com.sn.blackdianqi.bean.AlarmBean;
 import com.sn.blackdianqi.bean.DeviceBean;
 import com.sn.blackdianqi.blue.BluetoothLeService;
+import com.sn.blackdianqi.dialog.WaitDialog;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LocaleUtils;
 import com.sn.blackdianqi.util.LogUtils;
@@ -42,6 +45,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.logging.LogRecord;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
@@ -363,7 +367,22 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
         // 发送蓝牙命令
         sendCmd(sb.toString());
         Prefer.getInstance().setAlarm(Prefer.getInstance().getLatelyConnectedDevice(), alarmBean);
-        finish();
+    }
+
+
+
+
+    private void handleReceiveData(String data) throws InterruptedException {
+        String cmd = data.toUpperCase().replaceAll(" ", "");
+        if (cmd.contains("FFFFFFFF0100030B00")) {
+            LogUtils.i(TAG, "接收到有闹钟未设置指令：" + cmd);
+            ToastUtils.showToast(AlarmActivity.this, getString(R.string.alarm_save_suc));
+            new Handler().postDelayed(() -> finish(), 100);
+        } else if (cmd.contains("FFFFFFFF01000413")) {
+            LogUtils.i(TAG, "接收到有闹钟已设置指令：" + cmd);
+            ToastUtils.showToast(AlarmActivity.this, getString(R.string.alarm_save_suc));
+            new Handler().postDelayed(() -> finish(), 100);
+        }
     }
 
 
@@ -381,13 +400,19 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
                 if (bundle != null) {
                     String data = bundle.getString(BluetoothLeService.EXTRA_DATA);
                     if (data != null) {
-                        LogUtils.e("==快捷  接收设备返回的数据==", data);
-                        //handleReceiveData(data);
+                        LogUtils.e("==闹钟界面  接收设备返回的数据==", data);
+                        try {
+                            handleReceiveData(data);
+                        } catch (InterruptedException e) {
+                            LogUtils.e("==闹钟界面  接收设备返回的数据处理异常", e.getMessage());
+                        }
                     }
                 }
             }
         }
     };
+
+
 
 
     /* 意图过滤器 */

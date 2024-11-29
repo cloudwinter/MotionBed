@@ -38,7 +38,7 @@ public class BaseBlueActivity extends BaseActivity {
      */
     protected void sendCmd(String cmd) {
         cmd = cmd.replace(" ", "");
-        Log.i(TAG, "sendBlueCmd: " + cmd);
+        LogUtils.i(TAG, "sendBlueCmd: " + cmd);
         // 判断蓝牙是否连接
         if (!BlueUtils.isConnected()) {
             ToastUtils.showToast(RunningContext.sAppContext, getString(R.string.device_no_connected));

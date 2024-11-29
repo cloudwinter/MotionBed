@@ -12,6 +12,7 @@
     <string name="search_blue_equipment">再度読み込み</string>
     <string name="searching">検索中...</string>
 
+    <string name="sending">发送中...</string>
     <string name="connecting">接続中...</string>
     <string name="please_wait">待機中...</string>
     <string name="please_input">数字を入力してください</string>
@@ -138,6 +139,7 @@
     <string name="alarm_save">保存</string>
     <string name="alarm_mode_lingyali_left">左ゼロ重力</string>
     <string name="alarm_mode_lingyali_right">ゼロ重力右側</string>
+    <string name="alarm_save_suc">保存に成功しました</string>
 
     <!-- 星期 -->
     <string name="week">曜日</string>

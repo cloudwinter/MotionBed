@@ -12,6 +12,7 @@
     <string name="search_blue_equipment">Scanner Les Appareils Bluetooth à Proximité</string>
     <string name="searching">searching...</string>
 
+    <string name="sending">sending...</string>
     <string name="connecting">connecting...</string>
     <string name="please_wait">Please later...</string>
     <string name="please_input">Veuillez entrer les chiffres</string>
@@ -138,6 +139,7 @@
     <string name="alarm_save">Sauvegarde</string>
     <string name="alarm_mode_lingyali_left">Gravité zéro Gauche</string>
     <string name="alarm_mode_lingyali_right">Gravité zéro Droits</string>
+    <string name="alarm_save_suc">sauvegarde a réussi</string>
 
     <!-- 星期 -->
     <string name="week">week</string>
