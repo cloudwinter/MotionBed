@@ -140,6 +140,7 @@
     <string name="alarm_mode_lingyali_left">Gravité zéro Gauche</string>
     <string name="alarm_mode_lingyali_right">Gravité zéro Droits</string>
     <string name="alarm_save_suc">sauvegarde a réussi</string>
+    <string name="alarm_save_failed">Le réglage de l&#180;alarme a échoué, cliquez à nouveau sur Enregistrer les paramètres.</string>
 
     <!-- 星期 -->
     <string name="week">week</string>

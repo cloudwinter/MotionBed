@@ -101,6 +101,9 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
     @BindView(R.id.ll_save)
     LinearLayout saveLL;
 
+    // 加载中对话框
+    private WaitDialog mWaitDialog;
+
     // 时间
     private String hourStr, minuteStr;
     // 01：零压力，02：记忆1，03：无动作
@@ -148,6 +151,8 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
 
 
     private void initView() {
+        mWaitDialog = new WaitDialog(this,getString(R.string.sending));
+        mWaitDialog.setCanceledOnTouchOutside(true);
         // QMS2 不显示按摩开关
         switchCB.setChecked(true);
         switchCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -365,8 +370,13 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
         sb.append(BlueUtils.makeChecksum(sb.toString()));
 
         // 发送蓝牙命令
+        mWaitDialog.show();
         sendCmd(sb.toString());
         Prefer.getInstance().setAlarm(Prefer.getInstance().getLatelyConnectedDevice(), alarmBean);
+        new Handler().postDelayed(() -> {
+            mWaitDialog.dismiss();
+            ToastUtils.showToast(AlarmActivity.this, getString(R.string.alarm_save_failed));
+        }, 1500);
     }
 
 
@@ -376,10 +386,12 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
         String cmd = data.toUpperCase().replaceAll(" ", "");
         if (cmd.contains("FFFFFFFF0100030B00")) {
             LogUtils.i(TAG, "接收到有闹钟未设置指令：" + cmd);
+            mWaitDialog.dismiss();
             ToastUtils.showToast(AlarmActivity.this, getString(R.string.alarm_save_suc));
             new Handler().postDelayed(() -> finish(), 100);
         } else if (cmd.contains("FFFFFFFF01000413")) {
             LogUtils.i(TAG, "接收到有闹钟已设置指令：" + cmd);
+            mWaitDialog.dismiss();
             ToastUtils.showToast(AlarmActivity.this, getString(R.string.alarm_save_suc));
             new Handler().postDelayed(() -> finish(), 100);
         }

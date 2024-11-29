@@ -140,6 +140,7 @@
     <string name="alarm_mode_lingyali_left">左ゼロ重力</string>
     <string name="alarm_mode_lingyali_right">ゼロ重力右側</string>
     <string name="alarm_save_suc">保存に成功しました</string>
+    <string name="alarm_save_failed">目覚まし時計の設定に失敗しました。もう一度[設定を保存]をクリックしてください</string>
 
     <!-- 星期 -->
     <string name="week">曜日</string>
