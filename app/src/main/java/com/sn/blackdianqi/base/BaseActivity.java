@@ -124,7 +124,7 @@ public class BaseActivity extends AppCompatActivity {
         if (language.equals("fr")) {
             config.locale = Locale.FRENCH;
         }
-        if (language.equals("ja")) {
+        else if (language.equals("ja")) {
             config.locale = Locale.JAPANESE;
         } else {
             config.locale = Locale.ENGLISH;
