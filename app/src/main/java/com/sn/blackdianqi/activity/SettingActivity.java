@@ -154,10 +154,10 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         llFaultDebug.setOnClickListener(this);
         faultDebugDialog = new FaultDebugDialog(this);
         if (isNeedShowFaultDebug()) {
-            llFaultDebug.setVisibility(View.VISIBLE);
+            llFaultDebug.setVisibility(View.GONE);
         }
         if (Debuggable) {
-            llDebug.setVisibility(View.VISIBLE);
+            llDebug.setVisibility(View.GONE);
         }
 
         cbSync.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

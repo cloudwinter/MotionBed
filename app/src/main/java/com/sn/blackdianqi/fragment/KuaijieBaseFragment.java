@@ -75,7 +75,7 @@ public abstract class KuaijieBaseFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         characteristic = MyApplication.getInstance().gattCharacteristic;
         DeviceBean deviceBean = Prefer.getInstance().getConnectedDevice();
-        Log.e("====KuaijieBaseFragment","fragment onCreate");
+        Log.e("====KuaijieBaseFragment", "fragment onCreate");
         if (deviceBean != null) {
             blueDeviceName = deviceBean.getTitle();
             LogUtils.e(TAG, "blueDeviceName名称：" + blueDeviceName);
@@ -98,9 +98,9 @@ public abstract class KuaijieBaseFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
-            getActivity().registerReceiver(mKuaijieReceiver, makeGattUpdateIntentFilter(),Context.RECEIVER_EXPORTED);
-        }else {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            getActivity().registerReceiver(mKuaijieReceiver, makeGattUpdateIntentFilter(), Context.RECEIVER_EXPORTED);
+        } else {
             getActivity().registerReceiver(mKuaijieReceiver, makeGattUpdateIntentFilter());
         }
     }
@@ -118,18 +118,12 @@ public abstract class KuaijieBaseFragment extends BaseFragment {
 
     @Subscribe(threadMode = ThreadMode.ASYNC)
     public void onAskStatusEvent(AskStatusgeEvent event) {
-        Log.e("====KuaijieBaseFragment","onAskStatusEvent 55555");
+        Log.e("====KuaijieBaseFragment",  "onAskStatusEvent Fragment界面初始化指令开始 ");
         if (event.isAskStatus()) {
             RunningContext.threadPool().execute(new Runnable() {
                 @Override
                 public void run() {
-                    try {
-                        Log.e("====KuaijieBaseFragment","fragment111111");
-                        Thread.sleep(300L);
-                        askStatus();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    askStatus();
                 }
             });
         }
@@ -153,7 +147,7 @@ public abstract class KuaijieBaseFragment extends BaseFragment {
      * @param cmd
      */
     protected void sendAskBlueCmd(final String cmd) {
-        Log.e("====KuaijieBaseFragment","sendAskBlueCmd 3333:"+cmd);
+        Log.e("====KuaijieBaseFragment", "sendAskBlueCmd 3333:" + cmd);
         mHandler.post(new Runnable() {
             @Override
             public void run() {

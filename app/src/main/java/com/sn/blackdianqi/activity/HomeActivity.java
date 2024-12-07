@@ -145,18 +145,24 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void onRightClick() {
-        sendBlueCmd("FF FF FF FF 01 00 0A 0B 0F 21 04");//发送同步控制的初始化指令
+        try {
+            sendAlarmInitCmd();
+            Thread.sleep(500L);
+            sendBlueCmd("FF FF FF FF 01 00 0A 0B 0F 21 04");//发送同步控制的初始化指令
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Intent intent = new Intent(HomeActivity.this, SettingActivity.class);
         startActivity(intent);
-        sendAlarmInitCmd();
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
-            registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter(),Context.RECEIVER_EXPORTED);
-        }else {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter(), Context.RECEIVER_EXPORTED);
+        } else {
             registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
         }
     }
@@ -330,7 +336,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             sendAlarmInitCmd();
             Thread.sleep(500L);
             sendBlueCmd("FF FF FF FF 01 00 0A 0B 0F 21 04");//发送同步控制的初始化指令
-            Log.e("====KuaijieBaseFragment","home 22222");
+            Thread.sleep(500L);
+            Log.e("====home", "主界面初始化指令发送结束");
             EventBus.getDefault().post(new AskStatusgeEvent(true));
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -408,6 +415,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 RunningContext.sleepTimer = cmd.substring(16, 18);
             }
         } else if (cmd.contains("FFFFFFFF01000A0B") || cmd.contains("FFFFFFFF0100090B")) {
+            Log.e("====home", "收到同步回码指令：" + cmd);
             Prefer.getInstance().setTongbukzShow(deviceAddress, true);
             String tongbukzSwitchCmd = cmd.substring(16, 18);
             Prefer.getInstance().setTongbukzSwitch(deviceAddress, "01".equals(tongbukzSwitchCmd) ? true : false);
@@ -416,7 +424,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             messageEvent.setTongbukzShow(true);
             messageEvent.setTongbukzSwitch("01".equals(tongbukzSwitchCmd) ? true : false);
             EventBus.getDefault().post(messageEvent);
-            Log.e("====KuaijieBaseFragment","home4444");
         }
     }
 
