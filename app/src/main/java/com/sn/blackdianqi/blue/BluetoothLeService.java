@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -459,9 +460,11 @@ public class BluetoothLeService extends Service {
      * </>
      */
     private Boolean checkBluePermission() {
-        if (ActivityCompat.checkSelfPermission(RunningContext.sAppContext, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-            LogUtils.w(TAG, "未获取到蓝牙权限");
-            return Boolean.FALSE;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){//android 12以上才需要判断
+            if (ActivityCompat.checkSelfPermission(RunningContext.sAppContext, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                LogUtils.w(TAG, "未获取到蓝牙权限");
+                return Boolean.FALSE;
+            }
         }
         return Boolean.TRUE;
     }
