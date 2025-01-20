@@ -38,6 +38,7 @@ public class Prefer {
     private final String KEY_STARTDATAENTRY = "KEY_STARTDATAENTRY"; // 睡眠数据录入实时数据
     private final String KEY_TONGBUKZ_SHOW = "KEY_TONGBUKZ_SHOW"; // 同步控制是否显示
     private final String KEY_TONGBUKZ_SWITCH = "KEY_TONGBUKZ_SWITCH"; // 同步控制开关
+    private final String KEY_IS_AUDIO = "KEY_IS_AUDIO"; // 音响
 
     public static Prefer getInstance() {
         if (null == mInstance) {
@@ -264,6 +265,26 @@ public class Prefer {
         return new Gson().fromJson(value, AlarmBean.class);
     }
 
+    /**
+     * 设置是否有音响
+     *
+     * @param deviceAddress
+     */
+    public void setIsAudio(String deviceAddress, boolean isAudio) {
+        SharedPreferences.Editor editor = mPref.edit();
+        editor.putBoolean(KEY_IS_AUDIO + deviceAddress, isAudio);
+        editor.commit();
+    }
+
+    /**
+     * 获取是否有音响
+     *
+     * @param deviceAddress
+     * @return
+     */
+    public boolean getIsAudio(String deviceAddress) {
+        return mPref.getBoolean(KEY_IS_AUDIO + deviceAddress, false);
+    }
 
     public void setTongbukzShow(String deviceAddress, boolean show) {
         SharedPreferences.Editor editor = mPref.edit();

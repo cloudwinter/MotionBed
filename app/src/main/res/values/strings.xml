@@ -21,7 +21,7 @@
     <!-- dialog -->
     <string name="connected_failed">The connection failed. Please try to reconnect</string>
     <string name="dialog_title_disconnect">Disconnected or not</string>
-    <string name="dialog_negetive">cancel</string>
+    <string name="dialog_negetive">Cancel</string>
     <string name="dialog_positive">sure</string>
     <string name="dialog_confirm">Confirm</string>
     <string name="dialog_cancel">Cancel</string>
@@ -36,6 +36,7 @@
     <string name="switch_language">Switch Language</string>
     <string name="french">French</string>
     <string name="english">English</string>
+    <string name="chinese">traditional Chinese</string>
     <string name="japan">Japanese</string>
     <string name="version">Version</string>
     <string name="privacy_policy">Privacy policy</string>
@@ -61,6 +62,8 @@
     <string name="kandianshi">Watch TV</string>
     <string name="lingyali">Zero Gravity</string>
     <string name="zhihan">Anti Snore</string>
+    <string name="fangsong">Relax</string>
+    <string name="yinyue">Sleep And Music</string>
     <string name="fuyuan">Flat Bed</string>
     <string name="tingyinyue">Music</string>
     <string name="tuibufangsong">Leg Relax</string>
@@ -151,6 +154,21 @@
     <string name="week_friday">Friday</string>
     <string name="week_saturday">Saturday</string>
     <string name="week_sunday">Sunday</string>
+
+    <!--音乐1-->
+    <string name="music_1">Track 1</string>
+    <string name="music_2">Track 2</string>
+    <string name="music_3">Track 3</string>
+    <string name="music_4">Track 4</string>
+    <string name="music_5">Track 5</string>
+
+    <!--音乐2-->
+    <string name="music_2_0">No music</string>
+    <string name="music_2_1">Alarm clock 1</string>
+    <string name="music_2_2">Alarm clock 2</string>
+    <string name="music_2_3">Alarm clock 3</string>
+    <string name="music_2_4">Alarm clock 4</string>
+    <string name="music_2_5">Alarm clock 5</string>
 
     <!-- 故障代码 -->
     <string name="guzhangtiaoshi">Troubleshooting</string>

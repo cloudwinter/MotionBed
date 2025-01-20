@@ -103,6 +103,7 @@
             android:layout_marginTop="@dimen/weitiao_marin"
             android:layout_marginRight="@dimen/weitiao_marin"
             android:layout_marginBottom="10dp"
+            android:gravity="center"
             app:bgnormal="@drawable/bg_tuoyuan_normal"
             app:title="@string/dengguangliangdu"
             app:linecount="10"/>

@@ -20,10 +20,10 @@
     <!-- dialog -->
     <string name="connected_failed">The connection failed. Please try to reconnect</string>
     <string name="dialog_title_disconnect">Disconnected or not</string>
-    <string name="dialog_negetive">cancel</string>
+    <string name="dialog_negetive">Annuler</string>
     <string name="dialog_positive">sure</string>
     <string name="dialog_confirm">Confirmer</string>
-    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_cancel">Annuler</string>
 
     <!-- 蓝牙设备/设置界面 -->
     <string name="connecting_device">Connecter l&#180;appareil</string>
@@ -35,6 +35,7 @@
     <string name="switch_language">Changer de langue</string>
     <string name="french">French</string>
     <string name="english">Anglais</string>
+    <string name="chinese">Chinois traditionnel</string>
     <string name="japan">Japonais</string>
     <string name="version">Version</string>
     <string name="privacy_policy">Politique de confidentialité</string>
@@ -61,6 +62,8 @@
     <string name="lingyali">Zéro gravité</string>
     <string name="zhihan">Anti ronflement</string>
     <string name="fuyuan">Plat</string>
+    <string name="fangsong">Détendre</string>
+    <string name="yinyue">Musique aide au sommeil</string>
     <string name="tingyinyue">Musique</string>
     <string name="tuibufangsong">Relaxer les jambes</string>
     <string name="dingyao">Lombaire</string>
@@ -152,6 +155,21 @@
     <string name="week_saturday">Damedi</string>
     <string name="week_sunday">Dimanche</string>
 
+    <!--音乐1-->
+    <string name="music_1">Piste 1</string>
+    <string name="music_2">Piste 2</string>
+    <string name="music_3">Piste 3</string>
+    <string name="music_4">Piste 4</string>
+    <string name="music_5">Piste 5</string>
+
+    <!--音乐2-->
+    <string name="music_2_0">Sans musique</string>
+    <string name="music_2_1">Alarme 1</string>
+    <string name="music_2_2">Alarme 2</string>
+    <string name="music_2_3">Alarme 3</string>
+    <string name="music_2_4">Alarme 4</string>
+    <string name="music_2_5">Alarme 5</string>
+
     <!-- 故障代码 -->
     <string name="guzhangtiaoshi">Dépannage</string>
     <string name="guzhangbujian">Composant défectueux</string>
@@ -204,7 +222,7 @@
     <string name="sde_reset">Réinitialiser</string>
     <string name="sde_zhinengdai">Ceinture</string>
     <string name="sde_dialog_fuwei_content">Veuillez d’abord effectuer une réinitialisation à une clé, puis commencer à apprendre vos paramètres de personnalité</string>
-    <string name="sde_dialog_btn_cancel">Cancel</string>
+    <string name="sde_dialog_btn_cancel">Annuler</string>
     <string name="sde_dialog_btn_yijianfuwei">A master reset</string>
     <string name="sde_dialog_next_content">Please confirm that the electric bed has been restored to level and click Next</string>
     <string name="sde_dialog_btn_next">Next</string>

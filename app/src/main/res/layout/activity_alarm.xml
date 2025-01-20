@@ -183,15 +183,16 @@
                 />
         </LinearLayout>
 
-        <!-- 响铃 -->
+        <!-- 响铃 音响模式-->
         <LinearLayout
-            android:id="@+id/ll_xiangling"
+            android:id="@+id/ll_xiangling1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="1px"
             android:background="@drawable/bg_alarm_item"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:layout_marginTop="1px"
+            android:visibility="gone"
             android:paddingLeft="15dp"
             android:paddingRight="15dp">
 
@@ -203,13 +204,50 @@
                 android:textColor="@color/text_white"
                 android:textSize="14dp" />
 
-            <CheckBox
-                android:id="@+id/cb_xinagling"
+            <TextView
+                android:id="@+id/tv_music"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:text=""
+                android:textColor="@color/text_green"
+                android:textSize="14dp" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/ic_row" />
+
+        </LinearLayout>
+
+        <!-- 响铃 标准模式-->
+        <LinearLayout
+            android:id="@+id/ll_xiangling2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1px"
+            android:background="@drawable/bg_alarm_item"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/alarm_xiangling"
+                android:textColor="@color/text_white"
+                android:textSize="14dp" />
+
+
+            <CheckBox
+                android:id="@+id/cb_xinagling"
                 style="@style/checkbox_style"
-                android:background="@drawable/bg_checkbox"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_checkbox" />
         </LinearLayout>
 
     </LinearLayout>

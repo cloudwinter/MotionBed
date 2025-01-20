@@ -38,6 +38,10 @@ public class LocaleUtils {
      */
     public static final Locale LOCALE_JAPANESE = Locale.JAPANESE;
     /**
+     * 中文繁体
+     */
+    public static final Locale LOCALE_CHINESE_TW =new Locale("zh", "TW");
+    /**
      * 俄文
      */
     public static final Locale LOCALE_RUSSIAN = new Locale("ru");

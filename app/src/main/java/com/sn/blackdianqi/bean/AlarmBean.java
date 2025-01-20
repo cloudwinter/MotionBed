@@ -46,6 +46,20 @@ public class AlarmBean implements Serializable {
      */
     private boolean xiangling;
 
+
+    /**
+     * 音乐
+     */
+    private String musicVal;
+
+    public String getMusicVal() {
+        return musicVal;
+    }
+
+    public void setMusicVal(String musicVal) {
+        this.musicVal = musicVal;
+    }
+
     public boolean isAlarmSwitch() {
         return alarmSwitch;
     }

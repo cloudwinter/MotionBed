@@ -123,9 +123,10 @@ public class BaseActivity extends AppCompatActivity {
         DisplayMetrics dm = resources.getDisplayMetrics();
         if (language.equals("fr")) {
             config.locale = Locale.FRENCH;
-        }
-        else if (language.equals("ja")) {
+        } else if (language.equals("ja")) {
             config.locale = Locale.JAPANESE;
+        } else if (language.equals("zh-rTW")) {
+            config.locale = new Locale("zh", "TW");;
         } else {
             config.locale = Locale.ENGLISH;
         }

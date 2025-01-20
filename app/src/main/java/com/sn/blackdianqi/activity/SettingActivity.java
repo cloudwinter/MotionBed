@@ -147,14 +147,16 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
             tvLanguage.setText(R.string.french);
         } else if (language.equals("ja")) {
             tvLanguage.setText(R.string.japan);
-        } else {
+        } else if (language.equals("zh-rTW"))  {
+            tvLanguage.setText(R.string.chinese);
+        }else if (language.equals("en"))  {
             tvLanguage.setText(R.string.english); // 默认是英文
         }
         tv_version.setText(RunningContext.getVersionName());
         llFaultDebug.setOnClickListener(this);
         faultDebugDialog = new FaultDebugDialog(this);
         if (isNeedShowFaultDebug()) {
-            llFaultDebug.setVisibility(View.GONE);
+            llFaultDebug.setVisibility(View.GONE);//TODO
         }
         if (Debuggable) {
             llDebug.setVisibility(View.GONE);

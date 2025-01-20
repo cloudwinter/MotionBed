@@ -27,6 +27,7 @@ import com.sn.blackdianqi.base.BaseActivity;
 import com.sn.blackdianqi.base.BaseFragment;
 import com.sn.blackdianqi.bean.AlarmBean;
 import com.sn.blackdianqi.bean.AskStatusgeEvent;
+import com.sn.blackdianqi.bean.AudioEvent;
 import com.sn.blackdianqi.bean.DateBean;
 import com.sn.blackdianqi.bean.DeviceBean;
 import com.sn.blackdianqi.bean.MessageEvent;
@@ -36,6 +37,7 @@ import com.sn.blackdianqi.fragment.DengguangFragment;
 import com.sn.blackdianqi.fragment.KuaijieK11Fragment;
 import com.sn.blackdianqi.fragment.KuaijieK1Fragment;
 import com.sn.blackdianqi.fragment.KuaijieK2Fragment;
+import com.sn.blackdianqi.fragment.KuaijieK2MFragment;
 import com.sn.blackdianqi.fragment.KuaijieK3Fragment;
 import com.sn.blackdianqi.fragment.KuaijieK4Fragment;
 import com.sn.blackdianqi.fragment.KuaijieK5Fragment;
@@ -47,6 +49,7 @@ import com.sn.blackdianqi.fragment.WeitiaoW11Fragment;
 import com.sn.blackdianqi.fragment.WeitiaoW12Fragment;
 import com.sn.blackdianqi.fragment.WeitiaoW13Fragment;
 import com.sn.blackdianqi.fragment.WeitiaoW14Fragment;
+import com.sn.blackdianqi.fragment.WeitiaoW18Fragment;
 import com.sn.blackdianqi.fragment.WeitiaoW1Fragment;
 import com.sn.blackdianqi.fragment.WeitiaoW2Fragment;
 import com.sn.blackdianqi.fragment.WeitiaoW3Fragment;
@@ -267,13 +270,17 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             fragments.add(new KuaijieK1Fragment());
             fragments.add(new WeitiaoW1Fragment());
         } else if (blueName.contains("QMS-JQ-D") || blueName.contains("QMS4") || blueName.contains("S4-N")) {
-            fragments.add(new KuaijieK2Fragment());
+            fragments.add(new KuaijieK2MFragment());
             fragments.add(new WeitiaoW2Fragment());
         } else if (blueName.contains("QMS-NQ") || blueName.contains("QMS3")) {
-            fragments.add(new KuaijieK2Fragment());
+            if (blueName.contains("QMS3-N93-327")) {//带音响
+                fragments.add(new KuaijieK2Fragment());
+            } else {//不带音响
+                fragments.add(new KuaijieK2MFragment());
+            }
             fragments.add(new WeitiaoW3Fragment());
         } else if (blueName.contains("QMS-MQ") || blueName.contains("QMS2") || blueName.contains("SealyMF")) {
-            fragments.add(new KuaijieK2Fragment());
+            fragments.add(new KuaijieK2MFragment());
             fragments.add(new WeitiaoW4Fragment());
         } else if (blueName.contains("QMS-KQ-H") || blueName.contains("QMS-H02")) {
             fragments.add(new KuaijieK3Fragment());
@@ -285,7 +292,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             fragments.add(new KuaijieK5Fragment());
             fragments.add(new WeitiaoW8Fragment());
         } else if (blueName.contains("S3-2")) {
-            fragments.add(new KuaijieK2Fragment());
+            fragments.add(new KuaijieK2MFragment());
             fragments.add(new WeitiaoW10Fragment());
         } else if (blueName.contains("S3-3")) {
             fragments.add(new KuaijieK8Fragment());
@@ -302,9 +309,12 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             } else if (blueName.contains("S6-Y")) {
                 fragments.add(new WeitiaoW14Fragment());
             }
+        } else if (blueName.contains("S4-4")) {
+            fragments.add(new KuaijieK2MFragment());
+            fragments.add(new WeitiaoW18Fragment());
         } else {
-            fragments.add(new KuaijieK1Fragment());
-            fragments.add(new WeitiaoW1Fragment());
+            fragments.add(new KuaijieK2MFragment());
+            fragments.add(new WeitiaoW2Fragment());
         }
 
         fragments.add(new AnmoFragment());
@@ -400,12 +410,25 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     private void handleReceiveData(String cmd) {
         cmd = cmd.toUpperCase().replaceAll(" ", "");
         if (cmd.contains("FFFFFFFF0100030B00")) {
-            LogUtils.i(TAG, "收到有闹钟未设置指令：" + cmd);
+            String isAudio = cmd.substring(16, 18);//是否有音响
+            if (TextUtils.equals(isAudio, "00") || blueName.toUpperCase().contains("QMS3-N93-327")) {
+                Prefer.getInstance().setIsAudio(deviceAddress, false);
+            } else {
+                Prefer.getInstance().setIsAudio(deviceAddress, true);
+            }
+            LogUtils.i(TAG, "收到无闹钟未设置指令：" + cmd);
             // 有闹钟,未设置
             AlarmBean alarmBean = new AlarmBean();
             alarmBean.setAlarmSwitch(false);
             Prefer.getInstance().setAlarm(deviceAddress, alarmBean);
+            EventBus.getDefault().post(new AudioEvent(true));
         } else if (cmd.contains("FFFFFFFF01000413")) {
+            String isAudio = cmd.substring(16, 18);//是否有音响
+            if (TextUtils.equals(isAudio, "0F") || TextUtils.equals(isAudio, "AF") || blueName.toUpperCase().contains("QMS3-N93-327")) {
+                Prefer.getInstance().setIsAudio(deviceAddress, false);
+            } else {
+                Prefer.getInstance().setIsAudio(deviceAddress, true);
+            }
             LogUtils.i(TAG, "收到有闹钟已设置指令：" + cmd);
             setHasAlarm(cmd);
         } else if (cmd.contains("FFFFFFFF02000E0B")) {
@@ -432,7 +455,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         AlarmBean alarmBean = new AlarmBean();
         String cmdStatus = cmd.substring(16, 18);
         // 开关
-        if (cmdStatus.equals("0F")) {
+        if (cmdStatus.equals("0F") || cmdStatus.equals("1F")) {
             alarmBean.setAlarmSwitch(true);
         } else {
             alarmBean.setAlarmSwitch(false);
@@ -472,7 +495,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         } else {
             alarmBean.setXiangling(false);
         }
+        alarmBean.setMusicVal(cmdRing);
         Prefer.getInstance().setAlarm(deviceAddress, alarmBean);
+
+        EventBus.getDefault().post(new AudioEvent(true));
     }
 
 

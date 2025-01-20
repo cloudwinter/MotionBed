@@ -123,7 +123,12 @@ public abstract class KuaijieBaseFragment extends BaseFragment {
             RunningContext.threadPool().execute(new Runnable() {
                 @Override
                 public void run() {
-                    askStatus();
+                    try {
+                        Thread.sleep(200L);
+                        askStatus();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }

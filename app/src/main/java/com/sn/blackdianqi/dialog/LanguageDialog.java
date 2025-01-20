@@ -36,6 +36,8 @@ public class LanguageDialog extends Dialog implements View.OnClickListener {
     private ImageView imgSelectedEnglish;
     private RelativeLayout rlJapan;
     private ImageView imgSelectedJapan;
+    private RelativeLayout rlChinese;
+    private ImageView imgSelectedChinese;
     private TextView cancel;
 
     public LanguageDialog(@NonNull Context context) {
@@ -58,9 +60,12 @@ public class LanguageDialog extends Dialog implements View.OnClickListener {
         rlEnglish.setOnClickListener(this);
         rlJapan = view.findViewById(R.id.rl_japan);
         rlJapan.setOnClickListener(this);
+        rlChinese = view.findViewById(R.id.rl_chinese);
+        rlChinese.setOnClickListener(this);
         imgSelectedFrench = view.findViewById(R.id.img_selected_fr);
         imgSelectedEnglish = view.findViewById(R.id.img_selected_en);
         imgSelectedJapan = view.findViewById(R.id.img_selected_ja);
+        imgSelectedChinese = view.findViewById(R.id.img_selected_zh);
         cancel = view.findViewById(R.id.cancel);
         cancel.setOnClickListener(this);
         setContentView(view);
@@ -80,14 +85,22 @@ public class LanguageDialog extends Dialog implements View.OnClickListener {
             imgSelectedFrench.setVisibility(View.VISIBLE);
             imgSelectedEnglish.setVisibility(View.GONE);
             imgSelectedJapan.setVisibility(View.GONE);
+            imgSelectedChinese.setVisibility(View.GONE);
         } else if (Prefer.getInstance().getSelectedLanguage().equals("ja")) {
             imgSelectedFrench.setVisibility(View.GONE);
             imgSelectedEnglish.setVisibility(View.GONE);
             imgSelectedJapan.setVisibility(View.VISIBLE);
-        } else {
+            imgSelectedChinese.setVisibility(View.GONE);
+        } else if (Prefer.getInstance().getSelectedLanguage().equals("en")) {
             imgSelectedFrench.setVisibility(View.GONE);
             imgSelectedEnglish.setVisibility(View.VISIBLE);
             imgSelectedJapan.setVisibility(View.GONE);
+            imgSelectedChinese.setVisibility(View.GONE);
+        } else if (Prefer.getInstance().getSelectedLanguage().equals("zh-rTW")) {
+            imgSelectedFrench.setVisibility(View.GONE);
+            imgSelectedEnglish.setVisibility(View.GONE);
+            imgSelectedJapan.setVisibility(View.GONE);
+            imgSelectedChinese.setVisibility(View.VISIBLE);
         }
     }
 
@@ -129,6 +142,18 @@ public class LanguageDialog extends Dialog implements View.OnClickListener {
                 Prefer.getInstance().setSelectedLanguage("ja");
                 if (LocaleUtils.needUpdateLocale(mContext, LocaleUtils.LOCALE_JAPANESE)) {
                     LocaleUtils.updateLocale(mContext, LocaleUtils.LOCALE_JAPANESE);
+                    restartAct();
+                }
+                dismiss();
+                break;
+            case R.id.rl_chinese:
+                imgSelectedFrench.setVisibility(View.GONE);
+                imgSelectedEnglish.setVisibility(View.GONE);
+                imgSelectedJapan.setVisibility(View.GONE);
+                imgSelectedChinese.setVisibility(View.VISIBLE);
+                Prefer.getInstance().setSelectedLanguage("zh-rTW");
+                if (LocaleUtils.needUpdateLocale(mContext, LocaleUtils.LOCALE_CHINESE_TW)) {
+                    LocaleUtils.updateLocale(mContext, LocaleUtils.LOCALE_CHINESE_TW);
                     restartAct();
                 }
                 dismiss();

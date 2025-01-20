@@ -14,6 +14,7 @@ import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
 import androidx.annotation.Nullable;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -29,7 +30,7 @@ public class WebActivity extends BaseActivity implements TranslucentActionBar.Ac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
         ButterKnife.bind(this);
-        actionBar.setData(getString(R.string.privacy_policy),R.mipmap.ic_back,null, 0, null, this);
+        actionBar.setData(getString(R.string.privacy_policy), R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             actionBar.setStatusBarHeight(getStatusBarHeight());
@@ -62,8 +63,10 @@ public class WebActivity extends BaseActivity implements TranslucentActionBar.Ac
             url = "file:///android_res/mipmap/protocol_en.jpeg";
         } else if ("ja".equals(language)) {
             url = "file:///android_res/mipmap/protocol_japan.jpg";
+        } else if ("zh-rTW".equals(language)) {
+            url = "file:///android_res/mipmap/protocol_zh.jpg";
         } else {
-            url = "file:///android_res/mipmap/protocol_fr.jpegg";
+            url = "file:///android_res/mipmap/protocol_fr.jpg";
         }
         webView.loadUrl(url);
     }

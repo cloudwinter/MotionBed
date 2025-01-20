@@ -98,6 +98,8 @@ public class AnjianAnmoView extends RelativeLayout implements View.OnClickListen
         titleTextView.setText(title);
         if (iconRes != -1) {
             iconImageView.setBackground(ContextCompat.getDrawable(mContext, iconRes));
+        }else {
+            iconImageView.setVisibility(View.GONE);
         }
         if (bgNormalRes != -1) {
             setBackground(ContextCompat.getDrawable(mContext, bgNormalRes));

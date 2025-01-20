@@ -28,7 +28,9 @@ import com.sn.blackdianqi.RunningContext;
 import com.sn.blackdianqi.base.BaseBlueActivity;
 import com.sn.blackdianqi.bean.AlarmBean;
 import com.sn.blackdianqi.bean.DeviceBean;
+import com.sn.blackdianqi.bean.MusicBean;
 import com.sn.blackdianqi.blue.BluetoothLeService;
+import com.sn.blackdianqi.dialog.MusicSelectDialog;
 import com.sn.blackdianqi.dialog.WaitDialog;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LocaleUtils;
@@ -37,6 +39,7 @@ import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.util.ToastUtils;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -48,6 +51,7 @@ import java.util.TreeMap;
 import java.util.logging.LogRecord;
 
 import androidx.annotation.Nullable;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -65,6 +69,7 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
     public static int MODE_REQUEST_CODE = 106;
 
     private HashMap<Integer, Boolean> weekCheckBeanMap = new HashMap<>();
+    private List<MusicBean> musicList = new ArrayList<>();
 
     @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
@@ -95,6 +100,13 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
     @BindView(R.id.cb_anmo)
     CheckBox anmoCB;
 
+    @BindView(R.id.ll_xiangling1)
+    LinearLayout xianglingLL1;
+    @BindView(R.id.tv_music)
+    TextView tvMusic;
+
+    @BindView(R.id.ll_xiangling2)
+    LinearLayout xianglingLL2;
     @BindView(R.id.cb_xinagling)
     CheckBox xinaglingCB;
 
@@ -110,10 +122,12 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
     private String modeCode = "03";
     // 展示异常的Toast
     private Boolean showFailToast = Boolean.TRUE;
-
+    private boolean isAudio;//是否音响
     String blueTitle = "";
+    private MusicSelectDialog musicSelectDialog;
 
-
+    //音乐
+    private String musicVal = "00";
 
 
     @Override
@@ -135,9 +149,9 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
-            registerReceiver(mAlarmReceiver, makeGattUpdateIntentFilter(),Context.RECEIVER_EXPORTED);
-        }else {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            registerReceiver(mAlarmReceiver, makeGattUpdateIntentFilter(), Context.RECEIVER_EXPORTED);
+        } else {
             registerReceiver(mAlarmReceiver, makeGattUpdateIntentFilter());
         }
 
@@ -155,7 +169,7 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
 
 
     private void initView() {
-        mWaitDialog = new WaitDialog(this,getString(R.string.sending));
+        mWaitDialog = new WaitDialog(this, getString(R.string.sending));
         mWaitDialog.setCanceledOnTouchOutside(true);
         // QMS2 不显示按摩开关
         switchCB.setChecked(true);
@@ -174,6 +188,7 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
         timeLL.setOnClickListener(this);
         weekLL.setOnClickListener(this);
         modeLL.setOnClickListener(this);
+        xianglingLL1.setOnClickListener(this);
         saveLL.setOnClickListener(this);
 
         DeviceBean deviceBean = Prefer.getInstance().getConnectedDevice();
@@ -197,6 +212,18 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
         if (TextUtils.isEmpty(deviceAddress)) {
             return;
         }
+
+        //是否有音响模式
+        isAudio = Prefer.getInstance().getIsAudio(deviceAddress);
+        if (isAudio) {
+            xianglingLL1.setVisibility(View.VISIBLE);
+            xianglingLL2.setVisibility(View.GONE);
+        } else {
+            xianglingLL2.setVisibility(View.VISIBLE);
+            xianglingLL1.setVisibility(View.GONE);
+
+        }
+
         AlarmBean alarmBean = Prefer.getInstance().getAlarm(deviceAddress);
         if (alarmBean == null) {
             contentLL.setVisibility(View.GONE);
@@ -216,6 +243,24 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
         anmoCB.setChecked(alarmBean.isAnmo());
         xinaglingCB.setChecked(alarmBean.isXiangling());
         setWeek();
+        setMusic(alarmBean);
+    }
+
+    //初始化音乐
+    private void setMusic(AlarmBean alarmBean) {
+        musicList.add(new MusicBean("00", getResources().getString(R.string.music_2_0)));
+        musicList.add(new MusicBean("11", getResources().getString(R.string.music_2_1)));
+        musicList.add(new MusicBean("12", getResources().getString(R.string.music_2_2)));
+        musicList.add(new MusicBean("13", getResources().getString(R.string.music_2_3)));
+        musicList.add(new MusicBean("14", getResources().getString(R.string.music_2_4)));
+        musicList.add(new MusicBean("15", getResources().getString(R.string.music_2_5)));
+
+        for (MusicBean bean : musicList) {
+            if (TextUtils.equals(bean.getValue(), alarmBean.getMusicVal())) {
+                musicVal = alarmBean.getMusicVal();
+                tvMusic.setText(bean.getName());
+            }
+        }
     }
 
 
@@ -297,6 +342,43 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
                 intentMode.putExtra(ModeActivity.EXTRA_KEY, modeCode);
                 startActivityForResult(intentMode, MODE_REQUEST_CODE);
                 break;
+            case R.id.ll_xiangling1:
+                musicSelectDialog = new MusicSelectDialog(this, musicList, new MusicSelectDialog.CallBackDialogListener() {
+                    @Override
+                    public void selectOnClick(String value, String name) {
+                        musicVal = value;
+                        tvMusic.setText(name);
+                        if (TextUtils.equals("11", value)) {
+                            String cmd = "FFFFFFFF0100130B81";
+                            cmd = cmd + BlueUtils.makeChecksum(cmd);
+                            sendCmd(cmd);
+                        } else if (TextUtils.equals("12", value)) {
+                            String cmd = "FFFFFFFF0100130B82";
+                            cmd = cmd + BlueUtils.makeChecksum(cmd);
+                            sendCmd(cmd);
+                        } else if (TextUtils.equals("13", value)) {
+                            String cmd = "FFFFFFFF0100130B83";
+                            cmd = cmd + BlueUtils.makeChecksum(cmd);
+                            sendCmd(cmd);
+                        } else if (TextUtils.equals("14", value)) {
+                            String cmd = "FFFFFFFF0100130B84";
+                            cmd = cmd + BlueUtils.makeChecksum(cmd);
+                            sendCmd(cmd);
+                        } else if (TextUtils.equals("15", value)) {
+                            String cmd = "FFFFFFFF0100130B85";
+                            cmd = cmd + BlueUtils.makeChecksum(cmd);
+                            sendCmd(cmd);
+                        }
+                    }
+
+                    @Override
+                    public void saveOnClick() {
+                        String cmd = "FF FF FF FF 01 00 13 0B 00";
+                        sendCmd(cmd + BlueUtils.makeChecksum(cmd));
+                    }
+                });
+                musicSelectDialog.show();
+                break;
             case R.id.ll_save:
                 checkAndSend();
                 break;
@@ -367,8 +449,14 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
         alarmBean.setAnmo(anmoCB.isChecked());
         sb.append(anmoCB.isChecked() ? "01" : "00");
         // 响铃
-        alarmBean.setXiangling(xinaglingCB.isChecked());
-        sb.append(xinaglingCB.isChecked() ? "01" : "00");
+        if (isAudio) {
+            // 响铃音乐
+            sb.append(musicVal);//设置响铃音乐
+        } else {
+            //是否响铃
+            alarmBean.setXiangling(xinaglingCB.isChecked());
+            sb.append(xinaglingCB.isChecked() ? "01" : "00");
+        }
 
         // 校验和
         sb.append(BlueUtils.makeChecksum(sb.toString()));
@@ -386,8 +474,6 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
     }
 
 
-
-
     private void handleReceiveData(String data) throws InterruptedException {
         String cmd = data.toUpperCase().replaceAll(" ", "");
         if (cmd.contains("FFFFFFFF0100030B00")) {
@@ -402,6 +488,12 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
             showFailToast = false;
             ToastUtils.showToast(AlarmActivity.this, getString(R.string.alarm_save_suc));
             new Handler().postDelayed(() -> finish(), 100);
+        } else if (cmd.contains("FFFFFFFF0100130B")) {//设置音乐
+            String musicVal = cmd.substring(17, 18);//音乐
+            String deviceAddress = Prefer.getInstance().getLatelyConnectedDevice();
+            AlarmBean alarmBean = Prefer.getInstance().getAlarm(deviceAddress);
+            alarmBean.setMusicVal("0" + musicVal);
+            Prefer.getInstance().setAlarm(deviceAddress, alarmBean);
         }
     }
 
@@ -431,8 +523,6 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
             }
         }
     };
-
-
 
 
     /* 意图过滤器 */

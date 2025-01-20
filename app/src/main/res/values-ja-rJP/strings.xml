@@ -36,6 +36,7 @@
     <string name="switch_language">言語切替</string>
     <string name="french">フランス語</string>
     <string name="english">英語</string>
+    <string name="chinese">中国語繁体字</string>
     <string name="japan">日本語</string>
     <string name="version">バージョン番号</string>
     <string name="privacy_policy">プライバシーポリシー</string>
@@ -62,6 +63,8 @@
     <string name="lingyali">リラックス</string>
     <string name="zhihan">いびき軽減</string>
     <string name="fuyuan">フラット</string>
+    <string name="fangsong">リラックス</string>
+    <string name="yinyue">スリープ音楽</string>
     <string name="tingyinyue">前に傾く</string>
     <string name="tuibufangsong">後ろに傾く</string>
     <string name="dingyao">ランバー</string>
@@ -151,6 +154,21 @@
     <string name="week_friday">金曜日</string>
     <string name="week_saturday">土曜日</string>
     <string name="week_sunday">日曜日</string>
+
+    <!--音乐1-->
+    <string name="music_1">トラック 1</string>
+    <string name="music_2">トラック 2</string>
+    <string name="music_3">トラック 3</string>
+    <string name="music_4">トラック 4</string>
+    <string name="music_5">トラック 5</string>
+
+    <!--音乐2-->
+    <string name="music_2_0">音楽がない</string>
+    <string name="music_2_1">アラーム 1</string>
+    <string name="music_2_2">アラーム 2</string>
+    <string name="music_2_3">アラーム 3</string>
+    <string name="music_2_4">アラーム 4</string>
+    <string name="music_2_5">アラーム 5</string>
 
     <!-- 故障代码 -->
     <string name="guzhangtiaoshi">デバッグ</string>
