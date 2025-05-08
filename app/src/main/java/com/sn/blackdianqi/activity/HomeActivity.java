@@ -409,14 +409,14 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 
     private void handleReceiveData(String cmd) {
         cmd = cmd.toUpperCase().replaceAll(" ", "");
-        if (cmd.contains("FFFFFFFF0100030B00")) {
+        if (cmd.contains("FFFFFFFF0100030B")) {
             String isAudio = cmd.substring(16, 18);//是否有音响
             if (TextUtils.equals(isAudio, "00") || blueName.toUpperCase().contains("QMS3-N93-327")) {
                 Prefer.getInstance().setIsAudio(deviceAddress, false);
             } else {
                 Prefer.getInstance().setIsAudio(deviceAddress, true);
             }
-            LogUtils.i(TAG, "收到无闹钟未设置指令：" + cmd);
+            LogUtils.i(TAG, "收到有闹钟未设置指令：" + cmd);
             // 有闹钟,未设置
             AlarmBean alarmBean = new AlarmBean();
             alarmBean.setAlarmSwitch(false);
