@@ -2,6 +2,7 @@ package com.sn.blackdianqi.base;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MotionEvent;
 
 import com.sn.blackdianqi.bean.MessageEvent;
 import com.sn.blackdianqi.view.LoggerView;
@@ -67,5 +68,11 @@ public abstract class BaseFragment extends Fragment {
         return Build.VERSION.SDK_INT;
     }
 
+    protected boolean isUPorCancel(int eventAction) {
+        if (MotionEvent.ACTION_UP == eventAction || MotionEvent.ACTION_CANCEL == eventAction) {
+            return true;
+        }
+        return false;
+    }
 
 }

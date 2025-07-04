@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.sn.blackdianqi.MyApplication;
 import com.sn.blackdianqi.bean.AlarmBean;
 import com.sn.blackdianqi.bean.DeviceBean;
+import com.sn.blackdianqi.bean.LengNuanTimeBean;
 
 
 /**
@@ -39,6 +40,7 @@ public class Prefer {
     private final String KEY_TONGBUKZ_SHOW = "KEY_TONGBUKZ_SHOW"; // 同步控制是否显示
     private final String KEY_TONGBUKZ_SWITCH = "KEY_TONGBUKZ_SWITCH"; // 同步控制开关
     private final String KEY_IS_AUDIO = "KEY_IS_AUDIO"; // 音响
+    private final String KEY_LENGNUAN_TIME = "KEY_LENGNUAN_TIME";//冷暖定时信息
 
     public static Prefer getInstance() {
         if (null == mInstance) {
@@ -284,6 +286,33 @@ public class Prefer {
      */
     public boolean getIsAudio(String deviceAddress) {
         return mPref.getBoolean(KEY_IS_AUDIO + deviceAddress, false);
+    }
+
+    /**
+     * 保存冷暖定时信息
+     *
+     * @param deviceAddress
+     * @param bean
+     */
+    public void setLengNuanTime(String deviceAddress, LengNuanTimeBean bean) {
+        SharedPreferences.Editor editor = mPref.edit();
+        String valueJson = new Gson().toJson(bean);
+        editor.putString(KEY_LENGNUAN_TIME + deviceAddress, valueJson);
+        editor.commit();
+    }
+
+    /**
+     * 获取冷暖定时信息
+     *
+     * @param deviceAddress
+     * @return
+     */
+    public LengNuanTimeBean getLengNuanTime(String deviceAddress) {
+        String value = mPref.getString(KEY_LENGNUAN_TIME + deviceAddress, null);
+        if (TextUtils.isEmpty(value)) {
+            return null;
+        }
+        return new Gson().fromJson(value, LengNuanTimeBean.class);
     }
 
     public void setTongbukzShow(String deviceAddress, boolean show) {

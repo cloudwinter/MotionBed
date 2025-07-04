@@ -394,6 +394,11 @@
     <dimen name="dp_720">720dp</dimen>
 
     <!-- font size,you can add if there is no one -->
+    <dimen name="sp_1">1dp</dimen>
+    <dimen name="sp_2">2dp</dimen>
+    <dimen name="sp_3">3dp</dimen>
+    <dimen name="sp_4">4dp</dimen>
+    <dimen name="sp_5">5dp</dimen>
     <dimen name="sp_6">6dp</dimen>
     <dimen name="sp_7">7dp</dimen>
     <dimen name="sp_8">8dp</dimen>

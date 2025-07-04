@@ -31,6 +31,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
+import com.sn.blackdianqi.MainActivity;
 import com.sn.blackdianqi.MyApplication;
 import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.RunningContext;
@@ -53,6 +54,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.Nullable;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -75,11 +77,11 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
     private static final int MSG_GATT_SERVICE_DISCOVERY = 104;
 
     // 从哪个页面进入 main 首页 /set 设置
-    protected String mFrom = "";
+    private String mFrom = "";
     // 是否是第一次扫描
-    protected boolean isFirstScan = false;
+    private boolean isFirstScan = false;
 
-    protected List<String> blueNameList;
+    private List<String> blueNameList;
 
 
     @BindView(R.id.actionbar)
@@ -132,9 +134,9 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
     @Override
     protected void onResume() {
         super.onResume();
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
-            registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter(),Context.RECEIVER_EXPORTED);
-        }else {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter(), Context.RECEIVER_EXPORTED);
+        } else {
             registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
         }
     }
@@ -284,7 +286,7 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
     /**
      *
      */
-    private static class ConnectHandler extends Handler {
+    private class ConnectHandler extends Handler {
 
         private WeakReference<ConnectActivity> reference;
 
@@ -308,22 +310,53 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
                     activity.mBlueDeviceListAdapter.notifyDataSetChanged();
                     break;
                 case MSG_GATT_SERVICE_DISCOVERY:
-                    if (activity.mFrom.equals("main")) {
+                    DeviceBean connectedDevice = Prefer.getInstance().getConnectedDevice();
+                    Intent intent;
+//                    if (TextUtils.equals("main", mFrom)) {
                         // 只有首页过来才跳转
                         if (activity.mSelectedDeviceBean != null && activity.mSelectedDeviceBean.isConnected()) {
-                            Intent intent = new Intent(activity, HomeActivity.class);
+                            if (connectedDevice != null && connectedDevice.getTitle().contains("TL-Q")) {//MCU组合模式的电动床
+                                intent = new Intent(activity, MainMcuActivity.class);
+                                intent.putExtra("isFirst", true);
+                            } else if (connectedDevice != null && connectedDevice.getTitle().contains("TL-A")) {//MCU组合模式的单个气囊
+                                intent = new Intent(activity, SingleMcuActivity.class);
+                                intent.putExtra("type", "0B");
+                            } else if (connectedDevice != null && connectedDevice.getTitle().contains("TL-B")) {//MCU组合模式的单个电动床
+                                intent = new Intent(activity, SingleMcuActivity.class);
+                                intent.putExtra("type", "0A");
+                            } else if (connectedDevice != null && connectedDevice.getTitle().contains("TL-W")) {//MCU组合模式的单个冷暖
+                                intent = new Intent(activity, SingleMcuActivity.class);
+                                intent.putExtra("type", "0C");
+                            } else {
+                                intent = new Intent(activity, HomeActivity.class);
+                            }
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             activity.startActivity(intent);
                             activity.finish();
                         }
-                    } else if (activity.mFrom.equals("set")) {
-                        // 只有首页过来才跳转
-                        if (activity.mSelectedDeviceBean.isConnected()) {
-                            Intent intent = new Intent(activity, HomeActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            activity.startActivity(intent);
-                            activity.finish();
-                        }
-                    }
+//                    } else {//if (TextUtils.equals("set", mFrom))
+//                        // 设置界面跳转过来，重新加载应用
+//                        if (activity.mSelectedDeviceBean.isConnected()) {
+//                            if (connectedDevice != null && connectedDevice.getTitle().contains("TL-Q")) {//MCU组合模式的电动床
+//                                intent = new Intent(activity, MainMcuActivity.class);
+//                                intent.putExtra("isFirst", true);
+//                            } else if (connectedDevice != null && connectedDevice.getTitle().contains("TL-A")) {//MCU组合模式的单个气囊
+//                                intent = new Intent(activity, SingleMcuActivity.class);
+//                                intent.putExtra("type", "0B");
+//                            } else if (connectedDevice != null && connectedDevice.getTitle().contains("TL-B")) {//MCU组合模式的单个电动床
+//                                intent = new Intent(activity, SingleMcuActivity.class);
+//                                intent.putExtra("type", "0A");
+//                            } else if (connectedDevice != null && connectedDevice.getTitle().contains("TL-W")) {//MCU组合模式的单个冷暖
+//                                intent = new Intent(activity, SingleMcuActivity.class);
+//                                intent.putExtra("type", "0C");
+//                            } else {
+//                                intent = new Intent(activity, HomeActivity.class);
+//                            }
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                            activity.startActivity(intent);
+//                            activity.finish();
+//                        }
+//                    }
                     break;
             }
         }
@@ -359,7 +392,6 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
             }
         }
     };
-
 
 
 //    /**
@@ -404,7 +436,6 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
 //    };
 
 
-
     private ScanCallback mScanCallback = new ScanCallback() {
 
         @Override
@@ -444,7 +475,7 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
     }
 
 
-    private void addDevice(final BluetoothDevice device,final String deviceName) {
+    private void addDevice(final BluetoothDevice device, final String deviceName) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -464,8 +495,6 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
             }
         });
     }
-
-
 
 
     private boolean isConnected() {
@@ -536,13 +565,13 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
                     }
                     mBlueDeviceListAdapter.notifyDataSetChanged();
                 }
-                String address  = Prefer.getInstance().getLatelyConnectedDevice();
+                String address = Prefer.getInstance().getLatelyConnectedDevice();
                 LogUtils.e(TAG, "==更新连接状态 断开连接==");
                 Prefer.getInstance().disConnected();
                 if (isPreConnectDisconnecting) {
                     // 成功断开后连接
                     isPreConnectDisconnecting = false;
-                    if (mSelectedDeviceBean != null &&  !mSelectedDeviceBean.getAddress().equals(address)) {
+                    if (mSelectedDeviceBean != null && !mSelectedDeviceBean.getAddress().equals(address)) {
                         // 如果当前选中的和当前连接的不是同一个,重新发起连接
                         mBluetoothLeService.connect(mSelectedDeviceBean.getAddress());
                         closeDialog = false;
@@ -621,7 +650,6 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
     }
 
 
-
     private List<String> defindeBlueNameList() {
         List<String> blueNameList = new ArrayList<>();
         blueNameList.add("QMS-IQ");
@@ -677,6 +705,11 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
 
         blueNameList.add("S4-N");
         blueNameList.add("S4-4");
+
+        blueNameList.add("TL-Q");
+        blueNameList.add("TL-A");
+        blueNameList.add("TL-B");
+        blueNameList.add("TL-W");
 
         return blueNameList;
     }

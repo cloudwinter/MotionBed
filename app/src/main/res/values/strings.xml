@@ -7,7 +7,6 @@
     <string name="tongbukz_off">SYNCHR OFF</string>
 
 
-
     <string name="text_enter">Enter</string>
     <string name="blue_equipment">Bluetooth device</string>
     <string name="search_blue_equipment">Scan Nearby Bluetooth devices</string>
@@ -17,7 +16,7 @@
     <string name="connecting">connecting...</string>
     <string name="please_wait">Please later...</string>
     <string name="please_input">Please enter a number</string>
-    
+
     <!-- dialog -->
     <string name="connected_failed">The connection failed. Please try to reconnect</string>
     <string name="dialog_title_disconnect">Disconnected or not</string>
@@ -230,7 +229,6 @@
     <string name="sde_dialog_fuwei_loading">The reset...</string>
 
 
-
     <!-- 睡姿角度调整 -->
     <string name="sad_top_title">Set position angle</string>
     <string name="sad_top_tips_title">Instruction:</string>
@@ -294,6 +292,48 @@
     <string name="sdr_line_btn_pre">pre</string>
     <string name="sdr_line_btn_next">next</string>
 
+    <!-- tab -->
+    <string name="diandongchuang">Electric Bed</string>
+    <string name="qinang">Air Bag</string>
+    <string name="lengnuan">Cold And Warm</string>
 
+
+    <string name="weitiao2">Fine Tuning</string>
+    <string name="moshi">Mode</string>
+    <string name="yaolan">Cradle</string>
+    <string name="dengguang2">Lighting</string>
+    <string name="anmo2">Massage</string>
+    <string name="dingshi">At Regular Time</string>
+
+
+    <string name="shuiwei">Water Level:</string>
+    <string name="temp">Temperature:</string>
+    <string name="dingshi_kaiqi">Timing On</string>
+    <string name="time_set">Time Setting</string>
+
+
+    <string name="quanshenanmo">Body Massage</string>
+    <string name="beibuanmo">Back Massage</string>
+    <string name="yaobuanmo">Lumbar Massage</string>
+    <string name="jingbuanmo">Neck Massage</string>
+    <string name="yujia2">Yoga</string>
+    <string name="zishiying">Adaptive</string>
+    <string name="anmotingzhi">Massage Stopped</string>
+    <string name="fangqi">Deflate</string>
+    <string name="anmo_set">Massage Settings</string>
+    <string name="press_set">Pressure Setting</string>
+
+
+    <string name="moshi_xuanze">Mode Selection</string>
+    <string name="anmo_qiangdu">Massage Intensity</string>
+    <string name="anmo_time">Massage Time</string>
+
+    <string name="dengguang_set">Lighting Settings</string>
+    <string name="dengguang_light">Light Brightness</string>
+    <string name="clock_set">Alarm Clock Setting</string>
+
+    <string name="qinangchuangdian">Airbag Mattress</string>
+    <string name="lengnuanchuangdian">Cold Warm Mattress</string>
+    <string name="diandongchuang_set">Electric Bed Setup</string>
 
 </resources>

@@ -1,11 +1,14 @@
 package com.sn.blackdianqi.util;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.sn.blackdianqi.MyApplication;
 import com.sn.blackdianqi.blue.BluetoothLeService;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -140,6 +143,12 @@ public class BlueUtils {
         return number;
     }
 
+    /**
+     * 10进制转16进制
+     *
+     * @param number
+     * @return
+     */
     public static String covert10TO16(int number) {
         if (number == 0) {
             return "00";
@@ -222,6 +231,60 @@ public class BlueUtils {
         return decToHex(total).toUpperCase();
     }
 
+    // CRC-16-MODBUS (初始值0xFFFF, 多项式0x8005, 结果取反)
+    public static String crc16Modbus(String cmd) {
+        byte[] data = hexStringToByteArray(cmd);
+        int crc = 0xFFFF;
+
+        for (byte b : data) {
+            crc ^= (b & 0xFF);       // 与当前字节异或
+            for (int i = 0; i < 8; i++) {
+                if ((crc & 0x0001) != 0) { // 检查最低位
+                    crc = (crc >> 1) ^ 0xA001; // 右移并异或多项式反转值
+                } else {
+                    crc >>= 1;
+                }
+            }
+        }
+//        LogUtils.e("CRC==result", (crc & 0xFFFF) + "");
+        String result = decToHex(crc & 0xFFFF).toUpperCase();
+        StringBuilder sb = new StringBuilder();
+        sb.append(result);
+        if (result.length() < 4) {
+            for (int i = 0; i < (4 - result.length()); i++) {
+                sb.append("0");
+            }
+        }
+//        LogUtils.e("CRC==result", sb.toString());
+        return sb.toString();
+    }
+
+    /**
+     * 将16进制字符串转换为字节数组
+     *
+     * @param hexString 16进制字符串(如: "01020304")
+     * @return 对应的字节数组
+     */
+    public static byte[] hexStringToByteArray(String hexString) {
+        // 移除所有空白字符
+        hexString = hexString.replaceAll("\\s", "");
+
+        // 检查长度是否为偶数
+        if (hexString.length() % 2 != 0) {
+            throw new IllegalArgumentException("Hex string must have an even length");
+        }
+
+        byte[] result = new byte[hexString.length() / 2];
+
+        for (int i = 0; i < result.length; i++) {
+            int index = i * 2;
+            // 提取每两个字符作为一个16进制数
+            result[i] = (byte) Integer.parseInt(hexString.substring(index, index + 2), 16);
+        }
+
+        return result;
+    }
+
 
     /**
      * int 10进制转16进制
@@ -279,6 +342,72 @@ public class BlueUtils {
             bString += tmp.substring(tmp.length() - 4);
         }
         return bString;
+    }
+
+    /**
+     * 一个字节转8位bit 从低位到高位
+     *
+     * @param {} cmd
+     */
+    public static String byteToBit(byte b) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 8; i++) {
+            // 依次取出每一位，判断是 0 还是 1
+            int bit = (b >> i) & 1;
+            sb.append(bit);
+        }
+        // 由于是从低位到高位，这里将字符串反转一下，更符合一般的二进制展示习惯
+        return sb.reverse().toString();
+    }
+
+    /**
+     * 将字符串每隔一定长度切分放入一个数组中
+     *
+     * @param {*} str 原始字符
+     * @param {*} length 每隔几个字符
+     *            return 返回数组
+     */
+    public static List<String> strToArray(String str, int itemLength) {
+        List<String> array = new ArrayList<>();
+        if (TextUtils.isEmpty(str) || str.length() % itemLength != 0) {
+            Log.e("strToArray 字符为空或长度异常", str + "  length:" + itemLength);
+            return array;
+        }
+        for (int i = 0; i < str.length(); i += itemLength) {
+            array.add(str.substring(i, i + itemLength));
+        }
+        return array;
+    }
+
+    /**
+     * 将16进制字符串转换为byte
+     * @param hexString 16进制字符串（如"FF"、"f"、"0A"）
+     * @return 转换后的byte值，转换失败返回0
+     */
+    public static byte hexStringToByte(String hexString) {
+        if (hexString == null || hexString.trim().isEmpty()) {
+            return 0;
+        }
+
+        // 去除空格并统一转为大写
+        String hex = hexString.trim().toUpperCase();
+
+        // 检查长度是否合法（1或2个字符）
+        if (hex.length() > 2) {
+            hex = hex.substring(0, 2); // 截取前两位
+        } else if (hex.length() == 1) {
+            hex = "0" + hex; // 补前导0，如"F"转为"0F"
+        }
+
+        try {
+            // 解析16进制为整数（0-255）
+            int intValue = Integer.parseInt(hex, 16);
+            // 转换为byte（处理符号：超过127的数转为负数）
+            return (byte) intValue;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return 0; // 转换失败返回0
+        }
     }
 
     public static void main(String[] args) {

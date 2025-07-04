@@ -1,10 +1,5 @@
 package com.sn.blackdianqi;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
@@ -20,16 +15,20 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.sn.blackdianqi.activity.AlarmActivity;
+import androidx.annotation.Nullable;
+
 import com.sn.blackdianqi.activity.ConnectActivity;
 import com.sn.blackdianqi.activity.HomeActivity;
-import com.sn.blackdianqi.activity.SleepAdjustActivity;
-import com.sn.blackdianqi.activity.SleepDataEntryActivity;
-import com.sn.blackdianqi.activity.SleepReportMainActivity;
+import com.sn.blackdianqi.activity.MainMcuActivity;
+import com.sn.blackdianqi.activity.SingleMcuActivity;
 import com.sn.blackdianqi.base.BaseActivity;
+import com.sn.blackdianqi.bean.DeviceBean;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.util.ToastUtils;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -39,7 +38,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     TextView textView;
     @BindView(R.id.img_logo)
     ImageView imageView;
-
 
 
     // 蓝牙适配器
@@ -86,18 +84,33 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.text_enter:
                 if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
-                    ToastUtils.showToast(this,"请开启蓝牙");
+                    ToastUtils.showToast(this, "请开启蓝牙");
                     return;
                 }
                 // 判断当前蓝牙是否已连接，如果已连接直接调整到HomeActivity
                 if (BlueUtils.isConnected()) {
                     // 跳转到首页页面
-                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    DeviceBean connectedDevice = Prefer.getInstance().getConnectedDevice();
+                    Intent intent;
+                    if (connectedDevice != null && connectedDevice.getTitle().contains("TL-Q")) {//MCU组合模式的电动床
+                        intent = new Intent(MainActivity.this, MainMcuActivity.class);
+                    } else if (connectedDevice != null && connectedDevice.getTitle().contains("TL-A")) {//MCU组合模式的单个气囊
+                        intent = new Intent(MainActivity.this, SingleMcuActivity.class);
+                        intent.putExtra("type", "0B");
+                    } else if (connectedDevice != null && connectedDevice.getTitle().contains("TL-B")) {//MCU组合模式的单个电动床
+                        intent = new Intent(MainActivity.this, SingleMcuActivity.class);
+                        intent.putExtra("type", "0A");
+                    } else if (connectedDevice != null && connectedDevice.getTitle().contains("TL-W")) {//MCU组合模式的单个冷暖
+                        intent = new Intent(MainActivity.this, SingleMcuActivity.class);
+                        intent.putExtra("type", "0C");
+                    } else {
+                        intent = new Intent(MainActivity.this, HomeActivity.class);
+                    }
                     startActivity(intent);
                 } else {
                     // 跳转到蓝牙搜索和连接界面
                     Intent intent = new Intent(MainActivity.this, ConnectActivity.class);
-                    intent.putExtra("from","main");
+                    intent.putExtra("from", "main");
                     startActivity(intent);
                 }
                 break;
@@ -134,7 +147,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 // 退出时已连接断开连接
                 if (BlueUtils.isConnected()) {
                     MyApplication.getInstance().mBluetoothLeService.disconnect();
-                    Prefer.getInstance().setBleStatus("未连接",null);
+                    Prefer.getInstance().setBleStatus("未连接", null);
                 }
                 Prefer.getInstance().clearData();
                 finish();

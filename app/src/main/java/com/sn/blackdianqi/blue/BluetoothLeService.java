@@ -25,6 +25,7 @@ import androidx.core.app.ActivityCompat;
 import com.sn.blackdianqi.RunningContext;
 import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.util.Prefer;
+import com.sn.blackdianqi.util.ToastUtils;
 
 import java.util.List;
 import java.util.UUID;
@@ -313,6 +314,7 @@ public class BluetoothLeService extends Service {
     // 取消远程蓝牙
     public void disconnect() {
         if (mBluetoothAdapter == null || mBluetoothGatt == null) {
+            ToastUtils.showToast(this,"BluetoothAdapter not initialized");
             Log.e("取消蓝牙连接", "BluetoothAdapter not initialized");
             return;
         }

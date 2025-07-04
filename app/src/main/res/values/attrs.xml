@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="title" format="reference|string" />
+    <attr name="size" format="dimension" />
     <attr name="bgnormal" format="reference" />
     <attr name="bgselected" format="reference" />
     <attr name="icon" format="reference" />
@@ -9,6 +10,7 @@
 
     <declare-styleable name="JiyiView">
         <attr name="title" />
+        <attr name="size" />
         <attr name="bgnormal" />
         <attr name="bgselected" />
     </declare-styleable>

@@ -291,4 +291,43 @@
     <string name="sdr_line_btn_pre">pre</string>
     <string name="sdr_line_btn_next">next</string>
 
+    <!-- tab -->
+    <string name="diandongchuang">Lit électrique</string>
+    <string name="qinang">sac air</string>
+    <string name="lengnuan">Froid et chaud</string>
+
+
+    <string name="weitiao2">fine réglage</string>
+    <string name="moshi">Mode</string>
+    <string name="yaolan">Berceau</string>
+    <string name="dengguang2">Éclairage</string>
+    <string name="anmo2">Massage</string>
+    <string name="dingshi">À l heure régulière</string>
+
+    <string name="shuiwei">Niveau de l eau:</string>
+    <string name="temp">température:</string>
+    <string name="dingshi_kaiqi">Timing sur</string>
+    <string name="time_set">Réglage de l heure</string>
+
+
+    <string name="quanshenanmo">Massage du corps entier</string>
+    <string name="beibuanmo">Massage du dos</string>
+    <string name="yaobuanmo">Massage lombaire</string>
+    <string name="jingbuanmo">Massage au cou</string>
+    <string name="yujia2">Yoga</string>
+    <string name="zishiying">Adaptatif</string>
+    <string name="anmotingzhi">Massage arrêté</string>
+    <string name="fangqi">Déflation</string>
+    <string name="anmo_set">Paramètres de massage</string>
+    <string name="press_set">Réglage de la pression</string>
+
+
+    <string name="moshi_xuanze">Sélection du mode</string>
+    <string name="anmo_qiangdu">Intensité du massage</string>
+    <string name="anmo_time">Temps de massage</string>
+
+    <string name="qinangchuangdian">matelas airbag</string>
+    <string name="lengnuanchuangdian">matelas Froid et chaud</string>
+    <string name="diandongchuang_set">Configuration du lit électrique</string>
+
 </resources>

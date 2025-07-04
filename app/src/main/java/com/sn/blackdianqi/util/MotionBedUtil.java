@@ -1,5 +1,10 @@
 package com.sn.blackdianqi.util;
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
+
 /**
  * Created by xiayundong on 2022/1/11.
  */
@@ -16,5 +21,19 @@ public class MotionBedUtil {
             }
         }
         return newArray;
+    }
+
+
+    /**
+     * dp转换为px
+     * @param context
+     * @param dp
+     * @return
+     */
+    public static int dpToPx(Context context, float dp) {
+        Resources resources = context.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, metrics);
+        return Math.round(px);
     }
 }
