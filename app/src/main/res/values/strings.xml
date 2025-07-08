@@ -336,4 +336,12 @@
     <string name="lengnuanchuangdian">Cold Warm Mattress</string>
     <string name="diandongchuang_set">Electric Bed Setup</string>
 
+    <string name="dangwei">Position</string>
+    <string name="dangwei1">Level 1</string>
+    <string name="dangwei2">Level 2</string>
+    <string name="dangwei3">Level 3</string>
+    <string name="dangwei4">Level 4</string>
+    <string name="jiare">Heating</string>
+    <string name="zhileng">Refrigeration</string>
+
 </resources>

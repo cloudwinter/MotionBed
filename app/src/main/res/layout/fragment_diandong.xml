@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_10"
-            android:text="微调"
+            android:text="@string/weitiao2"
             android:textColor="@color/color_C9C9C9"
             android:textSize="@dimen/sp_14" />
 
@@ -75,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_10"
-            android:text="模式"
+            android:text="@string/moshi"
             android:textColor="@color/color_C9C9C9"
             android:textSize="@dimen/sp_14" />
 
@@ -223,11 +223,39 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_45"
         android:layout_marginTop="@dimen/dp_10"
         android:background="@color/color_020202"
         android:orientation="horizontal"
         android:paddingVertical="@dimen/dp_5">
+
+
+        <LinearLayout
+            android:id="@+id/ll_dingshi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/color_020202"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/dp_8">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/dingshi"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_12" />
+
+            <CheckBox
+                android:id="@+id/cb_dingshi"
+                style="@style/checkbox_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_checkbox" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_dengguang"
@@ -235,12 +263,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:paddingHorizontal="@dimen/dp_10">
+            android:paddingHorizontal="@dimen/dp_8">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/dp_10"
                 android:layout_weight="1"
                 android:text="@string/dengguang2"
                 android:textColor="@color/white"
@@ -255,18 +282,27 @@
 
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_45"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@color/color_020202"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/dp_5">
+
         <LinearLayout
             android:id="@+id/ll_anmo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:paddingHorizontal="@dimen/dp_10">
+            android:paddingHorizontal="@dimen/dp_8">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/dp_10"
                 android:layout_weight="1"
                 android:text="@string/anmo2"
                 android:textColor="@color/white"
@@ -281,35 +317,33 @@
 
         </LinearLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_dingshi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10"
-        android:background="@color/color_020202"
-        android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/dp_10"
-        android:paddingVertical="@dimen/dp_5">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/dp_10"
+        <LinearLayout
+            android:id="@+id/ll_ddset"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/dingshi"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_12" />
+            android:background="@color/color_020202"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/dp_8">
 
-        <CheckBox
-            android:id="@+id/cb_dingshi"
-            style="@style/checkbox_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_checkbox" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="@string/diandongchuang_set"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_12" />
+
+            <ImageView
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_row" />
+
+        </LinearLayout>
     </LinearLayout>
+
 
 </LinearLayout>

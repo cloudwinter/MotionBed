@@ -330,4 +330,12 @@
     <string name="lengnuanchuangdian">matelas Froid et chaud</string>
     <string name="diandongchuang_set">Configuration du lit électrique</string>
 
+    <string name="dangwei">Vitesses</string>
+    <string name="dangwei1">Vitesse 1</string>
+    <string name="dangwei2">Vitesse 2</string>
+    <string name="dangwei3">Vitesse 3</string>
+    <string name="dangwei4">Vitesse 4</string>
+    <string name="jiare">Chauffage</string>
+    <string name="zhileng">Réfrigération</string>
+
 </resources>

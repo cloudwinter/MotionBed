@@ -441,25 +441,25 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.llAnmoTitle:
-                ivAnmo.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
-                ivDengguang.setImageDrawable(getResources().getDrawable(R.mipmap.arror_down));
-                ivClock.setImageDrawable(getResources().getDrawable(R.mipmap.arror_down));
+                ivAnmo.setImageDrawable(getResources().getDrawable(R.mipmap.arror_down));
+                ivDengguang.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
+                ivClock.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
                 llAnmo.setVisibility(View.VISIBLE);
                 llDengguang.setVisibility(View.GONE);
                 llClock.setVisibility(View.GONE);
                 break;
             case R.id.llDengguangTitle:
-                ivAnmo.setImageDrawable(getResources().getDrawable(R.mipmap.arror_down));
-                ivDengguang.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
-                ivClock.setImageDrawable(getResources().getDrawable(R.mipmap.arror_down));
+                ivAnmo.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
+                ivDengguang.setImageDrawable(getResources().getDrawable(R.mipmap.arror_down));
+                ivClock.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
                 llAnmo.setVisibility(View.GONE);
                 llDengguang.setVisibility(View.VISIBLE);
                 llClock.setVisibility(View.GONE);
                 break;
             case R.id.llClockTitle:
-                ivAnmo.setImageDrawable(getResources().getDrawable(R.mipmap.arror_down));
-                ivDengguang.setImageDrawable(getResources().getDrawable(R.mipmap.arror_down));
-                ivClock.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
+                ivAnmo.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
+                ivDengguang.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
+                ivClock.setImageDrawable(getResources().getDrawable(R.mipmap.arror_down));
                 llAnmo.setVisibility(View.GONE);
                 llDengguang.setVisibility(View.GONE);
                 llClock.setVisibility(View.VISIBLE);

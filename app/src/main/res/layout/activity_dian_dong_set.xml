@@ -42,7 +42,7 @@
             android:layout_height="@dimen/dp_12"
             android:scaleType="fitCenter"
             android:layout_marginLeft="@dimen/dp_10"
-            android:src="@mipmap/arror_up" />
+            android:src="@mipmap/arror_down" />
 
     </LinearLayout>
 
@@ -195,7 +195,7 @@
             android:layout_height="@dimen/dp_12"
             android:layout_marginLeft="@dimen/dp_10"
             android:scaleType="fitCenter"
-            android:src="@mipmap/arror_down" />
+            android:src="@mipmap/arror_up" />
 
     </LinearLayout>
 
@@ -315,7 +315,7 @@
             android:layout_height="@dimen/dp_12"
             android:layout_marginLeft="@dimen/dp_10"
             android:scaleType="fitCenter"
-            android:src="@mipmap/arror_down" />
+            android:src="@mipmap/arror_up" />
 
 
     </LinearLayout>

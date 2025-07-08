@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -78,10 +79,10 @@ public class PressSetAdapter extends RecyclerView.Adapter<PressSetAdapter.ViewHo
         if (selectIndex == position) {
             holder.ivSelect.setVisibility(View.VISIBLE);
         } else {
-            holder.ivSelect.setVisibility(View.GONE);
+            holder.ivSelect.setVisibility(View.INVISIBLE);
         }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.llHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mClickListener.onItemClick(position);
@@ -107,12 +108,14 @@ public class PressSetAdapter extends RecyclerView.Adapter<PressSetAdapter.ViewHo
         private final TextView tvValue;
         private final TextView tvName;
         private final ImageView ivSelect;
+        private final LinearLayout llHome;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvValue = itemView.findViewById(R.id.tvValue);
             tvName = itemView.findViewById(R.id.tvName);
             ivSelect = itemView.findViewById(R.id.ivSelect);
+            llHome = itemView.findViewById(R.id.llHome);
         }
     }
 }

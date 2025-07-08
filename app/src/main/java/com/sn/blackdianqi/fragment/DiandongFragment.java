@@ -1,5 +1,6 @@
 package com.sn.blackdianqi.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,6 +17,7 @@ import android.widget.LinearLayout;
 import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.RunningContext;
 import com.sn.blackdianqi.activity.AlarmActivity;
+import com.sn.blackdianqi.activity.DianDongSetActivity;
 import com.sn.blackdianqi.bean.AlarmBean;
 import com.sn.blackdianqi.bean.AudioEvent;
 import com.sn.blackdianqi.bean.DateBean;
@@ -70,6 +72,8 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
     LinearLayout llAnmo;
     @BindView(R.id.ll_dingshi)
     LinearLayout llDingshi;
+    @BindView(R.id.ll_ddset)
+    LinearLayout llDdset;
 
     @BindView(R.id.cb_dengguang)
     CheckBox cbDengguang;
@@ -150,10 +154,10 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
             } else {
                 cbDingshi.setChecked(false);
             }
-        } else if (cmd.contains("FF FF FF FF 01 00 03 0B 00")) {//时间校验回码 ==>无闹钟
+        } else if (cmd.contains("FF FF FF FF 01 00 03 0B 00")) {//时间校验回码 ==>有闹钟、未设置
             cmd = cmd.toUpperCase().replaceAll(" ", "");
             String isAudio = cmd.substring(16, 18);//是否有音响
-            if (TextUtils.equals(isAudio, "00") || blueName.toUpperCase().contains("QMS3-N93-327")) {
+            if (TextUtils.equals(isAudio, "00")) {
                 Prefer.getInstance().setIsAudio(deviceAddress, false);
             } else {
                 Prefer.getInstance().setIsAudio(deviceAddress, true);
@@ -174,6 +178,46 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
             }
             LogUtils.i(TAG, "收到有闹钟已设置指令：" + cmd);
             setHasAlarm(cmd);
+        }
+
+        // 记忆1 按键回码
+        if (cmd.contains("FF FF FF FF 05 00 00 A0 0A 2F 07")) {
+            jiyi1View.setSelected(true);
+        }
+        if (cmd.contains("FF FF FF FF 05 00 00 AF 0A 2A F7")) {
+            jiyi1View.setSelected(false);
+        }
+
+        // 记忆2 按键回码
+        if (cmd.contains("FF FF FF FF 05 00 00 B0 0B E3 07")) {
+            jiyi2View.setSelected(true);
+        }
+        if (cmd.contains("FF FF FF FF 05 00 00 BF 0B E6 F7")) {
+            jiyi2View.setSelected(false);
+        }
+
+        // 看电视 按键回码
+        if (cmd.contains("FF FF FF FF 05 00 00 50 05 2B 03")) {
+            kandianshiView.setSelected(true);
+        }
+        if (cmd.contains("FF FF FF FF 05 00 00 5F 05 2E F3")) {
+            kandianshiView.setSelected(false);
+        }
+
+        // 零压力 按键回码
+        if (cmd.contains("FF FF FF FF 05 00 00 90 09 7B 06")) {
+            lingyaliView.setSelected(true);
+        }
+        if (cmd.contains("FF FF FF FF 05 00 00 9F 09 7E F6")) {
+            lingyaliView.setSelected(false);
+        }
+
+        // 止鼾 按键回码
+        if (cmd.contains("FF FF FF FF 05 00 00 F0 0F D3 04")) {
+            zhihanView.setSelected(true);
+        }
+        if (cmd.contains("FF FF FF FF 05 00 00 FF 0F D6 F4")) {
+            zhihanView.setSelected(false);
         }
     }
 
@@ -444,6 +488,16 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
                 } else {//按摩关
                     sendBlueCmd("FF FF FF FF 05 00 00 00 1C D6 C9");
                 }
+            }
+        });
+
+        //电动床设置
+        llDdset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), DianDongSetActivity.class);
+                startActivity(intent);
             }
         });
     }

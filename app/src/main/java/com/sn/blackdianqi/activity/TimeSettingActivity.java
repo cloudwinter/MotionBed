@@ -125,7 +125,7 @@ public class TimeSettingActivity extends BaseActivity implements TranslucentActi
 
             String gear16 = lengNuanTimeBean.getGear();
             gear = BlueUtils.covert16TO10(gear16);
-            tvGear.setText(gear + "档");
+            tvGear.setText(getGearStrByCode(gear));
 
             String hourStr = lengNuanTimeBean.getHour();
             String minuteStr = lengNuanTimeBean.getMins();
@@ -204,14 +204,33 @@ public class TimeSettingActivity extends BaseActivity implements TranslucentActi
         }
     }
 
+    //模式选择
     public String getModeStrByCode(String mode) {
         if (mode.equals("01")) {
-            return "加热";
+            return getResources().getString(R.string.jiare);
         }
         if (mode.equals("02")) {
-            return "制冷";
+            return getResources().getString(R.string.zhileng);
         }
         return getString(R.string.alarm_mode_budongzuo);
+    }
+
+    //档位选择
+    public String getGearStrByCode(int gear) {
+        String gearStr = "";
+        if (gear == 1) {
+            return getResources().getString(R.string.dangwei1);
+        }
+        if (gear == 2) {
+            return getResources().getString(R.string.dangwei2);
+        }
+        if (gear == 3) {
+            return getResources().getString(R.string.dangwei3);
+        }
+        if (gear == 4) {
+            return getResources().getString(R.string.dangwei4);
+        }
+        return gearStr;
     }
 
     /**
@@ -243,7 +262,7 @@ public class TimeSettingActivity extends BaseActivity implements TranslucentActi
     private void handleReceiveData(String cmd) {
         cmd = cmd.toUpperCase().replaceAll(" ", "");
         Log.e("回复cmd:", cmd);
-        if (cmd.indexOf("FFFFFFFFFE14000201") > -1) {//設置定时数据恢复
+        if (cmd.indexOf("FFFFFFFFFE14000201") > -1) {//設置定时数据回复
             ToastUtils.showToast(this, "设置成功");
             new Handler().postDelayed(new Runnable() {
                 @Override

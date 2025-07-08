@@ -68,9 +68,6 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
     @BindView(R.id.tvDisconnectLengNuan)
     TextView tvDisconnectLengNuan;
 
-    @BindView(R.id.llDianDongSet)
-    LinearLayout llDianDongSet;
-
     @BindView(R.id.ll_language)
     LinearLayout llLanguage;
 
@@ -156,10 +153,8 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
 
             if (TextUtils.equals(bedState, "0A")) {
                 llDianDong.setVisibility(View.VISIBLE);
-                llDianDongSet.setVisibility(View.VISIBLE);
             } else {
                 llDianDong.setVisibility(View.GONE);
-                llDianDongSet.setVisibility(View.GONE);
             }
             if (TextUtils.equals(m1State, "0B")) {
                 llQiNang.setVisibility(View.VISIBLE);
@@ -173,11 +168,6 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
             }
         }
         if (!TextUtils.isEmpty(type)) {
-            if (TextUtils.equals(type, "0A")) {
-                llDianDongSet.setVisibility(View.VISIBLE);
-            } else {
-                llDianDongSet.setVisibility(View.GONE);
-            }
             llDianDong.setVisibility(View.GONE);
             llQiNang.setVisibility(View.GONE);
             llLengNuan.setVisibility(View.GONE);
@@ -185,7 +175,6 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
         tvDisconnectDianDong.setOnClickListener(this);
         tvDisconnectQiNang.setOnClickListener(this);
         tvDisconnectLengNuan.setOnClickListener(this);
-        llDianDongSet.setOnClickListener(this);
         llConnect.setOnClickListener(this);
         llLanguage.setOnClickListener(this);
 
@@ -195,9 +184,9 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
             tvLanguage.setText(R.string.french);
         } else if (language.equals("ja")) {
             tvLanguage.setText(R.string.japan);
-        } else if (language.equals("zh-rTW"))  {
+        } else if (language.equals("zh-rTW")) {
             tvLanguage.setText(R.string.chinese);
-        }else if (language.equals("en"))  {
+        } else if (language.equals("en")) {
             tvLanguage.setText(R.string.english); // 默认是英文
         }
     }
@@ -236,10 +225,6 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
                 sendBlueCmd(cmd);//发送询问状态
                 mWaitDialog.setHint("设备断开中...");
                 mWaitDialog.show();
-                break;
-            case R.id.llDianDongSet://电动床设置
-                intent.setClass(this, DianDongSetActivity.class);
-                startActivity(intent);
                 break;
         }
     }

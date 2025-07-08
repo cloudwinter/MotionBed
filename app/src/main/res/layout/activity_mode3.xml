@@ -21,7 +21,7 @@
         android:layout_marginTop="15dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        app:title="加热" />
+        app:title="@string/jiare" />
 
     <!-- 右侧零压力 -->
     <com.sn.blackdianqi.view.WeekItemView
@@ -32,7 +32,7 @@
         android:layout_marginTop="1px"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        app:title="制冷" />
+        app:title="@string/zhileng" />
 
 
     <!-- 保存 -->

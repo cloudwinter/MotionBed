@@ -21,7 +21,7 @@
         android:layout_marginTop="15dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        app:title="1档" />
+        app:title="@string/dangwei1" />
 
     <!-- 右侧零压力 -->
     <com.sn.blackdianqi.view.WeekItemView
@@ -32,7 +32,7 @@
         android:layout_marginTop="1px"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        app:title="2档" />
+        app:title="@string/dangwei2"  />
     <!-- 右侧零压力 -->
     <com.sn.blackdianqi.view.WeekItemView
         android:id="@+id/gear3"
@@ -42,7 +42,7 @@
         android:layout_marginTop="1px"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        app:title="3档" />
+        app:title="@string/dangwei3"  />
     <!-- 右侧零压力 -->
     <com.sn.blackdianqi.view.WeekItemView
         android:id="@+id/gear4"
@@ -52,7 +52,7 @@
         android:layout_marginTop="1px"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        app:title="4档" />
+        app:title="@string/dangwei4"  />
 
 
     <!-- 保存 -->

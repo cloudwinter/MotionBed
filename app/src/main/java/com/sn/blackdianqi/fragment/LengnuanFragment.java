@@ -75,13 +75,14 @@ public class LengnuanFragment extends BaseMcuFragment {
             //工作状态
             int workState = BlueUtils.covert16TO10(stateHigh);//工作状态  0：空闲 1：加热 2：制冷 3：水位低 4：故障
             String gear = cmd.substring(20, 22);//工作档位
+            Log.e("工作档位:",gear);
             int selectScaleIndex = 1;
             if (workState == 0) {//空闲
                 selectScaleIndex = 5;
             } else if (workState == 1) {//加热
                 selectScaleIndex = 5 + Integer.parseInt(gear);
             } else if (workState == 2) {//制冷
-                selectScaleIndex = Integer.parseInt(gear);
+                selectScaleIndex = 5 - Integer.parseInt(gear);
             } else if (workState == 3) {//水位低
                 selectScaleIndex = 5;
             } else if (workState == 4) {//故障
@@ -197,10 +198,10 @@ public class LengnuanFragment extends BaseMcuFragment {
 
     private void initData() {
         temps.clear();
-        temps.add(new TempModel("5", "FFFFFFFFFE1000050000010000AA", "#1A89FE"));
-        temps.add(new TempModel("10", "FFFFFFFFFE1000050000020000AA", "#47B4F4"));
-        temps.add(new TempModel("15", "FFFFFFFFFE1000050000030000AA", "#2EBFE4"));
-        temps.add(new TempModel("20", "FFFFFFFFFE1000050000040000AA", "#17C9D5"));
+        temps.add(new TempModel("5", "FFFFFFFFFE1000050000040000AA", "#17C9D5"));
+        temps.add(new TempModel("10", "FFFFFFFFFE1000050000030000AA", "#2EBFE4"));
+        temps.add(new TempModel("15", "FFFFFFFFFE1000050000020000AA", "#47B4F4"));
+        temps.add(new TempModel("20", "FFFFFFFFFE1000050000010000AA", "#1A89FE"));
         temps.add(new TempModel(getResources().getString(R.string.close), "FFFFFFFFFE1000060000000000AA", "#41B67D"));
         temps.add(new TempModel("30", "FFFFFFFFFE1000040000010000AA", "#FF9704"));
         temps.add(new TempModel("35", "FFFFFFFFFE1000040000020000AA", "#FF6D04"));

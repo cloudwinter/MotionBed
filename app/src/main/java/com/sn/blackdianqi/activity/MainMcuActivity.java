@@ -161,8 +161,9 @@ public class MainMcuActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onLeftClick() {
-        Intent intent = new Intent(MainMcuActivity.this, ConnectActivity.class);
-        startActivity(intent);
+        finish();
+//        Intent intent = new Intent(MainMcuActivity.this, ConnectActivity.class);
+//        startActivity(intent);
     }
 
     @Override
@@ -174,7 +175,7 @@ public class MainMcuActivity extends BaseActivity implements View.OnClickListene
 
     private void askStatus() {
         try {
-            Thread.sleep(500L);
+            Thread.sleep(300L);
             String cmd = "FFFFFFFF010026140F000000000000000000";
             cmd = cmd + BlueUtils.makeChecksum(cmd);
             sendBlueCmd(cmd);//发送询问状态
