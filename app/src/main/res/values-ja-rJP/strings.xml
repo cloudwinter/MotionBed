@@ -348,5 +348,6 @@
     <string name="duankai_device">デバイスの切断</string>
     <string name="change_device">設備の交換</string>
     <string name="success">成功!</string>
+    <string name="set_alarm">目覚まし時計をセットしておく必要があります</string>
 
 </resources>

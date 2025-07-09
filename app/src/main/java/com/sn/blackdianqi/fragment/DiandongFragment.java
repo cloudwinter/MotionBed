@@ -462,8 +462,9 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (isFirstAlarm) {
+                    String hint = getResources().getString(R.string.set_alarm);
                     DoubleConfirmDialog.builder(getActivity())
-                            .setContent("闹钟未设置,先设置闹钟?")
+                            .setContent(hint)
                             .setListener(new DoubleConfirmDialog.OnPermissionsDialogListener() {
                                 @Override
                                 public void cancleOnClick(DoubleConfirmDialog dialog) {

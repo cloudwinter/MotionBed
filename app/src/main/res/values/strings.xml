@@ -347,5 +347,6 @@
     <string name="duankai_device">Disconnect the device</string>
     <string name="change_device">Replace device</string>
     <string name="success">success!</string>
+    <string name="set_alarm">Need to set an alarm first</string>
 
 </resources>

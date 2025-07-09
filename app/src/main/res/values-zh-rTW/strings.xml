@@ -348,6 +348,7 @@
     <string name="duankai_device">斷開設備</string>
     <string name="change_device">更換設備</string>
     <string name="success">成功!</string>
+    <string name="set_alarm">需要先設置鬧鐘</string>
 
 
 </resources>

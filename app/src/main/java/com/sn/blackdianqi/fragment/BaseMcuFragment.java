@@ -111,7 +111,7 @@ public abstract class BaseMcuFragment extends BaseFragment {
                 public void run() {
                     try {
                         Thread.sleep(200L);
-                        askStatus();
+//                        askStatus();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
