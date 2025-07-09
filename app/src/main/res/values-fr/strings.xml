@@ -326,6 +326,10 @@
     <string name="anmo_qiangdu">Intensité du massage</string>
     <string name="anmo_time">Temps de massage</string>
 
+    <string name="dengguang_set">Paramètres d\'éclairage</string>
+    <string name="dengguang_light">Lumière</string>
+    <string name="clock_set">Réglage de l\'alarme</string>
+
     <string name="qinangchuangdian">matelas airbag</string>
     <string name="lengnuanchuangdian">matelas Froid et chaud</string>
     <string name="diandongchuang_set">Configuration du lit électrique</string>
@@ -337,5 +341,10 @@
     <string name="dangwei4">Vitesse 4</string>
     <string name="jiare">Chauffage</string>
     <string name="zhileng">Réfrigération</string>
+
+    <string name="duankai_device">Déconnecter l\'équipement</string>
+    <string name="change_device">Remplacement de l\'équipement</string>
+    <string name="success">Succès!</string>
+
 
 </resources>

@@ -30,10 +30,10 @@ public class MotionBedUtil {
      * @param dp
      * @return
      */
-    public static int dpToPx(Context context, float dp) {
+    public static float dpToPx(Context context, float dp) {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, metrics);
-        return Math.round(px);
+        return px;
     }
 }

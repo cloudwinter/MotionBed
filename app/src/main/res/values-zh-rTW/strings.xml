@@ -29,13 +29,13 @@
     <string name="connecting_device">連接設備</string>
     <string name="not_connected">未連接</string>
     <string name="connected">已連接</string>
-    <string name="disconnect">未連接</string>
+    <string name="disconnect">斷開連接</string>
     <string name="click_to_connect">點擊連接</string>
     <string name="lighting_time">燈光時間</string>
     <string name="switch_language">選擇語言</string>
     <string name="french">法語</string>
     <string name="english">英語</string>
-    <string name="chinese">中文繁體</string>
+    <string name="chinese">繁體中文</string>
     <string name="japan">日語</string>
     <string name="version">版本</string>
     <string name="privacy_policy">隱私協議</string>
@@ -291,6 +291,63 @@
     <string name="sdr_line_tip">提示：您可以&#180;如果你睡眠不足3小時，就不會產生曲線</string>
     <string name="sdr_line_btn_pre">之前</string>
     <string name="sdr_line_btn_next">之後</string>
+
+
+    <!-- tab -->
+    <string name="diandongchuang">電動床</string>
+    <string name="qinang">氣囊</string>
+    <string name="lengnuan">冷暖</string>
+
+
+    <string name="weitiao2">微調</string>
+    <string name="moshi">模式</string>
+    <string name="yaolan">搖籃</string>
+    <string name="dengguang2">燈光</string>
+    <string name="anmo2">按摩</string>
+    <string name="dingshi">定時</string>
+
+
+    <string name="shuiwei">水位:</string>
+    <string name="temp">溫度:</string>
+    <string name="dingshi_kaiqi">定時開啟</string>
+    <string name="time_set">時間設置</string>
+
+
+    <string name="quanshenanmo">全身按摩</string>
+    <string name="beibuanmo">背部按摩</string>
+    <string name="yaobuanmo">腰部按摩</string>
+    <string name="jingbuanmo">頸部按摩</string>
+    <string name="yujia2">瑜伽</string>
+    <string name="zishiying">自適應</string>
+    <string name="anmotingzhi">按摩停止</string>
+    <string name="fangqi">放氣</string>
+    <string name="anmo_set">按摩設置</string>
+    <string name="press_set">壓力設置</string>
+
+
+    <string name="moshi_xuanze">模式選擇</string>
+    <string name="anmo_qiangdu">按摩強度</string>
+    <string name="anmo_time">按摩時間</string>
+
+    <string name="dengguang_set">燈光設置</string>
+    <string name="dengguang_light">燈光亮度</string>
+    <string name="clock_set">鬧鐘設置</string>
+
+    <string name="qinangchuangdian">氣囊床墊</string>
+    <string name="lengnuanchuangdian">冷暖床墊</string>
+    <string name="diandongchuang_set">電動床設置</string>
+
+    <string name="dangwei">檔位</string>
+    <string name="dangwei1">1檔</string>
+    <string name="dangwei2">2檔</string>
+    <string name="dangwei3">3檔</string>
+    <string name="dangwei4">4檔</string>
+    <string name="jiare">加熱</string>
+    <string name="zhileng">製冷</string>
+
+    <string name="duankai_device">斷開設備</string>
+    <string name="change_device">更換設備</string>
+    <string name="success">成功!</string>
 
 
 </resources>

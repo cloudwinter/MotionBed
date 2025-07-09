@@ -1,8 +1,10 @@
 package com.sn.blackdianqi.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -27,6 +29,8 @@ import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.util.MotionBedUtil;
 import com.sn.blackdianqi.util.Prefer;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,10 +61,23 @@ public class LengnuanFragment extends BaseMcuFragment {
 
 
     private List<TempModel> temps = new ArrayList<>();
+    private List<Float> tempGears = new ArrayList<>();
     private TempAdapter tempAdapter;
-    private int tempLength;
+    private float tempLength;
     private float xStart;
     private float yStart;
+
+    Handler mHandler = new Handler();
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            if (isVisible() || getUserVisibleHint()) {
+                String cmd = "FF FF FF FF FE 10 00 01 00 00 00 00 00 AA";
+                sendBlueCmd(cmd);
+                mHandler.postDelayed(runnable, 5000);
+            }
+        }
+    };
 
     @Override
     void handleReceiveData(String cmd) {
@@ -75,7 +92,7 @@ public class LengnuanFragment extends BaseMcuFragment {
             //工作状态
             int workState = BlueUtils.covert16TO10(stateHigh);//工作状态  0：空闲 1：加热 2：制冷 3：水位低 4：故障
             String gear = cmd.substring(20, 22);//工作档位
-            Log.e("工作档位:",gear);
+            Log.e("工作档位:", gear);
             int selectScaleIndex = 1;
             if (workState == 0) {//空闲
                 selectScaleIndex = 5;
@@ -90,7 +107,7 @@ public class LengnuanFragment extends BaseMcuFragment {
             }
             tempAdapter.setSelectIndex(selectScaleIndex - 1);
             ivSlider.animate()
-                    .x(xStart + MotionBedUtil.dpToPx(getActivity(), 31.67f * (selectScaleIndex) - 20f))
+                    .x(xStart + MotionBedUtil.dpToPx((Context) getActivity(), (float) ((5f * (selectScaleIndex) - 2.5) * 7 - 10.5f)))
                     .y(yStart)
                     .setDuration(0)
                     .start();
@@ -137,6 +154,14 @@ public class LengnuanFragment extends BaseMcuFragment {
         } else if (cmd.contains("FF FF FF FF FE 14 00 07 01")) {//实时时间回码
             Log.e("=====实时时间", cmd);
             cmd = cmd.toUpperCase().replaceAll(" ", "");
+        } else if (cmd.contains("FF FF FF FF FE 10 00 01 01")) {//定时查询温度、档位、状态
+            cmd = cmd.toUpperCase().replaceAll(" ", "");
+            //温度
+            int temp1 = Integer.parseInt(cmd.substring(22, 24));//整数
+            int temp2 = Integer.parseInt(cmd.substring(24, 26));//小数
+            String temp = temp1 + "." + temp2;
+            Log.e("获取温度：",temp);
+            tvTemp.setText(temp + "°c");
         }
     }
 
@@ -193,6 +218,7 @@ public class LengnuanFragment extends BaseMcuFragment {
         initView();
         String cachePath = getActivity().getExternalCacheDir().getAbsolutePath();
         Log.e("========cachePath", cachePath);
+        mHandler.postDelayed(runnable, 2000);//监听时间时钟
         return view;
     }
 
@@ -207,13 +233,23 @@ public class LengnuanFragment extends BaseMcuFragment {
         temps.add(new TempModel("35", "FFFFFFFFFE1000040000020000AA", "#FF6D04"));
         temps.add(new TempModel("40", "FFFFFFFFFE1000040000030000AA", "#EA3F03"));
         temps.add(new TempModel("45", "FFFFFFFFFE1000040000040000AA", "#FF1204"));
+
+        tempGears.add(MotionBedUtil.dpToPx(getActivity(), 2.5f * 7));
+        tempGears.add(MotionBedUtil.dpToPx(getActivity(), 7.5f * 7));
+        tempGears.add(MotionBedUtil.dpToPx(getActivity(), 12.5f * 7));
+        tempGears.add(MotionBedUtil.dpToPx(getActivity(), 17.5f * 7));
+        tempGears.add(MotionBedUtil.dpToPx(getActivity(), 27.5f * 7));
+        tempGears.add(MotionBedUtil.dpToPx(getActivity(), 32.5f * 7));
+        tempGears.add(MotionBedUtil.dpToPx(getActivity(), 37.5f * 7));
+        tempGears.add(MotionBedUtil.dpToPx(getActivity(), 42.5f * 7));
+        tempGears.add(MotionBedUtil.dpToPx(getActivity(), 45f * 7));
     }
 
     private float xDelta, yDelta;
     private float xLast, yLast;
 
     private void initView() {
-        tempLength = MotionBedUtil.dpToPx(getContext(), 285);//温度坐标滑动的长度范围
+        tempLength = MotionBedUtil.dpToPx(getContext(), 315);//温度坐标滑动的长度范围
         rvList.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         tempAdapter = new TempAdapter(getContext(), temps);
         rvList.setAdapter(tempAdapter);
@@ -222,7 +258,7 @@ public class LengnuanFragment extends BaseMcuFragment {
         yStart = ivSlider.getY();
 
         ivSlider.animate()
-                .x(xStart + MotionBedUtil.dpToPx(getActivity(), 31.67f * 5 - 20f))
+                .x(xStart + MotionBedUtil.dpToPx(getActivity(), 22.5f * 7 - 10.5f))
                 .y(yStart)
                 .setDuration(0)
                 .start();
@@ -258,13 +294,10 @@ public class LengnuanFragment extends BaseMcuFragment {
                                     .setDuration(0)
                                     .start();
                         }
-                        float xLastValue = ivSlider.getX() - xStart;
-                        int tempUnit = tempLength / 9;
-                        int index = (int) (xLastValue / tempUnit);
-                        if (index > 8) {//最大选中8
-                            index = 8;
-                        }
-                        Log.e("坐标:", xLastValue + "," + tempUnit + "," + index);
+                        float xLastValue = ivSlider.getX() - xStart + MotionBedUtil.dpToPx(getActivity(), 10.5f);
+                        //根据当前的位置获取所在的档位
+                        int index = getGearByAction(xLastValue);
+                        Log.e("坐标:", xLastValue + "," + index);
                         tempAdapter.setSelectIndex(index);
                         String tempCmd = temps.get(index).getTempCmd();
                         sendAskBlueCRCCmd(tempCmd);
@@ -294,5 +327,24 @@ public class LengnuanFragment extends BaseMcuFragment {
         });
     }
 
+
+    //根据移动的距离判断当前所在的档位
+    public int getGearByAction(float x) {
+        int gear = 0;
+        for (int i = 0; i < tempGears.size(); i++) {
+            if (x < tempGears.get(i)) {
+                gear = i;
+                break;
+            }
+        }
+        return gear;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // 销毁 Handler
+        mHandler.removeCallbacksAndMessages(null);
+    }
 
 }

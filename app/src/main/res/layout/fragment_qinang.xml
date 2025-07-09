@@ -20,8 +20,8 @@
             android:layout_height="@dimen/dp_90"
             android:layout_marginHorizontal="@dimen/dp_20"
             android:layout_weight="1"
-            app:bgnormal="@drawable/bg_rectangle_gray"
-            app:bgselected="@drawable/bg_rectangle_selected"
+            app:bgnormal="@drawable/bg_rectangle_gray_20"
+            app:bgselected="@drawable/bg_rectangle_selected_20"
             app:icon="@mipmap/xr_kandianshi_xiao"
             app:title="@string/quanshenanmo" />
 
@@ -31,8 +31,8 @@
             android:layout_height="@dimen/dp_90"
             android:layout_marginHorizontal="@dimen/dp_20"
             android:layout_weight="1"
-            app:bgnormal="@drawable/bg_rectangle_gray"
-            app:bgselected="@drawable/bg_rectangle_selected"
+            app:bgnormal="@drawable/bg_rectangle_gray_20"
+            app:bgselected="@drawable/bg_rectangle_selected_20"
             app:icon="@mipmap/xr_zhihan_xiao"
             app:title="@string/beibuanmo" />
 
@@ -52,8 +52,8 @@
             android:layout_height="@dimen/dp_90"
             android:layout_marginHorizontal="@dimen/dp_20"
             android:layout_weight="1"
-            app:bgnormal="@drawable/bg_rectangle_gray"
-            app:bgselected="@drawable/bg_rectangle_selected"
+            app:bgnormal="@drawable/bg_rectangle_gray_20"
+            app:bgselected="@drawable/bg_rectangle_selected_20"
             app:icon="@mipmap/xr_tunbuxunhuan_xiao"
             app:title="@string/yaobuanmo" />
 
@@ -63,8 +63,8 @@
             android:layout_height="@dimen/dp_90"
             android:layout_marginHorizontal="@dimen/dp_20"
             android:layout_weight="1"
-            app:bgnormal="@drawable/bg_rectangle_gray"
-            app:bgselected="@drawable/bg_rectangle_selected"
+            app:bgnormal="@drawable/bg_rectangle_gray_20"
+            app:bgselected="@drawable/bg_rectangle_selected_20"
             app:icon="@mipmap/xr_toubuxunhuan_xiao"
             app:title="@string/jingbuanmo" />
 

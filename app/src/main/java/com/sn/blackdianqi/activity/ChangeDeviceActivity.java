@@ -1,6 +1,5 @@
 package com.sn.blackdianqi.activity;
 
-import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -14,7 +13,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -23,55 +21,51 @@ import android.widget.TextView;
 import com.sn.blackdianqi.MyApplication;
 import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.base.BaseActivity;
-import com.sn.blackdianqi.bean.DeviceBean;
 import com.sn.blackdianqi.blue.BluetoothLeService;
-import com.sn.blackdianqi.dialog.LanguageDialog;
 import com.sn.blackdianqi.dialog.WaitDialog;
-import com.sn.blackdianqi.fragment.DiandongFragment;
-import com.sn.blackdianqi.fragment.LengnuanFragment;
-import com.sn.blackdianqi.fragment.QinangFragment;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LogUtils;
-import com.sn.blackdianqi.util.MotionBedUtil;
 import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.util.ToastUtils;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import lecho.lib.hellocharts.model.Line;
 
-public class Setting2Activity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
-    public static final String TAG = "Setting2Activity";
+public class ChangeDeviceActivity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
+
+    public static final String TAG = "ChangeDeviceActivity";
 
     @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.ll_connect)
-    LinearLayout llConnect;
+    @BindView(R.id.llDianDong)
+    LinearLayout llDianDong;
 
-    @BindView(R.id.tv_connect)
-    TextView tvConnect;
+    @BindView(R.id.tvDisconnectDianDong)
+    TextView tvDisconnectDianDong;
 
-    @BindView(R.id.ll_language)
-    LinearLayout llLanguage;
+    @BindView(R.id.llQiNang)
+    LinearLayout llQiNang;
 
-    @BindView(R.id.tv_language)
-    TextView tvLanguage;
+    @BindView(R.id.tvDisconnectQiNang)
+    TextView tvDisconnectQiNang;
 
-    @BindView(R.id.ll_changeDevice)
-    LinearLayout llChangeDevice;
+    @BindView(R.id.llLengNuan)
+    LinearLayout llLengNuan;
 
+    @BindView(R.id.tvDisconnectLengNuan)
+    TextView tvDisconnectLengNuan;
 
-    // 特征值
-    protected BluetoothGattCharacteristic characteristic;
-    private String cmdMain;
-    private String type;
     // 加载中对话框
     private WaitDialog mWaitDialog;
 
+    // 特征值
+    protected BluetoothGattCharacteristic characteristic;
 
-    private long startTime;
+    private String cmdMain;
+    private String type;
+    private String deviceType;
 
     @Override
     public void onLeftClick() {
@@ -90,11 +84,6 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
         } else {
             registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
         }
-        if (BlueUtils.isConnected()) {
-            tvConnect.setText(R.string.connected);
-        } else {
-            tvConnect.setText(R.string.not_connected);
-        }
     }
 
     @Override
@@ -104,6 +93,7 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
         unbindService(mServiceConnection);
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,13 +101,13 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-        setContentView(R.layout.activity_setting2);
+        setContentView(R.layout.activity_change_device);
         ButterKnife.bind(this);
-        actionBar.setData(getResources().getString(R.string.setting), R.mipmap.ic_back, null, 0, "", this);
+        actionBar.setData(getResources().getString(R.string.change_device), R.mipmap.ic_back, null, 0, "", this);
         actionBar.setStatusBarHeight(getStatusBarHeight());
 
         // 启动蓝牙service
-        Intent blueServiceIntent = new Intent(Setting2Activity.this, BluetoothLeService.class);
+        Intent blueServiceIntent = new Intent(ChangeDeviceActivity.this, BluetoothLeService.class);
         startService(blueServiceIntent);
         bindService(blueServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
         mWaitDialog = new WaitDialog(this);
@@ -132,68 +122,41 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
 
         cmdMain = getIntent().getStringExtra("cmd");
         type = getIntent().getStringExtra("type");
-
-        initView();
+        iniView();
     }
 
-    private void initView() {
-        llConnect.setOnClickListener(this);
-        llLanguage.setOnClickListener(this);
-        llChangeDevice.setOnClickListener(this);
+    private void iniView() {
+        if (!TextUtils.isEmpty(cmdMain)) {
+            String bedState = cmdMain.substring(18, 20);
+            String m1State = cmdMain.substring(24, 26);
+            String m2State = cmdMain.substring(30, 32);
 
-        // 获取当前系统的语言
-        String language = Prefer.getInstance().getSelectedLanguage();
-        if (language.equals("fr")) {
-            tvLanguage.setText(R.string.french);
-        } else if (language.equals("ja")) {
-            tvLanguage.setText(R.string.japan);
-        } else if (language.equals("zh-rTW")) {
-            tvLanguage.setText(R.string.chinese);
-        } else if (language.equals("en")) {
-            tvLanguage.setText(R.string.english); // 默认是英文
-        }
-
-        llConnect.setOnTouchListener(new View.OnTouchListener() {
-            @SuppressLint("ClickableViewAccessibility")
-            @Override
-            public boolean onTouch(View view, MotionEvent event) {
-                switch (event.getAction() & MotionEvent.ACTION_MASK) {
-                    case MotionEvent.ACTION_DOWN:
-                        startTime = System.currentTimeMillis();
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        if (!isShortClick()) {
-                            llChangeDevice.setVisibility(View.VISIBLE);
-                        }
-                        break;
-                }
-                return true;
+            if (TextUtils.equals(bedState, "0A")) {
+                llDianDong.setVisibility(View.VISIBLE);
+            } else {
+                llDianDong.setVisibility(View.GONE);
             }
-        });
+            if (TextUtils.equals(m1State, "0B")) {
+                llQiNang.setVisibility(View.VISIBLE);
+            } else {
+                llQiNang.setVisibility(View.GONE);
+            }
+            if (TextUtils.equals(m2State, "0C")) {
+                llLengNuan.setVisibility(View.VISIBLE);
+            } else {
+                llLengNuan.setVisibility(View.GONE);
+            }
+        }
+        if (!TextUtils.isEmpty(type)) {
+            llDianDong.setVisibility(View.GONE);
+            llQiNang.setVisibility(View.GONE);
+            llLengNuan.setVisibility(View.GONE);
+        }
+        tvDisconnectDianDong.setOnClickListener(this);
+        tvDisconnectQiNang.setOnClickListener(this);
+        tvDisconnectLengNuan.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent();
-        String cmd = "";
-        switch (view.getId()) {
-            case R.id.ll_connect:
-                intent.setClass(Setting2Activity.this, ConnectActivity.class);
-                intent.putExtra("from", "set");
-                startActivity(intent);
-                break;
-            case R.id.ll_language:
-                LanguageDialog languageDialog = new LanguageDialog(this);
-                languageDialog.show();
-                break;
-            case R.id.ll_changeDevice:
-                intent.setClass(Setting2Activity.this, ChangeDeviceActivity.class);
-                intent.putExtra("cmd", cmdMain);
-                intent.putExtra("type", type);
-                startActivity(intent);
-                break;
-        }
-    }
 
     /**
      * 发送蓝牙命令
@@ -205,7 +168,7 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
         Log.i(TAG, "sendBlueCmd: " + cmd);
         // 判断蓝牙是否连接
         if (!BlueUtils.isConnected()) {
-            ToastUtils.showToast(Setting2Activity.this, getString(R.string.device_no_connected));
+            ToastUtils.showToast(ChangeDeviceActivity.this, getString(R.string.device_no_connected));
             LogUtils.i(TAG, "sendBlueCmd -> 蓝牙未连接");
             return;
         }
@@ -225,12 +188,16 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
         cmd = cmd.toUpperCase().replaceAll(" ", "");
         if (cmd.contains("FFFFFFFF01002714")) {//询问状态回复
             cmdMain = cmd;
-            Intent intent = new Intent();
-            intent.putExtra("cmd", cmd);
-            setResult(20000, intent);
-            finish();
+            try {
+                Thread.sleep(200L);
+                Intent intent = new Intent(this, ConnectMcuActivity.class);
+                intent.putExtra("deviceType",deviceType);
+                startActivity(intent);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         } else if (cmd.contains("FFFFFFFF01002814")) {//设备断开连接
-            ToastUtils.showToast(this, "断开成功!");
+            ToastUtils.showToast(this, getResources().getString(R.string.success));
             cmd = "FFFFFFFF010026140F000000000000000000";
             cmd = cmd + BlueUtils.makeChecksum(cmd);
             sendBlueCmd(cmd);//发送询问状态
@@ -262,7 +229,7 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
                 // 监听到蓝牙已断开
                 LogUtils.e(TAG, "监听到蓝牙状态 ：已断开");
                 Prefer.getInstance().disConnected();
-                ToastUtils.showToast(Setting2Activity.this, R.string.device_disconnect);
+                ToastUtils.showToast(ChangeDeviceActivity.this, R.string.device_disconnect);
             } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
                 //处理发送过来的数据  (//有效数据)
                 Bundle bundle = intent.getExtras();
@@ -293,30 +260,35 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
         }
     };
 
-    /**
-     * 是否是短按
-     *
-     * @return
-     */
-    public boolean isShortClick() {
-        long endTime = System.currentTimeMillis();
-        if (getInterval(startTime, endTime) < 2000) {
-            return true;
+
+    @Override
+    public void onClick(View view) {
+        String cmd = "";
+        switch (view.getId()) {
+            case R.id.tvDisconnectDianDong:
+                cmd = "FFFFFFFF010028140A000000000000000100";
+                cmd = cmd + BlueUtils.makeChecksum(cmd);
+                sendBlueCmd(cmd);//发送询问状态
+                mWaitDialog.setHint("设备断开中...");
+                mWaitDialog.show();
+                deviceType = "0A";
+                break;
+            case R.id.tvDisconnectQiNang:
+                cmd = "FFFFFFFF010028140B000000000000000100";
+                cmd = cmd + BlueUtils.makeChecksum(cmd);
+                sendBlueCmd(cmd);//发送询问状态
+                mWaitDialog.setHint("设备断开中...");
+                mWaitDialog.show();
+                deviceType = "0B";
+                break;
+            case R.id.tvDisconnectLengNuan:
+                cmd = "FFFFFFFF010028140C000000000000000100";
+                cmd = cmd + BlueUtils.makeChecksum(cmd);
+                sendBlueCmd(cmd);//发送询问状态
+                mWaitDialog.setHint("设备断开中...");
+                mWaitDialog.show();
+                deviceType = "0C";
+                break;
         }
-        return false;
     }
-
-    /**
-     * 单位是毫秒
-     *
-     * @param startTime
-     * @param endTime
-     * @return
-     */
-    private long getInterval(long startTime, long endTime) {
-        long interval = endTime - startTime;
-        return interval;
-    }
-
-
 }

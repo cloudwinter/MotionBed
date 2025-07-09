@@ -303,7 +303,7 @@
     <string name="yaolan">Cradle</string>
     <string name="dengguang2">Lighting</string>
     <string name="anmo2">Massage</string>
-    <string name="dingshi">At Regular Time</string>
+    <string name="dingshi">Alarm Clock</string>
 
 
     <string name="shuiwei">Water Level:</string>
@@ -343,5 +343,9 @@
     <string name="dangwei4">Level 4</string>
     <string name="jiare">Heating</string>
     <string name="zhileng">Refrigeration</string>
+
+    <string name="duankai_device">Disconnect the device</string>
+    <string name="change_device">Replace device</string>
+    <string name="success">success!</string>
 
 </resources>

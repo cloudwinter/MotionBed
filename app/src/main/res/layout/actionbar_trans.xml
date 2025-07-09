@@ -64,8 +64,8 @@
 
             <ImageView
                 android:id="@+id/iv_actionbar_right"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginRight="12dp"/>
 

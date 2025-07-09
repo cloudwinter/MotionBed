@@ -23,6 +23,7 @@ import com.sn.blackdianqi.bean.AudioEvent;
 import com.sn.blackdianqi.bean.DateBean;
 import com.sn.blackdianqi.bean.DeviceBean;
 import com.sn.blackdianqi.bean.MessageEvent;
+import com.sn.blackdianqi.dialog.DoubleConfirmDialog;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.util.Prefer;
@@ -86,6 +87,8 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
     private String blueName;
     private String deviceAddress;
 
+    private boolean isFirstAlarm;//是否首次设置闹钟
+
 
     @Override
     void handleReceiveData(String cmd) {
@@ -148,13 +151,8 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
                 cbAnmo.setChecked(false);
             }
 
-            String clickCheckstatus = cmd.substring(26, 28);//闹钟开关状态
-            if (TextUtils.equals(clickCheckstatus, "01")) {
-                cbDingshi.setChecked(true);
-            } else {
-                cbDingshi.setChecked(false);
-            }
         } else if (cmd.contains("FF FF FF FF 01 00 03 0B 00")) {//时间校验回码 ==>有闹钟、未设置
+            isFirstAlarm = true;
             cmd = cmd.toUpperCase().replaceAll(" ", "");
             String isAudio = cmd.substring(16, 18);//是否有音响
             if (TextUtils.equals(isAudio, "00")) {
@@ -354,10 +352,10 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
     @Override
     void askStatus() {
         try {
-            Thread.sleep(200L);
+            Thread.sleep(300L);
             // 发送闹钟指令
             sendAlarmInitCmd();
-            Thread.sleep(200L);
+            Thread.sleep(300L);
             // 电动床合并询问码
             sendAskBlueCmd("FF FF FF FF 01 00 2A 14 00 00 00 00 00 00 00 00 00 00");
         } catch (Exception e) {
@@ -463,7 +461,27 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
         cbDingshi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                checkAndSend();
+                if (isFirstAlarm) {
+                    DoubleConfirmDialog.builder(getActivity())
+                            .setContent("闹钟未设置,先设置闹钟?")
+                            .setListener(new DoubleConfirmDialog.OnPermissionsDialogListener() {
+                                @Override
+                                public void cancleOnClick(DoubleConfirmDialog dialog) {
+                                    cbDingshi.setChecked(false);
+                                    dialog.dismiss();
+                                }
+
+                                @Override
+                                public void determineOnClick(DoubleConfirmDialog dialog, String content) {
+                                    dialog.dismiss();
+                                    Intent intent = new Intent(getActivity(), DianDongSetActivity.class);
+                                    intent.putExtra("isFirstAlarm", true);
+                                    startActivity(intent);
+                                }
+                            }).show();
+                } else {
+                    checkAndSend();
+                }
             }
         });
 

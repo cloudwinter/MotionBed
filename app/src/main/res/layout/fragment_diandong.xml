@@ -42,7 +42,7 @@
         <com.sn.blackdianqi.view.AnjianWeitiaoVerticalView
             android:id="@+id/view_beibutiaozheng"
             android:layout_width="@dimen/dp_50"
-            android:layout_height="@dimen/dp_150"
+            android:layout_height="@dimen/dp_130"
             android:layout_marginRight="@dimen/dp_50"
             app:bgnormal="@drawable/bg_tuoyuan_normal"
             app:icon="@mipmap/xr_zhihan_xiao" />
@@ -50,7 +50,7 @@
         <com.sn.blackdianqi.view.AnjianWeitiaoVerticalView
             android:id="@+id/view_tuibutiaozheng"
             android:layout_width="@dimen/dp_50"
-            android:layout_height="@dimen/dp_150"
+            android:layout_height="@dimen/dp_130"
             android:layout_marginLeft="@dimen/dp_50"
             app:bgnormal="@drawable/bg_tuoyuan_normal"
             app:icon="@mipmap/xr_tuibuxunhuan_xiao" />
@@ -135,7 +135,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_16"
             android:orientation="horizontal">
 
             <com.sn.blackdianqi.view.JiyiSmallView
@@ -179,7 +179,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_16"
             android:orientation="horizontal">
 
             <com.sn.blackdianqi.view.JiyiSmallView
@@ -333,7 +333,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/dp_10"
                 android:layout_weight="1"
-                android:text="@string/diandongchuang_set"
+                android:text="@string/setting"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_12" />
 

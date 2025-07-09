@@ -89,7 +89,7 @@ android:orientation="vertical" >
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Français"
+                android:text="French"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
 

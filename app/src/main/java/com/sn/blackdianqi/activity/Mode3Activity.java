@@ -59,7 +59,7 @@ public class Mode3Activity extends BaseActivity implements TranslucentActionBar.
         setContentView(R.layout.activity_mode3);
         ButterKnife.bind(this);
         // 设置title
-        actionBar.setData(getString(R.string.alarm_mode), R.mipmap.ic_back, null, 0, null, this);
+        actionBar.setData(getString(R.string.moshi), R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             actionBar.setStatusBarHeight(getStatusBarHeight());

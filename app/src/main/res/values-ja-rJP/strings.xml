@@ -291,4 +291,62 @@
     <string name="sdr_line_btn_pre">pre</string>
     <string name="sdr_line_btn_next">next</string>
 
+
+
+    <!-- tab -->
+    <string name="diandongchuang">電動ベッド</string>
+    <string name="qinang">エアバッグ</string>
+    <string name="lengnuan">寒暖</string>
+
+
+    <string name="weitiao2">トリミング</string>
+    <string name="moshi">パターン</string>
+    <string name="yaolan">ゆりかご</string>
+    <string name="dengguang2">ライトらいと</string>
+    <string name="anmo2">マッサージ</string>
+    <string name="dingshi">タイミング</string>
+
+
+    <string name="shuiwei">すいい:</string>
+    <string name="temp">温度:</string>
+    <string name="dingshi_kaiqi">タイミングオン</string>
+    <string name="time_set">時刻設定</string>
+
+
+    <string name="quanshenanmo">全身マッサージ</string>
+    <string name="beibuanmo">背中のマッサージ</string>
+    <string name="yaobuanmo">腰のマッサージ</string>
+    <string name="jingbuanmo">首のマッサージ</string>
+    <string name="yujia2">ヨガ</string>
+    <string name="zishiying">てきおう</string>
+    <string name="anmotingzhi">マッサージをやめる</string>
+    <string name="fangqi">ガス抜き</string>
+    <string name="anmo_set">マッサージの設定</string>
+    <string name="press_set">気圧配置</string>
+
+
+    <string name="moshi_xuanze">モード選択</string>
+    <string name="anmo_qiangdu">マッサージ強度</string>
+    <string name="anmo_time">マッサージタイム</string>
+
+    <string name="dengguang_set">ライトの設定</string>
+    <string name="dengguang_light">ライトの輝度</string>
+    <string name="clock_set">目覚まし時計の設定</string>
+
+    <string name="qinangchuangdian">エアバッグマットレス</string>
+    <string name="lengnuanchuangdian">寒暖マットレス</string>
+    <string name="diandongchuang_set">電動ベッドの設定</string>
+
+    <string name="dangwei">シフトビット</string>
+    <string name="dangwei1">シフトビット 1</string>
+    <string name="dangwei2">シフトビット 2</string>
+    <string name="dangwei3">シフトビット 3</string>
+    <string name="dangwei4">シフトビット 4</string>
+    <string name="jiare">かねつ</string>
+    <string name="zhileng">れいきゃく</string>
+
+    <string name="duankai_device">デバイスの切断</string>
+    <string name="change_device">設備の交換</string>
+    <string name="success">成功!</string>
+
 </resources>

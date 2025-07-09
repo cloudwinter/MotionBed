@@ -181,6 +181,9 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
     String blueTitle = "";
     private MusicSelectDialog musicSelectDialog;
 
+    private boolean isFirstAlarm;//是否首次设置闹钟
+    private boolean isQueryAlarm;//是否是查询闹钟
+
     //音乐
     private String musicVal = "00";
 
@@ -188,9 +191,10 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
     private String blueName;
 
     private String deviceAddress;
-    private boolean isFirst;
 
     private String switchCheck = "00";
+
+    private int selectIndexModel;
 
     @Override
     public void onLeftClick() {
@@ -218,7 +222,10 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
             deviceAddress = deviceBean.getAddress();
         }
 
-        isFirst = getIntent().getBooleanExtra("isFirst", true);
+        isFirstAlarm = getIntent().getBooleanExtra("isFirstAlarm", false);
+        if (isFirstAlarm) {
+            setVisibleModel(2);
+        }
         LogUtils.e(TAG, "当前连接的蓝牙名称为：" + blueName);
         initView();
         initData();
@@ -242,7 +249,11 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
 
         AlarmBean alarmBean = Prefer.getInstance().getAlarm(deviceAddress);
         if (alarmBean != null) {
-            switchCheck = alarmBean.isAlarmSwitch() ? "01" : "A1";
+            if (isFirstAlarm) {
+                switchCheck = "01";
+            } else {
+                switchCheck = alarmBean.isAlarmSwitch() ? "01" : "A1";
+            }
             hourStr = alarmBean.getHourStr();
             minuteStr = alarmBean.getMinuteStr();
             modeCode = alarmBean.getModeCode();
@@ -356,7 +367,6 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
         eightHoursTextView.setOnClickListener(this);
         tenHoursTextView.setOnClickListener(this);
 
-        dengguangLevel.setVisibility(View.INVISIBLE);
         dengguangLevel.setChildClickListener(new AnjianAnmoView.ChildClickListener() {
             @Override
             public void minusClick() {
@@ -436,11 +446,22 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
         }
     }
 
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.llAnmoTitle:
+    public void setVisibleModel(int index) {
+        if (index == selectIndexModel) {
+            selectIndexModel = -1;
+        } else {
+            selectIndexModel = index;
+        }
+        switch (selectIndexModel) {
+            case -1:
+                ivAnmo.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
+                ivDengguang.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
+                ivClock.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
+                llAnmo.setVisibility(View.GONE);
+                llDengguang.setVisibility(View.GONE);
+                llClock.setVisibility(View.GONE);
+                break;
+            case 0:
                 ivAnmo.setImageDrawable(getResources().getDrawable(R.mipmap.arror_down));
                 ivDengguang.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
                 ivClock.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
@@ -448,7 +469,7 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
                 llDengguang.setVisibility(View.GONE);
                 llClock.setVisibility(View.GONE);
                 break;
-            case R.id.llDengguangTitle:
+            case 1:
                 ivAnmo.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
                 ivDengguang.setImageDrawable(getResources().getDrawable(R.mipmap.arror_down));
                 ivClock.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
@@ -456,13 +477,29 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
                 llDengguang.setVisibility(View.VISIBLE);
                 llClock.setVisibility(View.GONE);
                 break;
-            case R.id.llClockTitle:
+            case 2:
                 ivAnmo.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
                 ivDengguang.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
                 ivClock.setImageDrawable(getResources().getDrawable(R.mipmap.arror_down));
                 llAnmo.setVisibility(View.GONE);
                 llDengguang.setVisibility(View.GONE);
                 llClock.setVisibility(View.VISIBLE);
+                break;
+        }
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.llAnmoTitle:
+                setVisibleModel(0);
+                break;
+            case R.id.llDengguangTitle:
+                setVisibleModel(1);
+                break;
+            case R.id.llClockTitle:
+                setVisibleModel(2);
                 break;
             case R.id.view_10time:
                 if (min10View.isSelected()) {
@@ -623,6 +660,7 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
                 sendBlueCmd(cmdDengguang + BlueUtils.makeChecksum(cmdDengguang));
                 break;
             case R.id.tvSaveClock:
+                isQueryAlarm = false;
                 checkAndSend();
                 break;
         }
@@ -689,6 +727,7 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
      * 发送闹钟初始化命令
      */
     private void sendAlarmInitCmd() {
+        isQueryAlarm = true;
         StringBuilder cmdSB = new StringBuilder();
         cmdSB.append("FFFFFFFF01000111");
         DateBean dateBean = new DateBean(new Date());
@@ -759,21 +798,19 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
                 // 按摩频率4档
                 anmoPinglvView.setLevel(4);
             }
-        }
-//        else if (data.contains("FF FF FF FF 05 00 01")) {//旧版本查询灯光状态回复
-//            dengguangLevel.setVisibility(View.VISIBLE);
-//            // 去除空格
-//            data = data.replaceAll(" ", "");
-//            String level = data.substring(14, 16);
-//            int levelNum = BlueUtils.covert16TO10(level);
-//            dengguangLevel.setLevel(levelNum);
-//            if (levelNum == 0) {
-//                tenMinsTextView.setSelected(false);
-//                eightHoursTextView.setSelected(false);
-//                tenHoursTextView.setSelected(false);
-//            }
-//        }
-        else if (data.contains("FF FF FF FF 01 00 03 0B 00")) {
+        } else if (data.contains("FF FF FF FF 05 00 01")) {//旧版本查询灯光状态回复
+            dengguangLevel.setVisibility(View.VISIBLE);
+            // 去除空格
+            data = data.replaceAll(" ", "");
+            String level = data.substring(14, 16);
+            int levelNum = BlueUtils.covert16TO10(level);
+            dengguangLevel.setLevel(levelNum);
+            if (levelNum == 0) {
+                tenMinsTextView.setSelected(false);
+                eightHoursTextView.setSelected(false);
+                tenHoursTextView.setSelected(false);
+            }
+        } else if (data.contains("FF FF FF FF 01 00 03 0B 00")) {
             data = data.toUpperCase().replaceAll(" ", "");
             LogUtils.i(TAG, "接收到有闹钟未设置指令：" + data);
             mWaitDialog.dismiss();
@@ -789,9 +826,8 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
             AlarmBean alarmBean = new AlarmBean();
             alarmBean.setAlarmSwitch(false);
             Prefer.getInstance().setAlarm(deviceAddress, alarmBean);
-            if (!isFirst) {
+            if (!isQueryAlarm) {
                 ToastUtils.showToast(DianDongSetActivity.this, getString(R.string.alarm_save_suc));
-                new Handler().postDelayed(() -> finish(), 100);
             }
         } else if (data.contains("FF FF FF FF 01 00 04 13")) {
             data = data.toUpperCase().replaceAll(" ", "");
@@ -806,9 +842,8 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
             }
             LogUtils.i(TAG, "收到有闹钟已设置指令：" + data);
             setHasAlarm(data);
-            if (!isFirst) {
+            if (!isQueryAlarm) {
                 ToastUtils.showToast(DianDongSetActivity.this, getString(R.string.alarm_save_suc));
-                new Handler().postDelayed(() -> finish(), 100);
             }
         } else if (data.contains("FF FF FF FF 01 00 13 0B")) {//设置音乐
             data = data.toUpperCase().replaceAll(" ", "");
@@ -862,9 +897,9 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
                 min30View.setSelected(true);
             }
         } else if (data.contains("FF FF FF FF 01 00 1C 14 01")) {//设置按摩状态回码
-            ToastUtils.showToast(this, "按摩设置成功!");
+            ToastUtils.showToast(this, getResources().getString(R.string.alarm_save_suc));
         } else if (data.contains("FF FF FF FF 01 00 1C 14 03")) {//设置灯光状态回码
-            ToastUtils.showToast(this, "灯光设置成功!");
+            ToastUtils.showToast(this, getResources().getString(R.string.alarm_save_suc));
         }
     }
 
@@ -944,7 +979,6 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
         // 校验和
         sb.append(BlueUtils.makeChecksum(sb.toString()));
 
-        isFirst = false;
         // 发送蓝牙命令
         mWaitDialog.show();
         sendBlueCmd(sb.toString());
