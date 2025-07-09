@@ -139,7 +139,9 @@ public class HomeMcuActivity extends BaseActivity implements TranslucentActionBa
 
     @Override
     public void onLeftClick() {
-        finish();
+        Intent intent = new Intent(this, MainMcuActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     @Override
@@ -259,7 +261,7 @@ public class HomeMcuActivity extends BaseActivity implements TranslucentActionBa
     }
 
     private void setCurrentTab(int tabIndex) {
-        Log.e("开始点击。。。","====");
+        Log.e("开始点击。。。", "====");
         for (int i = 0; i < tabCount; i++) {
             if (tabIndex == i) {
                 tabTextViews.get(i).setSelected(true);
@@ -281,7 +283,7 @@ public class HomeMcuActivity extends BaseActivity implements TranslucentActionBa
                 }
                 break;
         }
-        Log.e("开始切换。。。","====");
+        Log.e("开始切换。。。", "====");
         viewPager.setCurrentItem(tabIndex, false);
     }
 

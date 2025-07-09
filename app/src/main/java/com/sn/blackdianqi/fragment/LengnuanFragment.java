@@ -71,11 +71,11 @@ public class LengnuanFragment extends BaseMcuFragment {
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            if (isVisible() || getUserVisibleHint()) {
+            if (getUserVisibleHint()) {
                 String cmd = "FF FF FF FF FE 10 00 01 00 00 00 00 00 AA";
                 sendBlueCmd(cmd);
-                mHandler.postDelayed(runnable, 5000);
             }
+            mHandler.postDelayed(runnable, 5000);
         }
     };
 

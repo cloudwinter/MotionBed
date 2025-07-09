@@ -66,7 +66,7 @@ public class GearActivity extends BaseActivity implements TranslucentActionBar.A
         setContentView(R.layout.activity_gear);
         ButterKnife.bind(this);
         // 设置title
-        actionBar.setData(getString(R.string.alarm_mode), R.mipmap.ic_back, null, 0, null, this);
+        actionBar.setData(getString(R.string.dangwei), R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             actionBar.setStatusBarHeight(getStatusBarHeight());

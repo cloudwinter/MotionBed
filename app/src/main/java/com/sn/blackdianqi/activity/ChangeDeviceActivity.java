@@ -84,6 +84,13 @@ public class ChangeDeviceActivity extends BaseActivity implements TranslucentAct
         } else {
             registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
         }
+
+        Log.e("跳转搜索页,1", "111111111111");
+        String cmd = "FFFFFFFF010026140F000000000000000000";
+        cmd = cmd + BlueUtils.makeChecksum(cmd);
+        sendBlueCmd(cmd);//发送询问状态
+        mWaitDialog.setHint("状态查询中...");
+        mWaitDialog.show();
     }
 
     @Override
@@ -188,21 +195,12 @@ public class ChangeDeviceActivity extends BaseActivity implements TranslucentAct
         cmd = cmd.toUpperCase().replaceAll(" ", "");
         if (cmd.contains("FFFFFFFF01002714")) {//询问状态回复
             cmdMain = cmd;
-            try {
-                Thread.sleep(200L);
-                Intent intent = new Intent(this, ConnectMcuActivity.class);
-                intent.putExtra("deviceType",deviceType);
-                startActivity(intent);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            iniView();
         } else if (cmd.contains("FFFFFFFF01002814")) {//设备断开连接
             ToastUtils.showToast(this, getResources().getString(R.string.success));
-            cmd = "FFFFFFFF010026140F000000000000000000";
-            cmd = cmd + BlueUtils.makeChecksum(cmd);
-            sendBlueCmd(cmd);//发送询问状态
-            mWaitDialog.setHint("状态查询中...");
-            mWaitDialog.show();
+            Intent intent = new Intent(this, ConnectMcuActivity.class);
+            intent.putExtra("deviceType", deviceType);
+            startActivity(intent);
         }
     }
 
@@ -237,7 +235,7 @@ public class ChangeDeviceActivity extends BaseActivity implements TranslucentAct
                     String data = bundle.getString(BluetoothLeService.EXTRA_DATA);
                     if (data != null) {
 //                            data = "FFFFFFFF01000A0B011304";
-                        LogUtils.e(TAG, "==首页  接收设备返回的数据==", data);
+                        LogUtils.e(TAG, "==ChangeDeviceActivity  接收设备返回的数据==", data);
                         handleReceiveData(data);
                     }
                 }

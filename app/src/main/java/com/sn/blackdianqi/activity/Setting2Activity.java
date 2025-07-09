@@ -164,6 +164,11 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
                     case MotionEvent.ACTION_UP:
                         if (!isShortClick()) {
                             llChangeDevice.setVisibility(View.VISIBLE);
+                        } else {
+                            Intent intent = new Intent();
+                            intent.setClass(Setting2Activity.this, ConnectActivity.class);
+                            intent.putExtra("from", "set");
+                            startActivity(intent);
                         }
                         break;
                 }
@@ -174,19 +179,13 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent();
-        String cmd = "";
         switch (view.getId()) {
-            case R.id.ll_connect:
-                intent.setClass(Setting2Activity.this, ConnectActivity.class);
-                intent.putExtra("from", "set");
-                startActivity(intent);
-                break;
             case R.id.ll_language:
                 LanguageDialog languageDialog = new LanguageDialog(this);
                 languageDialog.show();
                 break;
             case R.id.ll_changeDevice:
+                Intent intent = new Intent();
                 intent.setClass(Setting2Activity.this, ChangeDeviceActivity.class);
                 intent.putExtra("cmd", cmdMain);
                 intent.putExtra("type", type);

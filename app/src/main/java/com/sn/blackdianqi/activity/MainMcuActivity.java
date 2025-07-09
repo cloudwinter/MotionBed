@@ -60,6 +60,20 @@ public class MainMcuActivity extends BaseActivity implements View.OnClickListene
     private boolean isFirst;//是否从搜索页过来的
 
     @Override
+    public void onLeftClick() {
+//        finish();
+        Intent intent = new Intent(MainMcuActivity.this, ConnectActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onRightClick() {
+        Intent intent = new Intent(MainMcuActivity.this, Setting2Activity.class);
+        intent.putExtra("cmd", cmdMain);
+        startActivity(intent);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -157,20 +171,6 @@ public class MainMcuActivity extends BaseActivity implements View.OnClickListene
         } else {
             askStatus();
         }
-    }
-
-    @Override
-    public void onLeftClick() {
-        finish();
-//        Intent intent = new Intent(MainMcuActivity.this, ConnectActivity.class);
-//        startActivity(intent);
-    }
-
-    @Override
-    public void onRightClick() {
-        Intent intent = new Intent(MainMcuActivity.this, Setting2Activity.class);
-        intent.putExtra("cmd", cmdMain);
-        startActivity(intent);
     }
 
     private void askStatus() {

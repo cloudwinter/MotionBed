@@ -97,7 +97,7 @@
             <com.sn.blackdianqi.view.JiyiSmallView
                 android:id="@+id/view_kandianshi"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_40"
+                android:layout_height="@dimen/dp_50"
                 android:layout_marginHorizontal="@dimen/dp_5"
                 android:layout_weight="1"
                 android:orientation="horizontal"
@@ -135,13 +135,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_10"
             android:orientation="horizontal">
 
             <com.sn.blackdianqi.view.JiyiSmallView
                 android:id="@+id/view_jiyi1"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_40"
+                android:layout_height="@dimen/dp_50"
                 android:layout_marginHorizontal="@dimen/dp_5"
                 android:layout_weight="1"
                 android:orientation="horizontal"
@@ -178,13 +178,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_16"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginTop="@dimen/dp_10"
             android:orientation="horizontal">
 
             <com.sn.blackdianqi.view.JiyiSmallView
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_40"
+                android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/dp_5"
                 android:layout_weight="1"
                 android:orientation="horizontal"
@@ -196,7 +196,7 @@
             <com.sn.blackdianqi.view.JiyiSmallView
                 android:id="@+id/view_fuyuan"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_40"
+                android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/dp_5"
                 android:layout_weight="1"
                 android:orientation="horizontal"
@@ -207,7 +207,7 @@
 
             <com.sn.blackdianqi.view.JiyiSmallView
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_40"
+                android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/dp_5"
                 android:layout_weight="1"
                 android:orientation="horizontal"

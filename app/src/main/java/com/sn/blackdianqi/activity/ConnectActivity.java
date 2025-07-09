@@ -121,7 +121,12 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
     @Override
     public void onLeftClick() {
         scanBlue(false);
-        finish();
+        if ("set".equals(mFrom)) {
+            finish();
+        } else {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -313,27 +318,27 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
                     DeviceBean connectedDevice = Prefer.getInstance().getConnectedDevice();
                     Intent intent;
 //                    if (TextUtils.equals("main", mFrom)) {
-                        // 只有首页过来才跳转
-                        if (activity.mSelectedDeviceBean != null && activity.mSelectedDeviceBean.isConnected()) {
-                            if (connectedDevice != null && connectedDevice.getTitle().contains("TL-Q")) {//MCU组合模式的电动床
-                                intent = new Intent(activity, MainMcuActivity.class);
-                                intent.putExtra("isFirst", true);
-                            } else if (connectedDevice != null && connectedDevice.getTitle().contains("TL-A")) {//MCU组合模式的单个气囊
-                                intent = new Intent(activity, SingleMcuActivity.class);
-                                intent.putExtra("type", "0B");
-                            } else if (connectedDevice != null && connectedDevice.getTitle().contains("TL-B")) {//MCU组合模式的单个电动床
-                                intent = new Intent(activity, SingleMcuActivity.class);
-                                intent.putExtra("type", "0A");
-                            } else if (connectedDevice != null && connectedDevice.getTitle().contains("TL-W")) {//MCU组合模式的单个冷暖
-                                intent = new Intent(activity, SingleMcuActivity.class);
-                                intent.putExtra("type", "0C");
-                            } else {
-                                intent = new Intent(activity, HomeActivity.class);
-                            }
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            activity.startActivity(intent);
-                            activity.finish();
+                    // 只有首页过来才跳转
+                    if (activity.mSelectedDeviceBean != null && activity.mSelectedDeviceBean.isConnected()) {
+                        if (connectedDevice != null && connectedDevice.getTitle().contains("TL-Q")) {//MCU组合模式的电动床
+                            intent = new Intent(activity, MainMcuActivity.class);
+                            intent.putExtra("isFirst", true);
+                        } else if (connectedDevice != null && connectedDevice.getTitle().contains("TL-A")) {//MCU组合模式的单个气囊
+                            intent = new Intent(activity, SingleMcuActivity.class);
+                            intent.putExtra("type", "0B");
+                        } else if (connectedDevice != null && connectedDevice.getTitle().contains("TL-B")) {//MCU组合模式的单个电动床
+                            intent = new Intent(activity, SingleMcuActivity.class);
+                            intent.putExtra("type", "0A");
+                        } else if (connectedDevice != null && connectedDevice.getTitle().contains("TL-W")) {//MCU组合模式的单个冷暖
+                            intent = new Intent(activity, SingleMcuActivity.class);
+                            intent.putExtra("type", "0C");
+                        } else {
+                            intent = new Intent(activity, HomeActivity.class);
                         }
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        activity.startActivity(intent);
+                        activity.finish();
+                    }
                     break;
             }
         }
