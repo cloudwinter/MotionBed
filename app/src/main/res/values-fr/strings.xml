@@ -346,6 +346,6 @@
     <string name="change_device">Remplacement de l\'équipement</string>
     <string name="success">Succès!</string>
     <string name="set_alarm">Besoin de régler l\'alarme d\'abord</string>
-
+    <string name="unit">Unité: KPA</string>
 
 </resources>

@@ -352,7 +352,7 @@ public class AnmoSetActivity extends BaseActivity implements TranslucentActionBa
             tvMinus.setText(String.valueOf(lowerValue));
 
         } else if (cmd.indexOf("FFFFFFFFFF14030E01") > -1) {//设置成功
-            ToastUtils.showToast(this, "设置成功");
+            ToastUtils.showToast(this, getResources().getString(R.string.success));
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

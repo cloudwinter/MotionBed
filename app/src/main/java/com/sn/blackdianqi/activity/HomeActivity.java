@@ -143,6 +143,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void onLeftClick() {
+        Intent intent = new Intent(HomeActivity.this, ConnectActivity.class);
+        startActivity(intent);
         finish();
     }
 

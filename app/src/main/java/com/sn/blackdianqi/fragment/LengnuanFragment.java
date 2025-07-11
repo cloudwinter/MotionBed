@@ -73,7 +73,7 @@ public class LengnuanFragment extends BaseMcuFragment {
         public void run() {
             if (getUserVisibleHint()) {
                 String cmd = "FF FF FF FF FE 10 00 01 00 00 00 00 00 AA";
-                sendBlueCmd(cmd);
+                sendAskBlueCRCCmd(cmd);
             }
             mHandler.postDelayed(runnable, 5000);
         }
@@ -154,15 +154,27 @@ public class LengnuanFragment extends BaseMcuFragment {
         } else if (cmd.contains("FF FF FF FF FE 14 00 07 01")) {//实时时间回码
             Log.e("=====实时时间", cmd);
             cmd = cmd.toUpperCase().replaceAll(" ", "");
-        } else if (cmd.contains("FF FF FF FF FE 10 00 01 01")) {//定时查询温度、档位、状态
+        } else if (cmd.contains("FF FF FF FF FE 14 00 01 01")) {//定时查询温度、档位、状态
             cmd = cmd.toUpperCase().replaceAll(" ", "");
+            Log.e("获取温度：", cmd);
             //温度
-            int temp1 = Integer.parseInt(cmd.substring(22, 24));//整数
-            int temp2 = Integer.parseInt(cmd.substring(24, 26));//小数
-            String temp = temp1 + "." + temp2;
-            Log.e("获取温度：",temp);
-            tvTemp.setText(temp + "°c");
+            String t1 = cmd.substring(30, 32);
+            String t2 = cmd.substring(32, 34);
+            if (isNumeric(t1) && isNumeric(t2)) {//拿到温度是正常温度，才解析显示
+                int temp1 = Integer.parseInt(cmd.substring(30, 32));//整数
+                int temp2 = Integer.parseInt(cmd.substring(32, 34));//小数
+                String temp = temp1 + "." + temp2;
+                Log.e("获取温度：", temp);
+                tvTemp.setText(temp + "°c");
+            } else {
+                tvTemp.setText("");
+            }
         }
+    }
+
+    //判断字符串是不是纯数字
+    public boolean isNumeric(String str) {
+        return str.matches("[0-9]+");
     }
 
     @Override
@@ -205,7 +217,7 @@ public class LengnuanFragment extends BaseMcuFragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (isVisible() || getUserVisibleHint()) {
+        if (getUserVisibleHint()) {
             askStatus();
         }
     }
@@ -310,6 +322,9 @@ public class LengnuanFragment extends BaseMcuFragment {
         cbTimer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (!compoundButton.isPressed()) {
+                    return;
+                }
                 if (b) {
                     sendAskBlueCRCCmd("FF FF FF FF FE 10 00 03 00 00 01 00 00 AA");
                 } else {

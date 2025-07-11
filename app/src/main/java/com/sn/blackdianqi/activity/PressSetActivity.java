@@ -235,7 +235,7 @@ public class PressSetActivity extends BaseActivity implements TranslucentActionB
                 pressSetAdapter.setData(pressureList);
             }
         } else if (cmd.indexOf("FFFFFFFFFF2F030501") > -1) {//设置成功
-            ToastUtils.showToast(this, "设置成功");
+            ToastUtils.showToast(this, getResources().getString(R.string.success));
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

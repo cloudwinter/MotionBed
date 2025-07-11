@@ -200,7 +200,7 @@ public class TimeSettingActivity extends BaseActivity implements TranslucentActi
             tvMode.setText(getModeStrByCode(modeCode));
         } else if (GEAR_REQUEST_CODE == requestCode && resultCode == GearActivity.RESULT_CODE) {
             gear = data.getIntExtra(GearActivity.EXTRA_KEY, 0);
-            tvGear.setText(gear + "档");
+            tvGear.setText(getGearStrByCode(gear));
         }
     }
 
@@ -263,7 +263,7 @@ public class TimeSettingActivity extends BaseActivity implements TranslucentActi
         cmd = cmd.toUpperCase().replaceAll(" ", "");
         Log.e("回复cmd:", cmd);
         if (cmd.indexOf("FFFFFFFFFE14000201") > -1) {//設置定时数据回复
-            ToastUtils.showToast(this, "设置成功");
+            ToastUtils.showToast(this, getResources().getString(R.string.success));
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

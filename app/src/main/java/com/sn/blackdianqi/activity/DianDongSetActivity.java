@@ -194,8 +194,6 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
 
     private String switchCheck = "00";
 
-    private int selectIndexModel;
-
     @Override
     public void onLeftClick() {
         finish();
@@ -447,43 +445,37 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
     }
 
     public void setVisibleModel(int index) {
-        if (index == selectIndexModel) {
-            selectIndexModel = -1;
-        } else {
-            selectIndexModel = index;
-        }
-        switch (selectIndexModel) {
-            case -1:
-                ivAnmo.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
-                ivDengguang.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
-                ivClock.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
-                llAnmo.setVisibility(View.GONE);
-                llDengguang.setVisibility(View.GONE);
-                llClock.setVisibility(View.GONE);
-                break;
+        int visibility = 0;
+        switch (index) {
             case 0:
-                ivAnmo.setImageDrawable(getResources().getDrawable(R.mipmap.arror_down));
-                ivDengguang.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
-                ivClock.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
-                llAnmo.setVisibility(View.VISIBLE);
-                llDengguang.setVisibility(View.GONE);
-                llClock.setVisibility(View.GONE);
+                 visibility = llAnmo.getVisibility();
+                if (visibility == 0) {
+                    ivAnmo.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
+                    llAnmo.setVisibility(View.GONE);
+                } else {
+                    ivAnmo.setImageDrawable(getResources().getDrawable(R.mipmap.arror_down));
+                    llAnmo.setVisibility(View.VISIBLE);
+                }
                 break;
             case 1:
-                ivAnmo.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
-                ivDengguang.setImageDrawable(getResources().getDrawable(R.mipmap.arror_down));
-                ivClock.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
-                llAnmo.setVisibility(View.GONE);
-                llDengguang.setVisibility(View.VISIBLE);
-                llClock.setVisibility(View.GONE);
+                 visibility = llDengguang.getVisibility();
+                if (visibility == 0) {
+                    ivDengguang.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
+                    llDengguang.setVisibility(View.GONE);
+                } else {
+                    ivDengguang.setImageDrawable(getResources().getDrawable(R.mipmap.arror_down));
+                    llDengguang.setVisibility(View.VISIBLE);
+                }
                 break;
             case 2:
-                ivAnmo.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
-                ivDengguang.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
-                ivClock.setImageDrawable(getResources().getDrawable(R.mipmap.arror_down));
-                llAnmo.setVisibility(View.GONE);
-                llDengguang.setVisibility(View.GONE);
-                llClock.setVisibility(View.VISIBLE);
+                visibility = llClock.getVisibility();
+                if (visibility == 0) {
+                    ivClock.setImageDrawable(getResources().getDrawable(R.mipmap.arror_up));
+                    llClock.setVisibility(View.GONE);
+                } else {
+                    ivClock.setImageDrawable(getResources().getDrawable(R.mipmap.arror_down));
+                    llClock.setVisibility(View.VISIBLE);
+                }
                 break;
         }
     }

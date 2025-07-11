@@ -62,8 +62,6 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
 
     private List<View> views = new ArrayList<>();
 
-    boolean isFirstTime = false; // 用于标记自适应是否是第一次设置状态
-
     @Override
     void handleReceiveData(String cmd) {
         if (cmd.contains("FF FF FF FF FF 14 02 09 01")) {//气囊状态查询回复
@@ -85,7 +83,6 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
             }
 
             if (TextUtils.equals(zishiyingStatus, "01")) {
-                isFirstTime = true;//首次设置状态无需执行指令
                 zishiyingCb.setChecked(true);
             }
         } else if (cmd.contains("FF FF FF FF FF 0D 03 0C 01")) {//自适应开关回码
@@ -120,7 +117,7 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
     @Override
     public void onResume() {
         super.onResume();
-        if (isVisible() || getUserVisibleHint()) {
+        if (getUserVisibleHint()) {
             askStatus();
         }
     }
@@ -174,15 +171,13 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
         zishiyingCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (isFirstTime) {//首次设置状态
-                    isFirstTime = false; // 标记为已处理，避免重复进入此分支
+                if (!compoundButton.isPressed()) {
                     return;
+                }
+                if (b) {
+                    sendBlueCRCCmd("FF FF FF FF FF 0D 03 0C 00 01 00");
                 } else {
-                    if (b) {
-                        sendBlueCRCCmd("FF FF FF FF FF 0D 03 0C 00 01 00");
-                    } else {
-                        sendBlueCRCCmd("FF FF FF FF FF 0D 03 0C 00 00 00");
-                    }
+                    sendBlueCRCCmd("FF FF FF FF FF 0D 03 0C 00 00 00");
                 }
             }
         });

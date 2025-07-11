@@ -2,10 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/llHome"
     android:layout_width="@dimen/dp_25"
-    android:paddingTop="@dimen/dp_30"
+    android:paddingTop="@dimen/dp_20"
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvValueNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_6"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_14" />
+
 
     <FrameLayout
         android:layout_width="@dimen/dp_18"

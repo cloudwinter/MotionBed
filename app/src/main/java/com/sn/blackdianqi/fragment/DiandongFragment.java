@@ -220,6 +220,9 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
     }
 
     private void setHasAlarm(String cmd) {
+        if (cmd.length() < 38) {
+            return;
+        }
         // 有闹钟，已设置
         AlarmBean alarmBean = new AlarmBean();
         String cmdStatus = cmd.substring(16, 18);
@@ -344,7 +347,7 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
         boolean visible = isVisible();
         boolean userVisibleHint = getUserVisibleHint();
         Log.e("visible", visible + "  " + userVisibleHint + "");
-        if (isVisible() || getUserVisibleHint()) {
+        if (getUserVisibleHint()) {
             askStatus();
         }
     }
@@ -352,10 +355,10 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
     @Override
     void askStatus() {
         try {
-            Thread.sleep(300L);
+            Thread.sleep(200L);
             // 发送闹钟指令
             sendAlarmInitCmd();
-            Thread.sleep(300L);
+            Thread.sleep(200L);
             // 电动床合并询问码
             sendAskBlueCmd("FF FF FF FF 01 00 2A 14 00 00 00 00 00 00 00 00 00 00");
         } catch (Exception e) {
@@ -461,6 +464,10 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
         cbDingshi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (!compoundButton.isPressed()){
+                    return;
+                }
+                Log.e("CheckBox","=================");
                 if (isFirstAlarm) {
                     String hint = getResources().getString(R.string.set_alarm);
                     DoubleConfirmDialog.builder(getActivity())
@@ -490,6 +497,9 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
         cbDengguang.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (!compoundButton.isPressed()){
+                    return;
+                }
                 if (b) {//灯光开
                     sendBlueCmd("FF FF FF FF 05 00 00 00 4A 56 F7");
                 } else {//灯光关
@@ -502,6 +512,9 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
         cbAnmo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (!compoundButton.isPressed()){
+                    return;
+                }
                 if (b) {//按摩开
                     sendBlueCmd("FF FF FF FF 05 00 00 01 1C D6 C9");
                 } else {//按摩关

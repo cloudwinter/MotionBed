@@ -70,7 +70,7 @@ public class PressSetAdapter extends RecyclerView.Adapter<PressSetAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         PressBean pressBean = dataList.get(position);
         holder.tvName.setText(pressBean.getName());
-
+        holder.tvValueNum.setText(String.valueOf(pressBean.getValue()));
         ViewGroup.LayoutParams params = holder.tvValue.getLayoutParams();
         float dpHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, (pressBean.value) * 10, context.getResources().getDisplayMetrics());
         params.height = (int) dpHeight; // 90dp转换为px
@@ -105,7 +105,7 @@ public class PressSetAdapter extends RecyclerView.Adapter<PressSetAdapter.ViewHo
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView tvValue;
+        private final TextView tvValue,tvValueNum;
         private final TextView tvName;
         private final ImageView ivSelect;
         private final LinearLayout llHome;
@@ -113,6 +113,7 @@ public class PressSetAdapter extends RecyclerView.Adapter<PressSetAdapter.ViewHo
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvValue = itemView.findViewById(R.id.tvValue);
+            tvValueNum = itemView.findViewById(R.id.tvValueNum);
             tvName = itemView.findViewById(R.id.tvName);
             ivSelect = itemView.findViewById(R.id.ivSelect);
             llHome = itemView.findViewById(R.id.llHome);
