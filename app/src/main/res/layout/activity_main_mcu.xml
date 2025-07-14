@@ -21,6 +21,12 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="@dimen/dp_140"
+            android:layout_height="@dimen/dp_48"
+            android:scaleType="fitCenter"
+            android:layout_marginBottom="@dimen/dp_30"
+            android:src="@mipmap/taly"/>
 
         <LinearLayout
             android:id="@+id/llModule1"
