@@ -300,7 +300,13 @@
 
     <string name="weitiao2">Fine Tuning</string>
     <string name="moshi">Mode</string>
+    <string name="lingya2">Zero-Pressure</string>
+    <string name="dianshi">Television</string>
+    <string name="zhihan2">Stop Snoring</string>
+    <string name="jiyi11">Memory One</string>
+    <string name="jiyi22">Memory 2</string>
     <string name="yaolan">Cradle</string>
+    <string name="fangping">Flatten</string>
     <string name="dengguang2">Lighting</string>
     <string name="anmo2">Massage</string>
     <string name="dingshi">Alarm Clock</string>
@@ -312,6 +318,8 @@
     <string name="time_set">Time Setting</string>
 
 
+    <string name="anmopinglv2">Massage Frequency</string>
+    <string name="alarm_xiangling2">Ring The Bell</string>
     <string name="quanshenanmo">Body Massage</string>
     <string name="beibuanmo">Back Massage</string>
     <string name="yaobuanmo">Lumbar Massage</string>
@@ -346,7 +354,7 @@
 
     <string name="duankai_device">Disconnect the device</string>
     <string name="change_device">Replace device</string>
-    <string name="success">success!</string>
+    <string name="success">Setting successful!</string>
     <string name="set_alarm">Need to set an alarm first</string>
     <string name="unit">Unit: KPA</string>
 

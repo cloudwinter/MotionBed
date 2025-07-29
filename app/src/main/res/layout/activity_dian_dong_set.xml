@@ -127,7 +127,7 @@
                     app:bgnormal="@drawable/bg_tuoyuan_normal"
                     app:icon="@mipmap/ic_anmopinglv"
                     app:linecount="4"
-                    app:title="@string/anmopinglv" />
+                    app:title="@string/anmopinglv2" />
 
                 <com.sn.blackdianqi.view.AnjianAnmoView
                     android:id="@+id/view_anmo_toubu"
@@ -505,7 +505,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/alarm_xiangling"
+                            android:text="@string/alarm_xiangling2"
                             android:textColor="@color/text_white"
                             android:textSize="12dp" />
 
@@ -543,7 +543,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/alarm_xiangling"
+                            android:text="@string/alarm_xiangling2"
                             android:textColor="@color/text_white"
                             android:textSize="12dp" />
 

@@ -102,7 +102,7 @@
                 app:bgnormal="@drawable/bg_tuoyuan_normal"
                 app:bgselected="@drawable/bg_tuoyuan_selected"
                 app:size="@dimen/sp_11"
-                app:title="@string/kandianshi" />
+                app:title="@string/dianshi" />
 
             <com.sn.blackdianqi.view.JiyiSmallView
                 android:id="@+id/view_zhihan"
@@ -114,7 +114,7 @@
                 app:bgnormal="@drawable/bg_tuoyuan_normal"
                 app:bgselected="@drawable/bg_tuoyuan_selected"
                 app:size="@dimen/sp_11"
-                app:title="@string/zhihan" />
+                app:title="@string/zhihan2" />
 
             <com.sn.blackdianqi.view.JiyiSmallView
                 android:id="@+id/view_lingyali"
@@ -126,7 +126,7 @@
                 app:bgnormal="@drawable/bg_tuoyuan_normal"
                 app:bgselected="@drawable/bg_tuoyuan_selected"
                 app:size="@dimen/sp_11"
-                app:title="@string/lingyali" />
+                app:title="@string/lingya2" />
 
         </LinearLayout>
 
@@ -146,7 +146,7 @@
                 app:bgnormal="@drawable/bg_tuoyuan_normal"
                 app:bgselected="@drawable/bg_tuoyuan_selected"
                 app:size="@dimen/sp_11"
-                app:title="@string/jiyi1" />
+                app:title="@string/jiyi11" />
 
             <com.sn.blackdianqi.view.JiyiSmallView
                 android:id="@+id/view_yaolan"
@@ -170,7 +170,7 @@
                 app:bgnormal="@drawable/bg_tuoyuan_normal"
                 app:bgselected="@drawable/bg_tuoyuan_selected"
                 app:size="@dimen/sp_11"
-                app:title="@string/jiyi2" />
+                app:title="@string/jiyi22" />
 
         </LinearLayout>
 
@@ -201,7 +201,7 @@
                 app:bgnormal="@drawable/bg_tuoyuan_normal"
                 app:bgselected="@drawable/bg_tuoyuan_selected"
                 app:size="@dimen/sp_11"
-                app:title="@string/fuyuan" />
+                app:title="@string/fangping" />
 
             <com.sn.blackdianqi.view.JiyiSmallView
                 android:layout_width="wrap_content"

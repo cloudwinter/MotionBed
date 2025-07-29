@@ -299,55 +299,63 @@
     <string name="lengnuan">寒暖</string>
 
 
-    <string name="weitiao2">トリミング</string>
-    <string name="moshi">パターン</string>
-    <string name="yaolan">ゆりかご</string>
-    <string name="dengguang2">ライトらいと</string>
+    <string name="weitiao2">微調整</string>
+    <string name="moshi">モード</string>
+    <string name="zhihan2">鼾止め</string>
+    <string name="lingya2">ゼログラビティ</string>
+    <string name="dianshi">テレビ位</string>
+    <string name="jiyi11">メモリー1</string>
+    <string name="jiyi22">メモリー2</string>
+    <string name="yaolan">揺かご</string>
+    <string name="fangping">フラット</string>
+    <string name="dengguang2">ライト</string>
     <string name="anmo2">マッサージ</string>
-    <string name="dingshi">タイミング</string>
+    <string name="dingshi">目覚まし時計</string>
 
 
-    <string name="shuiwei">すいい:</string>
+    <string name="shuiwei">水位:</string>
     <string name="temp">温度:</string>
-    <string name="dingshi_kaiqi">タイミングオン</string>
-    <string name="time_set">時刻設定</string>
+    <string name="dingshi_kaiqi">タイマー</string>
+    <string name="time_set">タイマー設定</string>
 
 
+    <string name="anmopinglv2">マッサージのタイプ</string>
+    <string name="alarm_xiangling2">鳴る</string>
     <string name="quanshenanmo">全身マッサージ</string>
-    <string name="beibuanmo">背中のマッサージ</string>
-    <string name="yaobuanmo">腰のマッサージ</string>
-    <string name="jingbuanmo">首のマッサージ</string>
+    <string name="beibuanmo">背部マッサージ</string>
+    <string name="yaobuanmo">腰部マッサージ</string>
+    <string name="jingbuanmo">頸部マッサージ</string>
     <string name="yujia2">ヨガ</string>
-    <string name="zishiying">てきおう</string>
-    <string name="anmotingzhi">マッサージをやめる</string>
-    <string name="fangqi">ガス抜き</string>
+    <string name="zishiying">アダプティブ</string>
+    <string name="anmotingzhi">マッサージ中止</string>
+    <string name="fangqi">エアを抜く</string>
     <string name="anmo_set">マッサージの設定</string>
-    <string name="press_set">気圧配置</string>
+    <string name="press_set">気圧設定</string>
 
 
     <string name="moshi_xuanze">モード選択</string>
-    <string name="anmo_qiangdu">マッサージ強度</string>
-    <string name="anmo_time">マッサージタイム</string>
+    <string name="anmo_qiangdu">マッサージの強さ</string>
+    <string name="anmo_time">マッサージのタイマー</string>
 
     <string name="dengguang_set">ライトの設定</string>
     <string name="dengguang_light">ライトの輝度</string>
     <string name="clock_set">目覚まし時計の設定</string>
 
     <string name="qinangchuangdian">エアバッグマットレス</string>
-    <string name="lengnuanchuangdian">寒暖マットレス</string>
+    <string name="lengnuanchuangdian">冷/熱マットレス</string>
     <string name="diandongchuang_set">電動ベッドの設定</string>
 
-    <string name="dangwei">シフトビット</string>
-    <string name="dangwei1">シフトビット 1</string>
-    <string name="dangwei2">シフトビット 2</string>
-    <string name="dangwei3">シフトビット 3</string>
-    <string name="dangwei4">シフトビット 4</string>
-    <string name="jiare">かねつ</string>
-    <string name="zhileng">れいきゃく</string>
+    <string name="dangwei">レベル</string>
+    <string name="dangwei1">レベル1</string>
+    <string name="dangwei2">レベル2</string>
+    <string name="dangwei3">レベル3</string>
+    <string name="dangwei4">レベル4</string>
+    <string name="jiare">加熱モード</string>
+    <string name="zhileng">冷却モード</string>
 
     <string name="duankai_device">デバイスの切断</string>
     <string name="change_device">設備の交換</string>
-    <string name="success">成功!</string>
+    <string name="success">設定しました!</string>
     <string name="set_alarm">目覚まし時計をセットしておく必要があります</string>
     <string name="unit">単位：KPA</string>
 

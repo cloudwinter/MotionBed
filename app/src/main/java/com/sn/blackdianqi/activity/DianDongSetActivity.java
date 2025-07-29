@@ -221,7 +221,8 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
         }
 
         isFirstAlarm = getIntent().getBooleanExtra("isFirstAlarm", false);
-        if (isFirstAlarm) {
+        if (isFirstAlarm) {//首次设置闹钟
+            setVisibleModel(0);
             setVisibleModel(2);
         }
         LogUtils.e(TAG, "当前连接的蓝牙名称为：" + blueName);

@@ -299,17 +299,25 @@
 
     <string name="weitiao2">fine réglage</string>
     <string name="moshi">Mode</string>
+    <string name="dianshi">télévision</string>
+    <string name="lingya2">Pression zéro</string>
+    <string name="zhihan2">Arrêtez de ronfler</string>
+    <string name="jiyi11">Mémoire Un</string>
+    <string name="jiyi22">Mémoire 2</string>
     <string name="yaolan">Berceau</string>
+    <string name="fangping">A plat</string>
     <string name="dengguang2">Éclairage</string>
     <string name="anmo2">Massage</string>
     <string name="dingshi">À l heure régulière</string>
 
     <string name="shuiwei">Niveau de l eau:</string>
     <string name="temp">température:</string>
-    <string name="dingshi_kaiqi">Timing sur</string>
+    <string name="dingshi_kaiqi">Timer-on</string>
     <string name="time_set">Réglage de l heure</string>
 
 
+    <string name="anmopinglv2">Fréquence de massage</string>
+    <string name="alarm_xiangling2">sonner la cloche</string>
     <string name="quanshenanmo">Massage du corps entier</string>
     <string name="beibuanmo">Massage du dos</string>
     <string name="yaobuanmo">Massage lombaire</string>
@@ -344,7 +352,7 @@
 
     <string name="duankai_device">Déconnecter l\'équipement</string>
     <string name="change_device">Remplacement de l\'équipement</string>
-    <string name="success">Succès!</string>
+    <string name="success">Configurer avec succès!</string>
     <string name="set_alarm">Besoin de régler l\'alarme d\'abord</string>
     <string name="unit">Unité: KPA</string>
 

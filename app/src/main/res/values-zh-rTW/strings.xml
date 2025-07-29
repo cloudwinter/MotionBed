@@ -301,7 +301,13 @@
 
     <string name="weitiao2">微調</string>
     <string name="moshi">模式</string>
+    <string name="zhihan2">止鼾</string>
+    <string name="lingya2">零壓</string>
+    <string name="dianshi">電視</string>
+    <string name="jiyi11">記憶一</string>
+    <string name="jiyi22">記憶二</string>
     <string name="yaolan">搖籃</string>
+    <string name="fangping">放平</string>
     <string name="dengguang2">燈光</string>
     <string name="anmo2">按摩</string>
     <string name="dingshi">定時</string>
@@ -313,6 +319,8 @@
     <string name="time_set">時間設置</string>
 
 
+    <string name="anmopinglv2">按摩頻率</string>
+    <string name="alarm_xiangling2">響鈴</string>
     <string name="quanshenanmo">全身按摩</string>
     <string name="beibuanmo">背部按摩</string>
     <string name="yaobuanmo">腰部按摩</string>
@@ -347,7 +355,7 @@
 
     <string name="duankai_device">斷開設備</string>
     <string name="change_device">更換設備</string>
-    <string name="success">成功!</string>
+    <string name="success">設置成功!</string>
     <string name="set_alarm">需要先設置鬧鐘</string>
     <string name="unit">單位：KPA</string>
 
