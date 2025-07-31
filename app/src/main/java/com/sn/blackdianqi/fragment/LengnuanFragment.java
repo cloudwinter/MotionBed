@@ -169,6 +169,36 @@ public class LengnuanFragment extends BaseMcuFragment {
             } else {
                 tvTemp.setText("");
             }
+
+            String stateHigh = cmd.substring(19, 20);//定时状态
+
+            //工作状态
+            int workState = BlueUtils.covert16TO10(stateHigh);//工作状态  0：空闲 1：加热 2：制冷 3：水位低 4：故障
+            String gear = cmd.substring(20, 22);//工作档位
+            Log.e("工作状态:", workState + "");
+            Log.e("工作档位:", gear);
+            int selectScaleIndex = 1;
+            if (workState == 0) {//空闲
+                selectScaleIndex = 5;
+            } else if (workState == 1) {//加热
+                selectScaleIndex = 5 + Integer.parseInt(gear);
+            } else if (workState == 2) {//制冷
+                selectScaleIndex = 5 - Integer.parseInt(gear);
+            } else if (workState == 3) {//水位低
+                selectScaleIndex = 5;
+            } else if (workState == 4) {//故障
+                selectScaleIndex = 5;
+            }
+
+            Log.e("读取档位:" + selectScaleIndex, ",当前档位:" + tempAdapter.getSelectIndex());
+            if (selectScaleIndex - 1 != tempAdapter.getSelectIndex()) {
+                tempAdapter.setSelectIndex(selectScaleIndex - 1);
+                ivSlider.animate()
+                        .x(xStart + MotionBedUtil.dpToPx((Context) getActivity(), (float) ((5f * (selectScaleIndex) - 2.5) * 7 - 10.5f)))
+                        .y(yStart)
+                        .setDuration(0)
+                        .start();
+            }
         }
     }
 

@@ -67,6 +67,7 @@ public class PressSetActivity extends BaseActivity implements TranslucentActionB
     protected BluetoothGattCharacteristic characteristic;
 
     private int isAutoSave = -1;//是否自动保存
+    private boolean isFinish;//是否关闭当前界面
 
     private Handler mHandler = new Handler(Looper.getMainLooper()) {
         @Override
@@ -78,13 +79,14 @@ public class PressSetActivity extends BaseActivity implements TranslucentActionB
                 List<PressBean> data = pressSetAdapter.getData();
                 for (int i = 0; i < data.size(); i++) {
                     sb.append("01");
-                    sb.append(BlueUtils.covert10TO16(data.get(11 - i).getValue() * 10));
+                    sb.append(BlueUtils.covert10TO16(data.get(i).getValue() * 10));
                     sb.append("00");
                 }
                 String cmd = sb.toString();
                 cmd = cmd + BlueUtils.crc16Modbus(cmd);
                 LogUtils.e("cmd", cmd);
                 sendBlueCmd(cmd);//发送设置气囊压力值
+                isFinish = false;
             } else {
                 if (isAutoSave >= 0) {
                     isAutoSave++;
@@ -125,7 +127,7 @@ public class PressSetActivity extends BaseActivity implements TranslucentActionB
     private void initData() {
         for (int i = 0; i < 12; i++) {
             PressBean pressBean = new PressBean();
-            pressBean.setName(String.valueOf(12 - i));
+            pressBean.setName(String.valueOf(i + 1));
             pressList.add(pressBean);
         }
     }
@@ -168,13 +170,13 @@ public class PressSetActivity extends BaseActivity implements TranslucentActionB
                 pressSetAdapter.setSelectValue(selectIndex, value);
                 break;
             case R.id.tvConfirm:
-                isAutoSave = -1;
+                isFinish = true;
                 StringBuilder sb = new StringBuilder();
                 sb.append("FFFFFFFFFF2F030500");
                 List<PressBean> data = pressSetAdapter.getData();
                 for (int i = 0; i < data.size(); i++) {
                     sb.append("01");
-                    sb.append(BlueUtils.covert10TO16(data.get(11 - i).getValue() * 10));
+                    sb.append(BlueUtils.covert10TO16(data.get(i).getValue() * 10));
                     sb.append("00");
                 }
                 String cmd = sb.toString();
@@ -270,7 +272,7 @@ public class PressSetActivity extends BaseActivity implements TranslucentActionB
                 for (int i = 0; i < resArray.size(); i++) {
                     String item = resArray.get(i);
                     int value = BlueUtils.covert16TO10(item.substring(4, 6) + item.substring(2, 4));
-                    pressureList.get(11 - i).setValue(value / 10);
+                    pressureList.get(i).setValue(value / 10);
 //                    LogUtils.e("pressValue", pressureList.get(i).getValue() + "");
                 }
                 pressSetAdapter.setData(pressureList);
@@ -280,7 +282,7 @@ public class PressSetActivity extends BaseActivity implements TranslucentActionB
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if (isAutoSave == -1) {
+                    if (isFinish) {
                         finish();
                     }
                 }
