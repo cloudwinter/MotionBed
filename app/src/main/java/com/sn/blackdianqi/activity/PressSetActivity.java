@@ -33,6 +33,7 @@ import com.sn.blackdianqi.bean.PressBean;
 import com.sn.blackdianqi.blue.BluetoothLeService;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LogUtils;
+import com.sn.blackdianqi.util.MotionBedUtil;
 import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.util.ToastUtils;
 import com.sn.blackdianqi.view.TranslucentActionBar;
@@ -66,37 +67,6 @@ public class PressSetActivity extends BaseActivity implements TranslucentActionB
     // 特征值
     protected BluetoothGattCharacteristic characteristic;
 
-    private int isAutoSave = -1;//是否自动保存
-    private boolean isFinish;//是否关闭当前界面
-
-    private Handler mHandler = new Handler(Looper.getMainLooper()) {
-        @Override
-        public void handleMessage(@NonNull Message msg) {
-            super.handleMessage(msg);
-            if (isAutoSave >= 3) {
-                StringBuilder sb = new StringBuilder();
-                sb.append("FFFFFFFFFF2F030500");
-                List<PressBean> data = pressSetAdapter.getData();
-                for (int i = 0; i < data.size(); i++) {
-                    sb.append("01");
-                    sb.append(BlueUtils.covert10TO16(data.get(i).getValue() * 10));
-                    sb.append("00");
-                }
-                String cmd = sb.toString();
-                cmd = cmd + BlueUtils.crc16Modbus(cmd);
-                LogUtils.e("cmd", cmd);
-                sendBlueCmd(cmd);//发送设置气囊压力值
-                isFinish = false;
-            } else {
-                if (isAutoSave >= 0) {
-                    isAutoSave++;
-                }
-            }
-            mHandler.sendEmptyMessageDelayed(1, 1000);
-        }
-    };
-
-
     @Override
     public void onLeftClick() {
         finish();
@@ -121,12 +91,18 @@ public class PressSetActivity extends BaseActivity implements TranslucentActionB
         initData();
         initView();
 
-        mHandler.sendEmptyMessageDelayed(1, 1000);
     }
 
     private void initData() {
         for (int i = 0; i < 12; i++) {
             PressBean pressBean = new PressBean();
+            String result = Integer.toHexString(BlueUtils.LeftShift2(i));
+            String cover = "";
+            for (int j = 0; j < 4 - result.length(); j++) {
+                cover += '0';
+            }
+            result = cover + result;
+            pressBean.setPressNo(result);
             pressBean.setName(String.valueOf(i + 1));
             pressList.add(pressBean);
         }
@@ -156,21 +132,20 @@ public class PressSetActivity extends BaseActivity implements TranslucentActionB
         int value = pressSetAdapter.getSelectValue();
         switch (view.getId()) {
             case R.id.ivMinus:
-                isAutoSave = 0;
                 if (value > 0) {
                     value--;
                 }
                 pressSetAdapter.setSelectValue(selectIndex, value);
+                setCmdPressOne(selectIndex, value);
                 break;
             case R.id.ivPlus:
-                isAutoSave = 0;
                 if (value < 9) {
                     value++;
                 }
                 pressSetAdapter.setSelectValue(selectIndex, value);
+                setCmdPressOne(selectIndex, value);
                 break;
             case R.id.tvConfirm:
-                isFinish = true;
                 StringBuilder sb = new StringBuilder();
                 sb.append("FFFFFFFFFF2F030500");
                 List<PressBean> data = pressSetAdapter.getData();
@@ -218,7 +193,6 @@ public class PressSetActivity extends BaseActivity implements TranslucentActionB
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mHandler.removeCallbacksAndMessages(null);
     }
 
     private void askStatus() {
@@ -257,6 +231,18 @@ public class PressSetActivity extends BaseActivity implements TranslucentActionB
         MyApplication.getInstance().mBluetoothLeService.writeCharacteristic(characteristic);
     }
 
+    public void setCmdPressOne(int selectIndex, int value) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("FFFFFFFFFF0F0117");
+        sb.append(pressList.get(selectIndex).getPressNo());
+        sb.append(BlueUtils.covert10TO16(value * 10));
+        sb.append("00");
+        String cmd = sb.toString();
+        cmd = cmd + BlueUtils.crc16Modbus(cmd);
+        LogUtils.e("cmd", cmd);
+        sendBlueCmd(cmd);//发送设置气囊压力值
+    }
+
 
     private void handleReceiveData(String cmd) {
         cmd = cmd.toUpperCase().replaceAll(" ", "");
@@ -282,9 +268,7 @@ public class PressSetActivity extends BaseActivity implements TranslucentActionB
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if (isFinish) {
-                        finish();
-                    }
+                    finish();
                 }
             }, 500);
         }

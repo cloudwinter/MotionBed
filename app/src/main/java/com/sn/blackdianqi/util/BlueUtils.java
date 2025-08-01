@@ -55,6 +55,22 @@ public class BlueUtils {
 
 
     /**
+     * 1左移11位得到的二进制
+     * shiftAmount   // 左移的位数
+     */
+    public static int LeftShift2(int shiftAmount) {
+        int number = 1; // 初始值为1
+        // 使用左移操作符
+        int result = number << shiftAmount;
+
+        // 打印原始值和结果的二进制表示
+        System.out.println("原始值的二进制表示: " + Integer.toBinaryString(number));
+        System.out.println("左移" + shiftAmount + "位后的值的二进制表示: " + Integer.toBinaryString(result));
+
+        return result;
+    }
+
+    /**
      * 二进制转16进制
      *
      * @param str2
