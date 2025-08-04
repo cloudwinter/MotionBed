@@ -116,7 +116,9 @@
             style="@style/checkbox_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_checkbox" />
+            android:background="@drawable/bg_checkbox"
+            android:minWidth="48dp"
+            android:minHeight="48dp" />
 
     </LinearLayout>
 

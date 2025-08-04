@@ -320,7 +320,7 @@ public class LengnuanFragment extends BaseMcuFragment {
                         break;
                     case MotionEvent.ACTION_MOVE:
 //                                         .y(yLast + Y - yDelta) Y轴移动的位置
-                        if (xStart < (xLast + X - xDelta) && (xLast + X - xDelta) < (xStart + tempLength)) {
+                        if (xStart < (xLast + X - xDelta) && (xLast + X - xDelta) < (xStart + tempLength - 31.5)) {
                             v.animate()
                                     .x(xLast + X - xDelta)
                                     .y(yStart)
@@ -329,7 +329,7 @@ public class LengnuanFragment extends BaseMcuFragment {
                         }
                         break;
                     case MotionEvent.ACTION_UP:
-                        if (xStart < (xLast + X - xDelta) && (xLast + X - xDelta) < (xStart + tempLength)) {
+                        if (xStart < (xLast + X - xDelta) && (xLast + X - xDelta) < (xStart + tempLength - 31.5)) {
                             v.animate()
                                     .x(xLast + X - xDelta)
                                     .y(yStart)

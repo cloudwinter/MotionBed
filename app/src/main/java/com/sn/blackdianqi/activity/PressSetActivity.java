@@ -236,7 +236,7 @@ public class PressSetActivity extends BaseActivity implements TranslucentActionB
         sb.append("FFFFFFFFFF0F0117");
         sb.append(pressList.get(selectIndex).getPressNo());
         sb.append(BlueUtils.covert10TO16(value * 10));
-        sb.append("00");
+        sb.append("0000");
         String cmd = sb.toString();
         cmd = cmd + BlueUtils.crc16Modbus(cmd);
         LogUtils.e("cmd", cmd);
