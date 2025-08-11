@@ -25,6 +25,7 @@ import com.sn.blackdianqi.base.BaseActivity;
 import com.sn.blackdianqi.bean.AskStatusgeEvent;
 import com.sn.blackdianqi.bean.DeviceBean;
 import com.sn.blackdianqi.blue.BluetoothLeService;
+import com.sn.blackdianqi.dialog.DoubleConfirmDialog;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.util.Prefer;
@@ -86,7 +87,7 @@ public class AnmoSetActivity extends BaseActivity implements TranslucentActionBa
     private String weitiaoValue = "03";//微调模式值、默认全身按摩值
     private int timeMode = -1;//按摩时间
     private String timeValue = "";//按摩时间值
-    private int upperValue = 5;//按摩强度上限
+    private int upperValue = 3;//按摩强度上限
     private int lowerValue = 1;//按摩强度下限
 
     private String sendPrefix = "FFFFFFFFFF0D020800";//微调前缀
@@ -216,23 +217,53 @@ public class AnmoSetActivity extends BaseActivity implements TranslucentActionBa
                 break;
             case R.id.ll_plus:
                 if (upperValue >= 8) {
-                    upperValue = 5;
+                    upperValue = 3;
                 } else {
                     upperValue++;
                 }
                 tvPlus.setText(String.valueOf(upperValue));
+                if (upperValue - lowerValue < 2) {
+                    tvPlus.setTextColor(getResources().getColor(R.color.F14C27));
+                } else {
+                    tvPlus.setTextColor(getResources().getColor(R.color.white));
+                }
                 break;
             case R.id.ll_minus:
-                if (lowerValue >= 4) {
+                if (lowerValue >= 6) {
                     lowerValue = 1;
                 } else {
                     lowerValue++;
                 }
                 tvMinus.setText(String.valueOf(lowerValue));
+                if (upperValue - lowerValue < 2) {
+                    tvPlus.setTextColor(getResources().getColor(R.color.F14C27));
+                } else {
+                    tvPlus.setTextColor(getResources().getColor(R.color.white));
+                }
                 break;
             case R.id.tvConfirm:
-                cmd = "FFFFFFFFFF14030E00" + weitiaoValue + BlueUtils.covert10TO16(upperValue * 10) + "00" + BlueUtils.covert10TO16(lowerValue * 10) + "00" + timeValue + "000000";
-                sendBlueCmd(cmd);
+                if (upperValue - lowerValue < 2) {
+                    DoubleConfirmDialog.builder(this)
+                            .setContent(getResources().getString(R.string.anmo_qiangdu_hint))
+                            .setListener(new DoubleConfirmDialog.OnPermissionsDialogListener() {
+                                @Override
+                                public void cancleOnClick(DoubleConfirmDialog dialog) {
+                                    dialog.dismiss();
+                                    return;
+                                }
+
+                                @Override
+                                public void determineOnClick(DoubleConfirmDialog dialog, String content) {
+                                    dialog.dismiss();
+                                    upperValue = lowerValue + 2;
+                                    String cmdConfirm = "FFFFFFFFFF14030E00" + weitiaoValue + BlueUtils.covert10TO16(upperValue * 10) + "00" + BlueUtils.covert10TO16(lowerValue * 10) + "00" + timeValue + "000000";
+                                    sendBlueCmd(cmdConfirm);
+                                }
+                            }).show();
+                } else {
+                    String cmdConfirm = "FFFFFFFFFF14030E00" + weitiaoValue + BlueUtils.covert10TO16(upperValue * 10) + "00" + BlueUtils.covert10TO16(lowerValue * 10) + "00" + timeValue + "000000";
+                    sendBlueCmd(cmdConfirm);
+                }
                 break;
         }
     }

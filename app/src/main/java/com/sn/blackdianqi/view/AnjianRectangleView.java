@@ -63,6 +63,16 @@ public class AnjianRectangleView extends LinearLayout {
     public void setSelected(boolean selected) {
         super.setSelected(selected);
         if (selected) {
+            titleTextView.setTextColor(mContext.getResources().getColor(R.color.text_green));
+        } else {
+            titleTextView.setTextColor(mContext.getResources().getColor(R.color.white));
+        }
+    }
+
+    @Override
+    public void setActivated(final boolean activated) {
+        super.setActivated(activated);
+        if (activated) {
             if (bgSelectedRes != -1) {
                 setBackground(ContextCompat.getDrawable(mContext,bgSelectedRes));
             }
@@ -73,8 +83,7 @@ public class AnjianRectangleView extends LinearLayout {
         }
     }
 
-
-//    @SuppressWarnings("unused")
+    //    @SuppressWarnings("unused")
 //    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 //        // We depend on the container to specify the layout size of
 //        // our view. We can't really know what it is since we will be

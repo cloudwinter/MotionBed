@@ -16,7 +16,7 @@
     <string name="connecting">接続中...</string>
     <string name="please_wait">待機中...</string>
     <string name="please_input">数字を入力してください</string>
-    
+
     <!-- dialog -->
     <string name="connected_failed">接続に失敗しました。再接続を試みてください</string>
     <string name="dialog_title_disconnect">切断済みかどうか</string>
@@ -107,7 +107,6 @@
     <string name="dengguangliangdu">ライトの輝度</string>
     <string name="dengguangliangdu_min_tips">現在の輝度が最小値に調整されました</string>
     <string name="dengguangliangdu_max_tips">現在の輝度が最大値に調整されました</string>
-
 
 
     <!-- 按摩 -->
@@ -292,7 +291,6 @@
     <string name="sdr_line_btn_next">next</string>
 
 
-
     <!-- tab -->
     <string name="diandongchuang">電動ベッド</string>
     <string name="qinang">エアバッグ</string>
@@ -359,4 +357,36 @@
     <string name="set_alarm">目覚まし時計をセットしておく必要があります</string>
     <string name="unit">単位：KPA</string>
 
+    <string name="anmo_qiangdu_hint">マッサージの強度上限は下限より少なくとも2段階以上大きくする</string>
+    <string name="zhinengjiance">インテリジェントモニタリング</string>
+    <string name="network_connected">ネットワークに接続されました</string>
+    <string name="heart_rate_data">リアルタイム心拍数データ</string>
+    <string name="sleep_report">睡眠レポート</string>
+
+    <string name="replace_wifi">Wi-Fiを変更する</string>
+    <string name="configure_wifi">WIFIを設定する</string>
+    <string name="network_hint1">デバイスがネットワークに接続されていません。まず、デバイスにWIFIネットワークを設定してください</string>
+    <string name="network_hint2">現在ネットワークが不安定です。ルーターをデバイスに近づけたり、WIFIネットワークを変更してください</string>
+    <string name="network_hint3">現在ネットワークに接続されていません。WIFIネットワークがインターネットに接続できるかどうか確認するか、WIFIネットワークを交換してください</string>
+    <string name="replace">交換</string>
+    <string name="got_it">わかりました</string>
+    <string name="network_not_connected">ネットワークが接続されていません</string>
+    <string name="currently_network_not_connected">現在の接続WI-FI</string>
+    <string name="password">パスワード</string>
+    <string name="password_hint">wifiパスワードを入力してください</string>
+    <string name="remember_password">パスワードを記憶する</string>
+    <string name="wifi_hint">このデバイスは2.4 GWi-Fi接続のみをサポートしています</string>
+    <string name="next_step">次のステップ</string>
+    <string name="configuring_step_hint">Wi-Fiを設定しているので、終了しないでください！</string>
+    <string name="configuring_step_hint2">プロセス全体で約1分かかりますので、お待ちください</string>
+    <string name="wifi_configuration_failed">Wi-Fiの設定に失敗しました</string>
+    <string name="wifi_configuration_failed2">ルータ名とパスワードが正しいか確認してから再試行してください</string>
+    <string name="retry">再試行</string>
+
+    <string name="network_instability">ネットワーク不安定</string>
+    <string name="distribution_network">に網を張る</string>
+    <string name="wifi_success">Wi-Fi構成に成功しました</string>
+    <string name="device_networking_successful">デバイスのネットワーク接続に成功しました</string>
+    <string name="complete">完了</string>
+    <string name="latitude_longitude_fail">緯度経度の取得に失敗しました</string>
 </resources>

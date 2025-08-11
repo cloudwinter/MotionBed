@@ -47,6 +47,10 @@
     <style name="checkbox_style">
         <item name="android:button">@drawable/bg_checkbox</item>
     </style>
+    <!-- 自定义checkbox -->
+    <style name="checkbox_style2">
+        <item name="android:button">@drawable/bg_checkbox2</item>
+    </style>
 
     <style name="custom_dialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>

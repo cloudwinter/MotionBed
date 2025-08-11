@@ -359,4 +359,36 @@
     <string name="set_alarm">需要先設置鬧鐘</string>
     <string name="unit">單位：KPA</string>
 
+    <string name="anmo_qiangdu_hint">按摩强度上限至少要比下限大2檔</string>
+    <string name="zhinengjiance">智慧監測</string>
+    <string name="network_connected">網絡已連接</string>
+    <string name="heart_rate_data">實时心率數據</string>
+    <string name="sleep_report">睡眠報告</string>
+
+    <string name="replace_wifi">更換WIFI</string>
+    <string name="configure_wifi">配寘WIFI</string>
+    <string name="network_hint1">設備未聯網，請先給設備配置WIFI網絡</string>
+    <string name="network_hint2">當前網絡不穩定，請將路由器放在離設備更近的位置或更換WIFI網絡</string>
+    <string name="network_hint3">當前網絡未連接，請確認您的WIFI網絡能否上網，或更換WIFI網絡</string>
+    <string name="replace">更換</string>
+    <string name="got_it">知道了</string>
+    <string name="network_not_connected">網絡未連接</string>
+    <string name="currently_network_not_connected">當前連接WI-FI</string>
+    <string name="password">密碼</string>
+    <string name="password_hint">請輸入wifi密碼</string>
+    <string name="remember_password">記住密碼</string>
+    <string name="wifi_hint">此設備只支持2.4GWi-Fi連接使用</string>
+    <string name="next_step">下一步</string>
+    <string name="configuring_step_hint">正在配寘Wi-Fi，請勿退出！</string>
+    <string name="configuring_step_hint2">整個過程大約需要1分鐘，請您耐心等待</string>
+    <string name="wifi_configuration_failed">Wi-Fi配寘失敗</string>
+    <string name="wifi_configuration_failed2">請核對您的路由器名稱和密碼是否正確後重試</string>
+    <string name="retry">重試</string>
+
+    <string name="network_instability">網絡不穩定</string>
+    <string name="distribution_network">配網</string>
+    <string name="wifi_success">WI-FI配置成功</string>
+    <string name="device_networking_successful">設備聯網成功</string>
+    <string name="complete">完成</string>
+    <string name="latitude_longitude_fail">獲取經緯度失敗</string>
 </resources>

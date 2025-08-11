@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <com.sn.blackdianqi.view.JiyiSmallView
+            <com.sn.blackdianqi.view.JiyiSmall2View
                 android:id="@+id/view_kandianshi"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp_50"
@@ -104,7 +104,7 @@
                 app:size="@dimen/sp_11"
                 app:title="@string/dianshi" />
 
-            <com.sn.blackdianqi.view.JiyiSmallView
+            <com.sn.blackdianqi.view.JiyiSmall2View
                 android:id="@+id/view_zhihan"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -116,7 +116,7 @@
                 app:size="@dimen/sp_11"
                 app:title="@string/zhihan2" />
 
-            <com.sn.blackdianqi.view.JiyiSmallView
+            <com.sn.blackdianqi.view.JiyiSmall2View
                 android:id="@+id/view_lingyali"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -136,7 +136,7 @@
             android:layout_marginTop="@dimen/dp_10"
             android:orientation="horizontal">
 
-            <com.sn.blackdianqi.view.JiyiSmallView
+            <com.sn.blackdianqi.view.JiyiSmall2View
                 android:id="@+id/view_jiyi1"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp_50"
@@ -148,7 +148,7 @@
                 app:size="@dimen/sp_11"
                 app:title="@string/jiyi11" />
 
-            <com.sn.blackdianqi.view.JiyiSmallView
+            <com.sn.blackdianqi.view.JiyiSmall2View
                 android:id="@+id/view_yaolan"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -157,10 +157,11 @@
                 android:orientation="horizontal"
                 app:bgnormal="@drawable/bg_tuoyuan_normal"
                 app:bgselected="@drawable/bg_tuoyuan_selected"
+                app:showIcon="false"
                 app:size="@dimen/sp_11"
                 app:title="@string/yaolan" />
 
-            <com.sn.blackdianqi.view.JiyiSmallView
+            <com.sn.blackdianqi.view.JiyiSmall2View
                 android:id="@+id/view_jiyi2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -180,7 +181,7 @@
             android:layout_marginTop="@dimen/dp_10"
             android:orientation="horizontal">
 
-            <com.sn.blackdianqi.view.JiyiSmallView
+            <com.sn.blackdianqi.view.JiyiSmall2View
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/dp_5"
@@ -191,7 +192,7 @@
                 app:bgselected="@drawable/bg_tuoyuan_selected"
                 app:size="@dimen/sp_11" />
 
-            <com.sn.blackdianqi.view.JiyiSmallView
+            <com.sn.blackdianqi.view.JiyiSmall2View
                 android:id="@+id/view_fuyuan"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -200,10 +201,11 @@
                 android:orientation="horizontal"
                 app:bgnormal="@drawable/bg_tuoyuan_normal"
                 app:bgselected="@drawable/bg_tuoyuan_selected"
+                app:showIcon="false"
                 app:size="@dimen/sp_11"
                 app:title="@string/fangping" />
 
-            <com.sn.blackdianqi.view.JiyiSmallView
+            <com.sn.blackdianqi.view.JiyiSmall2View
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/dp_5"
@@ -230,11 +232,11 @@
             android:id="@+id/ll_dingshi"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_50"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/dp_5"
+            android:layout_weight="1"
             android:background="@drawable/bg_tuoyuan_normal"
-            android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:paddingHorizontal="@dimen/dp_10">
 
 
@@ -259,8 +261,8 @@
             android:id="@+id/ll_dengguang"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_50"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/dp_5"
+            android:layout_weight="1"
             android:background="@drawable/bg_tuoyuan_normal"
             android:gravity="center_vertical"
             android:paddingHorizontal="@dimen/dp_10">
@@ -294,8 +296,8 @@
             android:id="@+id/ll_anmo"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_50"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/dp_5"
+            android:layout_weight="1"
             android:background="@drawable/bg_tuoyuan_normal"
             android:gravity="center_vertical"
             android:paddingHorizontal="@dimen/dp_10">
@@ -321,8 +323,8 @@
             android:id="@+id/ll_ddset"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_50"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/dp_5"
+            android:layout_weight="1"
             android:background="@drawable/bg_tuoyuan_normal"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -340,10 +342,49 @@
 
             <ImageView
                 android:layout_width="@dimen/dp_40"
+                android:padding="@dimen/dp_5"
                 android:layout_height="match_parent"
                 android:src="@mipmap/ic_row" />
 
         </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_zhinengjiance"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginHorizontal="@dimen/dp_5"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/bg_tuoyuan_normal"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:paddingHorizontal="@dimen/dp_10">
+
+        <ImageView
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_6"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/clock" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_weight="1"
+            android:text="@string/zhinengjiance"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_12" />
+
+        <ImageView
+            android:layout_width="@dimen/dp_40"
+            android:padding="@dimen/dp_5"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_row" />
+
     </LinearLayout>
 
 

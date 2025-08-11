@@ -8,6 +8,7 @@ import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 /**
@@ -21,9 +22,17 @@ public class DateUtils {
 
 
     public static String getCurrentDay() {
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date(System.currentTimeMillis());
         return formatter.format(date);
+    }
+
+    public static String getYesToday() {
+        Date date = new Date();//取时间
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        calendar.add(calendar.DATE, -1);//把日期往后增加一天.整数往后推,负数往前移动
+        return new SimpleDateFormat("yyyy/MM/dd").format(calendar.getTime());
     }
 
     public static Calendar calendar(Date date) {
@@ -50,7 +59,7 @@ public class DateUtils {
     public static String transferToH(String value, int ratio) {
         LoggerView.e("transferToH value:" + value + "ratio:" + ratio);
         BigDecimal val = new BigDecimal(value);
-        BigDecimal result = val.divide(new BigDecimal(ratio),1,RoundingMode.HALF_UP);
+        BigDecimal result = val.divide(new BigDecimal(ratio), 1, RoundingMode.HALF_UP);
         return result.toString();
     }
 
@@ -69,6 +78,6 @@ public class DateUtils {
     }
 
     public static void main(String[] args) {
-        System.out.println(DateUtils.transferToH("23",6));
+        System.out.println(DateUtils.transferToH("23", 6));
     }
 }

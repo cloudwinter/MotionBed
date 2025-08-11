@@ -358,4 +358,36 @@
     <string name="set_alarm">Need to set an alarm first</string>
     <string name="unit">Unit: KPA</string>
 
+    <string name="anmo_qiangdu_hint">The upper limit of massage intensity should be at least 2 levels higher than the lower limit</string>
+    <string name="zhinengjiance">intelligent monitoring</string>
+    <string name="network_connected">Network connected</string>
+    <string name="heart_rate_data">Real-time heart rate data</string>
+    <string name="sleep_report">Sleep Report</string>
+
+    <string name="replace_wifi">Replace WIFI</string>
+    <string name="configure_wifi">Configure WIFI</string>
+    <string name="network_hint1">The device is not connected to the internet. Please configure the WIFI network for the device first</string>
+    <string name="network_hint2">The current network is unstable. Please move the router closer to the device or switch to a different WIFI network</string>
+    <string name="network_hint3">The current network is not connected. Please confirm if your WIFI network can access the internet, or replace the WIFI network</string>
+    <string name="replace">replace</string>
+    <string name="got_it">Got it</string>
+    <string name="network_not_connected">Network not connected</string>
+    <string name="currently_network_not_connected">Currently connected to WI-FI</string>
+    <string name="password">Password</string>
+    <string name="password_hint">Please enter the WiFi password</string>
+    <string name="remember_password">remember password</string>
+    <string name="wifi_hint">This device only supports 2.4G Wi Fi connection</string>
+    <string name="next_step">next step</string>
+    <string name="configuring_step_hint">Configuring Wi Fi, please do not exit!</string>
+    <string name="configuring_step_hint2">The whole process takes about 1 minute, please be patient and wait</string>
+    <string name="wifi_configuration_failed">Wi Fi configuration failed</string>
+    <string name="wifi_configuration_failed2">Please verify if your router name and password are correct and try again</string>
+    <string name="retry">retry</string>
+
+    <string name="network_instability">Network instability</string>
+    <string name="distribution_network">Distribution network</string>
+    <string name="wifi_success">Wi Fi configuration successful</string>
+    <string name="device_networking_successful">Device networking successful</string>
+    <string name="complete">complete</string>
+    <string name="latitude_longitude_fail">Failed to obtain latitude and longitude</string>
 </resources>

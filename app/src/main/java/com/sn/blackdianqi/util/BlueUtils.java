@@ -6,6 +6,9 @@ import android.util.Log;
 import com.sn.blackdianqi.MyApplication;
 import com.sn.blackdianqi.blue.BluetoothLeService;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -130,6 +133,114 @@ public class BlueUtils {
             retData[i / 2] = (byte) int_ch;//将转化后的数放入Byte里
         }
         return retData;
+    }
+
+    /**
+     * 字符串转换成十六进制字符串
+     * @param str 待转换的ASCII字符串
+     * @return String 每个Byte之间空格分隔，如: [61 6C 6B]
+     */
+    public static String str2HexStr(String str)
+    {
+
+        char[] chars = "0123456789ABCDEF".toCharArray();
+        StringBuilder sb = new StringBuilder("");
+        byte[] bs = str.getBytes();
+        int bit;
+
+        for (int i = 0; i < bs.length; i++)
+        {
+            bit = (bs[i] & 0x0f0) >> 4;
+            sb.append(chars[bit]);
+            bit = bs[i] & 0x0f;
+            sb.append(chars[bit]);
+            //  sb.append(' ');
+        }
+        return sb.toString().trim();
+    }
+
+    /**
+     * 十六进制转换字符串
+     * @param hexStr str Byte字符串(Byte之间无分隔符 如:[616C6B])
+     * @return String 对应的字符串
+     */
+    public static String hexStr2Str(String hexStr)  {
+        String str1 = null;
+        String str = "0123456789ABCDEF";
+        char[] hexs = hexStr.toCharArray();
+        byte[] bytes = new byte[hexStr.length() / 2];
+        int n;
+
+        for (int i = 0; i < bytes.length; i++){
+            n = str.indexOf(hexs[2 * i]) * 16;
+            n += str.indexOf(hexs[2 * i + 1]);
+            bytes[i] = (byte) (n & 0xff);
+            Log.i("66666666666666","-------------------  "+bytes[i]);
+        }
+        try {
+            str1 = new String(bytes, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return str1;
+    }
+
+    /**
+     * 将double转换为十六进制字符串
+     * @param value 要转换的double值
+     * @return 表示该double的十六进制字符串
+     */
+    public static String doubleToHex(double value) {
+        // 创建一个8字节的缓冲区（double是64位）
+        ByteBuffer buffer = ByteBuffer.allocate(8);
+        // 将double值放入缓冲区
+        buffer.putDouble(value);
+        // 获取字节数组
+        byte[] bytes = buffer.array();
+
+        // 用于构建结果的StringBuilder
+        StringBuilder hexBuilder = new StringBuilder();
+
+        // 逐个字节转换为十六进制
+        for (byte b : bytes) {
+            // 将字节转换为无符号整数
+            int unsignedByte = b & 0xFF;
+            // 转换为十六进制字符串，确保是两位
+            String hex = String.format("%02X", unsignedByte);
+            hexBuilder.append(hex);
+        }
+
+        return hexBuilder.toString();
+    }
+
+    /**
+     * 将float转换为十六进制字符串，可指定字节序
+     * @param value 要转换的float值
+     * @param order 字节序（大端或小端）
+     * @return 表示该float的十六进制字符串
+     */
+    public static String floatToHex(float value, ByteOrder order) {
+        // 创建一个4字节的缓冲区（float是32位）
+        ByteBuffer buffer = ByteBuffer.allocate(4).order(order);
+        // 将float值放入缓冲区
+        buffer.putFloat(value);
+        // 获取字节数组
+        byte[] bytes = buffer.array();
+
+        // 用于构建结果的StringBuilder
+        StringBuilder hexBuilder = new StringBuilder();
+
+        // 逐个字节转换为十六进制
+        for (byte b : bytes) {
+            // 将字节转换为无符号整数
+            int unsignedByte = b & 0xFF;
+            // 转换为十六进制字符串，确保是两位
+            String hex = String.format("%02X", unsignedByte);
+            hexBuilder.append(hex);
+        }
+
+        return hexBuilder.toString();
     }
 
     /**
@@ -397,6 +508,7 @@ public class BlueUtils {
 
     /**
      * 将16进制字符串转换为byte
+     *
      * @param hexString 16进制字符串（如"FF"、"f"、"0A"）
      * @return 转换后的byte值，转换失败返回0
      */

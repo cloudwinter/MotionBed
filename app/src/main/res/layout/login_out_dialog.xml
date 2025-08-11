@@ -90,7 +90,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:text="@string/dialog_confirm"
-                android:textColor="@color/text_green"
+                android:textColor="@color/white"
                 android:textSize="14sp" />
 
         </LinearLayout>

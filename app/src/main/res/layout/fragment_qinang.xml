@@ -124,25 +124,27 @@
         android:layout_marginTop="@dimen/dp_20"
         android:orientation="horizontal">
 
-        <com.sn.blackdianqi.view.JiyiView
+        <com.sn.blackdianqi.view.JiyiSmall2View
             android:id="@+id/view_anmo_stop"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_50"
             android:layout_marginHorizontal="@dimen/dp_5"
             android:layout_weight="1"
+            app:showIcon = "false"
             android:orientation="horizontal"
             app:bgnormal="@drawable/bg_tuoyuan_normal"
             app:bgselected="@drawable/bg_tuoyuan_selected"
             app:size="@dimen/sp_12"
             app:title="@string/anmotingzhi" />
 
-        <com.sn.blackdianqi.view.JiyiView
+        <com.sn.blackdianqi.view.JiyiSmall2View
             android:id="@+id/view_fangqi"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_50"
             android:layout_marginHorizontal="@dimen/dp_5"
             android:layout_weight="1"
             android:orientation="horizontal"
+            app:showIcon = "false"
             app:bgnormal="@drawable/bg_tuoyuan_normal"
             app:bgselected="@drawable/bg_tuoyuan_selected"
             app:size="@dimen/sp_12"

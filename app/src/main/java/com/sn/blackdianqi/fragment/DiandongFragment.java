@@ -18,6 +18,8 @@ import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.RunningContext;
 import com.sn.blackdianqi.activity.AlarmActivity;
 import com.sn.blackdianqi.activity.DianDongSetActivity;
+import com.sn.blackdianqi.activity.WebCommonActivity;
+import com.sn.blackdianqi.activity.XinLvDaiActivity;
 import com.sn.blackdianqi.bean.AlarmBean;
 import com.sn.blackdianqi.bean.AudioEvent;
 import com.sn.blackdianqi.bean.DateBean;
@@ -28,8 +30,10 @@ import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.util.ToastUtils;
+import com.sn.blackdianqi.view.AnjianTextView;
 import com.sn.blackdianqi.view.AnjianWeitiaoVerticalView;
 import com.sn.blackdianqi.view.ChildTouchListener;
+import com.sn.blackdianqi.view.JiyiSmall2View;
 import com.sn.blackdianqi.view.JiyiSmallView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -51,21 +55,21 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
     AnjianWeitiaoVerticalView tuibutiaozhengView;
 
     @BindView(R.id.view_kandianshi)
-    JiyiSmallView kandianshiView;
+    JiyiSmall2View kandianshiView;
     @BindView(R.id.view_lingyali)
-    JiyiSmallView lingyaliView;
+    JiyiSmall2View lingyaliView;
     @BindView(R.id.view_zhihan)
-    JiyiSmallView zhihanView;
+    JiyiSmall2View zhihanView;
 
     @BindView(R.id.view_jiyi1)
-    JiyiSmallView jiyi1View;
+    JiyiSmall2View jiyi1View;
     @BindView(R.id.view_jiyi2)
-    JiyiSmallView jiyi2View;
+    JiyiSmall2View jiyi2View;
 
     @BindView(R.id.view_fuyuan)
-    JiyiSmallView fuyuanView;
+    JiyiSmall2View fuyuanView;
     @BindView(R.id.view_yaolan)
-    JiyiSmallView yaolanView;
+    JiyiSmall2View yaolanView;
 
     @BindView(R.id.ll_dengguang)
     LinearLayout llDengguang;
@@ -75,6 +79,8 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
     LinearLayout llDingshi;
     @BindView(R.id.ll_ddset)
     LinearLayout llDdset;
+    @BindView(R.id.ll_zhinengjiance)
+    LinearLayout llZhinengjiance;
 
     @BindView(R.id.cb_dengguang)
     CheckBox cbDengguang;
@@ -129,6 +135,18 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
             }
 
             String xinlvdai = cmd.substring(18, 20);//心率带状态
+            if (TextUtils.equals(xinlvdai, "01")) {
+                //获取心率带的MAC
+                try {
+                    Thread.sleep(200L);
+                    sendBlueCmd("FF FF FF FF 01 00 0C 0B 0F");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                llZhinengjiance.setVisibility(View.GONE);
+                Prefer.getInstance().setXinlvdai(Prefer.getInstance().getLatelyConnectedDevice(), false);
+            }
 
             String anMostatus = cmd.substring(20, 22);//按摩状态
             if (TextUtils.equals(anMostatus, "01")) {
@@ -176,6 +194,17 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
             }
             LogUtils.i(TAG, "收到有闹钟已设置指令：" + cmd);
             setHasAlarm(cmd);
+        } else if (cmd.contains("FF FF FF FF 01 00 0C 11")) {//查询心率带MAC
+            cmd = cmd.toUpperCase().replaceAll(" ", "");
+            String state = cmd.substring(16, 18);//心率带标志位
+            if (TextUtils.equals(state, "03")) {//显示心率带入口
+                llZhinengjiance.setVisibility(View.VISIBLE);
+                String mac = cmd.substring(18, 30);//心率带mac
+                Prefer.getInstance().setXinlvdai(Prefer.getInstance().getLatelyConnectedDevice(), true);
+                Prefer.getInstance().setXinlvdaiMac(Prefer.getInstance().getLatelyConnectedDevice(), mac);
+            } else {
+                Prefer.getInstance().setXinlvdai(Prefer.getInstance().getLatelyConnectedDevice(), false);
+            }
         }
 
         // 记忆1 按键回码
@@ -396,7 +425,7 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
             @Override
             public void onClick(View v) {
                 // 按键以外发送停止码
-                sendBlueCmd("FF FF FF FF 05 00 00 00 00 D7 00");
+                sendBlueFullCmd("FF FF FF FF 05 00 00 00 00 D7 00");
             }
         });
         ButterKnife.bind(this, view);
@@ -423,18 +452,18 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
             @Override
             public void onTopTouch(MotionEvent event) {
                 if (MotionEvent.ACTION_DOWN == event.getAction()) {
-                    sendBlueCmd("FF FF FF FF 05 00 00 00 03 97 01");
+                    sendBlueFullCmd("FF FF FF FF 05 00 00 00 03 97 01");
                 } else if (isUPorCancel(event.getAction())) {
-                    sendBlueCmd("FF FF FF FF 05 00 00 00 00 D7 00");
+                    sendBlueFullCmd("FF FF FF FF 05 00 00 00 00 D7 00");
                 }
             }
 
             @Override
             public void onBottomTouch(MotionEvent event) {
                 if (MotionEvent.ACTION_DOWN == event.getAction()) {
-                    sendBlueCmd("FF FF FF FF 05 00 00 00 04 D6 C3");
+                    sendBlueFullCmd("FF FF FF FF 05 00 00 00 04 D6 C3");
                 } else if (isUPorCancel(event.getAction())) {
-                    sendBlueCmd("FF FF FF FF 05 00 00 00 00 D7 00");
+                    sendBlueFullCmd("FF FF FF FF 05 00 00 00 00 D7 00");
                 }
             }
         });
@@ -444,18 +473,18 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
             @Override
             public void onTopTouch(MotionEvent event) {
                 if (MotionEvent.ACTION_DOWN == event.getAction()) {
-                    sendBlueCmd("FF FF FF FF 05 00 00 00 06 57 02");
+                    sendBlueFullCmd("FF FF FF FF 05 00 00 00 06 57 02");
                 } else if (isUPorCancel(event.getAction())) {
-                    sendBlueCmd("FF FF FF FF 05 00 00 00 00 D7 00");
+                    sendBlueFullCmd("FF FF FF FF 05 00 00 00 00 D7 00");
                 }
             }
 
             @Override
             public void onBottomTouch(MotionEvent event) {
                 if (MotionEvent.ACTION_DOWN == event.getAction()) {
-                    sendBlueCmd("FF FF FF FF 05 00 00 00 07 96 C2");
+                    sendBlueFullCmd("FF FF FF FF 05 00 00 00 07 96 C2");
                 } else if (isUPorCancel(event.getAction())) {
-                    sendBlueCmd("FF FF FF FF 05 00 00 00 00 D7 00");
+                    sendBlueFullCmd("FF FF FF FF 05 00 00 00 00 D7 00");
                 }
             }
         });
@@ -464,10 +493,10 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
         cbDingshi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (!compoundButton.isPressed()){
+                if (!compoundButton.isPressed()) {
                     return;
                 }
-                Log.e("CheckBox","=================");
+                Log.e("CheckBox", "=================");
                 if (isFirstAlarm) {
                     String hint = getResources().getString(R.string.set_alarm);
                     DoubleConfirmDialog.builder(getActivity())
@@ -497,13 +526,13 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
         cbDengguang.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (!compoundButton.isPressed()){
+                if (!compoundButton.isPressed()) {
                     return;
                 }
                 if (b) {//灯光开
-                    sendBlueCmd("FF FF FF FF 05 00 00 00 4A 56 F7");
+                    sendBlueFullCmd("FF FF FF FF 05 00 00 00 4A 56 F7");
                 } else {//灯光关
-                    sendBlueCmd("FF FF FF FF 05 00 00 00 4B 97 37");
+                    sendBlueFullCmd("FF FF FF FF 05 00 00 00 4B 97 37");
                 }
             }
         });
@@ -512,13 +541,13 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
         cbAnmo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (!compoundButton.isPressed()){
+                if (!compoundButton.isPressed()) {
                     return;
                 }
                 if (b) {//按摩开
-                    sendBlueCmd("FF FF FF FF 05 00 00 01 1C D6 C9");
+                    sendBlueFullCmd("FF FF FF FF 05 00 00 01 1C D7 59");
                 } else {//按摩关
-                    sendBlueCmd("FF FF FF FF 05 00 00 00 1C D6 C9");
+                    sendBlueFullCmd("FF FF FF FF 05 00 00 00 1C D6 C9");
                 }
             }
         });
@@ -532,6 +561,89 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
                 startActivity(intent);
             }
         });
+
+        //智能检测
+        llZhinengjiance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), XinLvDaiActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    /**
+     * 当前选择的按钮
+     *
+     * @param name
+     */
+    private void setSelectIndex(String name) {
+        switch (name) {
+            case "jiyi1":
+                jiyi1View.setActivated(true);
+                jiyi2View.setActivated(false);
+                kandianshiView.setActivated(false);
+                lingyaliView.setActivated(false);
+                zhihanView.setActivated(false);
+                fuyuanView.setActivated(false);
+                yaolanView.setActivated(false);
+                break;
+            case "jiyi2":
+                jiyi1View.setActivated(false);
+                jiyi2View.setActivated(true);
+                kandianshiView.setActivated(false);
+                lingyaliView.setActivated(false);
+                zhihanView.setActivated(false);
+                fuyuanView.setActivated(false);
+                yaolanView.setActivated(false);
+                break;
+            case "kandianshi":
+                jiyi1View.setActivated(false);
+                jiyi2View.setActivated(false);
+                kandianshiView.setActivated(true);
+                lingyaliView.setActivated(false);
+                zhihanView.setActivated(false);
+                fuyuanView.setActivated(false);
+                yaolanView.setActivated(false);
+                break;
+            case "lingyali":
+                jiyi1View.setActivated(false);
+                jiyi2View.setActivated(false);
+                kandianshiView.setActivated(false);
+                lingyaliView.setActivated(true);
+                zhihanView.setActivated(false);
+                fuyuanView.setActivated(false);
+                yaolanView.setActivated(false);
+                break;
+            case "zhihan":
+                jiyi1View.setActivated(false);
+                jiyi2View.setActivated(false);
+                kandianshiView.setActivated(false);
+                lingyaliView.setActivated(false);
+                zhihanView.setActivated(true);
+                fuyuanView.setActivated(false);
+                yaolanView.setActivated(false);
+                break;
+            case "fuyuan":
+                jiyi1View.setActivated(false);
+                jiyi2View.setActivated(false);
+                kandianshiView.setActivated(false);
+                lingyaliView.setActivated(false);
+                zhihanView.setActivated(false);
+                fuyuanView.setActivated(true);
+                yaolanView.setActivated(false);
+                break;
+            case "yaolan":
+                jiyi1View.setActivated(false);
+                jiyi2View.setActivated(false);
+                kandianshiView.setActivated(false);
+                lingyaliView.setActivated(false);
+                zhihanView.setActivated(false);
+                fuyuanView.setActivated(false);
+                yaolanView.setActivated(true);
+                break;
+        }
     }
 
     @Override
@@ -539,6 +651,7 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
         int action = event.getAction();
         switch (v.getId()) {
             case R.id.view_jiyi1:
+                setSelectIndex("jiyi1");
                 if (MotionEvent.ACTION_DOWN == action) {
                     eventDownTime = System.currentTimeMillis();
                     timeHandler.sendEmptyMessageDelayed(JIYI1_WHAT, DEFAULT_INTERVAL);
@@ -547,14 +660,15 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
                     if (isShortClick()) {
                         // 短按
                         if (jiyi1View.isSelected()) {
-                            sendBlueCmd("FF FF FF FF 05 00 00 A1 0A 2E 97");
+                            sendBlueFullCmd("FF FF FF FF 05 00 00 A1 0A 2E 97");
                         } else {
-                            sendBlueCmd("FF FF FF FF 05 00 00 00 0A 57 07");
+                            sendBlueFullCmd("FF FF FF FF 05 00 00 00 0A 57 07");
                         }
                     }
                 }
                 break;
             case R.id.view_jiyi2:
+                setSelectIndex("jiyi2");
                 if (MotionEvent.ACTION_DOWN == action) {
                     eventDownTime = System.currentTimeMillis();
                     timeHandler.sendEmptyMessageDelayed(JIYI2_WHAT, DEFAULT_INTERVAL);
@@ -563,14 +677,15 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
                     if (isShortClick()) {
                         // 短按
                         if (jiyi2View.isSelected()) {
-                            sendBlueCmd("FF FF FF FF 05 00 00 B1 0B E2 97");
+                            sendBlueFullCmd("FF FF FF FF 05 00 00 B1 0B E2 97");
                         } else {
-                            sendBlueCmd("FF FF FF FF 05 00 00 00 0B 96 C7");
+                            sendBlueFullCmd("FF FF FF FF 05 00 00 00 0B 96 C7");
                         }
                     }
                 }
                 break;
             case R.id.view_kandianshi:
+                setSelectIndex("kandianshi");
                 if (MotionEvent.ACTION_DOWN == action) {
                     eventDownTime = System.currentTimeMillis();
                     timeHandler.sendEmptyMessageDelayed(KANDIANSHI_WHAT, DEFAULT_INTERVAL);
@@ -579,14 +694,15 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
                     if (isShortClick()) {
                         // 短按
                         if (kandianshiView.isSelected()) {
-                            sendBlueCmd("FF FF FF FF 05 00 00 51 05 2A 93");
+                            sendBlueFullCmd("FF FF FF FF 05 00 00 51 05 2A 93");
                         } else {
-                            sendBlueCmd("FF FF FF FF 05 00 00 00 05 17 03");
+                            sendBlueFullCmd("FF FF FF FF 05 00 00 00 05 17 03");
                         }
                     }
                 }
                 break;
             case R.id.view_lingyali:
+                setSelectIndex("lingyali");
                 if (MotionEvent.ACTION_DOWN == action) {
                     eventDownTime = System.currentTimeMillis();
                     timeHandler.sendEmptyMessageDelayed(LINGYALI_WHAT, DEFAULT_INTERVAL);
@@ -595,14 +711,15 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
                     if (isShortClick()) {
                         // 短按
                         if (lingyaliView.isSelected()) {
-                            sendBlueCmd("FF FF FF FF 05 00 00 91 09 7A 96");
+                            sendBlueFullCmd("FF FF FF FF 05 00 00 91 09 7A 96");
                         } else {
-                            sendBlueCmd("FF FF FF FF 05 00 00 00 09 17 06");
+                            sendBlueFullCmd("FF FF FF FF 05 00 00 00 09 17 06");
                         }
                     }
                 }
                 break;
             case R.id.view_zhihan:
+                setSelectIndex("zhihan");
                 if (MotionEvent.ACTION_DOWN == action) {
                     eventDownTime = System.currentTimeMillis();
                     timeHandler.sendEmptyMessageDelayed(ZHIHAN_WHAT, DEFAULT_INTERVAL);
@@ -611,21 +728,23 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
                     if (isShortClick()) {
                         // 短按
                         if (zhihanView.isSelected()) {
-                            sendBlueCmd("FF FF FF FF 05 00 00 F1 0F D2 94");
+                            sendBlueFullCmd("FF FF FF FF 05 00 00 F1 0F D2 94");
                         } else {
-                            sendBlueCmd("FF FF FF FF 05 00 00 00 0F 97 04");
+                            sendBlueFullCmd("FF FF FF FF 05 00 00 00 0F 97 04");
                         }
                     }
                 }
                 break;
             case R.id.view_fuyuan://放平
+                setSelectIndex("fuyuan");
                 if (MotionEvent.ACTION_DOWN == action) {
-                    sendBlueCmd("FF FF FF FF 05 00 00 00 08 D6 C6");
+                    sendBlueFullCmd("FF FF FF FF 05 00 00 00 08 D6 C6");
                 }
                 break;
             case R.id.view_yaolan://摇篮
+                setSelectIndex("yaolan");
                 if (MotionEvent.ACTION_DOWN == action) {
-                    sendBlueCmd("FF FF FF FF 05 00 00 00 6A 57 2F");
+                    sendBlueFullCmd("FF FF FF FF 05 00 00 00 6A 57 2F");
                 }
                 break;
         }
@@ -676,9 +795,9 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
     private void lingyaliLongClick() {
         if (lingyaliView.isSelected()) {
             // 有记忆
-            sendBlueCmd("FF FF FF FF 05 00 00 9F 09 7E F6");
+            sendBlueFullCmd("FF FF FF FF 05 00 00 9F 09 7E F6");
         } else {
-            sendBlueCmd("FF FF FF FF 05 00 00 90 09 7B 06");
+            sendBlueFullCmd("FF FF FF FF 05 00 00 90 09 7B 06");
         }
     }
 
@@ -686,36 +805,36 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
     private void zhihanLongClick() {
         if (zhihanView.isSelected()) {
             // 有记忆
-            sendBlueCmd("FF FF FF FF 05 00 00 FF 0F D6 F4");
+            sendBlueFullCmd("FF FF FF FF 05 00 00 FF 0F D6 F4");
         } else {
-            sendBlueCmd("FF FF FF FF 05 00 00 F0 0F D3 04");
+            sendBlueFullCmd("FF FF FF FF 05 00 00 F0 0F D3 04");
         }
     }
 
     private void kandianshiLongClick() {
         if (kandianshiView.isSelected()) {
             // 有记忆
-            sendBlueCmd("FF FF FF FF 05 00 00 5F 05 2E F3");
+            sendBlueFullCmd("FF FF FF FF 05 00 00 5F 05 2E F3");
         } else {
-            sendBlueCmd("FF FF FF FF 05 00 00 50 05 2B 03");
+            sendBlueFullCmd("FF FF FF FF 05 00 00 50 05 2B 03");
         }
     }
 
     private void jiyi2LongClick() {
         if (jiyi2View.isSelected()) {
             // 有记忆
-            sendBlueCmd("FF FF FF FF 05 00 00 BF 0B E6 F7");
+            sendBlueFullCmd("FF FF FF FF 05 00 00 BF 0B E6 F7");
         } else {
-            sendBlueCmd("FF FF FF FF 05 00 00 B0 0B E3 07");
+            sendBlueFullCmd("FF FF FF FF 05 00 00 B0 0B E3 07");
         }
     }
 
     private void jiyi1LongClick() {
         if (jiyi1View.isSelected()) {
             // 有记忆
-            sendBlueCmd("FF FF FF FF 05 00 00 AF 0A 2A F7");
+            sendBlueFullCmd("FF FF FF FF 05 00 00 AF 0A 2A F7");
         } else {
-            sendBlueCmd("FF FF FF FF 05 00 00 A0 0A 2F 07");
+            sendBlueFullCmd("FF FF FF FF 05 00 00 A0 0A 2F 07");
         }
     }
 

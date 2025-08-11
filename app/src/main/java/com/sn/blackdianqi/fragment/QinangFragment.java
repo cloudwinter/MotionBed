@@ -23,6 +23,7 @@ import com.sn.blackdianqi.base.BaseFragment;
 import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.view.AnjianRectangleView;
 import com.sn.blackdianqi.view.AnjianWeitiaoVerticalView;
+import com.sn.blackdianqi.view.JiyiSmall2View;
 import com.sn.blackdianqi.view.JiyiView;
 
 import java.util.ArrayList;
@@ -51,9 +52,9 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
     CheckBox zishiyingCb;
 
     @BindView(R.id.view_anmo_stop)
-    JiyiView anmoStopView;
+    JiyiSmall2View anmoStopView;
     @BindView(R.id.view_fangqi)
-    JiyiView fangqiView;
+    JiyiSmall2View fangqiView;
 
     @BindView(R.id.view_anmo_set)
     LinearLayout anmoSetView;
@@ -248,12 +249,84 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
         return interval;
     }
 
+    /**
+     * 当前选择的按钮
+     * @param name
+     */
+    private void setSelectIndex(String name){
+        switch (name){
+            case "quanshen":
+                quanshenView.setActivated(true);
+                beibuView.setActivated(false);
+                yaobuView.setActivated(false);
+                jingbuView.setActivated(false);
+                yujiaView.setActivated(false);
+                anmoStopView.setActivated(false);
+                fangqiView.setActivated(false);
+                break;
+            case "beibu":
+                quanshenView.setActivated(false);
+                beibuView.setActivated(true);
+                yaobuView.setActivated(false);
+                jingbuView.setActivated(false);
+                yujiaView.setActivated(false);
+                anmoStopView.setActivated(false);
+                fangqiView.setActivated(false);
+                break;
+            case "yaobu":
+                quanshenView.setActivated(false);
+                beibuView.setActivated(false);
+                yaobuView.setActivated(true);
+                jingbuView.setActivated(false);
+                yujiaView.setActivated(false);
+                anmoStopView.setActivated(false);
+                fangqiView.setActivated(false);
+                break;
+            case "jingbu":
+                quanshenView.setActivated(false);
+                beibuView.setActivated(false);
+                yaobuView.setActivated(false);
+                jingbuView.setActivated(true);
+                yujiaView.setActivated(false);
+                anmoStopView.setActivated(false);
+                fangqiView.setActivated(false);
+                break;
+            case "yujia":
+                quanshenView.setActivated(false);
+                beibuView.setActivated(false);
+                yaobuView.setActivated(false);
+                jingbuView.setActivated(false);
+                yujiaView.setActivated(true);
+                anmoStopView.setActivated(false);
+                fangqiView.setActivated(false);
+                break;
+            case "anmo_stop":
+                quanshenView.setActivated(false);
+                beibuView.setActivated(false);
+                yaobuView.setActivated(false);
+                jingbuView.setActivated(false);
+                yujiaView.setActivated(false);
+                anmoStopView.setActivated(true);
+                fangqiView.setActivated(false);
+                break;
+            case "fangqi":
+                quanshenView.setActivated(false);
+                beibuView.setActivated(false);
+                yaobuView.setActivated(false);
+                jingbuView.setActivated(false);
+                yujiaView.setActivated(false);
+                anmoStopView.setActivated(false);
+                fangqiView.setActivated(true);
+                break;
+        }
+    }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         int action = event.getAction();
         switch (v.getId()) {
             case R.id.view_quanshen:
+                setSelectIndex("quanshen");
                 if (MotionEvent.ACTION_DOWN == action) {
                     eventDownTime = System.currentTimeMillis();
                     timeHandler.sendEmptyMessageDelayed(QUANSHEN_WHAT, DEFAULT_INTERVAL);
@@ -266,6 +339,7 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
                 }
                 break;
             case R.id.view_beibu:
+                setSelectIndex("beibu");
                 if (MotionEvent.ACTION_DOWN == action) {
                     eventDownTime = System.currentTimeMillis();
                     timeHandler.sendEmptyMessageDelayed(BEIBU_WHAT, DEFAULT_INTERVAL);
@@ -278,26 +352,31 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
                 }
                 break;
             case R.id.view_yaobu:
+                setSelectIndex("yaobu");
                 if (MotionEvent.ACTION_DOWN == action) {
                     sendBlueCRCCmd("FF FF FF FF FF 0B 01 05 00");
                 }
                 break;
             case R.id.view_jingbu:
+                setSelectIndex("jingbu");
                 if (MotionEvent.ACTION_DOWN == action) {
                     sendBlueCRCCmd("FF FF FF FF FF 0B 01 04 00");
                 }
                 break;
             case R.id.view_yujia:
+                setSelectIndex("yujia");
                 if (MotionEvent.ACTION_DOWN == action) {
                     sendBlueCRCCmd("FF FF FF FF FF 0B 01 0C 00");
                 }
                 break;
             case R.id.view_anmo_stop:
+                setSelectIndex("anmo_stop");
                 if (MotionEvent.ACTION_DOWN == action) {
                     sendBlueCRCCmd("FF FF FF FF FF 0B 01 00 00");
                 }
                 break;
             case R.id.view_fangqi:
+                setSelectIndex("fangqi");
                 if (MotionEvent.ACTION_DOWN == action) {
                     sendBlueCRCCmd("FF FF FF FF FF 0B 01 06 00");
                 }
@@ -317,4 +396,6 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
         }
         return true;
     }
+
+
 }

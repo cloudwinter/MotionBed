@@ -356,4 +356,37 @@
     <string name="set_alarm">Besoin de régler l\'alarme d\'abord</string>
     <string name="unit">Unité: KPA</string>
 
+
+    <string name="anmo_qiangdu_hint">L`intensité de massage ne doit pas dépasser d`au moins 2 niveaux l`intensité minimale.</string>
+    <string name="zhinengjiance">Surveillance intelligente</string>
+    <string name="network_connected">Le réseau est connecté</string>
+    <string name="heart_rate_data">Données de fréquence cardiaque en temps réel</string>
+    <string name="sleep_report">Rapport sur le sommeil</string>
+
+    <string name="replace_wifi">Changer le WIFI</string>
+    <string name="configure_wifi">Configuration WIFI</string>
+    <string name="network_hint1">L`appareil n`est pas connecté au réseau, veuillez d`abord configurer le réseau WIFI de l`appareil.</string>
+    <string name="network_hint2">La connexion réseau est instable actuellement, veuillez déplacer le routeur plus près de l`appareil ou changer de réseau WIFI.</string>
+    <string name="network_hint3">Le réseau actuel n`est pas connecté, vérifiez si votre réseau Wifi est connecté à Internet ou remplacez - le par un autre</string>
+    <string name="replace">Remplacement</string>
+    <string name="got_it">Savoir.</string>
+    <string name="network_not_connected">Le réseau n`est pas connecté</string>
+    <string name="currently_network_not_connected">Connexion Wi - Fi actuelle</string>
+    <string name="password">Mot de passe</string>
+    <string name="password_hint">Veuillez entrer le mot de passe WiFi</string>
+    <string name="remember_password">Se souvenir du mot de passe</string>
+    <string name="wifi_hint">Cet appareil ne prend en charge que la connexion 2.4gwi - Fi</string>
+    <string name="next_step">Prochaines étapes</string>
+    <string name="configuring_step_hint">Configuration du Wi - FI, ne quittez pas!</string>
+    <string name="configuring_step_hint2">L`ensemble du processus prend environ 1 minute, s`il vous plaît soyez patient</string>
+    <string name="wifi_configuration_failed">La configuration Wi - FI a échoué</string>
+    <string name="wifi_configuration_failed2">Veuillez réessayer après avoir vérifié que le nom et le mot de passe de votre routeur sont corrects</string>
+    <string name="retry">Essayez à nouveau</string>
+
+    <string name="network_instability">Instabilité du réseau</string>
+    <string name="distribution_network">Réseau de distribution</string>
+    <string name="wifi_success">Configuration Wi - Fi réussie</string>
+    <string name="device_networking_successful">Succès de la mise en réseau des appareils</string>
+    <string name="complete">Terminé</string>
+    <string name="latitude_longitude_fail">Obtenir la longitude et la latitude échoue</string>
 </resources>

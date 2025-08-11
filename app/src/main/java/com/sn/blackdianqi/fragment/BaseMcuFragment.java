@@ -165,6 +165,31 @@ public abstract class BaseMcuFragment extends BaseFragment {
      *
      * @param cmd
      */
+    protected void sendBlueFullCmd(String cmd) {
+        cmd = cmd.replace(" ", "");
+        Log.i(TAG, "sendBlueCmd: " + cmd);
+        // 判断蓝牙是否连接
+        if (!BlueUtils.isConnected()) {
+            ToastUtils.showToast(getContext(), getString(R.string.device_no_connected));
+            LogUtils.i(TAG, "sendBlueCmd -> 蓝牙未连接");
+            return;
+        }
+        if (characteristic == null) {
+            characteristic = MyApplication.getInstance().gattCharacteristic;
+        }
+        if (characteristic == null) {
+            LogUtils.i(TAG, "sendBlueCmd -> 特征值未获取到");
+            return;
+        }
+        characteristic.setValue(BlueUtils.StringToBytes(cmd));
+        MyApplication.getInstance().mBluetoothLeService.writeCharacteristic(characteristic);
+    }
+
+    /**
+     * 发送蓝牙命令 累加和
+     *
+     * @param cmd
+     */
     protected void sendBlueCmd(String cmd) {
         cmd = cmd.replace(" ", "");
         cmd = cmd + BlueUtils.makeChecksum(cmd);

@@ -39,7 +39,9 @@ public class Prefer {
     private final String KEY_STARTDATAENTRY = "KEY_STARTDATAENTRY"; // 睡眠数据录入实时数据
     private final String KEY_TONGBUKZ_SHOW = "KEY_TONGBUKZ_SHOW"; // 同步控制是否显示
     private final String KEY_TONGBUKZ_SWITCH = "KEY_TONGBUKZ_SWITCH"; // 同步控制开关
-    private final String KEY_IS_AUDIO = "KEY_IS_AUDIO"; // 音响
+    private final String KEY_IS_AUDIO = "KEY_IS_AUDIO"; // 是否有音响
+    private final String KEY_IS_XINLVDAI = "KEY_IS_XINLVDAI"; // 是否有心率带
+    private final String KEY_XINLVDAI_MAC = "KEY_XINLVDAI_MAC"; // 心率带mac
     private final String KEY_LENGNUAN_TIME = "KEY_LENGNUAN_TIME";//冷暖定时信息
 
     public static Prefer getInstance() {
@@ -268,6 +270,47 @@ public class Prefer {
     }
 
     /**
+     * 设置是否有心率带
+     *
+     * @param deviceAddress
+     */
+    public void setXinlvdai(String deviceAddress, boolean hasXinlvdai) {
+        SharedPreferences.Editor editor = mPref.edit();
+        editor.putBoolean(KEY_IS_XINLVDAI + deviceAddress, hasXinlvdai);
+        editor.commit();
+    }
+
+    /**
+     * 获取是否有心率带
+     *
+     * @param deviceAddress
+     * @return
+     */
+    public boolean getXinlvdai(String deviceAddress) {
+        return mPref.getBoolean(KEY_IS_XINLVDAI + deviceAddress, false);
+    }
+
+    /**
+     * 设置心率带mac
+     *
+     * @param deviceAddress
+     */
+    public void setXinlvdaiMac(String deviceAddress, String mac) {
+        SharedPreferences.Editor editor = mPref.edit();
+        editor.putString(KEY_XINLVDAI_MAC + deviceAddress, mac);
+        editor.commit();
+    }
+
+    /**
+     * 获取心率带mac
+     *
+     * @param deviceAddress
+     */
+    public String getXinlvdaiMac(String deviceAddress) {
+        return mPref.getString(KEY_XINLVDAI_MAC + deviceAddress, "");
+    }
+
+    /**
      * 设置是否有音响
      *
      * @param deviceAddress
@@ -286,6 +329,28 @@ public class Prefer {
      */
     public boolean getIsAudio(String deviceAddress) {
         return mPref.getBoolean(KEY_IS_AUDIO + deviceAddress, false);
+    }
+
+    /**
+     * 保存wifi密码
+     *
+     * @param wifiName
+     * @param password
+     */
+    public void setWifiPassword(String wifiName, String password) {
+        SharedPreferences.Editor editor = mPref.edit();
+        editor.putString(wifiName, password);
+        editor.commit();
+    }
+
+    /**
+     * 获取wifi密码
+     *
+     * @param wifiName
+     * @return
+     */
+    public String getWifiPassword(String wifiName) {
+        return mPref.getString(wifiName, "");
     }
 
     /**
@@ -376,10 +441,9 @@ public class Prefer {
     }
 
 
-
     public void disConnected() {
         setBleStatus("未连接", null);
-        String address  = getLatelyConnectedDevice();
+        String address = getLatelyConnectedDevice();
         if (address != null) {
             setLatelyConnectedDevice("");
             removeAlarm(address);
