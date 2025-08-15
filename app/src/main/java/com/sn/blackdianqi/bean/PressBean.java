@@ -5,6 +5,12 @@ public class PressBean {
     public String pressNo;
     public int value;
 
+    public PressBean(final String name, final String pressNo, final int value) {
+        this.name = name;
+        this.pressNo = pressNo;
+        this.value = value;
+    }
+
     public String getPressNo() {
         return pressNo;
     }

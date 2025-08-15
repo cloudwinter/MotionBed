@@ -385,11 +385,11 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
     void askStatus() {
         try {
             Thread.sleep(200L);
-            // 发送闹钟指令
-            sendAlarmInitCmd();
-            Thread.sleep(200L);
             // 电动床合并询问码
             sendAskBlueCmd("FF FF FF FF 01 00 2A 14 00 00 00 00 00 00 00 00 00 00");
+            Thread.sleep(200L);
+            // 发送闹钟指令
+            sendAlarmInitCmd();
         } catch (Exception e) {
             LogUtils.e(TAG, "askStatus 异常" + e.getMessage());
             e.printStackTrace();
