@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -25,18 +26,16 @@ import com.github.gzuliyujiang.wheelpicker.contract.OnTimePickedListener;
 import com.github.gzuliyujiang.wheelpicker.entity.TimeEntity;
 import com.sn.blackdianqi.MyApplication;
 import com.sn.blackdianqi.R;
-import com.sn.blackdianqi.RunningContext;
 import com.sn.blackdianqi.base.BaseActivity;
 import com.sn.blackdianqi.bean.LengNuanTimeBean;
-import com.sn.blackdianqi.bean.PressBean;
 import com.sn.blackdianqi.blue.BluetoothLeService;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LogUtils;
-import com.sn.blackdianqi.util.MotionBedUtil;
 import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.util.ToastUtils;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -52,7 +51,7 @@ public class TimeSettingActivity extends BaseActivity implements TranslucentActi
 
     public String hourStr = "00";
     public String minuteStr = "00";
-    private String modeCode = "00";
+    private String modeCode = "01";
     private int gear = 0;
     private LengNuanTimeBean lengNuanTimeBean;
 
@@ -74,6 +73,8 @@ public class TimeSettingActivity extends BaseActivity implements TranslucentActi
     @BindView(R.id.ll_save)
     LinearLayout llSave;
 
+    private List<String> hotGearList = new ArrayList<>();
+    private List<String> coolGearList = new ArrayList<>();
 
     @Override
     public void onLeftClick() {
@@ -118,6 +119,8 @@ public class TimeSettingActivity extends BaseActivity implements TranslucentActi
         actionBar.setData(getResources().getString(R.string.time_set), R.mipmap.ic_back, null, 0, "", this);
         actionBar.setStatusBarHeight(getStatusBarHeight());
 
+        initView();
+
         lengNuanTimeBean = Prefer.getInstance().getLengNuanTime(Prefer.getInstance().getLatelyConnectedDevice());
         if (lengNuanTimeBean != null) {
             modeCode = lengNuanTimeBean.getMode();
@@ -132,7 +135,6 @@ public class TimeSettingActivity extends BaseActivity implements TranslucentActi
 
             tvTime.setText(hourStr + ":" + minuteStr);
         }
-        initView();
     }
 
     private void initView() {
@@ -140,6 +142,16 @@ public class TimeSettingActivity extends BaseActivity implements TranslucentActi
         gearLL.setOnClickListener(this);
         timeLL.setOnClickListener(this);
         llSave.setOnClickListener(this);
+
+        hotGearList.add("30°c");
+        hotGearList.add("35°c");
+        hotGearList.add("40°c");
+        hotGearList.add("45°c");
+
+        coolGearList.add("20°c");
+        coolGearList.add("15°c");
+        coolGearList.add("10°c");
+        coolGearList.add("5°c");
     }
 
     @Override
@@ -147,10 +159,13 @@ public class TimeSettingActivity extends BaseActivity implements TranslucentActi
         switch (view.getId()) {
             case R.id.ll_mode:
                 Intent intentMode = new Intent(this, Mode3Activity.class);
+                intentMode.putExtra("modeCode", modeCode);
                 startActivityForResult(intentMode, MODE_REQUEST_CODE);
                 break;
             case R.id.ll_gear:
                 Intent intentGear = new Intent(this, GearActivity.class);
+                intentGear.putExtra("modeCode", modeCode);
+                intentGear.putExtra("gear", gear);
                 startActivityForResult(intentGear, GEAR_REQUEST_CODE);
                 break;
             case R.id.ll_time:
@@ -198,6 +213,7 @@ public class TimeSettingActivity extends BaseActivity implements TranslucentActi
         if (MODE_REQUEST_CODE == requestCode && resultCode == Mode3Activity.RESULT_CODE) {
             modeCode = data.getStringExtra(Mode3Activity.EXTRA_KEY);
             tvMode.setText(getModeStrByCode(modeCode));
+            tvGear.setText(getGearStrByCode(gear));
         } else if (GEAR_REQUEST_CODE == requestCode && resultCode == GearActivity.RESULT_CODE) {
             gear = data.getIntExtra(GearActivity.EXTRA_KEY, 0);
             tvGear.setText(getGearStrByCode(gear));
@@ -217,20 +233,26 @@ public class TimeSettingActivity extends BaseActivity implements TranslucentActi
 
     //档位选择
     public String getGearStrByCode(int gear) {
-        String gearStr = "";
-        if (gear == 1) {
-            return getResources().getString(R.string.dangwei1);
+        if (TextUtils.equals(modeCode, "01")) {//制热
+         return    hotGearList.get(gear-1);
+        } else {//制冷
+            return  coolGearList.get(gear - 1);
         }
-        if (gear == 2) {
-            return getResources().getString(R.string.dangwei2);
-        }
-        if (gear == 3) {
-            return getResources().getString(R.string.dangwei3);
-        }
-        if (gear == 4) {
-            return getResources().getString(R.string.dangwei4);
-        }
-        return gearStr;
+
+//        String gearStr = "";
+//        if (gear == 1) {
+//            return getResources().getString(R.string.dangwei1);
+//        }
+//        if (gear == 2) {
+//            return getResources().getString(R.string.dangwei2);
+//        }
+//        if (gear == 3) {
+//            return getResources().getString(R.string.dangwei3);
+//        }
+//        if (gear == 4) {
+//            return getResources().getString(R.string.dangwei4);
+//        }
+//        return gearStr;
     }
 
     /**

@@ -31,6 +31,7 @@ public class DoubleConfirmDialog extends Dialog implements View.OnClickListener 
      */
     private TextView mTitle;
     private EditText mMsg;
+    private View line;
     /**
      * 取消、确定
      */
@@ -49,6 +50,10 @@ public class DoubleConfirmDialog extends Dialog implements View.OnClickListener 
 
     public DoubleConfirmDialog setLeftButVisibility(int visibility) {
         mCancleBut.setVisibility(visibility);
+        return this;
+    }
+    public DoubleConfirmDialog setLineVisibility(int visibility) {
+        line.setVisibility(visibility);
         return this;
     }
 
@@ -110,6 +115,7 @@ public class DoubleConfirmDialog extends Dialog implements View.OnClickListener 
     private void findViewByIds() {
         mTitle = mView.findViewById(R.id.title);
         mMsg = mView.findViewById(R.id.msg);
+        line = mView.findViewById(R.id.line);
         mCancleBut = mView.findViewById(R.id.cancleBut);
         mDetermineBut = mView.findViewById(R.id.determineBut);
     }

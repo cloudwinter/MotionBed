@@ -47,6 +47,8 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
     AnjianRectangleView jingbuView;
     @BindView(R.id.view_yujia)
     AnjianRectangleView yujiaView;
+    @BindView(R.id.view_shuimian)
+    AnjianRectangleView shuimianView;
 
     @BindView(R.id.cb_zishiying)
     CheckBox zishiyingCb;
@@ -153,6 +155,7 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
         views.add(yaobuView);
         views.add(jingbuView);
         views.add(yujiaView);
+        views.add(shuimianView);
         views.add(anmoSetView);
         views.add(pressSetView);
 
@@ -162,6 +165,7 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
         yaobuView.setOnTouchListener(this);
         jingbuView.setOnTouchListener(this);
         yujiaView.setOnTouchListener(this);
+        shuimianView.setOnTouchListener(this);
 
         anmoStopView.setOnTouchListener(this);
         fangqiView.setOnTouchListener(this);
@@ -261,6 +265,7 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
                 yaobuView.setActivated(false);
                 jingbuView.setActivated(false);
                 yujiaView.setActivated(false);
+                shuimianView.setActivated(false);
                 anmoStopView.setActivated(false);
                 fangqiView.setActivated(false);
                 break;
@@ -270,6 +275,7 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
                 yaobuView.setActivated(false);
                 jingbuView.setActivated(false);
                 yujiaView.setActivated(false);
+                shuimianView.setActivated(false);
                 anmoStopView.setActivated(false);
                 fangqiView.setActivated(false);
                 break;
@@ -279,6 +285,7 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
                 yaobuView.setActivated(true);
                 jingbuView.setActivated(false);
                 yujiaView.setActivated(false);
+                shuimianView.setActivated(false);
                 anmoStopView.setActivated(false);
                 fangqiView.setActivated(false);
                 break;
@@ -288,6 +295,7 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
                 yaobuView.setActivated(false);
                 jingbuView.setActivated(true);
                 yujiaView.setActivated(false);
+                shuimianView.setActivated(false);
                 anmoStopView.setActivated(false);
                 fangqiView.setActivated(false);
                 break;
@@ -297,6 +305,17 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
                 yaobuView.setActivated(false);
                 jingbuView.setActivated(false);
                 yujiaView.setActivated(true);
+                shuimianView.setActivated(false);
+                anmoStopView.setActivated(false);
+                fangqiView.setActivated(false);
+                break;
+            case "shuimian":
+                quanshenView.setActivated(false);
+                beibuView.setActivated(false);
+                yaobuView.setActivated(false);
+                jingbuView.setActivated(false);
+                yujiaView.setActivated(false);
+                shuimianView.setActivated(true);
                 anmoStopView.setActivated(false);
                 fangqiView.setActivated(false);
                 break;
@@ -306,6 +325,7 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
                 yaobuView.setActivated(false);
                 jingbuView.setActivated(false);
                 yujiaView.setActivated(false);
+                shuimianView.setActivated(false);
                 anmoStopView.setActivated(true);
                 fangqiView.setActivated(false);
                 break;
@@ -315,6 +335,7 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
                 yaobuView.setActivated(false);
                 jingbuView.setActivated(false);
                 yujiaView.setActivated(false);
+                shuimianView.setActivated(false);
                 anmoStopView.setActivated(false);
                 fangqiView.setActivated(true);
                 break;
@@ -367,6 +388,12 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
                 setSelectIndex("yujia");
                 if (MotionEvent.ACTION_DOWN == action) {
                     sendBlueCRCCmd("FF FF FF FF FF 0B 01 0C 00");
+                }
+                break;
+            case R.id.view_shuimian:
+                setSelectIndex("shuimian");
+                if (MotionEvent.ACTION_DOWN == action) {
+                    sendBlueCRCCmd("FF FF FF FF FF 0B 01 09 00");
                 }
                 break;
             case R.id.view_anmo_stop:

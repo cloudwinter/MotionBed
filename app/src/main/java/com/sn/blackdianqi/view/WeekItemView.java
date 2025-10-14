@@ -26,7 +26,7 @@ public class WeekItemView extends LinearLayout {
     private boolean mSelected;
 
     public WeekItemView(Context context) {
-        super(context,null);
+        super(context, null);
     }
 
     public WeekItemView(Context context, @Nullable AttributeSet attrs) {
@@ -42,11 +42,15 @@ public class WeekItemView extends LinearLayout {
             title = typedArray.getString(R.styleable.WeekItemView_title);
         }
         setOrientation(VERTICAL);
-        inflate(mContext,R.layout.view_week_item,this);
+        inflate(mContext, R.layout.view_week_item, this);
         mTitleTV = findViewById(R.id.tv_title);
         mSelectedImg = findViewById(R.id.ic_selected);
         mTitleTV.setText(title);
         mSelectedImg.setVisibility(GONE);
+    }
+
+    public void setTitle(String title) {
+        mTitleTV.setText(title);
     }
 
     @Override

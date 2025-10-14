@@ -36,6 +36,7 @@
     <string name="french">French</string>
     <string name="english">English</string>
     <string name="chinese">traditional Chinese</string>
+    <string name="chinese_cn">Simplified Chinese</string>
     <string name="japan">Japanese</string>
     <string name="version">Version</string>
     <string name="privacy_policy">Privacy policy</string>
@@ -313,6 +314,7 @@
 
 
     <string name="shuiwei">Water Level:</string>
+    <string name="shuiwei_hint">The current water level is insufficient, please add 500 ml of water</string>
     <string name="temp">Temperature:</string>
     <string name="dingshi_kaiqi">Timing On</string>
     <string name="time_set">Time Setting</string>
@@ -321,6 +323,9 @@
     <string name="anmopinglv2">Massage Frequency</string>
     <string name="alarm_xiangling2">Ring The Bell</string>
     <string name="quanshenanmo">Body Massage</string>
+    <string name="zuheanmo">Combination massage</string>
+    <string name="bolanganmo">Wave massage</string>
+    <string name="shuimianmoshi">sleep mode</string>
     <string name="beibuanmo">Back Massage</string>
     <string name="yaobuanmo">Lumbar Massage</string>
     <string name="jingbuanmo">Neck Massage</string>
@@ -345,6 +350,7 @@
     <string name="diandongchuang_set">Electric Bed Setup</string>
 
     <string name="dangwei">Position</string>
+    <string name="dangwei_title">Set the outlet water temperature</string>
     <string name="dangwei1">Level 1</string>
     <string name="dangwei2">Level 2</string>
     <string name="dangwei3">Level 3</string>

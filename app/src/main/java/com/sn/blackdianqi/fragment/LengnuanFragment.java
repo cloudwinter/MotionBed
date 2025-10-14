@@ -25,12 +25,11 @@ import com.sn.blackdianqi.adapter.TempAdapter;
 import com.sn.blackdianqi.bean.DateBean;
 import com.sn.blackdianqi.bean.LengNuanTimeBean;
 import com.sn.blackdianqi.bean.TempModel;
+import com.sn.blackdianqi.dialog.DoubleConfirmDialog;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.util.MotionBedUtil;
 import com.sn.blackdianqi.util.Prefer;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -141,16 +140,37 @@ public class LengnuanFragment extends BaseMcuFragment {
             }
             tvTime.setText(timeStr);
 
-            //温度
-            int temp1 = Integer.parseInt(cmd.substring(30, 32));//整数
-            int temp2 = Integer.parseInt(cmd.substring(32, 34));//小数
-            String temp = temp1 + "." + temp2;
-            tvTemp.setText(temp + "°c");
+            if (isNumeric(cmd.substring(30, 32)) && isNumeric(cmd.substring(32, 34))) {//拿到温度是正常温度，才解析显示
+                //温度
+                int temp1 = Integer.parseInt(cmd.substring(30, 32));//整数
+                int temp2 = Integer.parseInt(cmd.substring(32, 34));//小数
+                String temp = temp1 + "." + temp2;
+                tvTemp.setText(temp + "°c");
+            }
 
             //水位
             String waterLevelStatus = cmd.substring(34, 36);//整数
             int waterLevel = Integer.parseInt(waterLevelStatus);
             tvShuiWei.setText(String.valueOf(waterLevel));
+
+            if (waterLevel < 20) {
+                DoubleConfirmDialog.builder(getActivity())
+                        .setContent(getResources().getString(R.string.shuiwei_hint))
+                        .setLeftButVisibility(View.GONE)
+                        .setLineVisibility(View.GONE)
+                        .setListener(new DoubleConfirmDialog.OnPermissionsDialogListener() {
+                            @Override
+                            public void cancleOnClick(DoubleConfirmDialog dialog) {
+                                dialog.dismiss();
+                            }
+
+                            @Override
+                            public void determineOnClick(DoubleConfirmDialog dialog, String content) {
+                                dialog.dismiss();
+                            }
+                        }).show();
+            }
+
         } else if (cmd.contains("FF FF FF FF FE 14 00 07 01")) {//实时时间回码
             Log.e("=====实时时间", cmd);
             cmd = cmd.toUpperCase().replaceAll(" ", "");

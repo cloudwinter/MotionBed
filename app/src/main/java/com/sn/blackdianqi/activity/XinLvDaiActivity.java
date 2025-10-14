@@ -178,7 +178,7 @@ public class XinLvDaiActivity extends BaseActivity implements TranslucentActionB
      */
     protected void sendBlueCmd(String cmd) {
         cmd = cmd.replace(" ", "");
-        cmd = cmd + BlueUtils.crc16Modbus(cmd);
+//        cmd = cmd + BlueUtils.crc16Modbus(cmd);
         Log.i(TAG, "sendBlueCmd: " + cmd);
         // 判断蓝牙是否连接
         if (!BlueUtils.isConnected()) {

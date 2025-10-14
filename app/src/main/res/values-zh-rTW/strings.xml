@@ -36,6 +36,7 @@
     <string name="french">法語</string>
     <string name="english">英語</string>
     <string name="chinese">繁體中文</string>
+    <string name="chinese_cn">簡體中文</string>
     <string name="japan">日語</string>
     <string name="version">版本</string>
     <string name="privacy_policy">隱私協議</string>
@@ -314,6 +315,7 @@
 
 
     <string name="shuiwei">水位:</string>
+    <string name="shuiwei_hint">當前水量不足，請加500毫升水</string>
     <string name="temp">溫度:</string>
     <string name="dingshi_kaiqi">定時開啟</string>
     <string name="time_set">時間設置</string>
@@ -322,6 +324,9 @@
     <string name="anmopinglv2">按摩頻率</string>
     <string name="alarm_xiangling2">響鈴</string>
     <string name="quanshenanmo">全身按摩</string>
+    <string name="zuheanmo">組合按摩</string>
+    <string name="bolanganmo">波浪按摩</string>
+    <string name="shuimianmoshi">睡眠模式</string>
     <string name="beibuanmo">背部按摩</string>
     <string name="yaobuanmo">腰部按摩</string>
     <string name="jingbuanmo">頸部按摩</string>
@@ -346,6 +351,7 @@
     <string name="diandongchuang_set">電動床設置</string>
 
     <string name="dangwei">檔位</string>
+    <string name="dangwei_title">設置出水溫度</string>
     <string name="dangwei1">1檔</string>
     <string name="dangwei2">2檔</string>
     <string name="dangwei3">3檔</string>

@@ -36,8 +36,8 @@ public class LanguageDialog extends Dialog implements View.OnClickListener {
     private ImageView imgSelectedEnglish;
     private RelativeLayout rlJapan;
     private ImageView imgSelectedJapan;
-    private RelativeLayout rlChinese;
-    private ImageView imgSelectedChinese;
+    private RelativeLayout rlChinese,rlChineseCn;
+    private ImageView imgSelectedChinese,imgSelectedChineseCN;
     private TextView cancel;
 
     public LanguageDialog(@NonNull Context context) {
@@ -62,10 +62,13 @@ public class LanguageDialog extends Dialog implements View.OnClickListener {
         rlJapan.setOnClickListener(this);
         rlChinese = view.findViewById(R.id.rl_chinese);
         rlChinese.setOnClickListener(this);
+        rlChineseCn = view.findViewById(R.id.rl_chinese_cn);
+        rlChineseCn.setOnClickListener(this);
         imgSelectedFrench = view.findViewById(R.id.img_selected_fr);
         imgSelectedEnglish = view.findViewById(R.id.img_selected_en);
         imgSelectedJapan = view.findViewById(R.id.img_selected_ja);
         imgSelectedChinese = view.findViewById(R.id.img_selected_zh);
+        imgSelectedChineseCN = view.findViewById(R.id.img_selected_zh_cn);
         cancel = view.findViewById(R.id.cancel);
         cancel.setOnClickListener(this);
         setContentView(view);
@@ -86,21 +89,31 @@ public class LanguageDialog extends Dialog implements View.OnClickListener {
             imgSelectedEnglish.setVisibility(View.GONE);
             imgSelectedJapan.setVisibility(View.GONE);
             imgSelectedChinese.setVisibility(View.GONE);
+            imgSelectedChineseCN.setVisibility(View.GONE);
         } else if (Prefer.getInstance().getSelectedLanguage().equals("ja")) {
             imgSelectedFrench.setVisibility(View.GONE);
             imgSelectedEnglish.setVisibility(View.GONE);
             imgSelectedJapan.setVisibility(View.VISIBLE);
             imgSelectedChinese.setVisibility(View.GONE);
+            imgSelectedChineseCN.setVisibility(View.GONE);
         } else if (Prefer.getInstance().getSelectedLanguage().equals("en")) {
             imgSelectedFrench.setVisibility(View.GONE);
             imgSelectedEnglish.setVisibility(View.VISIBLE);
             imgSelectedJapan.setVisibility(View.GONE);
             imgSelectedChinese.setVisibility(View.GONE);
+            imgSelectedChineseCN.setVisibility(View.GONE);
         } else if (Prefer.getInstance().getSelectedLanguage().equals("zh-rTW")) {
             imgSelectedFrench.setVisibility(View.GONE);
             imgSelectedEnglish.setVisibility(View.GONE);
             imgSelectedJapan.setVisibility(View.GONE);
             imgSelectedChinese.setVisibility(View.VISIBLE);
+            imgSelectedChineseCN.setVisibility(View.GONE);
+        }else if (Prefer.getInstance().getSelectedLanguage().equals("zh-rCN")){
+            imgSelectedFrench.setVisibility(View.GONE);
+            imgSelectedEnglish.setVisibility(View.GONE);
+            imgSelectedJapan.setVisibility(View.GONE);
+            imgSelectedChinese.setVisibility(View.GONE);
+            imgSelectedChineseCN.setVisibility(View.VISIBLE);
         }
     }
 
@@ -154,6 +167,19 @@ public class LanguageDialog extends Dialog implements View.OnClickListener {
                 Prefer.getInstance().setSelectedLanguage("zh-rTW");
                 if (LocaleUtils.needUpdateLocale(mContext, LocaleUtils.LOCALE_CHINESE_TW)) {
                     LocaleUtils.updateLocale(mContext, LocaleUtils.LOCALE_CHINESE_TW);
+                    restartAct();
+                }
+                dismiss();
+                break;
+            case R.id.rl_chinese_cn:
+                imgSelectedFrench.setVisibility(View.GONE);
+                imgSelectedEnglish.setVisibility(View.GONE);
+                imgSelectedJapan.setVisibility(View.GONE);
+                imgSelectedChinese.setVisibility(View.GONE);
+                imgSelectedChineseCN.setVisibility(View.VISIBLE);
+                Prefer.getInstance().setSelectedLanguage("zh-rCN");
+                if (LocaleUtils.needUpdateLocale(mContext, LocaleUtils.LOCALE_CHINESE_CN)) {
+                    LocaleUtils.updateLocale(mContext, LocaleUtils.LOCALE_CHINESE_CN);
                     restartAct();
                 }
                 dismiss();

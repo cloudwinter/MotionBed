@@ -5,7 +5,12 @@
     <attr name="bgnormal" format="reference" />
     <attr name="bgselected" format="reference" />
     <attr name="icon" format="reference" />
+    <attr name="selecticon" format="reference" />
     <attr name="desc" format="reference|string" />
+    <attr name="bgnormaltop" format="reference" />
+    <attr name="bgselectedtop" format="reference" />
+    <attr name="bgnormalbottom" format="reference" />
+    <attr name="bgselectedbottom" format="reference" />
 
 
     <declare-styleable name="JiyiView">
@@ -29,6 +34,15 @@
         <attr name="icon" />
         <attr name="bgnormal" />
         <attr name="bgselected" />
+    </declare-styleable>
+    <declare-styleable name="AnjianTuoYuanView2">
+        <attr name="title" />
+        <attr name="icon" />
+        <attr name="selecticon" />
+        <attr name="bgnormaltop" />
+        <attr name="bgselectedtop" />
+        <attr name="bgnormalbottom" />
+        <attr name="bgselectedbottom" />
     </declare-styleable>
 
     <declare-styleable name="AnjianAnmoYuanView">

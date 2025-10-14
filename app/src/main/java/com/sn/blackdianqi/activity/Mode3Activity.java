@@ -58,6 +58,7 @@ public class Mode3Activity extends BaseActivity implements TranslucentActionBar.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mode3);
         ButterKnife.bind(this);
+        checkMode = getIntent().getStringExtra("modeCode");
         // 设置title
         actionBar.setData(getString(R.string.moshi), R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -66,19 +67,15 @@ public class Mode3Activity extends BaseActivity implements TranslucentActionBar.
         }
         initView();
 
-        LengNuanTimeBean lengNuanTimeBean = Prefer.getInstance().getLengNuanTime(Prefer.getInstance().getLatelyConnectedDevice());
-        if (lengNuanTimeBean != null){
-            String mode = lengNuanTimeBean.getMode();
-            if (mode.equals("01")) {
-                lingyaliLeft.setSelected(true);
-                checkMode = "01";
-            } else if (mode.equals("02")) {
-                lingyaliRight.setSelected(true);
-                checkMode = "02";
-            } else {
-                lingyaliLeft.setSelected(false);
-                lingyaliRight.setSelected(false);
-            }
+        if (checkMode.equals("01")) {
+            lingyaliLeft.setSelected(true);
+            lingyaliRight.setSelected(false);
+        } else if (checkMode.equals("02")) {
+            lingyaliLeft.setSelected(false);
+            lingyaliRight.setSelected(true);
+        } else {
+            lingyaliLeft.setSelected(false);
+            lingyaliRight.setSelected(false);
         }
     }
 

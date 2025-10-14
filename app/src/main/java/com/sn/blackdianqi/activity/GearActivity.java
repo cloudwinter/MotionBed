@@ -34,6 +34,7 @@ public class GearActivity extends BaseActivity implements TranslucentActionBar.A
     public static String EXTRA_KEY = "GEAR_EXTRA_KEY";
 
     int selectGear = 0;
+    String modeCode = "01";
 
     @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
@@ -65,22 +66,18 @@ public class GearActivity extends BaseActivity implements TranslucentActionBar.A
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gear);
         ButterKnife.bind(this);
+        modeCode = getIntent().getStringExtra("modeCode");
+        selectGear = getIntent().getIntExtra("gear", 1);
         // 设置title
-        actionBar.setData(getString(R.string.dangwei), R.mipmap.ic_back, null, 0, null, this);
+        actionBar.setData(getString(R.string.dangwei_title), R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             actionBar.setStatusBarHeight(getStatusBarHeight());
         }
         initView();
 
-        LengNuanTimeBean lengNuanTimeBean = Prefer.getInstance().getLengNuanTime(Prefer.getInstance().getLatelyConnectedDevice());
-        if (lengNuanTimeBean != null) {
-            String gear = lengNuanTimeBean.getGear();
-            if (!TextUtils.isEmpty(gear)) {
-                selectGear = Integer.parseInt(gear);
-                setGear(Integer.parseInt(gear));
-            }
-        }
+        setGear(selectGear);
+        setGearValue();//初始化页面挡位值
     }
 
     public void setGear(int gear) {
@@ -122,6 +119,20 @@ public class GearActivity extends BaseActivity implements TranslucentActionBar.A
         gear3.setOnClickListener(this);
         gear4.setOnClickListener(this);
         saveLL.setOnClickListener(this);
+    }
+
+    private void setGearValue() {
+        if (TextUtils.equals("02", modeCode)) {
+            gear1.setTitle("20°c");
+            gear2.setTitle("15°c");
+            gear3.setTitle("10°c");
+            gear4.setTitle("5°c");
+        } else {
+            gear1.setTitle("30°c");
+            gear2.setTitle("35°c");
+            gear3.setTitle("40°c");
+            gear4.setTitle("45°c");
+        }
     }
 
     @Override

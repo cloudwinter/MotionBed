@@ -36,6 +36,7 @@
     <string name="french">French</string>
     <string name="english">Anglais</string>
     <string name="chinese">Chinois traditionnel</string>
+    <string name="chinese_cn">Chinois simplifié</string>
     <string name="japan">Japonais</string>
     <string name="version">Version</string>
     <string name="privacy_policy">Politique de confidentialité</string>
@@ -311,6 +312,7 @@
     <string name="dingshi">À l heure régulière</string>
 
     <string name="shuiwei">Niveau de l eau:</string>
+    <string name="shuiwei_hint">Quantité d`eau insuffisante, veuillez ajouter 500 ml d`eau</string>
     <string name="temp">température:</string>
     <string name="dingshi_kaiqi">Timer-on</string>
     <string name="time_set">Réglage de l heure</string>
@@ -319,6 +321,9 @@
     <string name="anmopinglv2">Fréquence de massage</string>
     <string name="alarm_xiangling2">sonner la cloche</string>
     <string name="quanshenanmo">Massage du corps entier</string>
+    <string name="zuheanmo">Massage combiné</string>
+    <string name="bolanganmo">Massage en vague</string>
+    <string name="shuimianmoshi">Mode de sommeil</string>
     <string name="beibuanmo">Massage du dos</string>
     <string name="yaobuanmo">Massage lombaire</string>
     <string name="jingbuanmo">Massage au cou</string>
@@ -343,6 +348,7 @@
     <string name="diandongchuang_set">Configuration du lit électrique</string>
 
     <string name="dangwei">Vitesses</string>
+    <string name="dangwei_title">Régler la température de sortie de l`eau</string>
     <string name="dangwei1">Vitesse 1</string>
     <string name="dangwei2">Vitesse 2</string>
     <string name="dangwei3">Vitesse 3</string>

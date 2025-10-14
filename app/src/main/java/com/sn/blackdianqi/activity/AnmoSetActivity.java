@@ -37,6 +37,7 @@ import com.sn.blackdianqi.view.TranslucentActionBar;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -65,8 +66,6 @@ public class AnmoSetActivity extends BaseActivity implements TranslucentActionBa
     TextView tvPlus;
     @BindView(R.id.ll_plus)
     LinearLayout llPlus;
-    @BindView(R.id.tv_minus)
-    TextView tvMinus;
     @BindView(R.id.ll_minus)
     LinearLayout llMinus;
 
@@ -87,10 +86,11 @@ public class AnmoSetActivity extends BaseActivity implements TranslucentActionBa
     private String weitiaoValue = "03";//微调模式值、默认全身按摩值
     private int timeMode = -1;//按摩时间
     private String timeValue = "";//按摩时间值
-    private int upperValue = 3;//按摩强度上限
-    private int lowerValue = 1;//按摩强度下限
+    private int upperValue = 1;//按摩强度上限
+    private int lowerValue = 0;//按摩强度下限
 
     private String sendPrefix = "FFFFFFFFFF0D020800";//微调前缀
+    private HashMap<Integer, Integer> gearValueMap = new HashMap<Integer, Integer>();
 
     // 特征值
     protected BluetoothGattCharacteristic characteristic;
@@ -128,6 +128,15 @@ public class AnmoSetActivity extends BaseActivity implements TranslucentActionBa
         timeViews.add(view10time);
         timeViews.add(view20time);
         timeViews.add(view30time);
+
+        gearValueMap.put(1, 10);
+        gearValueMap.put(2, 20);
+        gearValueMap.put(3, 30);
+        gearValueMap.put(4, 40);
+        gearValueMap.put(5, 50);
+        gearValueMap.put(6, 60);
+        gearValueMap.put(7, 70);
+        gearValueMap.put(8, 80);
 
 
         quanshenView.setOnClickListener(this);
@@ -216,54 +225,41 @@ public class AnmoSetActivity extends BaseActivity implements TranslucentActionBa
                 timeValue = "02";
                 break;
             case R.id.ll_plus:
-                if (upperValue >= 8) {
-                    upperValue = 3;
-                } else {
+                if (upperValue < 8) {
                     upperValue++;
                 }
                 tvPlus.setText(String.valueOf(upperValue));
-                if (upperValue - lowerValue < 2) {
-                    tvPlus.setTextColor(getResources().getColor(R.color.F14C27));
-                } else {
-                    tvPlus.setTextColor(getResources().getColor(R.color.white));
-                }
                 break;
             case R.id.ll_minus:
-                if (lowerValue >= 6) {
-                    lowerValue = 1;
-                } else {
-                    lowerValue++;
+                if (upperValue > 1) {
+                    upperValue--;
                 }
-                tvMinus.setText(String.valueOf(lowerValue));
-                if (upperValue - lowerValue < 2) {
-                    tvPlus.setTextColor(getResources().getColor(R.color.F14C27));
-                } else {
-                    tvPlus.setTextColor(getResources().getColor(R.color.white));
-                }
+                tvPlus.setText(String.valueOf(upperValue));
                 break;
             case R.id.tvConfirm:
-                if (upperValue - lowerValue < 2) {
-                    DoubleConfirmDialog.builder(this)
-                            .setContent(getResources().getString(R.string.anmo_qiangdu_hint))
-                            .setListener(new DoubleConfirmDialog.OnPermissionsDialogListener() {
-                                @Override
-                                public void cancleOnClick(DoubleConfirmDialog dialog) {
-                                    dialog.dismiss();
-                                    return;
-                                }
-
-                                @Override
-                                public void determineOnClick(DoubleConfirmDialog dialog, String content) {
-                                    dialog.dismiss();
-                                    upperValue = lowerValue + 2;
-                                    String cmdConfirm = "FFFFFFFFFF14030E00" + weitiaoValue + BlueUtils.covert10TO16(upperValue * 10) + "00" + BlueUtils.covert10TO16(lowerValue * 10) + "00" + timeValue + "000000";
-                                    sendBlueCmd(cmdConfirm);
-                                }
-                            }).show();
-                } else {
-                    String cmdConfirm = "FFFFFFFFFF14030E00" + weitiaoValue + BlueUtils.covert10TO16(upperValue * 10) + "00" + BlueUtils.covert10TO16(lowerValue * 10) + "00" + timeValue + "000000";
-                    sendBlueCmd(cmdConfirm);
-                }
+//                if (upperValue - lowerValue < 2) {
+//                    DoubleConfirmDialog.builder(this)
+//                            .setContent(getResources().getString(R.string.anmo_qiangdu_hint))
+//                            .setListener(new DoubleConfirmDialog.OnPermissionsDialogListener() {
+//                                @Override
+//                                public void cancleOnClick(DoubleConfirmDialog dialog) {
+//                                    dialog.dismiss();
+//                                    return;
+//                                }
+//
+//                                @Override
+//                                public void determineOnClick(DoubleConfirmDialog dialog, String content) {
+//                                    dialog.dismiss();
+//                                    upperValue = lowerValue + 2;
+//                                    String cmdConfirm = "FFFFFFFFFF14030E00" + weitiaoValue + BlueUtils.covert10TO16(gearValueMap.get(upperValue)) + "00" + BlueUtils.covert10TO16(gearValueMap.get(lowerValue)) + "00" + timeValue + "000000";
+//                                    sendBlueCmd(cmdConfirm);
+//                                }
+//                            }).show();
+//                } else {
+//                String cmdConfirm = "FFFFFFFFFF14030E00" + weitiaoValue + BlueUtils.covert10TO16(gearValueMap.get(upperValue)) + "00" + BlueUtils.covert10TO16(gearValueMap.get(lowerValue)) + "00" + timeValue + "000000";
+                String cmdConfirm = "FFFFFFFFFF14030E00" + weitiaoValue + BlueUtils.covert10TO16(gearValueMap.get(upperValue)) + "00" + "00" + "00" + timeValue + "000000";
+                sendBlueCmd(cmdConfirm);
+//                }
                 break;
         }
     }
@@ -360,8 +356,18 @@ public class AnmoSetActivity extends BaseActivity implements TranslucentActionBa
             String upperStatus = cmd.substring(22, 24).toUpperCase() + cmd.substring(20, 22).toUpperCase();
             String lowerStatus = cmd.substring(26, 28).toUpperCase() + cmd.substring(24, 26).toUpperCase();
 
-            upperValue = BlueUtils.covert16TO10(upperStatus) / 10;
-            lowerValue = BlueUtils.covert16TO10(lowerStatus) / 10;
+            for (Integer getKey : gearValueMap.keySet()) {
+                //获取按摩强度上限
+                if (gearValueMap.get(getKey) == BlueUtils.covert16TO10(upperStatus)) {
+                    upperValue = getKey;
+                }
+                //获取按摩强度下限
+                if (gearValueMap.get(getKey) == BlueUtils.covert16TO10(lowerStatus)) {
+                    lowerValue = getKey;
+                }
+            }
+
+            Log.e("上限:" + upperValue, "下限:" + lowerValue);
 
             //按摩时间
             String timeStatus = cmd.substring(28, 30).toUpperCase();
@@ -380,7 +386,7 @@ public class AnmoSetActivity extends BaseActivity implements TranslucentActionBa
             setWeitiaoSelected(weitiaoMode);
             setTimeSelected(timeMode);
             tvPlus.setText(String.valueOf(upperValue));
-            tvMinus.setText(String.valueOf(lowerValue));
+//            tvMinus.setText(String.valueOf(lowerValue));
 
         } else if (cmd.indexOf("FFFFFFFFFF14030E01") > -1) {//设置成功
             ToastUtils.showToast(this, getResources().getString(R.string.success));

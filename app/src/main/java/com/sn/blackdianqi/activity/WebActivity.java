@@ -65,6 +65,8 @@ public class WebActivity extends BaseActivity implements TranslucentActionBar.Ac
             url = "file:///android_res/mipmap/protocol_japan.jpg";
         } else if ("zh-rTW".equals(language)) {
             url = "file:///android_res/mipmap/protocol_zh.jpg";
+        } else if ("zh-rCN".equals(language)) {
+            url = "file:///android_res/mipmap/protocol_zh_rcn.jpg";
         } else {
             url = "file:///android_res/mipmap/protocol_fr.jpg";
         }

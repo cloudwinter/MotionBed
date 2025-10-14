@@ -23,7 +23,7 @@
             app:bgnormal="@drawable/bg_rectangle_gray_20"
             app:bgselected="@drawable/bg_rectangle_selected_20"
             app:icon="@mipmap/xr_kandianshi_xiao"
-            app:title="@string/quanshenanmo" />
+            app:title="@string/zuheanmo" />
 
         <com.sn.blackdianqi.view.AnjianRectangleView
             android:id="@+id/view_beibu"
@@ -34,7 +34,7 @@
             app:bgnormal="@drawable/bg_rectangle_gray_20"
             app:bgselected="@drawable/bg_rectangle_selected_20"
             app:icon="@mipmap/xr_zhihan_xiao"
-            app:title="@string/beibuanmo" />
+            app:title="@string/bolanganmo" />
 
 
     </LinearLayout>
@@ -89,11 +89,23 @@
             app:icon="@mipmap/yujia_xiao"
             app:title="@string/yujia2" />
 
+        <com.sn.blackdianqi.view.AnjianRectangleView
+            android:id="@+id/view_shuimian"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_90"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_weight="1"
+            app:bgnormal="@drawable/bg_rectangle_gray_20"
+            app:bgselected="@drawable/bg_rectangle_selected_20"
+            app:icon="@mipmap/xr_fuyuan_xiao"
+            app:title="@string/shuimianmoshi" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_90"
             android:layout_marginHorizontal="@dimen/dp_20"
             android:layout_weight="1"
+            android:visibility="gone"
             android:background="@drawable/bg_rectangle_gray_20"
             android:gravity="center"
             android:orientation="vertical">

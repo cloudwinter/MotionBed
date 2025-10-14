@@ -38,21 +38,30 @@
         android:gravity="center"
         android:padding="@dimen/dp_10">
 
-        <com.sn.blackdianqi.view.AnjianWeitiaoVerticalView
+        <com.sn.blackdianqi.view.AnjianWeitiaoVertical2View
             android:id="@+id/view_beibutiaozheng"
             android:layout_width="@dimen/dp_50"
             android:layout_height="@dimen/dp_130"
             android:layout_marginRight="@dimen/dp_50"
-            app:bgnormal="@drawable/bg_tuoyuan_normal"
-            app:icon="@mipmap/xr_zhihan_xiao" />
+            app:bgnormalbottom="@drawable/bg_circle_bottom"
+            app:bgnormaltop="@drawable/bg_circle_top"
+            app:bgselectedbottom="@drawable/bg_circle_bottom_selector"
+            app:bgselectedtop="@drawable/bg_circle_top_selector"
+            app:icon="@mipmap/xr_zhihan_xiao"
+            app:selecticon="@mipmap/xr_zhihan_da" />
 
-        <com.sn.blackdianqi.view.AnjianWeitiaoVerticalView
+
+        <com.sn.blackdianqi.view.AnjianWeitiaoVertical2View
             android:id="@+id/view_tuibutiaozheng"
             android:layout_width="@dimen/dp_50"
             android:layout_height="@dimen/dp_130"
             android:layout_marginLeft="@dimen/dp_50"
-            app:bgnormal="@drawable/bg_tuoyuan_normal"
-            app:icon="@mipmap/xr_tuibuxunhuan_xiao" />
+            app:bgnormalbottom="@drawable/bg_circle_bottom"
+            app:bgnormaltop="@drawable/bg_circle_top"
+            app:bgselectedbottom="@drawable/bg_circle_bottom_selector"
+            app:bgselectedtop="@drawable/bg_circle_top_selector"
+            app:icon="@mipmap/xr_tuibuxunhuan_xiao"
+            app:selecticon="@mipmap/xr_tuibuxunhuan_da" />
 
     </LinearLayout>
 
@@ -342,8 +351,8 @@
 
             <ImageView
                 android:layout_width="@dimen/dp_40"
-                android:padding="@dimen/dp_5"
                 android:layout_height="match_parent"
+                android:padding="@dimen/dp_5"
                 android:src="@mipmap/ic_row" />
 
         </LinearLayout>
@@ -359,8 +368,8 @@
         android:background="@drawable/bg_tuoyuan_normal"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:visibility="gone"
-        android:paddingHorizontal="@dimen/dp_10">
+        android:paddingHorizontal="@dimen/dp_10"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="@dimen/dp_30"
@@ -381,8 +390,8 @@
 
         <ImageView
             android:layout_width="@dimen/dp_40"
-            android:padding="@dimen/dp_5"
             android:layout_height="match_parent"
+            android:padding="@dimen/dp_5"
             android:src="@mipmap/ic_row" />
 
     </LinearLayout>

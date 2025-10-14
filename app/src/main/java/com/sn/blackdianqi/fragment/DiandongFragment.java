@@ -15,26 +15,19 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
 import com.sn.blackdianqi.R;
-import com.sn.blackdianqi.RunningContext;
-import com.sn.blackdianqi.activity.AlarmActivity;
 import com.sn.blackdianqi.activity.DianDongSetActivity;
-import com.sn.blackdianqi.activity.WebCommonActivity;
 import com.sn.blackdianqi.activity.XinLvDaiActivity;
 import com.sn.blackdianqi.bean.AlarmBean;
 import com.sn.blackdianqi.bean.AudioEvent;
 import com.sn.blackdianqi.bean.DateBean;
 import com.sn.blackdianqi.bean.DeviceBean;
-import com.sn.blackdianqi.bean.MessageEvent;
 import com.sn.blackdianqi.dialog.DoubleConfirmDialog;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.util.Prefer;
-import com.sn.blackdianqi.util.ToastUtils;
-import com.sn.blackdianqi.view.AnjianTextView;
-import com.sn.blackdianqi.view.AnjianWeitiaoVerticalView;
+import com.sn.blackdianqi.view.AnjianWeitiaoVertical2View;
 import com.sn.blackdianqi.view.ChildTouchListener;
 import com.sn.blackdianqi.view.JiyiSmall2View;
-import com.sn.blackdianqi.view.JiyiSmallView;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -50,9 +43,9 @@ import butterknife.ButterKnife;
 public class DiandongFragment extends BaseMcuFragment implements View.OnTouchListener {
 
     @BindView(R.id.view_beibutiaozheng)
-    AnjianWeitiaoVerticalView beibutiaozhengView;
+    AnjianWeitiaoVertical2View beibutiaozhengView;
     @BindView(R.id.view_tuibutiaozheng)
-    AnjianWeitiaoVerticalView tuibutiaozhengView;
+    AnjianWeitiaoVertical2View tuibutiaozhengView;
 
     @BindView(R.id.view_kandianshi)
     JiyiSmall2View kandianshiView;

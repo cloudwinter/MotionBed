@@ -149,6 +149,8 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
             tvLanguage.setText(R.string.japan);
         } else if (language.equals("zh-rTW")) {
             tvLanguage.setText(R.string.chinese);
+        }else if (language.equals("zh-rCN")) {
+            tvLanguage.setText(R.string.chinese_cn);
         } else if (language.equals("en")) {
             tvLanguage.setText(R.string.english); // 默认是英文
         }

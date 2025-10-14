@@ -124,18 +124,19 @@ public class PressSetActivity extends BaseActivity implements TranslucentActionB
     }
 
     private void initData() {
-        pressList.add(new PressBean("12","0008",0));
-        pressList.add(new PressBean("11","0004",0));
-        pressList.add(new PressBean("10","0002",0));
-        pressList.add(new PressBean("9","0001",0));
-        pressList.add(new PressBean("8","8000",0));
-        pressList.add(new PressBean("7","4000",0));
-        pressList.add(new PressBean("6","2000",0));
-        pressList.add(new PressBean("5","1000",0));
-        pressList.add(new PressBean("4","0800",0));
-        pressList.add(new PressBean("3","0400",0));
-        pressList.add(new PressBean("2","0200",0));
-        pressList.add(new PressBean("1","0100",0));
+        pressList.add(new PressBean("1", "0100", 0));
+        pressList.add(new PressBean("2", "0200", 0));
+        pressList.add(new PressBean("3", "0400", 0));
+        pressList.add(new PressBean("4", "0800", 0));
+        pressList.add(new PressBean("5", "1000", 0));
+        pressList.add(new PressBean("6", "2000", 0));
+        pressList.add(new PressBean("7", "4000", 0));
+        pressList.add(new PressBean("8", "8000", 0));
+        pressList.add(new PressBean("9", "0001", 0));
+        pressList.add(new PressBean("10", "0002", 0));
+        pressList.add(new PressBean("11", "0004", 0));
+        pressList.add(new PressBean("12", "0008", 0));
+
     }
 
     private void initView() {
@@ -181,7 +182,7 @@ public class PressSetActivity extends BaseActivity implements TranslucentActionB
                 List<PressBean> data = pressSetAdapter.getData();
                 for (int i = 0; i < data.size(); i++) {
                     sb.append("01");
-                    sb.append(BlueUtils.covert10TO16(data.get(11 - i).getValue() * 10));
+                    sb.append(BlueUtils.covert10TO16(data.get(i).getValue() * 10));
                     sb.append("00");
                 }
                 String cmd = sb.toString();
@@ -276,7 +277,7 @@ public class PressSetActivity extends BaseActivity implements TranslucentActionB
                 for (int i = 0; i < resArray.size(); i++) {
                     String item = resArray.get(i);
                     int value = BlueUtils.covert16TO10(item.substring(4, 6) + item.substring(2, 4));
-                    pressureList.get(11 - i).setValue(value / 10);
+                    pressureList.get(i).setValue(value / 10);
 //                    LogUtils.e("pressValue", pressureList.get(i).getValue() + "");
                 }
                 pressSetAdapter.setData(pressureList);

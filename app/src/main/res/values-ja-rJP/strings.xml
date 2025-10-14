@@ -37,6 +37,7 @@
     <string name="french">フランス語</string>
     <string name="english">英語</string>
     <string name="chinese">中国語繁体字</string>
+    <string name="chinese_cn">中国語簡体字</string>
     <string name="japan">日本語</string>
     <string name="version">バージョン番号</string>
     <string name="privacy_policy">プライバシーポリシー</string>
@@ -312,6 +313,7 @@
 
 
     <string name="shuiwei">水位:</string>
+    <string name="shuiwei_hint">現在水量が不足しておりますので、500ミリリットルの水を入れてください</string>
     <string name="temp">温度:</string>
     <string name="dingshi_kaiqi">タイマー</string>
     <string name="time_set">タイマー設定</string>
@@ -320,6 +322,9 @@
     <string name="anmopinglv2">マッサージのタイプ</string>
     <string name="alarm_xiangling2">鳴る</string>
     <string name="quanshenanmo">全身マッサージ</string>
+    <string name="zuheanmo">コンビネーションマッサージ</string>
+    <string name="bolanganmo">波動マッサージ</string>
+    <string name="shuimianmoshi">スリープモード</string>
     <string name="beibuanmo">背部マッサージ</string>
     <string name="yaobuanmo">腰部マッサージ</string>
     <string name="jingbuanmo">頸部マッサージ</string>
@@ -344,6 +349,7 @@
     <string name="diandongchuang_set">電動ベッドの設定</string>
 
     <string name="dangwei">レベル</string>
+    <string name="dangwei_title">出水温度の設定</string>
     <string name="dangwei1">レベル1</string>
     <string name="dangwei2">レベル2</string>
     <string name="dangwei3">レベル3</string>

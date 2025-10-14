@@ -42,6 +42,10 @@ public class LocaleUtils {
      */
     public static final Locale LOCALE_CHINESE_TW =new Locale("zh", "TW");
     /**
+     * 中文简体
+     */
+    public static final Locale LOCALE_CHINESE_CN =new Locale("zh", "CN");
+    /**
      * 俄文
      */
     public static final Locale LOCALE_RUSSIAN = new Locale("ru");
