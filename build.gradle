@@ -7,11 +7,10 @@ buildscript {
         maven { url 'https://maven.aliyun.com/repository/google' }  // <= here
         mavenCentral()
         google()
-        jcenter()
-
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.2'
+        classpath 'com.android.tools.build:gradle:7.3.1'
     }
 }
 
@@ -21,10 +20,8 @@ allprojects {
         maven { url 'https://maven.aliyun.com/repository/google' }  // <= here
         mavenCentral()
         google()
-        jcenter()
         maven { url 'https://www.jitpack.io' }
-        maven { url "https://s01.oss.sonatype.org/content/groups/public" }
-
+        maven { url 'https://s01.oss.sonatype.org/content/groups/public' }
     }
 
 
