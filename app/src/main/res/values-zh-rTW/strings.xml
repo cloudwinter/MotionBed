@@ -295,7 +295,10 @@
 
 
     <!-- tab -->
-    <string name="diandongchuang">電動床</string>
+    <string name="diandongtitle">智能床架</string>
+    <string name="qinangtitle">舒適按摩</string>
+    <string name="lengnuantitle">溫度調節</string>
+    <string name="diandongchuang">智能床</string>
     <string name="qinang">氣囊</string>
     <string name="lengnuan">冷暖</string>
 

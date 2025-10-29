@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.sn.blackdianqi.MyApplication;
 import com.sn.blackdianqi.R;
+import com.sn.blackdianqi.RunningContext;
 import com.sn.blackdianqi.base.BaseActivity;
 import com.sn.blackdianqi.bean.DeviceBean;
 import com.sn.blackdianqi.blue.BluetoothLeService;
@@ -58,6 +59,13 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
 
     @BindView(R.id.tv_language)
     TextView tvLanguage;
+
+    @BindView(R.id.ll_version)
+    LinearLayout llVersion;
+    @BindView(R.id.tv_version)
+    TextView tv_version;
+    @BindView(R.id.ll_privacy)
+    LinearLayout llPrivacy;
 
     @BindView(R.id.ll_changeDevice)
     LinearLayout llChangeDevice;
@@ -139,6 +147,7 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
     private void initView() {
         llConnect.setOnClickListener(this);
         llLanguage.setOnClickListener(this);
+        llPrivacy.setOnClickListener(this);
         llChangeDevice.setOnClickListener(this);
 
         // 获取当前系统的语言
@@ -154,7 +163,7 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
         } else if (language.equals("en")) {
             tvLanguage.setText(R.string.english); // 默认是英文
         }
-
+        tv_version.setText(RunningContext.getVersionName());
         llConnect.setOnTouchListener(new View.OnTouchListener() {
             @SuppressLint("ClickableViewAccessibility")
             @Override
@@ -185,6 +194,10 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
             case R.id.ll_language:
                 LanguageDialog languageDialog = new LanguageDialog(this);
                 languageDialog.show();
+                break;
+            case R.id.ll_privacy:
+                Intent webIntent = new Intent(this, WebActivity.class);
+                startActivity(webIntent);
                 break;
             case R.id.ll_changeDevice:
                 Intent intent = new Intent();

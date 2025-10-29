@@ -36,8 +36,8 @@
     <string name="switch_language">言語切替</string>
     <string name="french">フランス語</string>
     <string name="english">英語</string>
-    <string name="chinese">中国語繁体字</string>
-    <string name="chinese_cn">中国語簡体字</string>
+    <string name="chinese">繁体字中国語</string>
+    <string name="chinese_cn">簡体字中国語</string>
     <string name="japan">日本語</string>
     <string name="version">バージョン番号</string>
     <string name="privacy_policy">プライバシーポリシー</string>
@@ -293,7 +293,10 @@
 
 
     <!-- tab -->
-    <string name="diandongchuang">電動ベッド</string>
+    <string name="diandongtitle">スマートベッドフレーム</string>
+    <string name="qinangtitle">快適マッサージ</string>
+    <string name="lengnuantitle">おんどちょうせつ</string>
+    <string name="diandongchuang">スマートベッド</string>
     <string name="qinang">エアバッグ</string>
     <string name="lengnuan">寒暖</string>
 

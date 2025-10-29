@@ -95,6 +95,7 @@ public final class TranslucentActionBar extends LinearLayout {
     public void setTitle(String strTitle) {
         if (!TextUtils.isEmpty(strTitle)) {
             tvTitle.setText(strTitle);
+            tvTitle.setVisibility(View.VISIBLE);
         } else {
             tvTitle.setVisibility(View.GONE);
         }

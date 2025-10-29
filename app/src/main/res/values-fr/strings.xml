@@ -293,7 +293,10 @@
     <string name="sdr_line_btn_next">next</string>
 
     <!-- tab -->
-    <string name="diandongchuang">Lit électrique</string>
+    <string name="diandongtitle">Lit intelligent</string>
+    <string name="qinangtitle">Massage Confort</string>
+    <string name="lengnuantitle">Régulation de la température</string>
+    <string name="diandongchuang">Lits intelligents</string>
     <string name="qinang">sac air</string>
     <string name="lengnuan">Froid et chaud</string>
 

@@ -234,10 +234,13 @@ public class HomeMcuActivity extends BaseActivity implements TranslucentActionBa
 
         if (TextUtils.equals(deviceType, "0A")) {
             setCurrentTab(0);
+            actionBar.setTitle(getResources().getString(R.string.diandongtitle));
         } else if (TextUtils.equals(deviceType, "0B")) {
             setCurrentTab(1);
+            actionBar.setTitle(getResources().getString(R.string.qinangtitle));
         } else if (TextUtils.equals(deviceType, "0C")) {
             setCurrentTab(2);
+            actionBar.setTitle(getResources().getString(R.string.lengnuantitle));
         }
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -291,12 +294,15 @@ public class HomeMcuActivity extends BaseActivity implements TranslucentActionBa
         switch (v.getId()) {
             case R.id.tab1:
                 setCurrentTab(0);
+                actionBar.setTitle(getResources().getString(R.string.diandongtitle));
                 break;
             case R.id.tab2:
                 setCurrentTab(1);
+                actionBar.setTitle(getResources().getString(R.string.qinangtitle));
                 break;
             case R.id.tab3:
                 setCurrentTab(2);
+                actionBar.setTitle(getResources().getString(R.string.lengnuantitle));
                 break;
             default:
                 break;

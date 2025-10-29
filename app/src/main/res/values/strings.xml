@@ -294,7 +294,10 @@
     <string name="sdr_line_btn_next">next</string>
 
     <!-- tab -->
-    <string name="diandongchuang">Electric Bed</string>
+    <string name="diandongtitle">Smart bed frame</string>
+    <string name="qinangtitle">Comfortable massage</string>
+    <string name="lengnuantitle">Temperature regulation</string>
+    <string name="diandongchuang">Smart bed</string>
     <string name="qinang">Air Bag</string>
     <string name="lengnuan">Cold And Warm</string>
 
