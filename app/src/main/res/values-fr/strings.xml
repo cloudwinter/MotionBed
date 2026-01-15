@@ -3,8 +3,12 @@
 
     <!-- common -->
     <string name="exit">Press the back key again to exit the app</string>
+    <string name="open_bluetooth">Veuillez activer le Bluetooth</string>
+    <string name="open_permission">L ‘application a besoin d ’obtenir des informations sur l‘emplacement de l’appareil, des autorisations de balayage Bluetooth pour l‘application Connecter l’appareil via Bluetooth, est - il autorisé à obtenir les autorisations ci - dessus?</string>
     <string name="tongbukz_on">Synchroniser In</string>
     <string name="tongbukz_off">Synchroniser Loin</string>
+    <string name="disagree">Pas d`accord</string>
+    <string name="agree">d`accord</string>
 
 
     <string name="text_enter">Entrer</string>
@@ -398,4 +402,44 @@
     <string name="device_networking_successful">Succès de la mise en réseau des appareils</string>
     <string name="complete">Terminé</string>
     <string name="latitude_longitude_fail">Obtenir la longitude et la latitude échoue</string>
+
+    <string name="common_permission_description_title">Description des autorisations</string>
+    <string name="common_permission_confirm">Confirmer</string>
+
+    <string name="common_permission_alert">Rappel d\'autorisation</string>
+
+    <string name="common_permission_fail_assign_hint_1">Échec de la demande d\'autorisation. Veuillez accorder manuellement %s</string>
+    <string name="common_permission_fail_assign_hint_2">Échec de la demande d\'autorisation. Veuillez accorder correctement %s</string>
+
+    <string name="common_permission_fail_hint_1">Échec de la demande de %s. Veuillez sélectionner l\'option « %s »</string>
+    <string name="common_permission_fail_hint_2">Échec de la demande de %s. Veuillez sélectionner « %s » et activer l\'option « %s »</string>
+    <string name="common_permission_fail_hint_3">Échec de la demande de %s. Veuillez activer l\'option « %s »</string>
+
+    <string name="common_permission_allow_all_option">Tout autoriser</string>
+    <string name="common_permission_allow_all_the_time_option">Autoriser en permanence</string>
+
+    <string name="common_permission_go_to_authorization">Aller à l\'autorisation</string>
+
+    <string name="common_permission_comma">,</string>
+    <string name="common_permission_colon">:</string>
+    <string name="common_permission_and">&amp;</string>
+
+    <string name="common_permission_unknown">Autorisation</string>
+    <string name="common_permission_unknown_description">Cette autorisation est requise pour continuer à utiliser le service</string>
+
+    <string name="common_permission_location_fine">Autorisation de localisation précise</string>
+    <string name="common_permission_location_fine_option">Localisation exacte</string>
+
+    <string name="common_permission_location">Autorisation de localisation</string>
+    <string name="common_permission_location_description">Utilisé pour obtenir votre position en temps réel, par exemple pour afficher les services à proximité, planifier des itinéraires de navigation ou recommander du contenu basé sur la position.</string>
+
+    <string name="common_permission_storage">Autorisation de stockage</string>
+    <string name="common_permission_storage_description">Utilisé pour lire et écrire dans le stockage du téléphone, par exemple pour enregistrer des images, télécharger des fichiers, mettre en cache des données ou sauvegarder les paramètres de l\'application.</string>
+
+    <string name="common_permission_nearby_devices">Autorisation des appareils à proximité</string>
+    <string name="common_permission_nearby_devices_description">Utilisé pour découvrir et connecter des appareils à proximité via Bluetooth, Wi-Fi, etc., par exemple pour le transfert de fichiers sans fil, la connexion d\'appareils intelligents ou le partage de réseau.</string>
+
+    <string name="common_permission_location_background">Autorisation de localisation en arrière-plan</string>
+    <string name="common_permission_location_background_description">Utilisé pour obtenir continuellement des informations de localisation en arrière-plan, par exemple pour l\'enregistrement de trajectoires en temps réel, la navigation en arrière-plan ou le partage de position en cas d\'urgence.</string>
+
 </resources>

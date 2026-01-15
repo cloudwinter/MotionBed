@@ -2,10 +2,14 @@
     <string name="app_name">Motion Bed</string>
 
     <!-- common -->
+    <string name="open_bluetooth">Please enable Bluetooth</string>
+    <string name="open_permission">The application needs to obtain device location information and Bluetooth scanning permission, which is used to connect the device through Bluetooth for operation. Is it allowed to obtain the above permissions?
+</string>
     <string name="exit">Press the back key again to exit the app</string>
     <string name="tongbukz_on">SYNCHR ON</string>
     <string name="tongbukz_off">SYNCHR OFF</string>
-
+    <string name="disagree">disagree</string>
+    <string name="agree">Agree</string>
 
     <string name="text_enter">Enter</string>
     <string name="blue_equipment">Bluetooth device</string>
@@ -399,4 +403,43 @@
     <string name="device_networking_successful">Device networking successful</string>
     <string name="complete">complete</string>
     <string name="latitude_longitude_fail">Failed to obtain latitude and longitude</string>
+
+    <string name="common_permission_description_title">Permission Description</string>
+    <string name="common_permission_confirm">Confirm</string>
+
+    <string name="common_permission_alert">Authorization Reminder</string>
+
+    <string name="common_permission_fail_assign_hint_1">Failed to apply for permission. Please manually grant %s</string>
+    <string name="common_permission_fail_assign_hint_2">Failed to apply for permission. Please grant %s correctly</string>
+
+    <string name="common_permission_fail_hint_1">Failed to apply for %s. Please select the "%s" option</string>
+    <string name="common_permission_fail_hint_2">Failed to apply for %s. Please select "%s" and enable the "%s" option</string>
+    <string name="common_permission_fail_hint_3">Failed to apply for %s. Please enable the "%s" option</string>
+
+    <string name="common_permission_allow_all_option">Allow All</string>
+    <string name="common_permission_allow_all_the_time_option">Allow All the Time</string>
+
+    <string name="common_permission_go_to_authorization">Go to Authorization</string>
+
+    <string name="common_permission_comma">,</string>
+    <string name="common_permission_colon">:</string>
+    <string name="common_permission_and">、</string>
+
+    <string name="common_permission_unknown">Permission</string>
+    <string name="common_permission_unknown_description">This permission is required to continue using the service</string>
+
+    <string name="common_permission_location_fine">Precise Location Permission</string>
+    <string name="common_permission_location_fine_option">Precise Location</string>
+
+    <string name="common_permission_location">Location Permission</string>
+    <string name="common_permission_location_description">Used to obtain your real-time location, such as displaying nearby services, planning navigation routes, or recommending content based on location.</string>
+
+    <string name="common_permission_storage">Storage Permission</string>
+    <string name="common_permission_storage_description">Used to read and write to phone storage, such as saving images, downloading files, caching data, or backing up app settings.</string>
+
+    <string name="common_permission_nearby_devices">Nearby Devices Permission</string>
+    <string name="common_permission_nearby_devices_description">Used to discover and connect to nearby devices via Bluetooth, Wi-Fi, etc., such as wireless file transfer, connecting smart devices, or sharing networks.</string>
+
+    <string name="common_permission_location_background">Background Location Permission</string>
+    <string name="common_permission_location_background_description">Used to continuously obtain location information in the background, such as real-time track recording, background navigation, or location sharing in emergency situations.</string>
 </resources>

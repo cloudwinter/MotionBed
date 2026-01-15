@@ -60,7 +60,6 @@ public class MyApplication extends Application {
         instance = this;
         RunningContext.init(this);
         AppUncaughtExceptionHandler.getInstance().init(this);
-        initFilePath();
         // 获取手机本地的蓝牙适配器
         BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         mBluetoothAdapter = bluetoothManager.getAdapter();
@@ -74,7 +73,7 @@ public class MyApplication extends Application {
        // LocaleUtils.updateLocale(this, LocaleUtils.LOCALE_ENGLISH);
     }
 
-    private void initFilePath() {
+    public void initFilePath() {
         FileUtils.getInstance().createFiles(FileUtils.getInstance().getRootPath(), FileUtils.getInstance().getAudioPath(), FileUtils.getInstance().getImagePath(),
                 FileUtils.getInstance().getImageTempPath(), FileUtils.getInstance().getPPTUploadPath());
     }

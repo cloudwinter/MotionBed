@@ -1,5 +1,6 @@
 package com.sn.blackdianqi.activity;
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattCharacteristic;
@@ -43,6 +44,7 @@ import com.sn.blackdianqi.dialog.WaitDialog;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.CountDownTimerUtils;
 import com.sn.blackdianqi.util.LogUtils;
+import com.sn.blackdianqi.util.PermissionUtils;
 import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
@@ -54,6 +56,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresPermission;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -159,6 +162,7 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connect);
         ButterKnife.bind(this);
+        MyApplication.getInstance().initFilePath();
         blueNameList = defindeBlueNameList();
         // 设置title
         mFrom = getIntent().getStringExtra("from");
@@ -178,9 +182,9 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
         startService(blueServiceIntent);
         bindService(blueServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
 
-        // 启动扫描
-        isFirstScan = true;
-        scanBlue(true);
+        // google 启动扫描 TODO
+//        isFirstScan = true;
+//        scanBlue(true);
     }
 
 
@@ -222,20 +226,55 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
                     mBlueDeviceListAdapter.addDevice(deviceBean);
                 }
             }
-            if (RunningContext.checkLocationPermission(ConnectActivity.this, true)) {
-                List<ScanFilter> filters = new ArrayList<ScanFilter>();
-                //这里使用的SEARCH_SERVICE_UUID可以向蓝牙芯片厂商获取
+
+            //国内平台申请权限 TODO
+            PermissionUtils.requestPermission(this, new PermissionUtils.PermissionCallBack() {
+                @RequiresPermission(Manifest.permission.BLUETOOTH_SCAN)
+                @Override
+                public void onSuccess() {
+                    List<ScanFilter> filters = new ArrayList<ScanFilter>();
+                    //这里使用的SEARCH_SERVICE_UUID可以向蓝牙芯片厂商获取
 //                filters.add(0, new ScanFilter.Builder().setServiceUuid(new ParcelUuid(UUID.fromString(MyApplication.HEART_RATE_MEASUREMENT))).build());
-                ScanSettings settings = new ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).build();
-                mBluetoothLeScanner.startScan(filters, settings, mScanCallback);
-            }
+                    ScanSettings settings = new ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).build();
+                    mBluetoothLeScanner.startScan(filters, settings, mScanCallback);
+                }
+
+                @Override
+                public void onFailure() {
+                }
+            });
+
+
+            //Google 平台申请权限 TODO
+//            if (RunningContext.checkLocationPermission(ConnectActivity.this, true)) {
+//                List<ScanFilter> filters = new ArrayList<ScanFilter>();
+//                //这里使用的SEARCH_SERVICE_UUID可以向蓝牙芯片厂商获取
+////                filters.add(0, new ScanFilter.Builder().setServiceUuid(new ParcelUuid(UUID.fromString(MyApplication.HEART_RATE_MEASUREMENT))).build());
+//                ScanSettings settings = new ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).build();
+//                mBluetoothLeScanner.startScan(filters, settings, mScanCallback);
+//            }
         } else {
             if (mScanning) {
                 LogUtils.e(TAG, "==停止扫描蓝牙设备==", "stoping................");
                 mScanning = false;
-                if (RunningContext.checkLocationPermission(ConnectActivity.this, true)) {
-                    mBluetoothLeScanner.stopScan(mScanCallback);
-                }
+
+                //国内平台申请权限 TODO
+                PermissionUtils.requestPermission(this, new PermissionUtils.PermissionCallBack() {
+                    @RequiresPermission(Manifest.permission.BLUETOOTH_SCAN)
+                    @Override
+                    public void onSuccess() {
+                        mBluetoothLeScanner.stopScan(mScanCallback);
+                    }
+
+                    @Override
+                    public void onFailure() {
+                    }
+                });
+
+                //Google 平台申请权限 TODO
+//                if (RunningContext.checkLocationPermission(ConnectActivity.this, true)) {
+//                    mBluetoothLeScanner.stopScan(mScanCallback);
+//                }
                 textViewTry.setText(getString(R.string.search_blue_equipment));
             }
         }

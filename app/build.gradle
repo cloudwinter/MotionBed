@@ -15,12 +15,12 @@ android {
         versionCode 34
         versionName "1.24"
 
-//        ndk {
-//            // 设置支持的SO库架构
+        ndk {
+            // 设置支持的SO库架构
 //            abiFilters 'armeabi'
-//            //abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
-//            //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
-//        }
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+            //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
 //
 //        splits {
 //            abi {
@@ -143,6 +143,9 @@ dependencies {
 
     // eventbus
     implementation 'org.greenrobot:eventbus:3.3.1'
+
+    /**权限*/
+    implementation 'com.github.getActivity:XXPermissions:28.0'
 
 
     // test

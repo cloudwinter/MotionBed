@@ -2,9 +2,13 @@
     <string name="app_name">Motion Bed</string>
 
     <!-- common -->
+    <string name="open_bluetooth">请开启蓝牙</string>
+    <string name="open_permission">应用需要获取设备位置信息、蓝牙扫描权限,用于应用通过蓝牙链接设备操作,是否允许获取以上权限?</string>
     <string name="exit">再次按后退键退出应用程序</string>
     <string name="tongbukz_on">同步 开</string>
     <string name="tongbukz_off">同步 关</string>
+    <string name="disagree">不同意</string>
+    <string name="agree">同意并继续</string>
 
 
     <string name="text_enter">进入</string>
@@ -400,4 +404,45 @@
     <string name="device_networking_successful">设备联网成功</string>
     <string name="complete">完成</string>
     <string name="latitude_longitude_fail">获取经纬度失败</string>
+
+
+    <string name="common_permission_description_title">权限说明</string>
+    <string name="common_permission_confirm">确定</string>
+
+    <string name="common_permission_alert">授权提醒</string>
+
+    <string name="common_permission_fail_assign_hint_1">申请权限失败，请手动授予%s</string>
+    <string name="common_permission_fail_assign_hint_2">申请权限失败，请正确授予%s</string>
+
+    <string name="common_permission_fail_hint_1">申请%s失败，请选择 \“%s\” 选项</string>
+    <string name="common_permission_fail_hint_2">申请%s失败，请选择 \“%s\” 并开启 \“%s\” 选项</string>
+    <string name="common_permission_fail_hint_3">申请%s失败，请开启 \“%s\” 选项</string>
+
+    <string name="common_permission_allow_all_option">全部允许</string>
+    <string name="common_permission_allow_all_the_time_option">始终允许</string>
+
+    <string name="common_permission_go_to_authorization">前往授权</string>
+
+    <string name="common_permission_comma">、</string>
+    <string name="common_permission_colon">：</string>
+    <string name="common_permission_and">、</string>
+
+    <string name="common_permission_unknown">权限</string>
+    <string name="common_permission_unknown_description">需要先申请该权限，才能继续使用该业务</string>
+
+    <string name="common_permission_location_fine">精确定位权限</string>
+    <string name="common_permission_location_fine_option">确切位置</string>
+
+    <string name="common_permission_location">定位权限</string>
+    <string name="common_permission_location_description">用于获取您的实时位置，例如显示附近的服务、导航路线规划或基于位置推荐内容。</string>
+
+    <string name="common_permission_storage">存储权限</string>
+    <string name="common_permission_storage_description">用于读取和写入手机存储，例如保存图片、下载文件、缓存数据或备份应用设置。</string>
+
+    <string name="common_permission_nearby_devices">附近设备权限</string>
+    <string name="common_permission_nearby_devices_description">用于发现和连接蓝牙、Wi-Fi等附近设备，例如无线传输文件、连接智能设备或共享网络。</string>
+
+    <string name="common_permission_location_background">后台定位权限</string>
+    <string name="common_permission_location_background_description">用于在后台持续获取位置信息，例如实时轨迹记录、后台导航或紧急情况下的位置共享。</string>
+
 </resources>

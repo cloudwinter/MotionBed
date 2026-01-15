@@ -3,8 +3,12 @@
 
     <!-- common -->
     <string name="exit">Press the back key again to exit the app</string>
+    <string name="open_bluetooth">請開啟藍牙</string>
+    <string name="open_permission">應用需要獲取設備位置資訊、藍牙掃描許可權，用於應用通過藍牙連結設備操作，是否允許獲取以上許可權？</string>
     <string name="tongbukz_on">同步 開</string>
     <string name="tongbukz_off">同步 關</string>
+    <string name="disagree">不同意</string>
+    <string name="agree">同意并继续</string>
 
 
     <string name="text_enter">進入</string>
@@ -400,4 +404,45 @@
     <string name="device_networking_successful">設備聯網成功</string>
     <string name="complete">完成</string>
     <string name="latitude_longitude_fail">獲取經緯度失敗</string>
+
+
+    <string name="common_permission_description_title">權限說明</string>
+    <string name="common_permission_confirm">確定</string>
+
+    <string name="common_permission_alert">授權提醒</string>
+
+    <string name="common_permission_fail_assign_hint_1">申請權限失敗，請手動授予%s</string>
+    <string name="common_permission_fail_assign_hint_2">申請權限失敗，請正確授予%s</string>
+
+    <string name="common_permission_fail_hint_1">申請%s失敗，請選擇「%s」選項</string>
+    <string name="common_permission_fail_hint_2">申請%s失敗，請選擇「%s」並開啟「%s」選項</string>
+    <string name="common_permission_fail_hint_3">申請%s失敗，請開啟「%s」選項</string>
+
+    <string name="common_permission_allow_all_option">全部允許</string>
+    <string name="common_permission_allow_all_the_time_option">始終允許</string>
+
+    <string name="common_permission_go_to_authorization">前往授權</string>
+
+    <string name="common_permission_comma">、</string>
+    <string name="common_permission_colon">：</string>
+    <string name="common_permission_and">、</string>
+
+    <string name="common_permission_unknown">權限</string>
+    <string name="common_permission_unknown_description">需先申請該權限，才能繼續使用此服務</string>
+
+    <string name="common_permission_location_fine">精確定位權限</string>
+    <string name="common_permission_location_fine_option">確切位置</string>
+
+    <string name="common_permission_location">定位權限</string>
+    <string name="common_permission_location_description">用於取得您的即時位置，例如顯示附近服務、規劃導航路線或依據位置推薦內容。</string>
+
+    <string name="common_permission_storage">儲存權限</string>
+    <string name="common_permission_storage_description">用於讀取與寫入手機儲存空間，例如儲存圖片、下載檔案、快取資料或備份應用程式設定。</string>
+
+    <string name="common_permission_nearby_devices">附近裝置權限</string>
+    <string name="common_permission_nearby_devices_description">用於偵測並連接藍牙、Wi-Fi等附近裝置，例如無線傳輸檔案、連接智慧裝置或分享網路。</string>
+
+    <string name="common_permission_location_background">背景定位權限</string>
+    <string name="common_permission_location_background_description">用於在背景持續取得位置資訊，例如即時軌跡紀錄、背景導航或緊急狀況下的位置分享。</string>
+
 </resources>

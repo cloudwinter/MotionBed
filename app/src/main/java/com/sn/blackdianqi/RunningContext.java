@@ -144,7 +144,7 @@ public class RunningContext {
 
 
     /**
-     * 检查相机权限
+     * 检查蓝牙扫描获取附近设备的权限
      *
      * @param activity
      * @return

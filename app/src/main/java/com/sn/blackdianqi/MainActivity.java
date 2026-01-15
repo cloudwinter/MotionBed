@@ -23,8 +23,11 @@ import com.sn.blackdianqi.activity.MainMcuActivity;
 import com.sn.blackdianqi.activity.SingleMcuActivity;
 import com.sn.blackdianqi.base.BaseActivity;
 import com.sn.blackdianqi.bean.DeviceBean;
+import com.sn.blackdianqi.dialog.DoubleConfirmDialog;
+import com.sn.blackdianqi.dialog.PrivacyPolicyDialog;
 import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.Prefer;
+import com.sn.blackdianqi.util.PreferenceUtil;
 import com.sn.blackdianqi.util.ToastUtils;
 
 import butterknife.BindView;
@@ -42,6 +45,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     // 蓝牙适配器
     private BluetoothAdapter mBluetoothAdapter;
+    private Boolean isAgreePrivacy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,24 +61,72 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         imageView.setImageResource(R.mipmap.app_logo_small);
         textView.setOnClickListener(this);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (this.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISSION_REQUEST_COARSE_LOCATION);
-            }
+        isAgreePrivacy = PreferenceUtil.getBoolean("isAgreePrivacy", false);
+
+        if (!isAgreePrivacy) {
+            PrivacyPolicyDialog.builder(this)
+                    .setContent()
+                    .setListener(new PrivacyPolicyDialog.OnPermissionsDialogListener() {
+                        @Override
+                        public void cancleOnClick(PrivacyPolicyDialog dialog) {
+                            dialog.dismiss();
+                            System.exit(0);
+                        }
+
+                        @Override
+                        public void determineOnClick(PrivacyPolicyDialog dialog) {
+                            dialog.dismiss();
+                            PreferenceUtil.commitBoolean("isAgreePrivacy", true);
+                            isAgreePrivacy = true;
+                        }
+                    }).show();
         }
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            if (this.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISSION_REQUEST_COARSE_LOCATION);
+//            }
+//        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // 获取手机本地的蓝牙适配器
-        BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
-        mBluetoothAdapter = bluetoothManager.getAdapter();
-        if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
-            // 未打开蓝牙
-            if (RunningContext.checkLocationPermission(this, true)) {
-                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                startActivityForResult(enableBtIntent, 10);
+        boolean isCheckAll = RunningContext.checkLocationPermission(this, false);
+        if (!isCheckAll) {
+            DoubleConfirmDialog.builder(this)
+                    .setContent(getResources().getString(R.string.open_permission))
+                    .setListener(new DoubleConfirmDialog.OnPermissionsDialogListener() {
+                        @Override
+                        public void cancleOnClick(DoubleConfirmDialog dialog) {
+                            dialog.dismiss();
+                        }
+
+                        @Override
+                        public void determineOnClick(DoubleConfirmDialog dialog, String content) {
+                            dialog.dismiss();
+                            // 获取手机本地的蓝牙适配器
+                            BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+                            mBluetoothAdapter = bluetoothManager.getAdapter();
+                            if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
+                                // 未打开蓝牙
+                                if (RunningContext.checkLocationPermission(MainActivity.this, true)) {
+                                    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                                    startActivityForResult(enableBtIntent, 10);
+                                }
+                            }
+                        }
+                    }).show();
+        } else {
+            // 获取手机本地的蓝牙适配器
+            BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+            mBluetoothAdapter = bluetoothManager.getAdapter();
+            if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
+                // 未打开蓝牙
+                if (RunningContext.checkLocationPermission(MainActivity.this, true)) {
+                    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                    startActivityForResult(enableBtIntent, 10);
+                }
             }
         }
     }
@@ -84,7 +136,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.text_enter:
                 if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
-                    ToastUtils.showToast(this, "请开启蓝牙");
+                    ToastUtils.showToast(this, getResources().getString(R.string.open_bluetooth));
                     return;
                 }
                 // 判断当前蓝牙是否已连接，如果已连接直接调整到HomeActivity

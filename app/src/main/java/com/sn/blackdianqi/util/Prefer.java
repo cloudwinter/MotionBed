@@ -73,7 +73,7 @@ public class Prefer {
      * @return
      */
     public String getSelectedLanguage() {
-        return mPref.getString(KEY_LANGUAGE, "en");
+        return mPref.getString(KEY_LANGUAGE, "en");//zh-rCN  en
     }
 
 

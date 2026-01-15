@@ -3,8 +3,12 @@
 
     <!-- common -->
     <string name="exit">戻るキーを再度押してアプリケーションを終了します</string>
+    <string name="open_bluetooth">Bluetoothをオンにしてください</string>
+    <string name="open_permission">アプリケーションはデバイスの位置情報を取得し、Bluetoothスキャン権限を必要とします。アプリケーションはBluetoothリンクデバイスを介して操作するために使用されます。これらの権限の取得を許可しますか？</string>
     <string name="tongbukz_on">同期 開く</string>
     <string name="tongbukz_off">同期 オフ</string>
+    <string name="disagree">同意しない</string>
+    <string name="agree">同意并继续</string>
 
 
     <string name="text_enter">開始</string>
@@ -398,4 +402,43 @@
     <string name="device_networking_successful">デバイスのネットワーク接続に成功しました</string>
     <string name="complete">完了</string>
     <string name="latitude_longitude_fail">緯度経度の取得に失敗しました</string>
+
+    <string name="common_permission_description_title">権限の説明</string>
+    <string name="common_permission_confirm">確定</string>
+
+    <string name="common_permission_alert">権限付与のお知らせ</string>
+
+    <string name="common_permission_fail_assign_hint_1">権限の申請に失敗しました。手動で%sを付与してください</string>
+    <string name="common_permission_fail_assign_hint_2">権限の申請に失敗しました。%sを正しく付与してください</string>
+
+    <string name="common_permission_fail_hint_1">%sの申請に失敗しました。「%s」オプションを選択してください</string>
+    <string name="common_permission_fail_hint_2">%sの申請に失敗しました。「%s」を選択し、「%s」オプションを有効にしてください</string>
+    <string name="common_permission_fail_hint_3">%sの申請に失敗しました。「%s」オプションを有効にしてください</string>
+
+    <string name="common_permission_allow_all_option">すべて許可</string>
+    <string name="common_permission_allow_all_the_time_option">常に許可</string>
+
+    <string name="common_permission_go_to_authorization">権限付与へ</string>
+
+    <string name="common_permission_comma">、</string>
+    <string name="common_permission_colon">：</string>
+    <string name="common_permission_and">、</string>
+
+    <string name="common_permission_unknown">権限</string>
+    <string name="common_permission_unknown_description">この権限を先に申請してから、本機能をご利用いただけます</string>
+
+    <string name="common_permission_location_fine">高精度位置情報権限</string>
+    <string name="common_permission_location_fine_option">正確な位置情報</string>
+
+    <string name="common_permission_location">位置情報権限</string>
+    <string name="common_permission_location_description">リアルタイム位置情報の取得に使用します。例：周辺サービスの表示、ナビゲーションルートの計画、位置に基づくコンテンツ推薦など</string>
+
+    <string name="common_permission_storage">ストレージ権限</string>
+    <string name="common_permission_storage_description">スマートフォンストレージの読み書きに使用します。例：画像の保存、ファイルのダウンロード、データのキャッシュ、アプリ設定のバックアップなど</string>
+
+    <string name="common_permission_nearby_devices">近くのデバイス権限</string>
+    <string name="common_permission_nearby_devices_description">Bluetooth、Wi-Fiなどの近くのデバイスを検出・接続するために使用します。例：ファイルのワイヤレス転送、スマートデバイスへの接続、ネットワーク共有など</string>
+
+    <string name="common_permission_location_background">バックグラウンド位置情報権限</string>
+    <string name="common_permission_location_background_description">バックグラウンドで位置情報を継続的に取得するために使用します。例：リアルタイム軌跡の記録、バックグラウンドナビゲーション、緊急時の位置情報共有など</string>
 </resources>
