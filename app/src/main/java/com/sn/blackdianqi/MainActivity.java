@@ -20,7 +20,9 @@ import androidx.annotation.Nullable;
 import com.sn.blackdianqi.activity.ConnectActivity;
 import com.sn.blackdianqi.activity.HomeActivity;
 import com.sn.blackdianqi.activity.MainMcuActivity;
+import com.sn.blackdianqi.activity.SettingActivity;
 import com.sn.blackdianqi.activity.SingleMcuActivity;
+import com.sn.blackdianqi.activity.WebActivity;
 import com.sn.blackdianqi.base.BaseActivity;
 import com.sn.blackdianqi.bean.DeviceBean;
 import com.sn.blackdianqi.dialog.DoubleConfirmDialog;
@@ -39,6 +41,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.text_enter)
     TextView textView;
+    @BindView(R.id.tv_privacy)
+    TextView tvPrivacy;
     @BindView(R.id.img_logo)
     ImageView imageView;
 
@@ -60,6 +64,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         imageView.setImageResource(R.mipmap.app_logo_small);
         textView.setOnClickListener(this);
+        tvPrivacy.setOnClickListener(this);
 
         isAgreePrivacy = PreferenceUtil.getBoolean("isAgreePrivacy", false);
 
@@ -134,6 +139,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_privacy:
+                Intent webIntent = new Intent(MainActivity.this, WebActivity.class);
+                startActivity(webIntent);
+                break;
             case R.id.text_enter:
                 if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
                     ToastUtils.showToast(this, getResources().getString(R.string.open_bluetooth));
