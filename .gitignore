@@ -1,0 +1,21 @@
+*.iml
+.idea/
+target/
+Logs/
+bin/
+*.class
+./gradle
+/.gradle/
+
+# Eclipse project files
+/target/
+metircs-client-all.log*
+.classpath
+.project
+.DS_Store
+.settings
+/.metadata
+.concrete
+*.lock
+*.bin
+

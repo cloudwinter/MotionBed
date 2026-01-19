@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="title" format="reference|string" />
+    <attr name="size" format="dimension" />
+    <attr name="bgnormal" format="reference" />
+    <attr name="bgselected" format="reference" />
+    <attr name="icon" format="reference" />
+    <attr name="selecticon" format="reference" />
+    <attr name="desc" format="reference|string" />
+    <attr name="bgnormaltop" format="reference" />
+    <attr name="bgselectedtop" format="reference" />
+    <attr name="bgnormalbottom" format="reference" />
+    <attr name="bgselectedbottom" format="reference" />
+
+
+    <declare-styleable name="JiyiView">
+        <attr name="title" />
+        <attr name="size" />
+        <attr name="bgnormal" />
+        <attr name="bgselected" />
+        <attr name="showIcon" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="AnjianYuanView">
+        <attr name="title" />
+        <attr name="icon" />
+        <attr name="bgnormal" />
+        <attr name="bgselected" />
+        <attr name="pratio" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="AnjianTuoYuanView">
+        <attr name="title" />
+        <attr name="icon" />
+        <attr name="bgnormal" />
+        <attr name="bgselected" />
+    </declare-styleable>
+    <declare-styleable name="AnjianTuoYuanView2">
+        <attr name="title" />
+        <attr name="icon" />
+        <attr name="selecticon" />
+        <attr name="bgnormaltop" />
+        <attr name="bgselectedtop" />
+        <attr name="bgnormalbottom" />
+        <attr name="bgselectedbottom" />
+    </declare-styleable>
+
+    <declare-styleable name="AnjianAnmoYuanView">
+        <attr name="title" />
+        <attr name="icon" />
+        <attr name="bgnormal" />
+        <attr name="bgselected" />
+        <attr name="imgnormal" format="reference"/>
+        <attr name="imgselected" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="AnjianAnmoView">
+        <attr name="title" />
+        <attr name="icon" />
+        <attr name="bgnormal" />
+        <attr name="bgselected" />
+        <attr name="linecount" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="WeekItemView">
+        <attr name="title" />
+    </declare-styleable>
+
+    <declare-styleable name="FixedRatioRelativeLayout">
+        <attr name="ratio" format="float"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="ProlateItemView">
+        <attr name="title" />
+        <attr name="desc" />
+    </declare-styleable>
+
+    <declare-styleable name="ProlateItemSwitchView">
+        <attr name="title" />
+        <attr name="desc" />
+    </declare-styleable>
+
+
+    <declare-styleable name="ProlateSwitchView">
+        <attr name="title" />
+    </declare-styleable>
+
+    <!-- 仪表盘自定义属性 -->
+    <declare-styleable name="VerticalSeekBar">
+        <!--背景颜色-->
+        <attr name="bgColor" format="color"/>
+        <!--进度颜色-->
+        <attr name="progressColor" format="color"/>
+        <!--当前进度-->
+        <attr name="progress" format="float"/>
+        <!--总进度-->
+        <attr name="maxProgress" format="float"/>
+        <!--是否显示小太阳-->
+        <attr name="showSun" format="boolean"/>
+        <!--是否缩放小太阳-->
+        <attr name="zoomSun" format="boolean"/>
+        <!--小太阳颜色-->
+        <attr name="sunColor" format="color"/>
+        <!--小太阳半径-->
+        <attr name="circleRadius" format="dimension"/>
+        <!--矩形圆角-->
+        <attr name="radiusXY" format="dimension"/>
+        <attr name="showText" format="boolean"/>
+        <attr name="setTextColor" format="color"/>
+        <attr name="setTextHeight" format="integer|dimension"/>
+        <attr name="setTextSize" format="dimension"/>
+    </declare-styleable>
+</resources>

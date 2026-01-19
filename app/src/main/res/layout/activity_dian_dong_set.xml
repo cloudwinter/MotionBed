@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/ic_bg"
+    android:orientation="vertical"
+    tools:context=".activity.DianDongSetActivity">
+
+    <com.sn.blackdianqi.view.TranslucentActionBar
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/llAnmoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_15"
+                android:background="@drawable/bg_rectangle_gray"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/dp_10"
+                android:paddingVertical="@dimen/dp_6">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_28"
+                    android:layout_height="@dimen/dp_28"
+                    android:src="@mipmap/anmo_qiangdu" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:text="@string/anmo_set"
+                    android:textColor="@color/color_C9C9C9"
+                    android:textSize="@dimen/sp_12" />
+
+                <ImageView
+                    android:id="@+id/ivAnmo"
+                    android:layout_width="@dimen/dp_12"
+                    android:layout_height="@dimen/dp_12"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/arror_down" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llAnmo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="28dp"
+                    android:orientation="horizontal">
+
+
+                    <com.sn.blackdianqi.view.AnjianAnmoYuanView
+                        android:id="@+id/view_10time"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:bgnormal="@drawable/bg_tuoyuan_normal"
+                        app:bgselected="@drawable/bg_tuoyuan_selected"
+                        app:icon="@mipmap/ic_time_10_normal"
+                        app:imgnormal="@mipmap/ic_time_10_normal"
+                        app:imgselected="@mipmap/ic_time_10_selected"
+                        app:title="@string/tenmin" />
+
+                    <View
+                        android:layout_width="25dp"
+                        android:layout_height="match_parent" />
+
+                    <com.sn.blackdianqi.view.AnjianAnmoYuanView
+                        android:id="@+id/view_20time"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:bgnormal="@drawable/bg_tuoyuan_normal"
+                        app:bgselected="@drawable/bg_tuoyuan_selected"
+                        app:icon="@mipmap/ic_time_20_normal"
+                        app:imgnormal="@mipmap/ic_time_20_normal"
+                        app:imgselected="@mipmap/ic_time_20_selected"
+                        app:title="@string/twentymin" />
+
+                    <View
+                        android:layout_width="25dp"
+                        android:layout_height="match_parent" />
+
+                    <com.sn.blackdianqi.view.AnjianAnmoYuanView
+                        android:id="@+id/view_30time"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:bgnormal="@drawable/bg_tuoyuan_normal"
+                        app:bgselected="@drawable/bg_tuoyuan_selected"
+                        app:icon="@mipmap/ic_time_30_normal"
+                        app:imgnormal="@mipmap/ic_time_30_normal"
+                        app:imgselected="@mipmap/ic_time_30_selected"
+                        app:title="@string/thirtymin" />
+
+                </LinearLayout>
+
+                <com.sn.blackdianqi.view.AnjianAnmoView
+                    android:id="@+id/view_anmo_pinglv"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="@dimen/weitiao_marin"
+                    android:layout_marginTop="@dimen/weitiao_marin"
+                    android:layout_marginRight="@dimen/weitiao_marin"
+                    app:bgnormal="@drawable/bg_tuoyuan_normal"
+                    app:icon="@mipmap/ic_anmopinglv"
+                    app:linecount="4"
+                    app:title="@string/anmopinglv2" />
+
+                <com.sn.blackdianqi.view.AnjianAnmoView
+                    android:id="@+id/view_anmo_toubu"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="@dimen/weitiao_marin"
+                    android:layout_marginTop="@dimen/weitiao_marin"
+                    android:layout_marginRight="@dimen/weitiao_marin"
+                    app:bgnormal="@drawable/bg_tuoyuan_normal"
+                    app:icon="@mipmap/ic_beibuanmo"
+                    app:linecount="3"
+                    app:title="@string/toubuanmo" />
+
+                <com.sn.blackdianqi.view.AnjianAnmoView
+                    android:id="@+id/view_anmo_zubu"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="@dimen/weitiao_marin"
+                    android:layout_marginTop="@dimen/weitiao_marin"
+                    android:layout_marginRight="@dimen/weitiao_marin"
+                    android:layout_marginBottom="10dp"
+                    app:bgnormal="@drawable/bg_tuoyuan_normal"
+                    app:icon="@mipmap/ic_zubuanmo"
+                    app:linecount="3"
+                    app:title="@string/zubuanmo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvSaveAnmo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_45"
+                        android:background="@drawable/shape_btn_green"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/dp_20"
+                        android:text="@string/alarm_save"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDengguangTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@drawable/bg_rectangle_gray"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/dp_10"
+                android:paddingVertical="@dimen/dp_6">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_28"
+                    android:layout_height="@dimen/dp_28"
+                    android:src="@mipmap/lighting" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:text="@string/dengguang_set"
+                    android:textColor="@color/color_C9C9C9"
+                    android:textSize="@dimen/sp_12" />
+
+                <ImageView
+                    android:id="@+id/ivDengguang"
+                    android:layout_width="@dimen/dp_12"
+                    android:layout_height="@dimen/dp_12"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/arror_up" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDengguang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_10fenzhong"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginHorizontal="@dimen/dp_15"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_tuoyuan_normal"
+                        android:gravity="center"
+                        android:text="@string/tenfenzhong"
+                        android:textColor="@color/anjian_text_color_selector"
+                        android:textSize="@dimen/sp_15" />
+
+                    <TextView
+                        android:id="@+id/tv_8xiaoshi"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginHorizontal="@dimen/dp_15"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_tuoyuan_normal"
+                        android:gravity="center"
+                        android:text="@string/eightxiaoshi"
+                        android:textColor="@color/anjian_text_color_selector"
+                        android:textSize="@dimen/sp_15" />
+
+
+                    <TextView
+                        android:id="@+id/tv_10xiaoshi"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginHorizontal="@dimen/dp_15"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_tuoyuan_normal"
+                        android:gravity="center"
+                        android:text="@string/tentxiaoshi"
+                        android:textColor="@color/anjian_text_color_selector"
+                        android:textSize="@dimen/sp_15" />
+
+
+                </LinearLayout>
+
+                <com.sn.blackdianqi.view.AnjianAnmoView
+                    android:id="@+id/view_dengguang_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginHorizontal="@dimen/dp_15"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    app:bgnormal="@drawable/bg_tuoyuan_normal"
+                    app:linecount="10"
+                    app:title="@string/dengguangliangdu" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvSaveDengguang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_45"
+                        android:background="@drawable/shape_btn_green"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/dp_20"
+                        android:text="@string/alarm_save"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llClockTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@drawable/bg_rectangle_gray"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/dp_10"
+                android:paddingVertical="@dimen/dp_6">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_28"
+                    android:layout_height="@dimen/dp_28"
+                    android:src="@mipmap/clock" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:text="@string/clock_set"
+                    android:textColor="@color/color_C9C9C9"
+                    android:textSize="@dimen/sp_12" />
+
+                <ImageView
+                    android:id="@+id/ivClock"
+                    android:layout_width="@dimen/dp_12"
+                    android:layout_height="@dimen/dp_12"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/arror_up" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llClock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_15"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/ll_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginRight="@dimen/dp_5"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_tuoyuan_normal"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/alarm_time"
+                            android:textColor="@color/text_white"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/tv_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:text=""
+                            android:textColor="@color/text_green"
+                            android:textSize="12dp" />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@mipmap/ic_row" />
+                    </LinearLayout>
+
+                    <!-- 星期 -->
+                    <LinearLayout
+                        android:id="@+id/ll_week"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_marginTop="1px"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_tuoyuan_normal"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/alarm_week"
+                            android:textColor="@color/text_white"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/tv_week"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/alarm_week_no_repeat"
+                            android:textColor="@color/text_green"
+                            android:textSize="12dp" />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@mipmap/ic_row" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 模式 -->
+                <LinearLayout
+                    android:id="@+id/ll_mode"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="@dimen/dp_15"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@drawable/bg_tuoyuan_normal"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/alarm_mode"
+                        android:textColor="@color/text_white"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:id="@+id/tv_mode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:text="@string/alarm_mode_budongzuo"
+                        android:textColor="@color/text_green"
+                        android:textSize="12dp" />
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@mipmap/ic_row" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_15"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:orientation="horizontal">
+
+                    <!-- 按摩 -->
+                    <LinearLayout
+                        android:id="@+id/ll_anmo"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginRight="@dimen/dp_5"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_tuoyuan_normal"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/alarm_anmo"
+                            android:textColor="@color/text_white"
+                            android:textSize="12dp" />
+
+                        <CheckBox
+                            android:id="@+id/cb_anmo"
+                            style="@style/checkbox_style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_checkbox" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_xiangling1"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="1px"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_tuoyuan_normal"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/alarm_xiangling2"
+                            android:textColor="@color/text_white"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/tv_music"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:text=""
+                            android:textColor="@color/text_green"
+                            android:textSize="12dp" />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@mipmap/ic_row" />
+
+                    </LinearLayout>
+
+                    <!-- 响铃 标准模式-->
+                    <LinearLayout
+                        android:id="@+id/ll_xiangling2"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_tuoyuan_normal"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/alarm_xiangling2"
+                            android:textColor="@color/text_white"
+                            android:textSize="12dp" />
+
+
+                        <CheckBox
+                            android:id="@+id/cb_xinagling"
+                            style="@style/checkbox_style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_checkbox" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvSaveClock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp_45"
+                        android:background="@drawable/shape_btn_green"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/dp_20"
+                        android:text="@string/alarm_save"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

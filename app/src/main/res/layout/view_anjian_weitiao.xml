@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+
+    <LinearLayout
+        android:id="@+id/layout_sanjiao_top"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/img_sanjiao_top"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/bg_sanjiao_top_selector"
+            />
+
+    </LinearLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:minWidth="150dp"
+        >
+
+        <View
+            android:id="@+id/view_center"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"/>
+
+        <ImageView
+            android:id="@+id/img_xr"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/xr_kandianshi_xiao"
+            android:layout_toLeftOf="@+id/view_center"
+            />
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:text="@string/kandianshi"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/anjian_tuoyuan_title_size"
+            android:layout_toEndOf="@+id/view_center"
+            android:layout_toRightOf="@+id/view_center"/>
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_sanjiao_bottom"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/img_sanjiao_bottom"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/bg_sanjiao_bottom_selector"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

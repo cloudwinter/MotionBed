@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/dp_15"
+    android:paddingVertical="@dimen/dp_10"
+    tools:context=".fragment.DiandongFragment">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_rectangle_gray"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/dp_10"
+        android:paddingVertical="@dimen/dp_6">
+
+        <ImageView
+            android:layout_width="@dimen/dp_28"
+            android:layout_height="@dimen/dp_28"
+            android:src="@mipmap/weitiao_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:text="@string/weitiao2"
+            android:textColor="@color/color_C9C9C9"
+            android:textSize="@dimen/sp_14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/dp_10">
+
+        <com.sn.blackdianqi.view.AnjianWeitiaoVertical2View
+            android:id="@+id/view_beibutiaozheng"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_130"
+            android:layout_marginRight="@dimen/dp_50"
+            app:bgnormalbottom="@drawable/bg_circle_bottom"
+            app:bgnormaltop="@drawable/bg_circle_top"
+            app:bgselectedbottom="@drawable/bg_circle_bottom_selector"
+            app:bgselectedtop="@drawable/bg_circle_top_selector"
+            app:icon="@mipmap/xr_zhihan_xiao"
+            app:selecticon="@mipmap/xr_zhihan_da" />
+
+
+        <com.sn.blackdianqi.view.AnjianWeitiaoVertical2View
+            android:id="@+id/view_tuibutiaozheng"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_130"
+            android:layout_marginLeft="@dimen/dp_50"
+            app:bgnormalbottom="@drawable/bg_circle_bottom"
+            app:bgnormaltop="@drawable/bg_circle_top"
+            app:bgselectedbottom="@drawable/bg_circle_bottom_selector"
+            app:bgselectedtop="@drawable/bg_circle_top_selector"
+            app:icon="@mipmap/xr_tuibuxunhuan_xiao"
+            app:selecticon="@mipmap/xr_tuibuxunhuan_da" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/bg_rectangle_gray"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/dp_10"
+        android:paddingVertical="@dimen/dp_6">
+
+        <ImageView
+            android:layout_width="@dimen/dp_28"
+            android:layout_height="@dimen/dp_28"
+            android:src="@mipmap/mode_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:text="@string/moshi"
+            android:textColor="@color/color_C9C9C9"
+            android:textSize="@dimen/sp_14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/dp_10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.sn.blackdianqi.view.JiyiSmall2View
+                android:id="@+id/view_kandianshi"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_50"
+                android:layout_marginHorizontal="@dimen/dp_5"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                app:bgnormal="@drawable/bg_tuoyuan_normal"
+                app:bgselected="@drawable/bg_tuoyuan_selected"
+                app:size="@dimen/sp_11"
+                app:title="@string/dianshi" />
+
+            <com.sn.blackdianqi.view.JiyiSmall2View
+                android:id="@+id/view_zhihan"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dp_5"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                app:bgnormal="@drawable/bg_tuoyuan_normal"
+                app:bgselected="@drawable/bg_tuoyuan_selected"
+                app:size="@dimen/sp_11"
+                app:title="@string/zhihan2" />
+
+            <com.sn.blackdianqi.view.JiyiSmall2View
+                android:id="@+id/view_lingyali"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dp_5"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                app:bgnormal="@drawable/bg_tuoyuan_normal"
+                app:bgselected="@drawable/bg_tuoyuan_selected"
+                app:size="@dimen/sp_11"
+                app:title="@string/lingya2" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:orientation="horizontal">
+
+            <com.sn.blackdianqi.view.JiyiSmall2View
+                android:id="@+id/view_jiyi1"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_50"
+                android:layout_marginHorizontal="@dimen/dp_5"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                app:bgnormal="@drawable/bg_tuoyuan_normal"
+                app:bgselected="@drawable/bg_tuoyuan_selected"
+                app:size="@dimen/sp_11"
+                app:title="@string/jiyi11" />
+
+            <com.sn.blackdianqi.view.JiyiSmall2View
+                android:id="@+id/view_yaolan"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dp_5"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                app:bgnormal="@drawable/bg_tuoyuan_normal"
+                app:bgselected="@drawable/bg_tuoyuan_selected"
+                app:showIcon="false"
+                app:size="@dimen/sp_11"
+                app:title="@string/yaolan" />
+
+            <com.sn.blackdianqi.view.JiyiSmall2View
+                android:id="@+id/view_jiyi2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dp_5"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                app:bgnormal="@drawable/bg_tuoyuan_normal"
+                app:bgselected="@drawable/bg_tuoyuan_selected"
+                app:size="@dimen/sp_11"
+                app:title="@string/jiyi22" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginTop="@dimen/dp_10"
+            android:orientation="horizontal">
+
+            <com.sn.blackdianqi.view.JiyiSmall2View
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dp_5"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:visibility="invisible"
+                app:bgnormal="@drawable/bg_tuoyuan_normal"
+                app:bgselected="@drawable/bg_tuoyuan_selected"
+                app:size="@dimen/sp_11" />
+
+            <com.sn.blackdianqi.view.JiyiSmall2View
+                android:id="@+id/view_fuyuan"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dp_5"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                app:bgnormal="@drawable/bg_tuoyuan_normal"
+                app:bgselected="@drawable/bg_tuoyuan_selected"
+                app:showIcon="false"
+                app:size="@dimen/sp_11"
+                app:title="@string/fangping" />
+
+            <com.sn.blackdianqi.view.JiyiSmall2View
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dp_5"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:visibility="invisible"
+                app:bgnormal="@drawable/bg_tuoyuan_normal"
+                app:bgselected="@drawable/bg_tuoyuan_selected"
+                app:size="@dimen/sp_11" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:id="@+id/ll_dingshi"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginHorizontal="@dimen/dp_5"
+            android:layout_weight="1"
+            android:background="@drawable/bg_tuoyuan_normal"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/dp_10">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/dingshi"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_12" />
+
+            <CheckBox
+                android:id="@+id/cb_dingshi"
+                style="@style/checkbox_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_checkbox" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_dengguang"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginHorizontal="@dimen/dp_5"
+            android:layout_weight="1"
+            android:background="@drawable/bg_tuoyuan_normal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/dengguang2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_12" />
+
+            <CheckBox
+                android:id="@+id/cb_dengguang"
+                style="@style/checkbox_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_checkbox" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_anmo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginHorizontal="@dimen/dp_5"
+            android:layout_weight="1"
+            android:background="@drawable/bg_tuoyuan_normal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/anmo2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_12" />
+
+            <CheckBox
+                android:id="@+id/cb_anmo"
+                style="@style/checkbox_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_checkbox" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_ddset"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginHorizontal="@dimen/dp_5"
+            android:layout_weight="1"
+            android:background="@drawable/bg_tuoyuan_normal"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/dp_10">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="@string/setting"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_12" />
+
+            <ImageView
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="match_parent"
+                android:padding="@dimen/dp_5"
+                android:src="@mipmap/ic_row" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_zhinengjiance"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginHorizontal="@dimen/dp_5"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/bg_tuoyuan_normal"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/dp_10"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_6"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/clock" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_weight="1"
+            android:text="@string/zhinengjiance"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_12" />
+
+        <ImageView
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="match_parent"
+            android:padding="@dimen/dp_5"
+            android:src="@mipmap/ic_row" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
