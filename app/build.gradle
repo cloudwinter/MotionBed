@@ -147,7 +147,6 @@ dependencies {
     /**权限*/
     implementation 'com.github.getActivity:XXPermissions:28.0'
 
-
     // test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
