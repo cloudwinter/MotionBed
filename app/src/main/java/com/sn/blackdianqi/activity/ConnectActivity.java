@@ -166,7 +166,7 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
         blueNameList = defindeBlueNameList();
         // 设置title
         mFrom = getIntent().getStringExtra("from");
-        titleBar.setData(getString(R.string.blue_equipment), R.mipmap.ic_back, null, 0, null, this);
+        titleBar.setData(getString(R.string.blue_equipment), R.mipmap.ic_back, null, R.mipmap.ic_set, getString(R.string.setting), this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             titleBar.setStatusBarHeight(getStatusBarHeight());
