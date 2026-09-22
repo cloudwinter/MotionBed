@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -462,7 +463,7 @@
 
                     <!-- 按摩 -->
                     <LinearLayout
-                        android:id="@+id/ll_anmo"
+                        android:id="@+id/ll_alarm_anmo"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginRight="@dimen/dp_5"
@@ -579,3 +580,4 @@
     </ScrollView>
 
 </LinearLayout>
+</layout>

@@ -9,11 +9,15 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.sn.blackdianqi.MyApplication;
 import com.sn.blackdianqi.util.LogUtils;
@@ -28,6 +32,8 @@ import java.util.Locale;
 
 public class BaseActivity extends AppCompatActivity {
 
+    private boolean navBarInsetApplied;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +45,41 @@ public class BaseActivity extends AppCompatActivity {
         //根据上次的语言设置，重新设置语言
         switchLanguage(Prefer.getInstance().getSelectedLanguage());
         LogUtils.d("BaseActivity", "当前系统的版本为：" + Build.VERSION.SDK_INT);
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        applyNavigationBarInset();
+    }
+
+    /**
+     * targetSdk 35 起系统强制边到边显示，页面底部会与导航栏/手势条重叠，
+     * 这里统一给根布局补上底部内边距（顶部由 TranslucentActionBar 自行处理，不重复加）
+     */
+    private void applyNavigationBarInset() {
+        if (navBarInsetApplied) {
+            return;
+        }
+        View content = findViewById(android.R.id.content);
+        if (!(content instanceof ViewGroup) || ((ViewGroup) content).getChildCount() == 0) {
+            return;
+        }
+        final View root = ((ViewGroup) content).getChildAt(0);
+        navBarInsetApplied = true;
+        final int left = root.getPaddingLeft();
+        final int top = root.getPaddingTop();
+        final int right = root.getPaddingRight();
+        final int bottom = root.getPaddingBottom();
+        ViewCompat.setOnApplyWindowInsetsListener(root, new OnApplyWindowInsetsListener() {
+            @Override
+            public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat insets) {
+                int navBarHeight = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+                v.setPadding(left, top, right, bottom + navBarHeight);
+                return insets;
+            }
+        });
+        ViewCompat.requestApplyInsets(root);
     }
 
     @Override

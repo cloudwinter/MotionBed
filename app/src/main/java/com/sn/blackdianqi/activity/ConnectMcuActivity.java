@@ -49,9 +49,9 @@ import net.frakbot.jumpingbeans.JumpingBeans;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityConnectMcuBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ConnectMcuActivity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener {
 
@@ -64,13 +64,9 @@ public class ConnectMcuActivity extends BaseActivity implements TranslucentActio
     // 是否是第一次扫描
     protected boolean isFirstScan = false;
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar titleBar;
-    @BindView(R.id.tv_try)
     TextView textViewTry;
-    @BindView(R.id.tv_connect_time)
     TextView textViewConnectTime;
-    @BindView(R.id.lv)
     ListView listView;
 
     // 自定义Adapter
@@ -112,8 +108,11 @@ public class ConnectMcuActivity extends BaseActivity implements TranslucentActio
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_connect_mcu);
-        ButterKnife.bind(this);
+        ActivityConnectMcuBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_connect_mcu);
+        titleBar = binding.actionbar;
+        textViewTry = binding.tvTry;
+        textViewConnectTime = binding.tvConnectTime;
+        listView = binding.lv;
         titleBar.setData(getString(R.string.blue_equipment), R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);

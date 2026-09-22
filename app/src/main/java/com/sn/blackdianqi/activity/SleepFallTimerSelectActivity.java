@@ -18,8 +18,8 @@ import java.util.Iterator;
 import java.util.Map;
 
 import androidx.annotation.Nullable;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivitySleepFallTimerSelectBinding;
 
 /**
  * 00 20:00
@@ -39,21 +39,14 @@ public class SleepFallTimerSelectActivity extends BaseBlueActivity implements Tr
     public static String EXTRA_KEY = "WEEK_EXTRA_KEY";
 
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.v_2000)
     WeekItemView mItemView2000;
-    @BindView(R.id.v_2100)
     WeekItemView mItemView2100;
-    @BindView(R.id.v_2200)
     WeekItemView mItemView2200;
-    @BindView(R.id.v_2300)
     WeekItemView mItemView2300;
-    @BindView(R.id.v_2400)
     WeekItemView mItemView2400;
 
-    @BindView(R.id.ll_save)
     LinearLayout saveLL;
 
     private Map<String, WeekItemView> itemViewMap = new HashMap<>();
@@ -71,8 +64,14 @@ public class SleepFallTimerSelectActivity extends BaseBlueActivity implements Tr
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sleep_fall_timer_select);
-        ButterKnife.bind(this);
+        ActivitySleepFallTimerSelectBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sleep_fall_timer_select);
+        actionBar = binding.actionbar;
+        mItemView2000 = binding.v2000;
+        mItemView2100 = binding.v2100;
+        mItemView2200 = binding.v2200;
+        mItemView2300 = binding.v2300;
+        mItemView2400 = binding.v2400;
+        saveLL = binding.llSave;
         // 设置title
         actionBar.setData(getString(R.string.sleep_timer_title), R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

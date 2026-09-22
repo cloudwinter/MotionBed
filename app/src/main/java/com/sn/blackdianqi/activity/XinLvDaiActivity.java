@@ -34,26 +34,20 @@ import com.sn.blackdianqi.util.ToastUtils;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
 import java.util.Locale;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityXinLvDaiBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class XinLvDaiActivity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener {
 
     public static final String TAG = "XinLvDaiActivity";
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.ll_set_wifi)
     LinearLayout llSetWifi;
-    @BindView(R.id.ll_shishixinlvdata)
     LinearLayout llShishixinlvdata;
-    @BindView(R.id.ll_shuimianbaogao)
     LinearLayout llShuimianbaogao;
-    @BindView(R.id.tvNetWorkTitle)
     TextView tvNetWorkTitle;
-    @BindView(R.id.tvNetworkDesc)
     TextView tvNetworkDesc;
 
     String networkTitle = "";
@@ -71,8 +65,13 @@ public class XinLvDaiActivity extends BaseActivity implements TranslucentActionB
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-        setContentView(R.layout.activity_xin_lv_dai);
-        ButterKnife.bind(this);
+        ActivityXinLvDaiBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_xin_lv_dai);
+        actionBar = binding.actionbar;
+        llSetWifi = binding.llSetWifi;
+        llShishixinlvdata = binding.llShishixinlvdata;
+        llShuimianbaogao = binding.llShuimianbaogao;
+        tvNetWorkTitle = binding.tvNetWorkTitle;
+        tvNetworkDesc = binding.tvNetworkDesc;
         actionBar.setData(getResources().getString(R.string.zhinengjiance), R.mipmap.ic_back, null, 0, "", this);
         actionBar.setStatusBarHeight(getStatusBarHeight());
         initView();

@@ -38,36 +38,27 @@ import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.util.ToastUtils;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import lecho.lib.hellocharts.model.Line;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivitySetting2Binding;
 
 public class Setting2Activity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
     public static final String TAG = "Setting2Activity";
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.ll_connect)
     LinearLayout llConnect;
 
-    @BindView(R.id.tv_connect)
     TextView tvConnect;
 
-    @BindView(R.id.ll_language)
     LinearLayout llLanguage;
 
-    @BindView(R.id.tv_language)
     TextView tvLanguage;
 
-    @BindView(R.id.ll_version)
     LinearLayout llVersion;
-    @BindView(R.id.tv_version)
     TextView tv_version;
-    @BindView(R.id.ll_privacy)
     LinearLayout llPrivacy;
 
-    @BindView(R.id.ll_changeDevice)
     LinearLayout llChangeDevice;
 
 
@@ -119,8 +110,16 @@ public class Setting2Activity extends BaseActivity implements TranslucentActionB
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-        setContentView(R.layout.activity_setting2);
-        ButterKnife.bind(this);
+        ActivitySetting2Binding binding = DataBindingUtil.setContentView(this, R.layout.activity_setting2);
+        actionBar = binding.actionbar;
+        llConnect = binding.llConnect;
+        tvConnect = binding.tvConnect;
+        llLanguage = binding.llLanguage;
+        tvLanguage = binding.tvLanguage;
+        llVersion = binding.llVersion;
+        tv_version = binding.tvVersion;
+        llPrivacy = binding.llPrivacy;
+        llChangeDevice = binding.llChangeDevice;
         actionBar.setData(getResources().getString(R.string.setting), R.mipmap.ic_back, null, 0, "", this);
         actionBar.setStatusBarHeight(getStatusBarHeight());
 

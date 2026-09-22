@@ -30,25 +30,21 @@ import com.sn.blackdianqi.util.ToastUtils;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
 import org.greenrobot.eventbus.EventBus;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityMainMcuBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainMcuActivity extends BaseActivity implements View.OnClickListener, TranslucentActionBar.ActionBarClickListener {
 
     public static final String TAG = "MainMcuActivity";
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
 
-    @BindView(R.id.llModule1)
     LinearLayout llModule1;
 
-    @BindView(R.id.llModule2)
     LinearLayout llModule2;
 
-    @BindView(R.id.llModule3)
     LinearLayout llModule3;
 
     private String blueName;
@@ -80,8 +76,11 @@ public class MainMcuActivity extends BaseActivity implements View.OnClickListene
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-        setContentView(R.layout.activity_main_mcu);
-        ButterKnife.bind(this);
+        ActivityMainMcuBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main_mcu);
+        actionBar = binding.actionbar;
+        llModule1 = binding.llModule1;
+        llModule2 = binding.llModule2;
+        llModule3 = binding.llModule3;
         actionBar.setData(null, R.mipmap.ic_back, null, R.mipmap.ic_set, getString(R.string.setting), this);
         actionBar.setStatusBarHeight(getStatusBarHeight());
         DeviceBean deviceBean = Prefer.getInstance().getConnectedDevice();

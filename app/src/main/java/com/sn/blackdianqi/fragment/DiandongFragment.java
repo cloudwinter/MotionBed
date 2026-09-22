@@ -33,53 +33,36 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.Date;
 import java.util.HashMap;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.FragmentDiandongBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 电动床
  */
 public class DiandongFragment extends BaseMcuFragment implements View.OnTouchListener {
 
-    @BindView(R.id.view_beibutiaozheng)
     AnjianWeitiaoVertical2View beibutiaozhengView;
-    @BindView(R.id.view_tuibutiaozheng)
     AnjianWeitiaoVertical2View tuibutiaozhengView;
 
-    @BindView(R.id.view_kandianshi)
     JiyiSmall2View kandianshiView;
-    @BindView(R.id.view_lingyali)
     JiyiSmall2View lingyaliView;
-    @BindView(R.id.view_zhihan)
     JiyiSmall2View zhihanView;
 
-    @BindView(R.id.view_jiyi1)
     JiyiSmall2View jiyi1View;
-    @BindView(R.id.view_jiyi2)
     JiyiSmall2View jiyi2View;
 
-    @BindView(R.id.view_fuyuan)
     JiyiSmall2View fuyuanView;
-    @BindView(R.id.view_yaolan)
     JiyiSmall2View yaolanView;
 
-    @BindView(R.id.ll_dengguang)
     LinearLayout llDengguang;
-    @BindView(R.id.ll_anmo)
     LinearLayout llAnmo;
-    @BindView(R.id.ll_dingshi)
     LinearLayout llDingshi;
-    @BindView(R.id.ll_ddset)
     LinearLayout llDdset;
-    @BindView(R.id.ll_zhinengjiance)
     LinearLayout llZhinengjiance;
 
-    @BindView(R.id.cb_dengguang)
     CheckBox cbDengguang;
-    @BindView(R.id.cb_anmo)
     CheckBox cbAnmo;
-    @BindView(R.id.cb_dingshi)
     CheckBox cbDingshi;
 
     private long eventDownTime = 0L;
@@ -413,7 +396,25 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_diandong, container, false);
+        FragmentDiandongBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_diandong, container, false);
+        View view = binding.getRoot();
+        beibutiaozhengView = binding.viewBeibutiaozheng;
+        tuibutiaozhengView = binding.viewTuibutiaozheng;
+        kandianshiView = binding.viewKandianshi;
+        lingyaliView = binding.viewLingyali;
+        zhihanView = binding.viewZhihan;
+        jiyi1View = binding.viewJiyi1;
+        jiyi2View = binding.viewJiyi2;
+        fuyuanView = binding.viewFuyuan;
+        yaolanView = binding.viewYaolan;
+        llDengguang = binding.llDengguang;
+        llAnmo = binding.llAnmo;
+        llDingshi = binding.llDingshi;
+        llDdset = binding.llDdset;
+        llZhinengjiance = binding.llZhinengjiance;
+        cbDengguang = binding.cbDengguang;
+        cbAnmo = binding.cbAnmo;
+        cbDingshi = binding.cbDingshi;
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -421,7 +422,6 @@ public class DiandongFragment extends BaseMcuFragment implements View.OnTouchLis
                 sendBlueFullCmd("FF FF FF FF 05 00 00 00 00 D7 00");
             }
         });
-        ButterKnife.bind(this, view);
         DeviceBean deviceBean = Prefer.getInstance().getConnectedDevice();
         if (deviceBean != null) {
             blueName = deviceBean.getTitle();

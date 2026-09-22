@@ -75,9 +75,9 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityHomeMcuBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class HomeMcuActivity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
 
@@ -86,38 +86,25 @@ public class HomeMcuActivity extends BaseActivity implements TranslucentActionBa
     // 设置tab个数
     private final static int tabCount = 3;
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.ll_content)
     RelativeLayout relativeLayout;
 
-    @BindView(R.id.vp_home)
     NoScrollViewPager viewPager;
 
-    @BindView(R.id.bottom_tabs)
     LinearLayout bottomTabs;
 
-    @BindView(R.id.tab1)
     LinearLayout tab1;
-    @BindView(R.id.tab1_img)
     ImageView tab1Img;
-    @BindView(R.id.tab1_text)
     TextView tab1TextView;
 
-    @BindView(R.id.tab2)
     LinearLayout tab2;
-    @BindView(R.id.tab2_img)
     ImageView tab2Img;
-    @BindView(R.id.tab2_text)
     TextView tab2TextView;
 
 
-    @BindView(R.id.tab3)
     LinearLayout tab3;
-    @BindView(R.id.tab3_img)
     ImageView tab3Img;
-    @BindView(R.id.tab3_text)
     TextView tab3TextView;
 
 
@@ -167,8 +154,20 @@ public class HomeMcuActivity extends BaseActivity implements TranslucentActionBa
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-        setContentView(R.layout.activity_home_mcu);
-        ButterKnife.bind(this);
+        ActivityHomeMcuBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_home_mcu);
+        actionBar = binding.actionbar;
+        relativeLayout = binding.llContent;
+        viewPager = binding.vpHome;
+        bottomTabs = binding.bottomTabs;
+        tab1 = binding.tab1;
+        tab1Img = binding.tab1Img;
+        tab1TextView = binding.tab1Text;
+        tab2 = binding.tab2;
+        tab2Img = binding.tab2Img;
+        tab2TextView = binding.tab2Text;
+        tab3 = binding.tab3;
+        tab3Img = binding.tab3Img;
+        tab3TextView = binding.tab3Text;
         actionBar.setData(null, R.mipmap.ic_back, null, R.mipmap.ic_set, getString(R.string.setting), this);
         actionBar.setStatusBarHeight(getStatusBarHeight());
 

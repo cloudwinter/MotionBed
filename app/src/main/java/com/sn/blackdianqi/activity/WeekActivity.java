@@ -17,8 +17,8 @@ import java.util.Iterator;
 import java.util.Map;
 
 import androidx.annotation.Nullable;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityWeekBinding;
 
 /**
  * 星期选择界面
@@ -34,24 +34,15 @@ public class WeekActivity extends BaseActivity implements TranslucentActionBar.A
     public static String EXTRA_KEY = "WEEK_EXTRA_KEY";
 
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.wiv_monday)
     WeekItemView weekMonday;
-    @BindView(R.id.wiv_tuesday)
     WeekItemView weekTuesday;
-    @BindView(R.id.wiv_wednesday)
     WeekItemView weekWednesday;
-    @BindView(R.id.wiv_thursday)
     WeekItemView weekThursday;
-    @BindView(R.id.wiv_friday)
     WeekItemView weekFriday;
-    @BindView(R.id.wiv_saturday)
     WeekItemView weekSaturday;
-    @BindView(R.id.wiv_sunday)
     WeekItemView weekSunday;
-    @BindView(R.id.ll_save)
     LinearLayout saveLL;
 
     @Override
@@ -67,8 +58,16 @@ public class WeekActivity extends BaseActivity implements TranslucentActionBar.A
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_week);
-        ButterKnife.bind(this);
+        ActivityWeekBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_week);
+        actionBar = binding.actionbar;
+        weekMonday = binding.wivMonday;
+        weekTuesday = binding.wivTuesday;
+        weekWednesday = binding.wivWednesday;
+        weekThursday = binding.wivThursday;
+        weekFriday = binding.wivFriday;
+        weekSaturday = binding.wivSaturday;
+        weekSunday = binding.wivSunday;
+        saveLL = binding.llSave;
         // 设置title
         actionBar.setData(getString(R.string.week), R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

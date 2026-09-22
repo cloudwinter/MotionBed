@@ -27,8 +27,6 @@ import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.Nullable;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import lecho.lib.hellocharts.gesture.ZoomType;
 import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.Axis;
@@ -39,6 +37,8 @@ import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.LineChartView;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivitySleepDayReportBinding;
 
 /**
  * 折线图的使用：https://blog.csdn.net/weixin_43670802/article/details/100996792
@@ -54,37 +54,23 @@ public class SleepDayReportActivity extends BaseBlueActivity implements Transluc
     public static String OZ_EXTRA_KEY = "OZ_EXTRA_KEY";
 
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
-    @BindView(R.id.title)
     TextView title;
 
-    @BindView(R.id.tv_zcsj_time)
     TextView tv_zcsj_time;
-    @BindView(R.id.tv_zcsj_time_unit)
     TextView tv_zcsj_time_unit;
-    @BindView(R.id.tv_fscs_count)
     TextView tv_fscs_count;
-    @BindView(R.id.tv_fscs_count_unit)
     TextView tv_fscs_count_unit;
-    @BindView(R.id.tv_ctsj_time)
     TextView tv_ctsj_time;
-    @BindView(R.id.tv_ctsj_time_unit)
     TextView tv_ctsj_time_unit;
-    @BindView(R.id.tv_ptsj_time)
     TextView tv_ptsj_time;
-    @BindView(R.id.tv_ptsj_time_unit)
     TextView tv_ptsj_time_unit;
 
-    @BindView(R.id.chart)
     LineChartView chartView;
 
-    @BindView(R.id.tv_line_title)
     TextView tv_line_title;
 
-    @BindView(R.id.tv_btn_pre)
     TextView tv_btn_pre;
-    @BindView(R.id.tv_btn_next)
     TextView tv_btn_next;
 
 
@@ -128,8 +114,21 @@ public class SleepDayReportActivity extends BaseBlueActivity implements Transluc
         }else {
             registerReceiver(mDataEntryReceiver, makeGattUpdateIntentFilter());
         }
-        setContentView(R.layout.activity_sleep_day_report);
-        ButterKnife.bind(this);
+        ActivitySleepDayReportBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sleep_day_report);
+        actionBar = binding.actionbar;
+        title = binding.title;
+        tv_zcsj_time = binding.tvZcsjTime;
+        tv_zcsj_time_unit = binding.tvZcsjTimeUnit;
+        tv_fscs_count = binding.tvFscsCount;
+        tv_fscs_count_unit = binding.tvFscsCountUnit;
+        tv_ctsj_time = binding.tvCtsjTime;
+        tv_ctsj_time_unit = binding.tvCtsjTimeUnit;
+        tv_ptsj_time = binding.tvPtsjTime;
+        tv_ptsj_time_unit = binding.tvPtsjTimeUnit;
+        chartView = binding.chart;
+        tv_line_title = binding.tvLineTitle;
+        tv_btn_pre = binding.tvBtnPre;
+        tv_btn_next = binding.tvBtnNext;
         // 设置title
         actionBar.setData(getString(R.string.sdr_action_bar_title), R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

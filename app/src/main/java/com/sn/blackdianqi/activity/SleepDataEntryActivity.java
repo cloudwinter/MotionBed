@@ -31,8 +31,8 @@ import com.sn.blackdianqi.view.TranslucentActionBar;
 import java.util.Random;
 
 import androidx.annotation.Nullable;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivitySleepDataentryBinding;
 
 /**
  * 睡姿录入页面
@@ -42,39 +42,25 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
 
     private final static String TAG = "SleepDataEntryActivity";
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.tv_title)
     TextView tv_title;
-    @BindView(R.id.tv_AA)
     TextView tv_AA;
-    @BindView(R.id.tv_KK)
     TextView tv_KK;
 
-    @BindView(R.id.ll_param_pingtang)
     LinearLayout ll_param_pingtang;
-    @BindView(R.id.tv_param_desc_pingtang)
     TextView tv_param_desc_pingtang;
-    @BindView(R.id.tv_param_desc_cetang)
     TextView tv_param_desc_cetang;
 
 
-    @BindView(R.id.ll_param_cetang)
     LinearLayout ll_param_cetang;
-    @BindView(R.id.tv_param_pingtang)
     EditText tv_param_pingtang;
-    @BindView(R.id.tv_param_cetang)
     EditText tv_param_cetang;
 
-    @BindView(R.id.tv_btn_pingtang)
     TextView tv_btn_pingtang;
-    @BindView(R.id.tv_btn_cetang)
     TextView tv_btn_cetang;
 
-    @BindView(R.id.tv_btn_save)
     TextView tv_btn_save;
-    @BindView(R.id.tv_btn_reset)
     TextView tv_btn_reset;
 
     WaitDialog waitDialog;
@@ -105,8 +91,21 @@ public class SleepDataEntryActivity extends BaseBlueActivity implements Transluc
             registerReceiver(mDataEntryReceiver, makeGattUpdateIntentFilter());
         }
 
-        setContentView(R.layout.activity_sleep_dataentry);
-        ButterKnife.bind(this);
+        ActivitySleepDataentryBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sleep_dataentry);
+        actionBar = binding.actionbar;
+        tv_title = binding.tvTitle;
+        tv_AA = binding.tvAA;
+        tv_KK = binding.tvKK;
+        ll_param_pingtang = binding.llParamPingtang;
+        tv_param_desc_pingtang = binding.tvParamDescPingtang;
+        tv_param_desc_cetang = binding.tvParamDescCetang;
+        ll_param_cetang = binding.llParamCetang;
+        tv_param_pingtang = binding.tvParamPingtang;
+        tv_param_cetang = binding.tvParamCetang;
+        tv_btn_pingtang = binding.tvBtnPingtang;
+        tv_btn_cetang = binding.tvBtnCetang;
+        tv_btn_save = binding.tvBtnSave;
+        tv_btn_reset = binding.tvBtnReset;
         // 设置title
         actionBar.setData(null, R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

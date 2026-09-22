@@ -27,33 +27,24 @@ import com.sn.blackdianqi.view.ProlateItemSwitchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.FragmentAnmoBinding;
 
 public class AnmoFragment extends BaseFragment implements View.OnClickListener {
     
     public static final String TAG = "DengguangFragment";
 
-    @BindView(R.id.item_tongbukz)
     ProlateItemSwitchView tongbukzView;
 
-    @BindView(R.id.img_anjian_top_icon)
     ImageView topIconImgView;
-    @BindView(R.id.text_anjian_top_title)
     TextView topTitleTextView;
 
-    @BindView(R.id.view_10time)
     AnjianAnmoYuanView min10View;
-    @BindView(R.id.view_20time)
     AnjianAnmoYuanView min20View;
-    @BindView(R.id.view_30time)
     AnjianAnmoYuanView min30View;
 
-    @BindView(R.id.view_anmo_pinglv)
     AnjianAnmoView anmoPinglvView;
-    @BindView(R.id.view_anmo_toubu)
     AnjianAnmoView anmoToubuView;
-    @BindView(R.id.view_anmo_zubu)
     AnjianAnmoView anmoZubuView;
 
     /**
@@ -91,8 +82,17 @@ public class AnmoFragment extends BaseFragment implements View.OnClickListener {
             getActivity().registerReceiver(mAnmoReceiver, makeGattUpdateIntentFilter());
         }
 
-        View view = inflater.inflate(R.layout.fragment_anmo, container, false);
-        ButterKnife.bind(this, view);
+        FragmentAnmoBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_anmo, container, false);
+        View view = binding.getRoot();
+        tongbukzView = binding.itemTongbukz;
+        topIconImgView = binding.imgAnjianTopIcon;
+        topTitleTextView = binding.textAnjianTopTitle;
+        min10View = binding.view10time;
+        min20View = binding.view20time;
+        min30View = binding.view30time;
+        anmoPinglvView = binding.viewAnmoPinglv;
+        anmoToubuView = binding.viewAnmoToubu;
+        anmoZubuView = binding.viewAnmoZubu;
         initView();
         return view;
     }

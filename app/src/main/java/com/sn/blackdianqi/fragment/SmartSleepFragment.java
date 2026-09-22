@@ -30,8 +30,8 @@ import com.sn.blackdianqi.view.ProlateSwitchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.FragmentSmartsleepBinding;
 
 /**
  * 智能睡眠页面
@@ -42,17 +42,11 @@ public class SmartSleepFragment extends BaseFragment implements View.OnClickList
 
     public static final int TIMER_REQUEST_CODE = 109;
 
-    @BindView(R.id.item_shujuluru)
     ProlateItemView mShujuluruItemView;
-    @BindView(R.id.item_jiaodutiaozheng)
     ProlateItemView mJiaodutiaozhengItemView;
-    @BindView(R.id.item_shuimiandingshi)
     ProlateItemView mShuimiandingshiItemView;
-    @BindView(R.id.item_shuimianbaogao)
     ProlateItemView mShuimianbaogaoItemView;
-    @BindView(R.id.switch_shuimian)
     ProlateSwitchView mShuimianSwitchView;
-    @BindView(R.id.switch_yedeng)
     ProlateSwitchView mYedengSwitchView;
 
     /**
@@ -92,8 +86,14 @@ public class SmartSleepFragment extends BaseFragment implements View.OnClickList
             getActivity().registerReceiver(mSmartSleepReceiver, makeGattUpdateIntentFilter());
         }
 
-        View view = inflater.inflate(R.layout.fragment_smartsleep, container, false);
-        ButterKnife.bind(this, view);
+        FragmentSmartsleepBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_smartsleep, container, false);
+        View view = binding.getRoot();
+        mShujuluruItemView = binding.itemShujuluru;
+        mJiaodutiaozhengItemView = binding.itemJiaodutiaozheng;
+        mShuimiandingshiItemView = binding.itemShuimiandingshi;
+        mShuimianbaogaoItemView = binding.itemShuimianbaogao;
+        mShuimianSwitchView = binding.switchShuimian;
+        mYedengSwitchView = binding.switchYedeng;
         initView();
         sleepTimer = RunningContext.sleepTimer;
         setSleepTimerDesc(sleepTimer);

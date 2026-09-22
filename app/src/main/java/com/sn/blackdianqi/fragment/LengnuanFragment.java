@@ -34,28 +34,21 @@ import com.sn.blackdianqi.util.Prefer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.FragmentLengnuanBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 冷暖
  */
 public class LengnuanFragment extends BaseMcuFragment {
 
-    @BindView(R.id.tvShuiWei)
     TextView tvShuiWei;
-    @BindView(R.id.ivSlider)
     ImageView ivSlider;
-    @BindView(R.id.rvList)
     RecyclerView rvList;
-    @BindView(R.id.cbTimer)
     CheckBox cbTimer;
-    @BindView(R.id.tvTime)
     TextView tvTime;
-    @BindView(R.id.llTime)
     LinearLayout llTime;
-    @BindView(R.id.tvTemp)
     TextView tvTemp;
 
 
@@ -274,8 +267,15 @@ public class LengnuanFragment extends BaseMcuFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_lengnuan, container, false);
-        ButterKnife.bind(this, view);
+        FragmentLengnuanBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_lengnuan, container, false);
+        View view = binding.getRoot();
+        tvShuiWei = binding.tvShuiWei;
+        ivSlider = binding.ivSlider;
+        rvList = binding.rvList;
+        cbTimer = binding.cbTimer;
+        tvTime = binding.tvTime;
+        llTime = binding.llTime;
+        tvTemp = binding.tvTemp;
         initData();
         initView();
         String cachePath = getActivity().getExternalCacheDir().getAbsolutePath();

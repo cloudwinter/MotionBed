@@ -28,8 +28,8 @@ import com.sn.blackdianqi.view.LoggerView;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
 import androidx.annotation.Nullable;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivitySleepAdjustBinding;
 
 /**
  * 睡姿角度调整页面
@@ -40,55 +40,33 @@ public class SleepAdjustActivity extends BaseBlueActivity implements Translucent
 
     public static final String TAG = "SleepAdjustActivity";
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
-    @BindView(R.id.tv_tips1)
     TextView tv_tips1;
-    @BindView(R.id.tv_tips2)
     TextView tv_tips2;
 
-    @BindView(R.id.layout_toubu)
     LinearLayout layout_toubu;
-    @BindView(R.id.layout_beibu)
     LinearLayout layout_beibu;
-    @BindView(R.id.layout_yaobu)
     LinearLayout layout_yaobu;
-    @BindView(R.id.layout_tuibu)
     LinearLayout layout_tuibu;
 
 
-    @BindView(R.id.tv_param_AZ)
     TextView tv_param_AZ;
-    @BindView(R.id.tv_param_BZ)
     TextView tv_param_BZ;
-    @BindView(R.id.tv_param_CZ)
     TextView tv_param_CZ;
-    @BindView(R.id.tv_param_DZ)
     TextView tv_param_DZ;
 
-    @BindView(R.id.tv_btn_toubu_top)
     LinearLayout tv_btn_toubu_top;
-    @BindView(R.id.tv_btn_beibu_top)
     LinearLayout tv_btn_beibu_top;
-    @BindView(R.id.tv_btn_yaobu_top)
     LinearLayout tv_btn_yaobu_top;
-    @BindView(R.id.tv_btn_tuibu_top)
     LinearLayout tv_btn_tuibu_top;
 
-    @BindView(R.id.tv_btn_toubu_bottom)
     LinearLayout tv_btn_toubu_bottom;
-    @BindView(R.id.tv_btn_beibu_bottom)
     LinearLayout tv_btn_beibu_bottom;
-    @BindView(R.id.tv_btn_yaobu_bottom)
     LinearLayout tv_btn_yaobu_bottom;
-    @BindView(R.id.tv_btn_tuibu_bottom)
     LinearLayout tv_btn_tuibu_bottom;
 
-    @BindView(R.id.tv_btn_pingtang)
     TextView tv_btn_pingtang;
-    @BindView(R.id.tv_btn_cetang)
     TextView tv_btn_cetang;
-    @BindView(R.id.tv_btn_save)
     TextView tv_btn_save;
 
     String pageType = "02";
@@ -117,8 +95,29 @@ public class SleepAdjustActivity extends BaseBlueActivity implements Translucent
             registerReceiver(mAdjustReceiver, makeGattUpdateIntentFilter());
         }
 
-        setContentView(R.layout.activity_sleep_adjust);
-        ButterKnife.bind(this);
+        ActivitySleepAdjustBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sleep_adjust);
+        actionBar = binding.actionbar;
+        tv_tips1 = binding.tvTips1;
+        tv_tips2 = binding.tvTips2;
+        layout_toubu = binding.layoutToubu;
+        layout_beibu = binding.layoutBeibu;
+        layout_yaobu = binding.layoutYaobu;
+        layout_tuibu = binding.layoutTuibu;
+        tv_param_AZ = binding.tvParamAZ;
+        tv_param_BZ = binding.tvParamBZ;
+        tv_param_CZ = binding.tvParamCZ;
+        tv_param_DZ = binding.tvParamDZ;
+        tv_btn_toubu_top = binding.tvBtnToubuTop;
+        tv_btn_beibu_top = binding.tvBtnBeibuTop;
+        tv_btn_yaobu_top = binding.tvBtnYaobuTop;
+        tv_btn_tuibu_top = binding.tvBtnTuibuTop;
+        tv_btn_toubu_bottom = binding.tvBtnToubuBottom;
+        tv_btn_beibu_bottom = binding.tvBtnBeibuBottom;
+        tv_btn_yaobu_bottom = binding.tvBtnYaobuBottom;
+        tv_btn_tuibu_bottom = binding.tvBtnTuibuBottom;
+        tv_btn_pingtang = binding.tvBtnPingtang;
+        tv_btn_cetang = binding.tvBtnCetang;
+        tv_btn_save = binding.tvBtnSave;
         // 设置title
         actionBar.setData(getString(R.string.sleep_timer_title), R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

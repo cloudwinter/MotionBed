@@ -31,8 +31,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 import androidx.annotation.Nullable;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivitySleepReportMainBinding;
 
 /**
  * 睡姿报告入口页面
@@ -43,20 +43,13 @@ public class SleepReportMainActivity extends BaseBlueActivity implements Translu
 
     public static final int TIMER_REQUEST_CODE = 109;
 
-    @BindView(R.id.tv_title)
     TextView tv_title;
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
-    @BindView(R.id.tv_month)
     TextView tv_month;
-    @BindView(R.id.calendarView)
     CalendarView calendarView;
-    @BindView(R.id.view_month)
     ProlateItemView monthView;
-    @BindView(R.id.view_time)
     ProlateItemView timeView;
-    @BindView(R.id.view_shsj)
     ProlateItemView shsjView;
 
     /**
@@ -79,8 +72,14 @@ public class SleepReportMainActivity extends BaseBlueActivity implements Translu
         }else {
             registerReceiver(mMonthReportReceiver, makeGattUpdateIntentFilter());
         }
-        setContentView(R.layout.activity_sleep_report_main);
-        ButterKnife.bind(this);
+        ActivitySleepReportMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sleep_report_main);
+        tv_title = binding.tvTitle;
+        actionBar = binding.actionbar;
+        tv_month = binding.tvMonth;
+        calendarView = binding.calendarView;
+        monthView = binding.viewMonth;
+        timeView = binding.viewTime;
+        shsjView = binding.viewShsj;
         // 设置title
         actionBar.setData(null, R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

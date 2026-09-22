@@ -31,19 +31,15 @@ import com.sn.blackdianqi.view.TranslucentActionBar;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityWifiListBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class WifiListActivity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener {
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
-    @BindView(R.id.rv_wifi)
     RecyclerView rvWifi;
-    @BindView(R.id.refresh)
     SwipeRefreshLayout refresh;
-    @BindView(R.id.tv_no_data)
     TextView tvNoData;
 
     private WifiAdapter wifiAdapter;
@@ -57,8 +53,11 @@ public class WifiListActivity extends BaseActivity implements TranslucentActionB
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-        setContentView(R.layout.activity_wifi_list);
-        ButterKnife.bind(this);
+        ActivityWifiListBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_wifi_list);
+        actionBar = binding.actionbar;
+        rvWifi = binding.rvWifi;
+        refresh = binding.refresh;
+        tvNoData = binding.tvNoData;
         actionBar.setData("WI-FI", R.mipmap.ic_back, null, 0, "", this);
         actionBar.setStatusBarHeight(getStatusBarHeight());
         rvWifi.setLayoutManager(new LinearLayoutManager(this));

@@ -71,9 +71,9 @@ import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityHomeBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class HomeActivity extends BaseActivity implements View.OnClickListener, TranslucentActionBar.ActionBarClickListener {
 
@@ -82,50 +82,32 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     // 设置tab个数
     private final static int tabCount = 5;
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.ll_content)
     RelativeLayout relativeLayout;
 
-    @BindView(R.id.vp_home)
     NoScrollViewPager viewPager;
 
-    @BindView(R.id.tab1)
     LinearLayout tab1;
-    @BindView(R.id.tab1_img)
     ImageView tab1Img;
-    @BindView(R.id.tab1_text)
     TextView tab1TextView;
 
-    @BindView(R.id.tab2)
     LinearLayout tab2;
-    @BindView(R.id.tab2_img)
     ImageView tab2Img;
-    @BindView(R.id.tab2_text)
     TextView tab2TextView;
 
 
-    @BindView(R.id.tab3)
     LinearLayout tab3;
-    @BindView(R.id.tab3_img)
     ImageView tab3Img;
-    @BindView(R.id.tab3_text)
     TextView tab3TextView;
 
 
-    @BindView(R.id.tab4)
     LinearLayout tab4;
-    @BindView(R.id.tab4_img)
     ImageView tab4Img;
-    @BindView(R.id.tab4_text)
     TextView tab4TextView;
 
-    @BindView(R.id.tab5)
     LinearLayout tab5;
-    @BindView(R.id.tab5_img)
     ImageView tab5Img;
-    @BindView(R.id.tab5_text)
     TextView tab5TextView;
 
     List<TextView> tabTextViews;
@@ -191,8 +173,25 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-        setContentView(R.layout.activity_home);
-        ButterKnife.bind(this);
+        ActivityHomeBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
+        actionBar = binding.actionbar;
+        relativeLayout = binding.llContent;
+        viewPager = binding.vpHome;
+        tab1 = binding.tab1;
+        tab1Img = binding.tab1Img;
+        tab1TextView = binding.tab1Text;
+        tab2 = binding.tab2;
+        tab2Img = binding.tab2Img;
+        tab2TextView = binding.tab2Text;
+        tab3 = binding.tab3;
+        tab3Img = binding.tab3Img;
+        tab3TextView = binding.tab3Text;
+        tab4 = binding.tab4;
+        tab4Img = binding.tab4Img;
+        tab4TextView = binding.tab4Text;
+        tab5 = binding.tab5;
+        tab5Img = binding.tab5Img;
+        tab5TextView = binding.tab5Text;
         actionBar.setData(null, R.mipmap.ic_back, null, R.mipmap.ic_set, getString(R.string.setting), this);
         actionBar.setStatusBarHeight(getStatusBarHeight());
         DeviceBean deviceBean = Prefer.getInstance().getConnectedDevice();

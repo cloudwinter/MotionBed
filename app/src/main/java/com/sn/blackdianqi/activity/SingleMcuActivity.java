@@ -21,16 +21,14 @@ import com.sn.blackdianqi.fragment.QinangFragment;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 
 import org.greenrobot.eventbus.EventBus;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivitySingleMcuBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class SingleMcuActivity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener {
     public static final String TAG = "HomeMcuActivity";
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
-    @BindView(R.id.container)
     FrameLayout container;
 
     private String type;
@@ -55,8 +53,9 @@ public class SingleMcuActivity extends BaseActivity implements TranslucentAction
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-        setContentView(R.layout.activity_single_mcu);
-        ButterKnife.bind(this);
+        ActivitySingleMcuBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_single_mcu);
+        actionBar = binding.actionbar;
+        container = binding.container;
         actionBar.setData(null, R.mipmap.ic_back, null, R.mipmap.ic_set, getString(R.string.setting), this);
         actionBar.setStatusBarHeight(getStatusBarHeight());
 

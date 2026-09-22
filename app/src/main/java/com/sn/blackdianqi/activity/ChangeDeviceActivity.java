@@ -28,33 +28,26 @@ import com.sn.blackdianqi.util.LogUtils;
 import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.util.ToastUtils;
 import com.sn.blackdianqi.view.TranslucentActionBar;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityChangeDeviceBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ChangeDeviceActivity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
 
     public static final String TAG = "ChangeDeviceActivity";
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.llDianDong)
     LinearLayout llDianDong;
 
-    @BindView(R.id.tvDisconnectDianDong)
     TextView tvDisconnectDianDong;
 
-    @BindView(R.id.llQiNang)
     LinearLayout llQiNang;
 
-    @BindView(R.id.tvDisconnectQiNang)
     TextView tvDisconnectQiNang;
 
-    @BindView(R.id.llLengNuan)
     LinearLayout llLengNuan;
 
-    @BindView(R.id.tvDisconnectLengNuan)
     TextView tvDisconnectLengNuan;
 
     // 加载中对话框
@@ -108,8 +101,14 @@ public class ChangeDeviceActivity extends BaseActivity implements TranslucentAct
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-        setContentView(R.layout.activity_change_device);
-        ButterKnife.bind(this);
+        ActivityChangeDeviceBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_change_device);
+        actionBar = binding.actionbar;
+        llDianDong = binding.llDianDong;
+        tvDisconnectDianDong = binding.tvDisconnectDianDong;
+        llQiNang = binding.llQiNang;
+        tvDisconnectQiNang = binding.tvDisconnectQiNang;
+        llLengNuan = binding.llLengNuan;
+        tvDisconnectLengNuan = binding.tvDisconnectLengNuan;
         actionBar.setData(getResources().getString(R.string.change_device), R.mipmap.ic_back, null, 0, "", this);
         actionBar.setStatusBarHeight(getStatusBarHeight());
 

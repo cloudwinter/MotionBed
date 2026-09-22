@@ -28,39 +28,28 @@ import com.sn.blackdianqi.view.JiyiView;
 
 import java.util.ArrayList;
 import java.util.List;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.FragmentQinangBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 气囊
  */
 public class QinangFragment extends BaseMcuFragment implements View.OnTouchListener {
 
-    @BindView(R.id.view_quanshen)
     AnjianRectangleView quanshenView;
-    @BindView(R.id.view_beibu)
     AnjianRectangleView beibuView;
-    @BindView(R.id.view_yaobu)
     AnjianRectangleView yaobuView;
-    @BindView(R.id.view_jingbu)
     AnjianRectangleView jingbuView;
-    @BindView(R.id.view_yujia)
     AnjianRectangleView yujiaView;
-    @BindView(R.id.view_shuimian)
     AnjianRectangleView shuimianView;
 
-    @BindView(R.id.cb_zishiying)
     CheckBox zishiyingCb;
 
-    @BindView(R.id.view_anmo_stop)
     JiyiSmall2View anmoStopView;
-    @BindView(R.id.view_fangqi)
     JiyiSmall2View fangqiView;
 
-    @BindView(R.id.view_anmo_set)
     LinearLayout anmoSetView;
-    @BindView(R.id.view_press_set)
     LinearLayout pressSetView;
 
     private List<View> views = new ArrayList<>();
@@ -143,8 +132,19 @@ public class QinangFragment extends BaseMcuFragment implements View.OnTouchListe
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_qinang, container, false);
-        ButterKnife.bind(this, view);
+        FragmentQinangBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_qinang, container, false);
+        View view = binding.getRoot();
+        quanshenView = binding.viewQuanshen;
+        beibuView = binding.viewBeibu;
+        yaobuView = binding.viewYaobu;
+        jingbuView = binding.viewJingbu;
+        yujiaView = binding.viewYujia;
+        shuimianView = binding.viewShuimian;
+        zishiyingCb = binding.cbZishiying;
+        anmoStopView = binding.viewAnmoStop;
+        fangqiView = binding.viewFangqi;
+        anmoSetView = binding.viewAnmoSet;
+        pressSetView = binding.viewPressSet;
         initView();
         return view;
     }

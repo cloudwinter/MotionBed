@@ -52,10 +52,10 @@ import java.util.logging.LogRecord;
 
 import androidx.annotation.Nullable;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import static com.sn.blackdianqi.activity.WeekActivity.RESULT_CODE;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityAlarmBinding;
 
 /**
  * 闹钟界面
@@ -71,46 +71,30 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
     private HashMap<Integer, Boolean> weekCheckBeanMap = new HashMap<>();
     private List<MusicBean> musicList = new ArrayList<>();
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.cb_switch)
     CheckBox switchCB;
 
-    @BindView(R.id.ll_content)
     LinearLayout contentLL;
 
-    @BindView(R.id.ll_time)
     LinearLayout timeLL;
-    @BindView(R.id.tv_time)
     TextView timeTV;
 
-    @BindView(R.id.ll_week)
     LinearLayout weekLL;
-    @BindView(R.id.tv_week)
     TextView weekTV;
 
-    @BindView(R.id.ll_mode)
     LinearLayout modeLL;
-    @BindView(R.id.tv_mode)
     TextView modeTV;
 
-    @BindView(R.id.ll_anmo)
     LinearLayout anmoLL;
-    @BindView(R.id.cb_anmo)
     CheckBox anmoCB;
 
-    @BindView(R.id.ll_xiangling1)
     LinearLayout xianglingLL1;
-    @BindView(R.id.tv_music)
     TextView tvMusic;
 
-    @BindView(R.id.ll_xiangling2)
     LinearLayout xianglingLL2;
-    @BindView(R.id.cb_xinagling)
     CheckBox xinaglingCB;
 
-    @BindView(R.id.ll_save)
     LinearLayout saveLL;
 
     // 加载中对话框
@@ -155,8 +139,23 @@ public class AlarmActivity extends BaseBlueActivity implements TranslucentAction
             registerReceiver(mAlarmReceiver, makeGattUpdateIntentFilter());
         }
 
-        setContentView(R.layout.activity_alarm);
-        ButterKnife.bind(this);
+        ActivityAlarmBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_alarm);
+        actionBar = binding.actionbar;
+        switchCB = binding.cbSwitch;
+        contentLL = binding.llContent;
+        timeLL = binding.llTime;
+        timeTV = binding.tvTime;
+        weekLL = binding.llWeek;
+        weekTV = binding.tvWeek;
+        modeLL = binding.llMode;
+        modeTV = binding.tvMode;
+        anmoLL = binding.llAnmo;
+        anmoCB = binding.cbAnmo;
+        xianglingLL1 = binding.llXiangling1;
+        tvMusic = binding.tvMusic;
+        xianglingLL2 = binding.llXiangling2;
+        xinaglingCB = binding.cbXinagling;
+        saveLL = binding.llSave;
         // 设置title
         actionBar.setData(getString(R.string.alarm), R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

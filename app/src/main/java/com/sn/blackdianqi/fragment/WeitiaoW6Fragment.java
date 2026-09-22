@@ -19,8 +19,8 @@ import com.sn.blackdianqi.view.ProlateItemSwitchView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.FragmentWeitiaoW6Binding;
 
 /**
  * 微调
@@ -29,22 +29,15 @@ public class WeitiaoW6Fragment extends WeitiaoBaseFragment {
 
     public static final String TAG = "WeitiaoFragment";
 
-    @BindView(R.id.item_tongbukz)
     ProlateItemSwitchView tongbukzView;
 
-    @BindView(R.id.img_anjian_top_icon)
     ImageView topIconImgView;
-    @BindView(R.id.text_anjian_top_title)
     TextView topTitleTextView;
-    @BindView(R.id.layout_head)
     LinearLayout headLayout;
 
     // 调整
-    @BindView(R.id.layout_tiaozheng)
     LinearLayout tiaozhengLayout;
-    @BindView(R.id.view_beibutiaozheng)
     AnjianWeitiaoView beibutiaozhengView;
-    @BindView(R.id.view_zhengtishengjiang)
     AnjianWeitiaoView zhengtishengjiangView;
 
 
@@ -55,8 +48,15 @@ public class WeitiaoW6Fragment extends WeitiaoBaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: ");
-        View view = inflater.inflate(R.layout.fragment_weitiao_w6, container, false);
-        ButterKnife.bind(this, view);
+        FragmentWeitiaoW6Binding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_weitiao_w6, container, false);
+        View view = binding.getRoot();
+        tongbukzView = binding.itemTongbukz;
+        topIconImgView = binding.imgAnjianTopIcon;
+        topTitleTextView = binding.textAnjianTopTitle;
+        headLayout = binding.layoutHead;
+        tiaozhengLayout = binding.layoutTiaozheng;
+        beibutiaozhengView = binding.viewBeibutiaozheng;
+        zhengtishengjiangView = binding.viewZhengtishengjiang;
         initView();
         return view;
     }

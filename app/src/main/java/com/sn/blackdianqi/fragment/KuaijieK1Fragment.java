@@ -26,8 +26,8 @@ import org.greenrobot.eventbus.EventBus;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.FragmentKuaijieK1Binding;
 
 /**
  * 快捷K1
@@ -35,40 +35,26 @@ import butterknife.ButterKnife;
 public class KuaijieK1Fragment extends KuaijieBaseFragment implements View.OnTouchListener {
 
 
-    @BindView(R.id.item_tongbukz)
     ProlateItemSwitchView tongbukzView;
 
-    @BindView(R.id.img_anjian_top_icon)
     ImageView topIconImgView;
-    @BindView(R.id.text_anjian_top_title)
     TextView topTitleTextView;
 
-    @BindView(R.id.view_jiyi1)
     JiyiView jiyi1View;
 
-    @BindView(R.id.view_jiyi2)
     JiyiView jiyi2View;
 
-    @BindView(R.id.view_kandianshi)
     AnjianYuanView kandianshiView;
-    @BindView(R.id.view_lingyali)
     AnjianYuanView lingyaliView;
-    @BindView(R.id.view_zhihan)
     AnjianYuanView zhihanView;
 
-    @BindView(R.id.view_fuyuan)
     AnjianYuanView fuyuanView;
-    @BindView(R.id.view_tingyinyue)
     AnjianYuanView tingyinyueView;
-    @BindView(R.id.view_tuibufangsong)
     AnjianYuanView tuibufangsongView;
 
 
-    @BindView(R.id.view_quanshengxunhuan)
     AnjianYuanView quanshengxunhuanView;
-    @BindView(R.id.view_yujia)
     AnjianYuanView yujiaView;
-    @BindView(R.id.view_tunbuxunhuan)
     AnjianYuanView tunbuxunhuanView;
 
     private long eventDownTime = 0L;
@@ -78,7 +64,22 @@ public class KuaijieK1Fragment extends KuaijieBaseFragment implements View.OnTou
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: ");
-        View view = inflater.inflate(R.layout.fragment_kuaijie_k1, container, false);
+        FragmentKuaijieK1Binding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_kuaijie_k1, container, false);
+        View view = binding.getRoot();
+        tongbukzView = binding.itemTongbukz;
+        topIconImgView = binding.imgAnjianTopIcon;
+        topTitleTextView = binding.textAnjianTopTitle;
+        jiyi1View = binding.viewJiyi1;
+        jiyi2View = binding.viewJiyi2;
+        kandianshiView = binding.viewKandianshi;
+        lingyaliView = binding.viewLingyali;
+        zhihanView = binding.viewZhihan;
+        fuyuanView = binding.viewFuyuan;
+        tingyinyueView = binding.viewTingyinyue;
+        tuibufangsongView = binding.viewTuibufangsong;
+        quanshengxunhuanView = binding.viewQuanshengxunhuan;
+        yujiaView = binding.viewYujia;
+        tunbuxunhuanView = binding.viewTunbuxunhuan;
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +87,6 @@ public class KuaijieK1Fragment extends KuaijieBaseFragment implements View.OnTou
                 sendBlueCmd("FF FF FF FF 05 00 00 00 00 D7 00");
             }
         });
-        ButterKnife.bind(this, view);
         initView();
         return view;
     }

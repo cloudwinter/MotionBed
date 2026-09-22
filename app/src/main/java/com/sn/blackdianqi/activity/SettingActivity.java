@@ -39,50 +39,36 @@ import com.sn.blackdianqi.view.TranslucentActionBar;
 
 import java.util.ArrayList;
 import java.util.List;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivitySetBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 public class SettingActivity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
 
     public static final String TAG = "SettingActivity";
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.ll_connect)
     LinearLayout llConnect;
-    @BindView(R.id.tv_connect)
     TextView tvConnect;
 
-    @BindView(R.id.ll_language)
     LinearLayout llLanguage;
-    @BindView(R.id.tv_language)
     TextView tvLanguage;
 
 
-    @BindView(R.id.ll_version)
     LinearLayout llVersion;
-    @BindView(R.id.tv_version)
     TextView tv_version;
-    @BindView(R.id.ll_privacy)
     LinearLayout llPrivacy;
 
-    @BindView(R.id.ll_fault)
     LinearLayout llFaultDebug;
 
-    @BindView(R.id.ll_debug)
     LinearLayout llDebug;
 
-    @BindView(R.id.ll_alarm)
     LinearLayout llAlarm;
-    @BindView(R.id.tv_alarm)
     TextView tvAlarm;
 
-    @BindView(R.id.ll_sync_control)
     LinearLayout llSync;
-    @BindView(R.id.cb_sync)
     CheckBox cbSync;
 
     // 特征值
@@ -116,8 +102,21 @@ public class SettingActivity extends BaseActivity implements TranslucentActionBa
         }else {
             registerReceiver(mSetReceiver, makeGattUpdateIntentFilter());
         }
-        setContentView(R.layout.activity_set);
-        ButterKnife.bind(this);
+        ActivitySetBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_set);
+        actionBar = binding.actionbar;
+        llConnect = binding.llConnect;
+        tvConnect = binding.tvConnect;
+        llLanguage = binding.llLanguage;
+        tvLanguage = binding.tvLanguage;
+        llVersion = binding.llVersion;
+        tv_version = binding.tvVersion;
+        llPrivacy = binding.llPrivacy;
+        llFaultDebug = binding.llFault;
+        llDebug = binding.llDebug;
+        llAlarm = binding.llAlarm;
+        tvAlarm = binding.tvAlarm;
+        llSync = binding.llSyncControl;
+        cbSync = binding.cbSync;
         // 设置title
         actionBar.setData(getString(R.string.blue_equipment), R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

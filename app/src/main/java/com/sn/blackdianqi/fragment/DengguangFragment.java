@@ -28,29 +28,22 @@ import com.sn.blackdianqi.view.ProlateItemSwitchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.FragmentDengguangBinding;
 
 public class DengguangFragment extends BaseFragment implements View.OnClickListener {
     
     public static final String TAG = "DengguangFragment";
 
-    @BindView(R.id.item_tongbukz)
     ProlateItemSwitchView tongbukzView;
 
-    @BindView(R.id.img_anjian_top_icon)
     ImageView topIconImgView;
-    @BindView(R.id.text_anjian_top_title)
     TextView topTitleTextView;
 
-    @BindView(R.id.tv_10fenzhong)
     TextView tenMinsTextView;
-    @BindView(R.id.tv_8xiaoshi)
     TextView eightHoursTextView;
-    @BindView(R.id.tv_10xiaoshi)
     TextView tenHoursTextView;
 
-    @BindView(R.id.view_dengguang_level)
     AnjianAnmoView dengguangLevel;
 
     /**
@@ -84,8 +77,15 @@ public class DengguangFragment extends BaseFragment implements View.OnClickListe
             getActivity().registerReceiver(mDengguangReceiver, makeGattUpdateIntentFilter());
         }
 
-        View view = inflater.inflate(R.layout.fragment_dengguang, container, false);
-        ButterKnife.bind(this, view);
+        FragmentDengguangBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_dengguang, container, false);
+        View view = binding.getRoot();
+        tongbukzView = binding.itemTongbukz;
+        topIconImgView = binding.imgAnjianTopIcon;
+        topTitleTextView = binding.textAnjianTopTitle;
+        tenMinsTextView = binding.tv10fenzhong;
+        eightHoursTextView = binding.tv8xiaoshi;
+        tenHoursTextView = binding.tv10xiaoshi;
+        dengguangLevel = binding.viewDengguangLevel;
         initView();
         RunningContext.threadPool().execute(new Runnable() {
             @Override

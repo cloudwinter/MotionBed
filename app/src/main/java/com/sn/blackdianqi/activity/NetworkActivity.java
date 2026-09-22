@@ -41,43 +41,29 @@ import com.sn.blackdianqi.view.TranslucentActionBar;
 
 import java.nio.ByteOrder;
 import java.util.List;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityNetworkBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class NetworkActivity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener {
 
 
     public static final String TAG = "NetworkActivity";
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
-    @BindView(R.id.edtWifiName)
     EditText edtWifiName;
-    @BindView(R.id.edtWifiPassword)
     EditText edtWifiPassword;
-    @BindView(R.id.ivSelectWifi)
     ImageView ivSelectWifi;
-    @BindView(R.id.ivEye)
     ImageView ivEye;
-    @BindView(R.id.ivSelect)
     ImageView ivSelect;
-    @BindView(R.id.tvNextStep)
     TextView tvNextStep;
 
-    @BindView(R.id.llConnect1)
     LinearLayout llConnect1;
-    @BindView(R.id.llConnect2)
     LinearLayout llConnect2;
-    @BindView(R.id.llConnect3)
     LinearLayout llConnect3;
-    @BindView(R.id.llConnect4)
     LinearLayout llConnect4;
-    @BindView(R.id.tvRetry)
     TextView tvRetry;
-    @BindView(R.id.tvCancel)
     TextView tvCancel;
-    @BindView(R.id.tvFinish)
     TextView tvFinish;
 
     private String cWifiName = "";
@@ -102,8 +88,21 @@ public class NetworkActivity extends BaseActivity implements TranslucentActionBa
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-        setContentView(R.layout.activity_network);
-        ButterKnife.bind(this);
+        ActivityNetworkBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_network);
+        actionBar = binding.actionbar;
+        edtWifiName = binding.edtWifiName;
+        edtWifiPassword = binding.edtWifiPassword;
+        ivSelectWifi = binding.ivSelectWifi;
+        ivEye = binding.ivEye;
+        ivSelect = binding.ivSelect;
+        tvNextStep = binding.tvNextStep;
+        llConnect1 = binding.llConnect1;
+        llConnect2 = binding.llConnect2;
+        llConnect3 = binding.llConnect3;
+        llConnect4 = binding.llConnect4;
+        tvRetry = binding.tvRetry;
+        tvCancel = binding.tvCancel;
+        tvFinish = binding.tvFinish;
         actionBar.setData(getResources().getString(R.string.distribution_network), R.mipmap.ic_back, null, 0, "", this);
         actionBar.setStatusBarHeight(getStatusBarHeight());
         initView();

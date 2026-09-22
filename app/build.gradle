@@ -6,37 +6,28 @@ def releaseTime() {
 }
 
 android {
-    compileSdkVersion 34
+    namespace 'com.sn.blackdianqi'
+    compileSdk 36
 
     defaultConfig {
-        applicationId "com.sn.blackdianqi"
-        minSdkVersion 26
-        targetSdkVersion 34
-        versionCode 34
-        versionName "1.24"
+        applicationId = "com.sn.blackdianqi"
+        minSdk = 26
+        targetSdk = 36
+        versionCode = 35
+        versionName = "1.35"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
-            // 设置支持的SO库架构
-//            abiFilters 'armeabi'
-            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
-            //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
         }
-//
-//        splits {
-//            abi {
-//                enable true
-//                reset()
-//                include 'x86', 'armeabi-v7a', 'mips'
-//                universalApk true
-//            }
-//        }
 
         // 默认渠道为官网
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: "official"]
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
-    flavorDimensions "versionCode"
+    flavorDimensions = ["channel"]
     productFlavors {
         google {}
     }
@@ -71,30 +62,31 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-
-            applicationVariants.all { variant ->
-                variant.outputs.all { output ->
-                    def outputFile = output.outputFile
-                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                        // 输出apk名称为test_v1.0_2016-08-15_wandoujia.apk
-                        def fileName = "Motion-bed${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
-                        output.outputFileName = new File("../../../release/", fileName);
-                    }
-                }
-            }
         }
     }
 
-    lintOptions {
+    applicationVariants.configureEach { variant ->
+        if (variant.buildType.name != "release") {
+            return
+        }
+        variant.outputs.configureEach { output ->
+            output.outputFileName = "Motion-bed_${variant.versionName}_${releaseTime()}_${variant.flavorName}.apk"
+        }
+    }
+
+    lint {
         checkReleaseBuilds false
-        // Or, if you prefer, you can continue to check for errors in release builds,
-        // but continue the build even when errors are found:
         abortOnError false
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        buildConfig true
+        dataBinding true
     }
 
 }
@@ -102,33 +94,14 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
-
-    // androidX
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.google.code.gson:gson:2.2.4'
+    implementation 'com.google.android.material:material:1.4.0'
 
-    implementation 'com.jakewharton:butterknife:8.2.1'
-    implementation 'com.google.android.material:material:1.4.+'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.2.1'
-
-//    implementation 'com.github.bumptech.glide:glide:3.8.0'
-//    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-
-//    implementation 'org.xutils:xutils:3.3.40'
     implementation 'net.frakbot:jumpingbeans:1.3.0'
-
-
-    // bugly
-    //implementation 'com.tencent.bugly:crashreport:latest.release'
-    //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
-    //implementation 'com.tencent.bugly:nativecrashreport:latest.release'
-    //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
 
     // 时间空间选择
     implementation 'com.github.gzu-liyujiang.AndroidPicker:Common:4.1.1'

@@ -17,8 +17,8 @@ import java.util.Iterator;
 import java.util.Map;
 
 import androidx.annotation.Nullable;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityModeBinding;
 
 /**
  * 星期选择界面
@@ -34,17 +34,12 @@ public class ModeActivity extends BaseActivity implements TranslucentActionBar.A
     public static String EXTRA_KEY = "MODE_EXTRA_KEY";
 
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.wiv_lingyali)
     WeekItemView lingyali;
-    @BindView(R.id.wiv_jiyi1)
     WeekItemView yiji1;
-    @BindView(R.id.wiv_budongzuo)
     WeekItemView budongzuo;
 
-    @BindView(R.id.ll_save)
     LinearLayout saveLL;
 
     @Override
@@ -60,8 +55,12 @@ public class ModeActivity extends BaseActivity implements TranslucentActionBar.A
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mode);
-        ButterKnife.bind(this);
+        ActivityModeBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_mode);
+        actionBar = binding.actionbar;
+        lingyali = binding.wivLingyali;
+        yiji1 = binding.wivJiyi1;
+        budongzuo = binding.wivBudongzuo;
+        saveLL = binding.llSave;
         // 设置title
         actionBar.setData(getString(R.string.alarm_mode), R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

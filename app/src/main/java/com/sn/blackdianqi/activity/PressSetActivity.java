@@ -42,23 +42,18 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityPressSetBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class PressSetActivity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
     public static final String TAG = "PressSetActivity";
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.rvList)
     RecyclerView rvList;
-    @BindView(R.id.ivPlus)
     ImageView ivPlus;
-    @BindView(R.id.ivMinus)
     ImageView ivMinus;
-    @BindView(R.id.tvConfirm)
     TextView tvConfirm;
 
     private List<PressBean> pressList = new ArrayList<>();
@@ -112,8 +107,12 @@ public class PressSetActivity extends BaseActivity implements TranslucentActionB
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-        setContentView(R.layout.activity_press_set);
-        ButterKnife.bind(this);
+        ActivityPressSetBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_press_set);
+        actionBar = binding.actionbar;
+        rvList = binding.rvList;
+        ivPlus = binding.ivPlus;
+        ivMinus = binding.ivMinus;
+        tvConfirm = binding.tvConfirm;
         actionBar.setData(null, R.mipmap.ic_back, null, 0, "", this);
         actionBar.setStatusBarHeight(getStatusBarHeight());
 

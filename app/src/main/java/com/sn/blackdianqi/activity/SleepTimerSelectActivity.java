@@ -18,8 +18,8 @@ import java.util.Iterator;
 import java.util.Map;
 
 import androidx.annotation.Nullable;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivitySleepTimerSelectBinding;
 
 /**
  * 00 无定时
@@ -43,29 +43,18 @@ public class SleepTimerSelectActivity extends BaseBlueActivity implements Transl
     public static String EXTRA_KEY = "WEEK_EXTRA_KEY";
 
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.v_0000)
     WeekItemView mItemView0000;
-    @BindView(R.id.v_2000)
     WeekItemView mItemView2000;
-    @BindView(R.id.v_2030)
     WeekItemView mItemView2030;
-    @BindView(R.id.v_2100)
     WeekItemView mItemView2100;
-    @BindView(R.id.v_2130)
     WeekItemView mItemView2130;
-    @BindView(R.id.v_2200)
     WeekItemView mItemView2200;
-    @BindView(R.id.v_2230)
     WeekItemView mItemView2230;
-    @BindView(R.id.v_2300)
     WeekItemView mItemView2300;
-    @BindView(R.id.v_2330)
     WeekItemView mItemView2330;
 
-    @BindView(R.id.ll_save)
     LinearLayout saveLL;
 
     private Map<String, WeekItemView> itemViewMap = new HashMap<>();
@@ -83,8 +72,18 @@ public class SleepTimerSelectActivity extends BaseBlueActivity implements Transl
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sleep_timer_select);
-        ButterKnife.bind(this);
+        ActivitySleepTimerSelectBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sleep_timer_select);
+        actionBar = binding.actionbar;
+        mItemView0000 = binding.v0000;
+        mItemView2000 = binding.v2000;
+        mItemView2030 = binding.v2030;
+        mItemView2100 = binding.v2100;
+        mItemView2130 = binding.v2130;
+        mItemView2200 = binding.v2200;
+        mItemView2230 = binding.v2230;
+        mItemView2300 = binding.v2300;
+        mItemView2330 = binding.v2330;
+        saveLL = binding.llSave;
         // 设置title
         actionBar.setData(getString(R.string.sleep_timer_title), R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

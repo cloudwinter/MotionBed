@@ -22,8 +22,8 @@ import com.sn.blackdianqi.view.ProlateItemSwitchView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.FragmentWeitiaoW4Binding;
 
 /**
  * 微调
@@ -32,22 +32,15 @@ public class WeitiaoW4Fragment extends WeitiaoBaseFragment {
 
     public static final String TAG = "WeitiaoFragment";
 
-    @BindView(R.id.item_tongbukz)
     ProlateItemSwitchView tongbukzView;
 
-    @BindView(R.id.img_anjian_top_icon)
     ImageView topIconImgView;
-    @BindView(R.id.text_anjian_top_title)
     TextView topTitleTextView;
-    @BindView(R.id.layout_head)
     LinearLayout headLayout;
 
     // 调整
-    @BindView(R.id.layout_tiaozheng)
     LinearLayout tiaozhengLayout;
-    @BindView(R.id.view_beibutiaozheng)
     AnjianWeitiaoView beibutiaozhengView;
-    @BindView(R.id.view_tuibutiaozheng)
     AnjianWeitiaoView tuibutiaozhengView;
 
 
@@ -58,8 +51,15 @@ public class WeitiaoW4Fragment extends WeitiaoBaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: ");
-        View view = inflater.inflate(R.layout.fragment_weitiao_w4, container, false);
-        ButterKnife.bind(this, view);
+        FragmentWeitiaoW4Binding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_weitiao_w4, container, false);
+        View view = binding.getRoot();
+        tongbukzView = binding.itemTongbukz;
+        topIconImgView = binding.imgAnjianTopIcon;
+        topTitleTextView = binding.textAnjianTopTitle;
+        headLayout = binding.layoutHead;
+        tiaozhengLayout = binding.layoutTiaozheng;
+        beibutiaozhengView = binding.viewBeibutiaozheng;
+        tuibutiaozhengView = binding.viewTuibutiaozheng;
         initView();
         return view;
     }

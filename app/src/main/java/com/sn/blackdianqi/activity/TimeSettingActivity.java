@@ -37,9 +37,9 @@ import com.sn.blackdianqi.view.TranslucentActionBar;
 
 import java.util.ArrayList;
 import java.util.List;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityTimeSettingBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class TimeSettingActivity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
 
@@ -55,22 +55,14 @@ public class TimeSettingActivity extends BaseActivity implements TranslucentActi
     private int gear = 0;
     private LengNuanTimeBean lengNuanTimeBean;
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.ll_mode)
     LinearLayout modeLL;
-    @BindView(R.id.tv_mode)
     TextView tvMode;
-    @BindView(R.id.ll_gear)
     LinearLayout gearLL;
-    @BindView(R.id.tv_gear)
     TextView tvGear;
-    @BindView(R.id.ll_time)
     LinearLayout timeLL;
-    @BindView(R.id.tv_time)
     TextView tvTime;
-    @BindView(R.id.ll_save)
     LinearLayout llSave;
 
     private List<String> hotGearList = new ArrayList<>();
@@ -114,8 +106,15 @@ public class TimeSettingActivity extends BaseActivity implements TranslucentActi
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-        setContentView(R.layout.activity_time_setting);
-        ButterKnife.bind(this);
+        ActivityTimeSettingBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_time_setting);
+        actionBar = binding.actionbar;
+        modeLL = binding.llMode;
+        tvMode = binding.tvMode;
+        gearLL = binding.llGear;
+        tvGear = binding.tvGear;
+        timeLL = binding.llTime;
+        tvTime = binding.tvTime;
+        llSave = binding.llSave;
         actionBar.setData(getResources().getString(R.string.time_set), R.mipmap.ic_back, null, 0, "", this);
         actionBar.setStatusBarHeight(getStatusBarHeight());
 

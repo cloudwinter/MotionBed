@@ -61,97 +61,62 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityDianDongSetBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class DianDongSetActivity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
 
     public static final String TAG = "DianDongSetActivity";
 
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.llAnmoTitle)
     LinearLayout llAnmoTitle;
-    @BindView(R.id.llAnmo)
     LinearLayout llAnmo;
-    @BindView(R.id.ivAnmo)
     ImageView ivAnmo;
-    @BindView(R.id.tvSaveAnmo)
     TextView tvSaveAnmo;
 
-    @BindView(R.id.llDengguangTitle)
     LinearLayout llDengguangTitle;
-    @BindView(R.id.llDengguang)
     LinearLayout llDengguang;
-    @BindView(R.id.ivDengguang)
     ImageView ivDengguang;
-    @BindView(R.id.tvSaveDengguang)
     TextView tvSaveDengguang;
 
-    @BindView(R.id.llClockTitle)
     LinearLayout llClockTitle;
-    @BindView(R.id.llClock)
     LinearLayout llClock;
-    @BindView(R.id.ivClock)
     ImageView ivClock;
-    @BindView(R.id.tvSaveClock)
     TextView tvSaveClock;
 
-    @BindView(R.id.view_10time)
     AnjianAnmoYuanView min10View;
-    @BindView(R.id.view_20time)
     AnjianAnmoYuanView min20View;
-    @BindView(R.id.view_30time)
     AnjianAnmoYuanView min30View;
 
-    @BindView(R.id.view_anmo_pinglv)
     AnjianAnmoView anmoPinglvView;
-    @BindView(R.id.view_anmo_toubu)
     AnjianAnmoView anmoToubuView;
-    @BindView(R.id.view_anmo_zubu)
     AnjianAnmoView anmoZubuView;
 
-    @BindView(R.id.tv_10fenzhong)
     TextView tenMinsTextView;
-    @BindView(R.id.tv_8xiaoshi)
     TextView eightHoursTextView;
-    @BindView(R.id.tv_10xiaoshi)
     TextView tenHoursTextView;
 
-    @BindView(R.id.view_dengguang_level)
     AnjianAnmoView dengguangLevel;
 
-    @BindView(R.id.ll_time)
     LinearLayout timeLL;
-    @BindView(R.id.tv_time)
     TextView timeTV;
 
-    @BindView(R.id.ll_week)
     LinearLayout weekLL;
-    @BindView(R.id.tv_week)
     TextView weekTV;
 
-    @BindView(R.id.ll_mode)
     LinearLayout modeLL;
-    @BindView(R.id.tv_mode)
     TextView modeTV;
 
-    @BindView(R.id.ll_anmo)
     LinearLayout anmoLL;
-    @BindView(R.id.cb_anmo)
     CheckBox anmoCB;
 
-    @BindView(R.id.ll_xiangling1)
     LinearLayout xianglingLL1;
-    @BindView(R.id.tv_music)
     TextView tvMusic;
 
-    @BindView(R.id.ll_xiangling2)
     LinearLayout xianglingLL2;
-    @BindView(R.id.cb_xinagling)
     CheckBox xinaglingCB;
 
     /**
@@ -210,8 +175,42 @@ public class DianDongSetActivity extends BaseActivity implements TranslucentActi
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-        setContentView(R.layout.activity_dian_dong_set);
-        ButterKnife.bind(this);
+        ActivityDianDongSetBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_dian_dong_set);
+        actionBar = binding.actionbar;
+        llAnmoTitle = binding.llAnmoTitle;
+        llAnmo = binding.llAnmo;
+        ivAnmo = binding.ivAnmo;
+        tvSaveAnmo = binding.tvSaveAnmo;
+        llDengguangTitle = binding.llDengguangTitle;
+        llDengguang = binding.llDengguang;
+        ivDengguang = binding.ivDengguang;
+        tvSaveDengguang = binding.tvSaveDengguang;
+        llClockTitle = binding.llClockTitle;
+        llClock = binding.llClock;
+        ivClock = binding.ivClock;
+        tvSaveClock = binding.tvSaveClock;
+        min10View = binding.view10time;
+        min20View = binding.view20time;
+        min30View = binding.view30time;
+        anmoPinglvView = binding.viewAnmoPinglv;
+        anmoToubuView = binding.viewAnmoToubu;
+        anmoZubuView = binding.viewAnmoZubu;
+        tenMinsTextView = binding.tv10fenzhong;
+        eightHoursTextView = binding.tv8xiaoshi;
+        tenHoursTextView = binding.tv10xiaoshi;
+        dengguangLevel = binding.viewDengguangLevel;
+        timeLL = binding.llTime;
+        timeTV = binding.tvTime;
+        weekLL = binding.llWeek;
+        weekTV = binding.tvWeek;
+        modeLL = binding.llMode;
+        modeTV = binding.tvMode;
+        anmoLL = binding.llAlarmAnmo;
+        anmoCB = binding.cbAnmo;
+        xianglingLL1 = binding.llXiangling1;
+        tvMusic = binding.tvMusic;
+        xianglingLL2 = binding.llXiangling2;
+        xinaglingCB = binding.cbXinagling;
         actionBar.setData(null, R.mipmap.ic_back, null, 0, "", this);
         actionBar.setStatusBarHeight(getStatusBarHeight());
         DeviceBean deviceBean = Prefer.getInstance().getConnectedDevice();

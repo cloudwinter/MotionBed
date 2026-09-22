@@ -20,41 +20,30 @@ import com.sn.blackdianqi.view.ProlateItemSwitchView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.FragmentKuaijieK9Binding;
 
 /**
  * 快捷K2
  */
 public class KuaijieK9Fragment extends KuaijieBaseFragment implements View.OnTouchListener {
 
-    @BindView(R.id.item_tongbukz)
     ProlateItemSwitchView tongbukzView;
 
-    @BindView(R.id.img_anjian_top_icon)
     ImageView topIconImgView;
-    @BindView(R.id.text_anjian_top_title)
     TextView topTitleTextView;
 
-    @BindView(R.id.view_jiyi1)
     JiyiView jiyi1View;
 
-    @BindView(R.id.view_jiyi2)
     JiyiView jiyi2View;
 
-    @BindView(R.id.view_kandianshi)
     AnjianYuanView kandianshiView;
-    @BindView(R.id.view_lingyali)
     AnjianYuanView lingyaliView;
-    @BindView(R.id.view_zhihan)
     AnjianYuanView zhihanView;
 
-    @BindView(R.id.view_fuyuan)
     AnjianYuanView fuyuanView;
 
-    @BindView(R.id.view_yijiangshengqi)
     AnjianYuanView shengqiView;
-    @BindView(R.id.view_yijiangjiangxia)
     AnjianYuanView jiangxiaView;
 
 
@@ -65,7 +54,19 @@ public class KuaijieK9Fragment extends KuaijieBaseFragment implements View.OnTou
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: ");
-        View view = inflater.inflate(R.layout.fragment_kuaijie_k9, container, false);
+        FragmentKuaijieK9Binding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_kuaijie_k9, container, false);
+        View view = binding.getRoot();
+        tongbukzView = binding.itemTongbukz;
+        topIconImgView = binding.imgAnjianTopIcon;
+        topTitleTextView = binding.textAnjianTopTitle;
+        jiyi1View = binding.viewJiyi1;
+        jiyi2View = binding.viewJiyi2;
+        kandianshiView = binding.viewKandianshi;
+        lingyaliView = binding.viewLingyali;
+        zhihanView = binding.viewZhihan;
+        fuyuanView = binding.viewFuyuan;
+        shengqiView = binding.viewYijiangshengqi;
+        jiangxiaView = binding.viewYijiangjiangxia;
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +74,6 @@ public class KuaijieK9Fragment extends KuaijieBaseFragment implements View.OnTou
                 sendBlueCmd("FF FF FF FF 05 00 00 00 00 D7 00");
             }
         });
-        ButterKnife.bind(this, view);
         initView();
         return view;
     }

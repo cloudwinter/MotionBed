@@ -39,44 +39,31 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityAnmoSetBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class AnmoSetActivity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
 
     public static final String TAG = "AnmoSetActivity";
 
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.view_quanshen)
     AnjianTextView quanshenView;
-    @BindView(R.id.view_beibu)
     AnjianTextView beibuView;
-    @BindView(R.id.view_yaobu)
     AnjianTextView yaobuView;
-    @BindView(R.id.view_jingbu)
     AnjianTextView jingbuView;
-    @BindView(R.id.view_yujia)
     AnjianTextView yujiaView;
 
-    @BindView(R.id.tv_plus)
     TextView tvPlus;
-    @BindView(R.id.ll_plus)
     LinearLayout llPlus;
-    @BindView(R.id.ll_minus)
     LinearLayout llMinus;
 
-    @BindView(R.id.view_10time)
     AnjianAnmoYuanView view10time;
-    @BindView(R.id.view_20time)
     AnjianAnmoYuanView view20time;
-    @BindView(R.id.view_30time)
     AnjianAnmoYuanView view30time;
 
-    @BindView(R.id.tvConfirm)
     TextView tvConfirm;
 
     private List<View> weitiaoViews = new ArrayList<>();
@@ -111,8 +98,20 @@ public class AnmoSetActivity extends BaseActivity implements TranslucentActionBa
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-        setContentView(R.layout.activity_anmo_set);
-        ButterKnife.bind(this);
+        ActivityAnmoSetBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_anmo_set);
+        actionBar = binding.actionbar;
+        quanshenView = binding.viewQuanshen;
+        beibuView = binding.viewBeibu;
+        yaobuView = binding.viewYaobu;
+        jingbuView = binding.viewJingbu;
+        yujiaView = binding.viewYujia;
+        tvPlus = binding.tvPlus;
+        llPlus = binding.llPlus;
+        llMinus = binding.llMinus;
+        view10time = binding.view10time;
+        view20time = binding.view20time;
+        view30time = binding.view30time;
+        tvConfirm = binding.tvConfirm;
         actionBar.setData(null, R.mipmap.ic_back, null, 0, "", this);
         actionBar.setStatusBarHeight(getStatusBarHeight());
         initView();

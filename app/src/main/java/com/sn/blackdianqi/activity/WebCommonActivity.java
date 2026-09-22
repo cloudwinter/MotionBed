@@ -14,22 +14,21 @@ import com.sn.blackdianqi.R;
 import com.sn.blackdianqi.base.BaseActivity;
 import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.view.TranslucentActionBar;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityWebCommonBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class WebCommonActivity extends BaseActivity implements TranslucentActionBar.ActionBarClickListener {
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
-    @BindView(R.id.web)
     WebView webView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_common);
-        ButterKnife.bind(this);
+        ActivityWebCommonBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_web_common);
+        actionBar = binding.actionbar;
+        webView = binding.web;
         String title = getIntent().getStringExtra("title");
         String url = getIntent().getStringExtra("url");
 

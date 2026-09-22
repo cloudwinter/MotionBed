@@ -58,10 +58,10 @@ import java.util.List;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import static com.sn.blackdianqi.MyApplication.HEART_RATE_MEASUREMENT;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityConnectBinding;
 
 
 /**
@@ -87,13 +87,9 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
     private List<String> blueNameList;
 
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar titleBar;
-    @BindView(R.id.tv_try)
     TextView textViewTry;
-    @BindView(R.id.tv_connect_time)
     TextView textViewConnectTime;
-    @BindView(R.id.lv)
     ListView listView;
 
     // 自定义Adapter
@@ -160,8 +156,11 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_connect);
-        ButterKnife.bind(this);
+        ActivityConnectBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_connect);
+        titleBar = binding.actionbar;
+        textViewTry = binding.tvTry;
+        textViewConnectTime = binding.tvConnectTime;
+        listView = binding.lv;
         MyApplication.getInstance().initFilePath();
         blueNameList = defindeBlueNameList();
         // 设置title
@@ -183,8 +182,8 @@ public class ConnectActivity extends BaseActivity implements TranslucentActionBa
         bindService(blueServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
 
         // google 启动扫描 TODO
-//        isFirstScan = true;
-//        scanBlue(true);
+        isFirstScan = true;
+        scanBlue(true);
     }
 
 

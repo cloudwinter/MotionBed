@@ -31,19 +31,16 @@ import com.sn.blackdianqi.util.BlueUtils;
 import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.util.PreferenceUtil;
 import com.sn.blackdianqi.util.ToastUtils;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityMainBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private final static int PERMISSION_REQUEST_COARSE_LOCATION = 3;
 
-    @BindView(R.id.text_enter)
     TextView textView;
-    @BindView(R.id.tv_privacy)
     TextView tvPrivacy;
-    @BindView(R.id.img_logo)
     ImageView imageView;
 
 
@@ -59,8 +56,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        textView = binding.textEnter;
+        tvPrivacy = binding.tvPrivacy;
+        imageView = binding.imgLogo;
 
         imageView.setImageResource(R.mipmap.app_logo_small);
         textView.setOnClickListener(this);

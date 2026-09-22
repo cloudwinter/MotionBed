@@ -19,9 +19,9 @@ import com.sn.blackdianqi.view.WeekItemView;
 
 import java.util.ArrayList;
 import java.util.List;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityGearBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 冷暖档位选择界面
@@ -36,19 +36,13 @@ public class GearActivity extends BaseActivity implements TranslucentActionBar.A
     int selectGear = 0;
     String modeCode = "01";
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.gear1)
     WeekItemView gear1;
-    @BindView(R.id.gear2)
     WeekItemView gear2;
-    @BindView(R.id.gear3)
     WeekItemView gear3;
-    @BindView(R.id.gear4)
     WeekItemView gear4;
 
-    @BindView(R.id.ll_save)
     LinearLayout saveLL;
 
     @Override
@@ -64,8 +58,13 @@ public class GearActivity extends BaseActivity implements TranslucentActionBar.A
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gear);
-        ButterKnife.bind(this);
+        ActivityGearBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_gear);
+        actionBar = binding.actionbar;
+        gear1 = binding.gear1;
+        gear2 = binding.gear2;
+        gear3 = binding.gear3;
+        gear4 = binding.gear4;
+        saveLL = binding.llSave;
         modeCode = getIntent().getStringExtra("modeCode");
         selectGear = getIntent().getIntExtra("gear", 1);
         // 设置title

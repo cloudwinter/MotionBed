@@ -21,36 +21,26 @@ import com.sn.blackdianqi.view.TranslucentActionBar;
 import java.math.BigDecimal;
 
 import androidx.annotation.Nullable;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivitySleepMonthReportBinding;
 
 /**
  * Created by xiayundong on 2022/1/9.
  */
 public class SleepMonthReportActivity extends BaseBlueActivity implements TranslucentActionBar.ActionBarClickListener, View.OnClickListener {
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
-    @BindView(R.id.title)
     TextView title;
 
-    @BindView(R.id.tv_pjzc_time)
     TextView tv_pjzc_time;
-    @BindView(R.id.tv_zczc_time)
     TextView tv_zczc_time;
-    @BindView(R.id.tv_zdzc_time)
     TextView tv_zdzc_time;
 
-    @BindView(R.id.tv_pjfs_count)
     TextView tv_pjfs_count;
-    @BindView(R.id.tv_zdfs_count)
     TextView tv_zdfs_count;
-    @BindView(R.id.tv_zsfs_count)
     TextView tv_zsfs_count;
 
-    @BindView(R.id.tv_pjpt_time)
     TextView tv_pjpt_time;
-    @BindView(R.id.tv_pjct_time)
     TextView tv_pjct_time;
 
 
@@ -68,8 +58,17 @@ public class SleepMonthReportActivity extends BaseBlueActivity implements Transl
         }else {
             registerReceiver(mMonthReportReceiver, makeGattUpdateIntentFilter());
         }
-        setContentView(R.layout.activity_sleep_month_report);
-        ButterKnife.bind(this);
+        ActivitySleepMonthReportBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sleep_month_report);
+        actionBar = binding.actionbar;
+        title = binding.title;
+        tv_pjzc_time = binding.tvPjzcTime;
+        tv_zczc_time = binding.tvZczcTime;
+        tv_zdzc_time = binding.tvZdzcTime;
+        tv_pjfs_count = binding.tvPjfsCount;
+        tv_zdfs_count = binding.tvZdfsCount;
+        tv_zsfs_count = binding.tvZsfsCount;
+        tv_pjpt_time = binding.tvPjptTime;
+        tv_pjct_time = binding.tvPjctTime;
         // 设置title
         actionBar.setData(getString(R.string.smr_action_bar_title), R.mipmap.ic_back, null, 0, null, this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

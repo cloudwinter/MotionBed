@@ -16,9 +16,9 @@ import com.sn.blackdianqi.util.Prefer;
 import com.sn.blackdianqi.view.LoggerView;
 import com.sn.blackdianqi.view.TranslucentActionBar;
 import com.sn.blackdianqi.view.WeekItemView;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.ActivityMode3Binding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 冷暖模式选择界面
@@ -32,15 +32,11 @@ public class Mode3Activity extends BaseActivity implements TranslucentActionBar.
 
     String checkMode = "00";
 
-    @BindView(R.id.actionbar)
     TranslucentActionBar actionBar;
 
-    @BindView(R.id.wiv_lingyali_left)
     WeekItemView lingyaliLeft;
-    @BindView(R.id.wiv_lingyali_right)
     WeekItemView lingyaliRight;
 
-    @BindView(R.id.ll_save)
     LinearLayout saveLL;
 
     @Override
@@ -56,8 +52,11 @@ public class Mode3Activity extends BaseActivity implements TranslucentActionBar.
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mode3);
-        ButterKnife.bind(this);
+        ActivityMode3Binding binding = DataBindingUtil.setContentView(this, R.layout.activity_mode3);
+        actionBar = binding.actionbar;
+        lingyaliLeft = binding.wivLingyaliLeft;
+        lingyaliRight = binding.wivLingyaliRight;
+        saveLL = binding.llSave;
         checkMode = getIntent().getStringExtra("modeCode");
         // 设置title
         actionBar.setData(getString(R.string.moshi), R.mipmap.ic_back, null, 0, null, this);

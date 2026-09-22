@@ -23,8 +23,8 @@ import com.sn.blackdianqi.view.ProlateItemSwitchView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import androidx.databinding.DataBindingUtil;
+import com.sn.blackdianqi.databinding.FragmentWeitiaoW1Binding;
 
 /**
  * 微调
@@ -33,38 +33,24 @@ public class WeitiaoW1Fragment extends WeitiaoBaseFragment implements View.OnTou
 
     public static final String TAG = "WeitiaoFragment";
 
-    @BindView(R.id.item_tongbukz)
     ProlateItemSwitchView tongbukzView;
 
-    @BindView(R.id.img_anjian_top_icon)
     ImageView topIconImgView;
-    @BindView(R.id.text_anjian_top_title)
     TextView topTitleTextView;
-    @BindView(R.id.layout_head)
     LinearLayout headLayout;
 
     // 调整
-    @BindView(R.id.layout_tiaozheng)
     LinearLayout tiaozhengLayout;
-    @BindView(R.id.view_beibutiaozheng)
     AnjianWeitiaoView beibutiaozhengView;
-    @BindView(R.id.view_tunbutiaozheng)
     AnjianWeitiaoView tunbutiaozhengView;
-    @BindView(R.id.view_tuobutiaozheng)
     AnjianWeitiaoView tuobutiaozhengView;
-    @BindView(R.id.view_tuibutiaozheng)
     AnjianWeitiaoView tuibutiaozhengView;
 
     // 循环
-    @BindView(R.id.layout_xunhuan)
     LinearLayout xunhuanLayout;
-    @BindView(R.id.view_quanshengxunhuan)
     AnjianChangTuoYuanView quanshengxunhuanView;
-    @BindView(R.id.view_tunbuxunhuan)
     AnjianChangTuoYuanView tunbuxunhuanView;
-    @BindView(R.id.view_toubuxunhuan)
     AnjianChangTuoYuanView toubuxunhuanView;
-    @BindView(R.id.view_tuibuxunhuan)
     AnjianChangTuoYuanView tuibuxunhuanView;
 
 
@@ -80,8 +66,22 @@ public class WeitiaoW1Fragment extends WeitiaoBaseFragment implements View.OnTou
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: ");
-        View view = inflater.inflate(R.layout.fragment_weitiao_w1, container, false);
-        ButterKnife.bind(this, view);
+        FragmentWeitiaoW1Binding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_weitiao_w1, container, false);
+        View view = binding.getRoot();
+        tongbukzView = binding.itemTongbukz;
+        topIconImgView = binding.imgAnjianTopIcon;
+        topTitleTextView = binding.textAnjianTopTitle;
+        headLayout = binding.layoutHead;
+        tiaozhengLayout = binding.layoutTiaozheng;
+        beibutiaozhengView = binding.viewBeibutiaozheng;
+        tunbutiaozhengView = binding.viewTunbutiaozheng;
+        tuobutiaozhengView = binding.viewTuobutiaozheng;
+        tuibutiaozhengView = binding.viewTuibutiaozheng;
+        xunhuanLayout = binding.layoutXunhuan;
+        quanshengxunhuanView = binding.viewQuanshengxunhuan;
+        tunbuxunhuanView = binding.viewTunbuxunhuan;
+        toubuxunhuanView = binding.viewToubuxunhuan;
+        tuibuxunhuanView = binding.viewTuibuxunhuan;
         initView();
         return view;
     }
